@@ -16,24 +16,24 @@
 
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+  <head>\
 
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="img/favicon.png" />
-    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" />
-    <link rel="stylesheet" type="text/css" href="<?php echo BURL.'assets/css/basic-style.css'; ?>" />
-    <link rel="stylesheet" type="text/css" href="<?php echo BURL.'assets/css/style.css'; ?>" />
+    <link rel="icon" type="image/png" href="<?php echo BURL.'assets/img/basic/favicon.png'; ?>" />
     <title>BAYFRONT HOTEL</title>
+
   </head>
   <body>
-  <?php //echo BURL.'assest/css/basic-style.css'; ?>
+
     <?php include(VIEWS.'inc/header-home.php'); ?>
+
     <div class="container">
       <?php include(VIEWS.'inc/service-section.php'); ?>
       <?php include(VIEWS.'inc/room-slider.php'); ?>
-
+      <a id="button"></a>
       <div class="activityContainer">
 
         <div class="activityRow activityOneTwo">
@@ -234,6 +234,22 @@
       $(".hover").mouseleave(function () {
         $(this).removeClass("hover");
       });
+
+      var btn = $('#button');
+
+$(window).scroll(function() {
+  if ($(window).scrollTop() > 300) {
+    btn.addClass('show');
+  } else {
+    btn.removeClass('show');
+  }
+});
+
+btn.on('click', function(e) {
+  e.preventDefault();
+  $('html, body').animate({scrollTop:0}, '300');
+});
+
     </script>
     <?php 
 	

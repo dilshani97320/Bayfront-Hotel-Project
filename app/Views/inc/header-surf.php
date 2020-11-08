@@ -2,32 +2,23 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	
-	<link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css">
-	<title>Document</title>
+	<title></title>
 </head>
 <body>
 	<div class="containerheader">
-		<?php include("common/header_navbar.php"); ?>
+
+		<?php include(VIEWS.'inc/header_navbar.php'); ?>
 
 		<div class="slideshowContainer">
-  
-			<!-- Replace the image 'src' with the images in your project.
-			Javascript is set up so that you can add as many images as you like, but make sure that you match the number of 'circle' span elements (below) to the number of images -->
-			<img class="imageSlides" src="img/surf-slide1.png" alt="beach side city view">
-			<img class="imageSlides" src="img/surf-slide2.jpg" alt="leaf on the ground">
-			<img class="imageSlides" src="img/surf-slide3.jpg" alt="lake surrounded by mountains">
+  			<img class="imageSlides" src="<?php echo BURL.'assets/img/slideshow/surf-slide1.png'; ?>" alt="beach side city view">
+			<img class="imageSlides" src="<?php echo BURL.'assets/img/slideshow/surf-slide2.jpg'; ?>" alt="leaf on the ground">
+			<img class="imageSlides" src="<?php echo BURL.'assets/img/slideshow/surf-slide3.jpg'; ?>" alt="lake surrounded by mountains">
 			  
-			<!-- I would recommend to replace these 'span' elements with 'img' files
-			for each the left and right arrow that fits your project, and size accordingly.
-			I've shown 'span' elements because I didn't want to upload files. -->
 			<span id ="leftArrow" class="slideshowArrow">&#8249;</span>
 			<span id ="rightArrow" class="slideshowArrow">&#8250;</span>
 		  
 			<div class="slideshowCircles">
-				<!-- Filled 'dot' class is set to first image in slideshow, and then via Javascript the filled 'dot' class follows the current image.
-				Make sure you match the number of these 'circle' span elements to the number of images in your slideshow. -->
-			    <span class="circle dot"></span>
+				 <span class="circle dot"></span>
 			    <span class="circle"></span>
 			    <span class="circle"></span>
   			</div>
@@ -35,7 +26,8 @@
 		</div>
 	</div>
 
-<?php include("common/booking-form.php"); ?>
+<?php //include("common/booking-form.php"); ?>
+
 <script type="text/javascript">
 	window.addEventListener("scroll",function () {
 		const navbar= document.querySelector(".nav");

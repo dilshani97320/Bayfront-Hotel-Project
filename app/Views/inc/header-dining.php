@@ -2,18 +2,17 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	
-	<link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css">
-	<title>Document</title>
+	<title></title>
 </head>
 <body>
 	<div class="containerheader">
-		<?php include("common/header_navbar.php"); ?>
+	<?php include(VIEWS.'inc/header_navbar.php'); ?>
+		
 
 		<div class="slideshowContainer">
-			<img class="imageSlides" src="img/dining-slide1.jpg" alt="beach side city view">
-			<img class="imageSlides" src="img/dining-slide2.jpg" alt="leaf on the ground">
-			<img class="imageSlides" src="img/dining-slide3.jpg" alt="lake surrounded by mountains">
+			<img class="imageSlides" src="<?php echo BURL.'assets/img/slideshow/dining-slide1.jpg'; ?>" alt="beach side city view">
+			<img class="imageSlides" src="<?php echo BURL.'assets/img/slideshow/dining-slide2.jpg'; ?>" alt="leaf on the ground">
+			<img class="imageSlides" src="<?php echo BURL.'assets/img/slideshow/dining-slide3.jpg'; ?>" alt="lake surrounded by mountains">
 			<span id ="leftArrow" class="slideshowArrow">&#8249;</span>
 			<span id ="rightArrow" class="slideshowArrow">&#8250;</span>
 		  

@@ -2,13 +2,13 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="headstyle.css">
-    <title>Responsive Navbar</title>
+    
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo BURL.'assets/css/basic-style.css'; ?>" />
+    <link rel="stylesheet" type="text/css" href="<?php echo BURL.'assets/css/style.css'; ?>" />
+    <title></title>
 </head>
 
 <body>
@@ -24,11 +24,11 @@
             <div class="nav-btn">
                 <div class="nav-links">
                     <ul>
-                        <li class="nav-link" style="--i: .85s"><a href="index.php">Home</a></li>
-                        <li class="nav-link" style="--i: .85s"><a href="room.php">Room & Lifestyle</a></li>
-                        <li class="nav-link" style="--i: .85s"><a href="dining.php">Dining</a></li>
-                        <li class="nav-link" style="--i: .85s"><a href="surf.php">Surf</a></li>
-                        <li class="nav-link" style="--i: .85s"><a href="activity.php">Activities</a></li>
+                        <li class="nav-link" style="--i: .85s"><a href="<?php url() ?>">Home</a></li>
+                        <li class="nav-link" style="--i: .85s"><a href="<?php url('Room/index'); ?>">Room & Lifestyle</a></li>
+                        <li class="nav-link" style="--i: .85s"><a href="<?php url('Dining/index'); ?>">Dining</a></li>
+                        <li class="nav-link" style="--i: .85s"><a href="<?php url('Surf/index'); ?>">Surf</a></li>
+                        <li class="nav-link" style="--i: .85s"><a href="<?php url('Activity/index'); ?>">Activities</a></li>
                         
                        
                         <!-- <li class="nav-link" style="--i: .85s">

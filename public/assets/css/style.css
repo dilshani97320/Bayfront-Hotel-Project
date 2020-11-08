@@ -741,7 +741,7 @@ span .unit{
 }
 
 
-/*Dinning Page =============================================================================================*/
+/*Dining Page =============================================================================================*/
   .boxes{
   margin: 10px auto;
   padding: 10px;
@@ -1074,7 +1074,7 @@ background: radial-gradient(circle, rgba(214,21,0,0.5917717428768383) 100%, rgba
     background-attachment: fixed;
   }
   .pimg1{
-    background-image: url('../1.jpg');
+    
     min-height: 550px;
   }
   .ptext{

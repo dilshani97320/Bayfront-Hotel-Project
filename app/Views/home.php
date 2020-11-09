@@ -19,7 +19,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>\
+  <head>
 
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="<?php echo BURL.'assets/img/basic/favicon.png'; ?>" />
@@ -72,7 +72,7 @@
               aspernatur blanditiis, voluptatibus illum ipsum. ipsum dolor sit
               amet, consectetur adipisicing elit..
             </p>
-            <a class="btn" href="landing.php?article=0">FIND OUT MORE<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+            <a class="btn" href="<?php url('Activity/ViewSubPage/0' ); ?>">FIND OUT MORE<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
           </div>
         </div>
 

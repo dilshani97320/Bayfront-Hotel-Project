@@ -610,6 +610,19 @@ figure.imgBlock.hover .title:after {
   z-index: 5;
   /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 }
+
+.room-details:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background-image: -moz-linear-gradient(90deg,#0b2e4f 0%,rgba(232,178,117,0) 70%);
+  background-image: -webkit-linear-gradient(90deg,#0b2e4f 0%,rgba(232,178,117,0) 70%);
+  background-image: -ms-linear-gradient(90deg,#0b2e4f 0%,rgba(232,178,117,0) 70%);
+  z-index: 2;
+}
 .room-details h1{
   text-align: left; 
 }

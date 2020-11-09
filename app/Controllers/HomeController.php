@@ -14,6 +14,11 @@
         {
             View::load('home');
         }
+
+        public function dashboard()
+        {
+            View::load('dashboard/dashboard');
+        }
         
     }
 

@@ -12,7 +12,7 @@
                 require($file);
                 ob_end_flush();
             }else{
-                echo "This view : " .$view_name . "does not exist";  
+                echo "This view : " .$view_name . " does not exist";  
             }
         }
     }

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -209,6 +209,6 @@
 	</div>
 
 
-	<?php include("common/footer.php"); ?>
+	<?php// include("common/footer.php"); ?>
 </body>
-</html>
+</html> -->

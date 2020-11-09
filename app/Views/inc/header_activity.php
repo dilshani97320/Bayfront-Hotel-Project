@@ -8,12 +8,12 @@
 </head>
 <body>
 	<div class="containerheader">
-		<?php include("common/header_navbar.php"); ?>
+		<?php include(VIEWS.'inc/header_navbar.php'); ?>
 
 		<div class="slideshowContainer">
-			<img class="imageSlides" src="img/act-slide1.png" alt="beach side city view">
-			<img class="imageSlides" src="img/act-slide2.jpg" alt="leaf on the ground">
-			<img class="imageSlides" src="img/act-slide3.jpg" alt="lake surrounded by mountains">
+			<img class="imageSlides" src="<?php echo BURL.'assets/img/slideshow/act-slide1.png'; ?>" alt="beach side city view">
+			<img class="imageSlides" src="<?php echo BURL.'assets/img/slideshow/act-slide2.jpg'; ?>" alt="leaf on the ground">
+			<img class="imageSlides" src="<?php echo BURL.'assets/img/slideshow/act-slide3.jpg'; ?>" alt="lake surrounded by mountains">
 
 			<span id ="leftArrow" class="slideshowArrow">&#8249;</span>
 			<span id ="rightArrow" class="slideshowArrow">&#8250;</span>

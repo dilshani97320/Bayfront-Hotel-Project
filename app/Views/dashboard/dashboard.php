@@ -11,7 +11,7 @@
         
     <?php 
     
-        $navbar_title = "Home Page";
+        $navbar_title = "Welcome to Dashboard";
         $search = 0;
         $search_by = 'name';
         
@@ -25,7 +25,7 @@
             <div class="card">
                 <div class="cardheader">
                     <div class="options">
-                        <h4>Home Page</h4>    
+                        <h4>Welcome to Dashboard</h4>    
                     </div>
                     <p class="textfortabel">See What is Complete</p>
                 </div>

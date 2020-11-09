@@ -75,7 +75,7 @@
   </figcaption><span class="read-more">
      
     Read More <i class="ion-android-arrow-forward"></i></span>
-  <a href="landing3.php?article=1"></a>
+  <a href="<?php url('Dining/ViewSubPage/1' ); ?> "></a>
 </figure>
 <figure class="dineset-block center ">
 <!-- <img src="other/food2.jpg" /> -->
@@ -86,7 +86,7 @@
   </figcaption><span class="read-more">
      
     Read More <i class="ion-android-arrow-forward"></i></span>
-  <a href="landing3.php?article=2"></a>
+  <a href="<?php url('Dining/ViewSubPage/2' ); ?>"></a>
 </figure>
 <figure class="dineset-block">
 <!-- <img src="other/food3.jpg" alt="pr-sample16" /> -->
@@ -97,7 +97,7 @@
   </figcaption><span class="read-more">
      
     Read More <i class="ion-android-arrow-forward"></i></span>
-  <a href="landing3.php?article=3"></a>
+  <a href="<?php url('Dining/ViewSubPage/3' ); ?>"></a>
 </figure>
 </div>
 

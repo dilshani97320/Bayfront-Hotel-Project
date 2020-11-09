@@ -1,214 +1,352 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="css/header-style.css">
-	<link rel="stylesheet" type="text/css" href="css/footer-style.css">
-	<link rel="stylesheet" type="text/css" href="css/basic-style.css">		
-	<title>Room</title>
+	
+	<meta charset="UTF-8">	
+	<link rel="icon" type="image/png" href="<?php echo BURL.'assets/img/basic/favicon.png'; ?>" />
+	<title>BAYFRONT ROOM</title>
+
 </head>
-<style>
-	.room{
-	/*background-color: #fff;*/
-	/*color: #000;*/
-	width: 1400px;
-	height: 500px;
-	/*border: 2px solid black;*/
-	margin: 20px auto;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: center;
-	box-shadow:0 14px 80px rgba(0,0,0,.2);
-}
-
-.img-details{
-	/*position: relative;*/
-
-
-	padding: 20px
-}.img-details img{
-	/*position: relative;*/
-	width: 500px;
-	height: 400px;
-}.details{
-	/*position: relative;*/
-	width: 50%;
-	text-align: left; 
-	padding: 10px
-}
-
-.title{
-	font-size: 35px;
-	margin-bottom: 10px;
-	letter-spacing: 1.3px;	
-	text-transform: uppercase;
-	color: #000;
-}
-
-.text{
-	font-size: 16px;
-	margin-bottom: 3px;
-	color:#000 rgba(0,0,0,.7);
-}
-
-.viewroom ,.booknow{
-	display: inline-block;
-	margin:40px;
-	padding: 20px 40px;
-	letter-spacing: 1px;
-	text-transform: uppercase;
-	font-weight: 700;
-	color: #000;
-	text-decoration: none;
-	border-radius: 10px;
-	background-image: linear-gradient(to right, #1E90FF 0%,#4facfe 100%);
-}
-.bttn{
-	float: right;
-	display: flex;
-	margin-left: auto;	
-
-	width: 100%;
-
-}
-.price{
-	float: right;
-	font-size: 22px;
-	letter-spacing: 1.5px;
-}
-</style>
 <body>
-		 <?php include("common/header-room.php"); ?>
+		 <?php include(VIEWS.'inc/header-room.php'); ?>
 		 
+	<div class="container">
 	<div class="room">
 		
-		<div class="img-details">
-			<img src="other/21.jpg">
-		</div>
-
-		<div class="details">
-		<h2 class="title">Single Room</h2>
-		<p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis</p>
-			<ul>
-				<li><i class="fa fa-wifi" aria-hidden="true"></i> Free wifi</li>
-				<li><i class="fa fa-cutlery" aria-hidden="true"> Delesious foof</i></li>
-				<li><i class="fa fa-coffee" aria-hidden="true"> Coffee</i></li>
-				<li><i class="fa fa-car" aria-hidden="true"> Parking</i></li>
-			</ul>
-			<div class="price">
-				<h2>LKR 7500.00</h2>
+		<div class="room-slider">
+				<div class="room-details ">
+					<div class="content-room">
+						<span class="value">$320.6</span>
+						<span class="unit">/Night</span>
+						<h1>Standard Double Room</h1>
+						<span>room type</span>
+						<p>Lorem20 ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum, quas quasi nulla aut blanditiis, minima omnis molestiae! Necessitatibus, adipisci nam id quis natus.</p>
+						
+						<div class="single-room-meta">
+							<div class="meta">
+								
+								<div class="title">
+									<i class="fas fa-user-tie"></i>Adults
+								</div>
+								<div class="value-meta">2</div>
+	
+							</div>
+							<div class="meta">
+								
+								<div class="title">
+									<i class="fa fa-child" ></i>Children
+								</div>
+								<div class="value-meta">1</div>
+	
+							</div>
+							<!-- <div class="meta">
+								
+								<div class="title">
+									<i class="fas fa-compress"></i>Acreage
+								</div>
+								<div class="value-meta">400 sq.ft</div>
+	
+							</div> -->
+							<div class="meta">
+								
+								<div class="title">
+									<i class="fas fa-bed"></i>Beds
+								</div>
+								<div class="value-meta">1 King Size Bed</div>
+							</div>
+							<div class="meta">
+								
+								<div class="title">
+								<i class="fas fa-eye"></i> View
+								</div>
+								<div class="value-meta">Sea View</div>
+	
+							</div>
+						</div>
+					</div>
+					<div class="bttn">
+						<a class="btn" href="#">VIEW MORE <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+						<a class="btn" href="#">BOOK NOW <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+					</div>
+				</div>
+				<div class="room-img">
+					<img src="<?php echo BURL.'assets/img/room2.jpg'; ?>" alt="">
+				</div>
 			</div>
-		<div class="bttn">
-			 <a class="btn" href="view-room.php">VIEW MORE <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-			  <a class="btn" href="#">BOOK NOW <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
 		</div>
-	    </div>
-	</div>
-<div class="room">
+	<div class="room">
+			
+			<div class="room-slider">
+				<div class="room-img">
+					<img src="<?php echo BURL.'assets/img/room2.jpg'; ?>" alt="">
+				</div>
+				<div class="room-details ">
+					<div class="content-room">
+						<span class="value">$320.6</span>
+						<span class="unit">/Night</span>
+						<h1>Standard Double Room</h1>
+						<span>room type</span>
+						<p>Lorem20 ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum, quas quasi nulla aut blanditiis, minima omnis molestiae! Necessitatibus, adipisci nam id quis natus.</p>
+						
+						<div class="single-room-meta">
+							<div class="meta">
+								
+								<div class="title">
+									<i class="fas fa-user-tie"></i>Adults
+								</div>
+								<div class="value-meta">2</div>
+	
+							</div>
+							<div class="meta">
+								
+								<div class="title">
+									<i class="fa fa-child" ></i>Children
+								</div>
+								<div class="value-meta">1</div>
+	
+							</div>
+							<!-- <div class="meta">
+								
+								<div class="title">
+									<i class="fas fa-compress"></i>Acreage
+								</div>
+								<div class="value-meta">400 sq.ft</div>
+	
+							</div> -->
+							<div class="meta">
+								
+								<div class="title">
+									<i class="fas fa-bed"></i>Beds
+								</div>
+								<div class="value-meta">1 King Size Bed</div>
+							</div>
+							<div class="meta">
+								
+								<div class="title">
+								<i class="fas fa-eye"></i> View
+								</div>
+								<div class="value-meta">Sea View</div>
+	
+							</div>
+						</div>
+					</div>
+					<div class="bttn">
+						<a class="btn" href="#">VIEW MORE <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+						<a class="btn" href="#">BOOK NOW <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+					</div>
+				</div>
+				
+			</div>
+		</div>
 		
-		<div class="img-details">
-			<img src="other/21.jpg">
-		</div>
+	<div class="room">
+			
+	<div class="room-slider">
+				<div class="room-details">
+					<div class="content-room">
+						<span class="value">$170.6</span>
+						<span class="unit">/Night</span>
+						<h1>Executive Suite with Sea View </h1>
+						<span>room type</span>
+						<p>Lorem20 ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum, quas quasi nulla aut blanditiis, minima omnis molestiae! Necessitatibus, adipisci nam id quis natus.</p>
+						
+						<div class="single-room-meta">
+							<div class="meta">
+								
+								<div class="title">
+									<i class="fas fa-user-tie"></i>Adults
+								</div>
+								<div class="value-meta">2</div>
 
-		<div class="details">
-		<h2 class="title">Single Room</h2>
-		<p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis</p>
-			<ul>
-				<li><i class="fa fa-wifi" aria-hidden="true"></i> Free wifi</li>
-				<li><i class="fa fa-cutlery" aria-hidden="true"> Delesious foof</i></li>
-				<li><i class="fa fa-coffee" aria-hidden="true"> Coffee</i></li>
-				<li><i class="fa fa-car" aria-hidden="true"> Parking</i></li>
-			</ul>
-			<div class="price">
-				<h2>LKR 7500.00</h2>
+							</div>
+							<div class="meta">
+								
+								<div class="title">
+									<i class="fa fa-child" ></i>Children
+								</div>
+								<div class="value-meta">1</div>
+
+							</div>
+							<!-- <div class="meta">
+								
+								<div class="title">
+									<i class="fas fa-compress"></i>Acreage
+								</div>
+								<div class="value-meta">400 sq.ft</div>
+
+							</div> -->
+							<div class="meta">
+								
+								<div class="title">
+									<i class="fas fa-bed"></i>Beds
+								</div>
+								<div class="value-meta">1 King Size Bed</div>
+							</div>
+							<div class="meta">
+								
+								<div class="title">
+								<i class="fas fa-eye"></i> View
+								</div>
+								<div class="value-meta">Sea View</div>
+
+							</div>
+						</div>
+						</div>
+						<div class="bttn">
+							<a class="btn" href="#">VIEW MORE <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+						<a class="btn" href="#">BOOK NOW <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+					</div>
+					
+
+					</div>
+					<div class="room-img">
+						<img src="<?php echo BURL.'assets/img/room3.jpg'; ?>" alt="">
+					
+				</div>
+			</div>		
+
+		</div>
+	<div class="room">
+			
+	<div class="room-slider">
+	<div class="room-img">
+						<img src="<?php echo BURL.'assets/img/room3.jpg'; ?>" alt="">
+					
+				</div>
+				<div class="room-details">
+					<div class="content-room">
+						<span class="value">$170.6</span>
+						<span class="unit">/Night</span>
+						<h1>Executive Suite with Sea View </h1>
+						<span>room type</span>
+						<p>Lorem20 ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum, quas quasi nulla aut blanditiis, minima omnis molestiae! Necessitatibus, adipisci nam id quis natus.</p>
+						
+						<div class="single-room-meta">
+							<div class="meta">
+								
+								<div class="title">
+									<i class="fas fa-user-tie"></i>Adults
+								</div>
+								<div class="value-meta">2</div>
+
+							</div>
+							<div class="meta">
+								
+								<div class="title">
+									<i class="fa fa-child" ></i>Children
+								</div>
+								<div class="value-meta">1</div>
+
+							</div>
+							<!-- <div class="meta">
+								
+								<div class="title">
+									<i class="fas fa-compress"></i>Acreage
+								</div>
+								<div class="value-meta">400 sq.ft</div>
+
+							</div> -->
+							<div class="meta">
+								
+								<div class="title">
+									<i class="fas fa-bed"></i>Beds
+								</div>
+								<div class="value-meta">1 King Size Bed</div>
+							</div>
+							<div class="meta">
+								
+								<div class="title">
+								<i class="fas fa-eye"></i> View
+								</div>
+								<div class="value-meta">Sea View</div>
+
+							</div>
+						</div>
+						</div>
+						<div class="bttn">
+							<a class="btn" href="#">VIEW MORE <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+						<a class="btn" href="#">BOOK NOW <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+					</div>
+					
+
+					</div>
+					
 			</div>
-		<div class="bttn">
-			  <a class="btn" href="#">VIEW MORE <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-			  <a class="btn" href="#">BOOK NOW <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-		</div>
-	    </div>
-	</div>
-<div class="room">
-		
-		<div class="img-details">
-			<img src="other/21.jpg">
-		</div>
 
-		<div class="details">
-		<h2 class="title">Single Room</h2>
-		<p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis</p>
-			<ul>
-				<li><i class="fa fa-wifi" aria-hidden="true"></i> Free wifi</li>
-				<li><i class="fa fa-cutlery" aria-hidden="true"> Delesious foof</i></li>
-				<li><i class="fa fa-coffee" aria-hidden="true"> Coffee</i></li>
-				<li><i class="fa fa-car" aria-hidden="true"> Parking</i></li>
-			</ul>
-			<div class="price">
-				<h2>LKR 7500.00</h2>
+		</div>
+	<div class="room">
+			
+			
+	<div class="room-slider">
+		<div class="room-details">
+	
+			<div class="content-room">
+				
+			<span class="value">$120.6</span>
+          <span class="unit">/Night</span>
+       
+			<h1>Superior Double Room with Partial Sea View</h1>
+
+			<span>room type</span>
+			<p>Lorem20 ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum, quas quasi nulla aut blanditiis, minima omnis molestiae! Necessitatibus, adipisci nam id quis natus.</p>
+			
+			<div class="single-room-meta">
+				<div class="meta">
+					
+					<div class="title">
+						<i class="fas fa-user-tie"></i>Adults
+					</div>
+					<div class="value-meta">2</div>
+
+				</div>
+				<div class="meta">
+					
+					<div class="title">
+						<i class="fa fa-child" ></i>Children
+					</div>
+					<div class="value-meta">1</div>
+
+				</div>
+				<!-- <div class="meta">
+					
+					<div class="title">
+						<i class="fas fa-compress"></i>Acreage
+					</div>
+					<div class="value-meta">400 sq.ft</div>
+
+				</div> -->
+				<div class="meta">
+					
+					<div class="title">
+						<i class="fas fa-bed"></i>Beds
+					</div>
+					<div class="value-meta">1 King Size Bed</div>
+				</div>
+				<div class="meta">
+					
+					<div class="title">
+					<i class="fas fa-eye"></i> View
+					</div>
+					<div class="value-meta">Sea View</div>
+
+				</div>
 			</div>
-		<div class="bttn">
-			 <a class="btn" href="#">VIEW MORE <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-			  <a class="btn" href="#">BOOK NOW <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-		</div>
-	    </div>
-	</div>
-<div class="room">
-		
-		<div class="img-details">
-			<img src="other/21.jpg">
-		</div>
-
-		<div class="details">
-		<h2 class="title">Single Room</h2>
-		<p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis</p>
-			<ul>
-				<li><i class="fa fa-wifi" aria-hidden="true"></i> Free wifi</li>
-				<li><i class="fa fa-cutlery" aria-hidden="true"> Delesious foof</i></li>
-				<li><i class="fa fa-coffee" aria-hidden="true"> Coffee</i></li>
-				<li><i class="fa fa-car" aria-hidden="true"> Parking</i></li>
-			</ul>
-			<div class="price">
-				<h2>LKR 7500.00</h2>
 			</div>
-		<div class="bttn">
-			 <a class="btn" href="#">VIEW MORE <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-			  <a class="btn" href="#">BOOK NOW <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-		</div>
-	    </div>
-	</div>
-<div class="room">
-		
-		<div class="img-details">
-			<img src="other/21.jpg">
-		</div>
 
-		<div class="details">
-		<h2 class="title">Single Room</h2>
-		<p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis</p>
-			<ul>
-				<li><i class="fa fa-wifi" aria-hidden="true"></i> Free wifi</li>
-				<li><i class="fa fa-cutlery" aria-hidden="true"> Delesious foof</i></li>
-				<li><i class="fa fa-coffee" aria-hidden="true"> Coffee</i></li>
-				<li><i class="fa fa-car" aria-hidden="true"> Parking</i></li>
-			</ul>
-			<div class="price">
-				<h2>LKR 7500.00</h2>
+			<div class="bttn">
+				<a class="btn" href="#">VIEW MORE</i></a>
+				<a class="btn" href="#">BOOK NOW</i></a>
 			</div>
-		<div class="bttn">
-			 <a class="btn" href="#">VIEW MORE <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-			  <a class="btn" href="#">BOOK NOW <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
 		</div>
-	    </div>
-	</div>
+		<div class="room-img">
+			<img src="<?php echo BURL.'assets/img/room1.jpg'; ?>" alt="">
+		</div>
 
+	</div>
+		</div>
+	
+	</div>
 
 	<?php// include("common/footer.php"); ?>
 </body>
-</html> -->
+</html>

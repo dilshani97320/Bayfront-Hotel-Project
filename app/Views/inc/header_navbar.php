@@ -25,7 +25,7 @@
                 <div class="nav-links">
                     <ul>
                         <li class="nav-link" style="--i: .85s"><a href="<?php url() ?>">Home</a></li>
-                        <li class="nav-link" style="--i: .85s"><a href="<?php url('Room/index'); ?>">Room & Lifestyle</a></li>
+                        <li class="nav-link" style="--i: .85s"><a href="<?php url('Roomsuite/index'); ?>">Room & Lifestyle</a></li>
                         <li class="nav-link" style="--i: .85s"><a href="<?php url('Dining/index'); ?>">Dining</a></li>
                         <li class="nav-link" style="--i: .85s"><a href="<?php url('Surf/index'); ?>">Surf</a></li>
                         <li class="nav-link" style="--i: .85s"><a href="<?php url('Activity/index'); ?>">Activities</a></li>

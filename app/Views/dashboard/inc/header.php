@@ -36,6 +36,7 @@
     <link rel="stylesheet" href="<?php echo BURL.'assets/css/main.css'; ?>">
     <link rel="stylesheet" href="<?php echo BURL.'assets/css/CalendarPicker.style.css'; ?>">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons">
+    <link rel="icon" type="image/png" href="<?php echo BURL.'assets/img/basic/favicon.png'; ?>" />
 </head>
 
 <body>

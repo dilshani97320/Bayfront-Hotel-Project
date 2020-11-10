@@ -36,7 +36,7 @@ class RoomController {
             }
             else {
                 $data = array();
-                $db = new Room;
+                $db = new RoomDetails;
                 if(isset($_POST['search'])) {
                     $search = $_POST['search'];
                     $data['rooms'] = $db->getSearchRoom($search, $current_date);

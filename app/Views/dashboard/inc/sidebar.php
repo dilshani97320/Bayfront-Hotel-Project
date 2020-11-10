@@ -12,25 +12,25 @@
     <ul class="nav1">
         <li class="nav1-item">
             <a href="<?php url(); ?>" class="nav1-link">
-                <p class="nav-p"><i class="material-icons"></i>Dashboard</p>   
+                <p class="nav-p"><i class="material-icons">dashboard</i>Dashboard</p>   
             </a>
         </li>
 
         <li class="nav1-item">
             <a href="<?php url('employee/index'); ?>" class="nav1-link">
-                <p class="nav-p"><i class="material-icons"></i>Employee</p>         
+                <p class="nav-p"><i class="material-icons">people</i>Employee</p>         
             </a>
         </li> 
 
         <li class="nav1-item">
             <a href="<?php url('room/index'); ?>" class="nav1-link">
-                <p class="nav-p"><i class="material-icons"></i>Rooms</p>         
+                <p class="nav-p"><i class="material-icons">room_preferences</i>Rooms</p>         
             </a>
         </li>
 
         <li class="nav1-item">
             <a href="#" class="nav1-link">
-                <p class="nav-p"><i class="material-icons"></i>Reservation</p>         
+                <p class="nav-p"><i class="material-icons">book</i>Reservation</p>         
             </a>
         </li>  
 

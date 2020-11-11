@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Payment Form</title>
+    <link rel="stylesheet" href="style-payment.css">
+</head>
+<body>
+ <div class="wrapper">
+    <h2>CREDIT/DEBIT CARD</h2>
+    <div class="main-container">
+    <div class="logo">
+       <div class="cards">
+<img src="img1.png">
+       </div>
+       <div class="main-logo">
+           <img src="img2.jpg" width="350" height="300">
+       </div>
+    </div>
+    <div class="form-container">
+        <form>
+            
+
+            <div class="input-name">
+                <label>Select Payment Method</label><br>
+                <select class="payment" class="text-name">
+                    <option>Visa/Master Card/JCB</option>
+                    <option>Visa</option>
+                    <option>Master card</option>
+                    <option>JCB</option>
+                 
+                  </select> 
+
+            </div>
+           
+        
+            <div class="input-name">
+                <label>Card holder name</label><br>
+                <input type="name" name="name" class="text-name">
+                
+            </div>
+            <div class="input-name">
+                <label>Credit/Debit card number</label><br>
+                <input type="text" name="card-no" placeholder="xxxx xxxxx xxx xxx" class="text-name">
+                
+            </div>
+            <div class="row-main">
+                <div class="row">
+                <label>Expiry date</label><br>
+                <input type="date" name="date" placeholder="DD/MM/YY">
+            </div>
+                <div class="row">
+                    <label>CVC/CVV</label>
+                    <input type="text" name="cvc" >
+               
+            </div>
+            </div>
+
+            <div class="input-name">
+                
+               <input type="checkbox" class="check-btn" id="cb">
+               <label for="cb" class="check">Save this card to my accountfor faster booking</label>
+            </div>
+        </form>
+    </div>
+
+</div>
+ </div>
+
+</body>
+</html>

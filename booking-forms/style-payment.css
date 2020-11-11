@@ -1,0 +1,114 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    background: #f2f2f2;
+}
+.wrapper{
+    background-color:#fff;
+    width: 900px;
+    height: 500px;
+    padding: 25x;
+    margin: 50px auto 0;
+    border-top: 25px solid rgba(76, 25, 88, 0.667);
+    box-shadow: 0 0 3px rgba(0,0, 0,1);
+}
+.wrapper h2{
+    font-size: 24px;
+    line-height: 24px;
+    padding-bottom: 30px;
+    text-align: center;
+}
+.main-container{
+    display: inline-block;
+    width: 100%;
+    
+}
+.form-container{
+    width: 50%;
+    display:block;
+    position: relative;
+}
+.logo{
+    width: 50%;
+    float: right;
+}
+.logo .cards img{
+    width: 400px;
+    height: 50px;
+}
+.input-name{
+    width: 90%;
+    position: relative;
+    margin: 20px auto;
+    margin-block: 25px;
+   
+}
+
+.row-main{
+    width: 50%;
+    position: relative;
+    margin: 20px ;
+
+    
+}
+
+.row{
+ width: 45%;   
+display: inline-block;
+margin-block-end: 20px;
+
+
+
+}
+
+.row input{
+    width: 100%;
+    padding :4px 0 4px 20px;
+    border-radius: 5px;
+    border: 1px solid rgb(197, 160, 197);
+    outline: none;
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition:all 0.30s ease-in-out ;
+    -ms-transition:all 0.30s ease-in-out;
+    transition: all 0.30s ease-in-out;
+   
+}
+.row input:hover{
+    background-color:rgb(230, 204, 230);
+}
+
+.text-name{
+    width: 50%;
+    padding :8px 0 8px 40px;
+    border-radius: 5px;
+    border: 1px solid rgb(197, 160, 197);
+    outline: none;
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition:all 0.30s ease-in-out ;
+    -ms-transition:all 0.30s ease-in-out;
+    transition: all 0.30s ease-in-out;
+}
+.text-name:hover {
+    background-color:rgb(230, 204, 230);
+}
+.payment{
+    display: inline-block;
+    width: 50%;
+    height: 35px;
+    padding: 0px 15px;
+    cursor: pointer;
+   color: rgb(126, 121, 121);
+    border: 1px solid rgb(197, 160, 197);
+    border-radius: 5px;
+    background: #fff;
+
+}
+
+.check{
+    color: slategray;
+}

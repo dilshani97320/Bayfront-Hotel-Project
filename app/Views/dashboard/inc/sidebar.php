@@ -11,7 +11,7 @@
 <div class="container">
     <ul class="nav1">
         <li class="nav1-item">
-            <a href="<?php url(); ?>" class="nav1-link">
+            <a href="<?php url('dashboard/index'); ?>" class="nav1-link">
                 <p class="nav-p"><i class="material-icons">dashboard</i>Dashboard</p>   
             </a>
         </li>
@@ -29,22 +29,18 @@
         </li>
 
         <li class="nav1-item">
-            <a href="#" class="nav1-link">
+            <a href="<?php url('reservation/index'); ?>" class="nav1-link">
                 <p class="nav-p"><i class="material-icons">book</i>Reservation</p>         
             </a>
         </li>  
 
         <li class="nav1-item">
             <a href="#" class="nav1-link">
-                <p class="nav-p"><i class="material-icons"></i>Edit Website</p>         
+                <p class="nav-p"><i class="material-icons">laptop_chromebook</i>Edit Website</p>         
             </a>
         </li> 
         
-        <li class="nav1-item">
-            <a href="#" class="nav1-link">
-                <p class="nav-p"><i class="material-icons"></i>None</p>         
-            </a>
-        </li> 
+        
 
         <li class="nav1-item">
             <a href="#" class="nav1-link">
@@ -63,6 +59,12 @@
                 <p class="nav-p"><i class="material-icons"></i>None</p>         
             </a>
         </li>
+
+        <li class="nav1-item">
+            <a href="<?php url(''); ?>" class="nav1-link">
+                <p class="nav-p"><i class="material-icons">live_tv</i>Website</p>         
+            </a>
+        </li> 
 
     </ul>
 

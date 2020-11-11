@@ -6,6 +6,7 @@ class LoginController {
     
 
     public function log() {
+        
         if(isset($_POST['submit'])) {
             // Validation
             $errors = array();
@@ -33,12 +34,16 @@ class LoginController {
                     $user = $db->getReception($email, $hashed_password);
                     
                     if(empty($user)) {
-                        echo "Invalid User";
+                        // echo "Invalid User";
+                        $errors[] = "Invaild User";
+                        $data['errors'] = $errors;
+                        view::load('dashboard/dashboard', $data);
                     }
                     else {
                         $_SESSION['user_id'] = $user['reception_user_id'];
                         $_SESSION['username'] = $user['username'];
                         $_SESSION['user_level'] = "Reception";
+                        view::load('dashboard/dashboard');
                     }
 
                 }
@@ -46,15 +51,23 @@ class LoginController {
                     $_SESSION['user_id'] = $user['owner_user_id'];
                     $_SESSION['username'] = $user['username'];
                     $_SESSION['user_level'] = "Owner";
+                    view::load('dashboard/dashboard');
                     
                 }    
             }
             else {
-                echo "Error";
-                var_dump($errors);
+                // echo "Error";
+                
+                // view::load('dashboard/dashboard');
+                $data['errors'] = $errors;
+                view::load('dashboard/dashboard', $data);
             }
         }
-        view::load('dashboard/dashboard');
+        // var_dump($errors);
+        
+        // var_dump($data);
+        
+        // view::load('dashboard/inc/test', $data);
     }
 
     public function logout() {

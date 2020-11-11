@@ -7,7 +7,6 @@ class EmployeeController {
         
         //Checking if a user is logged in
         if(!isset($_SESSION['user_id'])) {
-            echo "dss";
             view::load('dashboard/dashboard');    
         }
         else {

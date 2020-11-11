@@ -213,18 +213,20 @@ a:hover > p > i {
   border-radius: 4px;
 }
 
+.naverror-pass,
+.naverror-mail,
 .nav-mail,
 .nav-pass {
   width: 200px;
-  /* margin-right: 0;
-    padding-left: 0; */
-}
-
-.nav-mail,
-.nav-pass {
   border-radius: 4px;
   font-size: 14px;
 }
+
+/* .nav-mail,
+.nav-pass {
+  border-radius: 4px;
+  font-size: 14px;
+} */
 
 .nav-button {
   outline: none;
@@ -249,12 +251,27 @@ input[type="email"].nav-mail::placeholder {
   font-size: 14px;
 }
 
+input[type="email"].naverror-mail::placeholder {
+  text-transform: capitalize;
+  font-style: normal;
+  font-size: 14px;
+  color: rgb(170, 8, 43);
+}
+
 input[type="password"].nav-pass::placeholder {
   text-transform: capitalize;
   font-style: normal;
   font-size: 14px;
 }
 
+input[type="password"].naverror-pass::placeholder {
+  text-transform: capitalize;
+  font-style: normal;
+  font-size: 14px;
+  color: rgb(170, 8, 43);
+}
+.naverror-pass:focus,
+.naverror-mail:focus,
 .nav-mail:focus,
 .nav-pass:focus,
 .nav-search:focus {

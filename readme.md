@@ -1,6 +1,6 @@
 # Update 1
 
-** Updates **
+**Updates**
 
 - Dashboard small updates
 - and files updates

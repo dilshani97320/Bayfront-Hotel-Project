@@ -13,3 +13,4 @@ INFO: Unsupported notification method: $/setTraceNotification
 2020.11.12 02:30:30 INFO  time: initialize in 3.3s
 2020.11.12 02:30:32 WARN  Build server is not auto-connectable.
 2020.11.12 02:30:32 WARN  no build tool detected in workspace 'C:\xampp\htdocs\learns\Bayfront-Hotel-Project'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2020.11.12 02:42:17 INFO  shutting down Metals

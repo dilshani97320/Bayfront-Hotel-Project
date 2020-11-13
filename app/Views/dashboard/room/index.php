@@ -63,7 +63,7 @@
                                 <td><?php echo $row['room_number'];?></td>
                                 <td>
                                     <?php $current_date = date("Y-m-d"); 
-                                    if($row['check_in_date'] == NULL || $row['check_out_date'] < $current_date){ ?>
+                                    if($row['check_in_date'] == NULL || $row['check_out_date'] < $current_date && $_SESSION['user_level'] == "Reception"){ ?>
                                     <div class="out">
                                         <?php echo "Not Booked";?>
                                     </div> 
@@ -75,7 +75,7 @@
                                 </td>
 
                                 <td>
-                                    <?php if($row['check_out_date'] == NULL || $row['check_out_date'] < $current_date){ ?>
+                                    <?php if($row['check_out_date'] == NULL || $row['check_out_date'] < $current_date && $_SESSION['user_level'] == "Reception") {?>
                                     <div class="out">
                                         <?php echo "Not Booked";?>
                                     </div> 
@@ -85,7 +85,7 @@
                                     </div>
                                     <?php } ?>
                                 </td>
-                                <td><a href="<?php //url('room/edit/'.$row['emp_id']);?>" class="edit"><i class="material-icons">zoom_in</i>Details</a></td>
+                                <td><a href="<?php url('room/view/'.$row['room_id'].'/'.$row['room_type_id']);?>" class="edit"><i class="material-icons">zoom_in</i>Details</a></td>
                                 <td><a href="<?php //url('room/reservation/'.$row['emp_id']);?>" onclick="return confirm('Are you sure?');" class="edit"><i class="material-icons">book_online</i>Reservation</a></td>
                                 <?php if($_SESSION['user_level'] == "Owner"): ?>
                                 <td><a href="<?php url('employee/edit/'.$row['emp_id']);?>" class="edit"><i class="material-icons">edit</i>Edit</a></td>

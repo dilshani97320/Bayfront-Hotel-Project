@@ -144,7 +144,7 @@ i.material-icons {
   width: 30px;
   line-height: 30px;
   text-align: center;
-  color: #a9afbb;
+  color:#a9afbb;;
 }
 
 a:hover > p > i {
@@ -213,18 +213,20 @@ a:hover > p > i {
   border-radius: 4px;
 }
 
+.naverror-pass,
+.naverror-mail,
 .nav-mail,
 .nav-pass {
   width: 200px;
-  /* margin-right: 0;
-    padding-left: 0; */
-}
-
-.nav-mail,
-.nav-pass {
   border-radius: 4px;
   font-size: 14px;
 }
+
+/* .nav-mail,
+.nav-pass {
+  border-radius: 4px;
+  font-size: 14px;
+} */
 
 .nav-button {
   outline: none;
@@ -249,12 +251,27 @@ input[type="email"].nav-mail::placeholder {
   font-size: 14px;
 }
 
+input[type="email"].naverror-mail::placeholder {
+  text-transform: capitalize;
+  font-style: normal;
+  font-size: 14px;
+  color: rgb(170, 8, 43);
+}
+
 input[type="password"].nav-pass::placeholder {
   text-transform: capitalize;
   font-style: normal;
   font-size: 14px;
 }
 
+input[type="password"].naverror-pass::placeholder {
+  text-transform: capitalize;
+  font-style: normal;
+  font-size: 14px;
+  color: rgb(170, 8, 43);
+}
+.naverror-pass:focus,
+.naverror-mail:focus,
 .nav-mail:focus,
 .nav-pass:focus,
 .nav-search:focus {
@@ -391,19 +408,19 @@ h4 {
   margin-right: 10px;
   text-decoration: none;
   text-transform: uppercase;
-  color: #333333;
+  color: #a9afbb;
 }
 
 .addnew > .material-icons {
-  color: #333333;
+  color: #a9afbb;
 }
 
 .addnew:hover {
-  color: #000;
+  color: #fff;
 }
 
 .addnew:hover > .material-icons {
-  color: #000;
+  color: #fff;
 }
 
 /* .addnew>.material-icons {
@@ -416,19 +433,19 @@ h4 {
   margin-left: 10px;
   margin-right: 10px;
   text-decoration: none;
-  color: #333333;
+  color: #a9afbb;
 }
 
 .refresh:hover {
-  color: #000;
+  color: #ffffff;
 }
 
 .refresh:hover > .material-icons {
-  color: #000;
+  color: #fff;
 }
 
 .refresh > .material-icons {
-  color: #333333;
+  color: #a9afbb;
 }
 
 span {
@@ -459,7 +476,7 @@ table {
 }
 
 thead {
-  color: #9c27b0;
+  color: #030c14;
   display: flexbox;
 }
 
@@ -516,13 +533,13 @@ td a {
   /* display: flex; */
   text-transform: uppercase;
   text-align: center;
-  color: #01c0c8;
+  color: green;
 
   /* border: 1px solid #000000 ; */
 }
 
 .edit:hover {
-  color: #01c0c8;
+  color: green;
 }
 
 .edit:hover > .material-icons {
@@ -709,8 +726,9 @@ input#text {
   text-transform: uppercase;
   letter-spacing: 0;
   color: #fff;
-  background-color: #9c27b0;
-  border-color: #9c27b0;
+  /* background-color: #9c27b0; */
+  background: linear-gradient(60deg, #0b2e4f, #0b2e4f);
+  border-color: #0b2e4f;
   border-radius: 4px;
   width: 150px;
   height: 50px;

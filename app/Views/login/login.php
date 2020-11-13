@@ -5,6 +5,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <link rel="stylesheet" href="<?php echo BURL.'assets/css/basic.css'; ?>">
     <title>BAYFRONT SIGNIN</title>
   </head>
@@ -428,6 +429,7 @@ select:-webkit-autofill:focus {
           <form action="<?php url("auth/signinUser"); ?>" method="post" class="sign-in-form">
             <h2 class="title">Sign in</h2>
 
+
             <?php //var_dump($errors); ?>
              <?php if(count($errors)>0): ?>
             <div class="alert error" role="alert">
@@ -438,18 +440,23 @@ select:-webkit-autofill:focus {
             </div>
             <?php endif;  ?>
 
+
         
 
             <div class="input-field">
               <i class="fas fa-user"></i>
+
               <input type="email" name="email" value="<?php //echo $email; ?>" placeholder="Username" />
+
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
               <input type="password" name="password"  placeholder="Password" />
             </div>
+
             <input type="submit" value="" name="signin-btn" class="btn solid" />
              <a  class="social-text" href="<?php url('Home/frogetPassword'); ?>">Frogot Your Password?  </a>  
+
           
           <!-- signup -->
           </form>
@@ -465,13 +472,17 @@ select:-webkit-autofill:focus {
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
               ex ratione. Aliquid!
             </p>
+
             <a href="<?php url('Home/signup'); ?>"><button class="btn transparent" id="sign-up-btn">
+
             
               Sign up
             </button></a>
          
           </div>
+
           <img src="<?php echo BURL.'assets/img/log.svg'; ?>" class="image" alt="" />
+
         </div>
     </div>
     </div>

@@ -8,10 +8,19 @@
     <div class="form">
         <form action="<?php url("login/log"); ?>" class="nav-form" method="post">
             <div class="navbar-input">
-                <input type="email" name="email" autocomplete="off" class="nav-mail" placeholder="Email Address" >
+            <?php if(!empty($errors)) { ?>
+                <input type="email" name="email" autocomplete="off" class="naverror-mail" placeholder ="Email Address Invalid">
+            <?php } else { ?>
+                <input type="email" name="email" autocomplete="off" class="nav-mail" placeholder ="Email Address">
+            <?php } ?>    
             </div>
             <div class="navbar-input">
+            <?php if(!empty($errors)) { ?>
+                <input type="password" name="password" autocomplete="off" class="naverror-pass" placeholder="Password Invalid" >
+            <?php } else { ?>
                 <input type="password" name="password" autocomplete="off" class="nav-pass" placeholder="Password" >
+            <?php } ?>
+                
             </div>
             <div class="navbar-button">
                 <button type="submit" class="nav-button" name="submit" >Log In</button>

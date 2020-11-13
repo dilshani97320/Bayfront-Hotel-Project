@@ -36,7 +36,8 @@
                         <h4>2.Add New Employee Page (Admin)</h4>
                         <h4>3.Modify Employee Page (Admin)</h4>
                         <h4>4.Room Page (Reception)</h4>
-                        <h4>5.Room View Page (Reception)</h4>
+                        <h4>5.Room View Page Update (Reception)</h4>
+                        <h4>5.Login Error Checking and view (Reception and Owner)</h4>
                         <!-- <h4>6.Room Refresh #Done</h4>
                         <h4>7.Basic Reservation Page #Done But Payment Details Validation NOT DONE</h4> -->
 

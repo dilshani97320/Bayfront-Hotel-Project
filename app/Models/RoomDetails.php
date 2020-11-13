@@ -20,14 +20,24 @@ class RoomDetails {
 
     public function getAllRoom($current_date) {
 
-        $query = "SELECT $this->table1.room_id, $this->table1.room_type_id, $this->table1.room_number,
-                  $this->table4.check_in_date, $this->table4.check_out_date
-                  FROM $this->table4
-                  RIGHT OUTER JOIN $this->table1
+        $query =  "SELECT  $this->table1.room_id, $this->table1.room_type_id, $this->table1.room_number,
+                  reservation.check_in_date, reservation.check_out_date
+                  FROM $this->table1
+                  LEFT OUTER JOIN $this->table4 
                   ON $this->table1.room_id = $this->table4.room_id
-                  WHERE $this->table4.check_in_date != '{$current_date}' AND
-                  $this->table4.check_in_date > '{$current_date}' OR $this->table4.check_out_date < '{$current_date}'
-                  OR  $this->table4.check_in_date IS NULL ORDER BY $this->table1.room_id";
+                  WHERE $this->table4.check_in_date != '{$current_date}'AND
+                  $this->table4.check_in_date > '{$current_date}'
+                  OR  $this->table4.check_in_date IS NULL 
+                  ORDER BY $this->table1.room_id";
+
+        //  "SELECT $this->table1.room_id, $this->table1.room_type_id, $this->table1.room_number,
+        //           $this->table4.check_in_date, $this->table4.check_out_date
+        //           FROM $this->table4
+        //           RIGHT OUTER JOIN $this->table1
+        //           ON $this->table1.room_id = $this->table4.room_id
+        //           WHERE $this->table4.check_in_date != '{$current_date}' AND
+        //           $this->table4.check_in_date > '{$current_date}' OR $this->table4.check_out_date < '{$current_date}'
+        //           OR  $this->table4.check_in_date IS NULL ORDER BY $this->table1.room_id";
 
         $rooms = mysqli_query($this->connection, $query);
         if($rooms) {
@@ -63,16 +73,27 @@ class RoomDetails {
     public function getSearchRoom($search, $current_date) {
         $search = mysqli_real_escape_string($this->connection, $search);
 
-        $query = "SELECT $this->table1.room_id, $this->table1.room_type_id, $this->table1.room_number,
-                  $this->table4.check_in_date, $this->table4.check_out_date
-                  FROM $this->table4
-                  RIGHT OUTER JOIN $this->table1
-                  ON $this->table1.room_id = $this->table4.room_id
-                  WHERE $this->table1.room_number LIKE '%{$search}%' AND 
-                  ($this->table4.check_in_date != '{$current_date}' AND
-                  $this->table4.check_in_date > '{$current_date}' OR $this->table4.check_out_date < '{$current_date}'
-                  OR  $this->table4.check_in_date IS NULL)
-                  ORDER BY $this->table1.room_id";
+        $query = "SELECT  $this->table1.room_id, $this->table1.room_type_id, $this->table1.room_number,
+                reservation.check_in_date, reservation.check_out_date
+                FROM $this->table1
+                LEFT OUTER JOIN $this->table4 
+                ON $this->table1.room_id = $this->table4.room_id
+                WHERE $this->table1.room_number LIKE '%{$search}%' AND 
+                ($this->table4.check_in_date != '{$current_date}'AND
+                $this->table4.check_in_date > '{$current_date}'
+                OR  $this->table4.check_in_date IS NULL)
+                ORDER BY $this->table1.room_id";
+
+        // "SELECT $this->table1.room_id, $this->table1.room_type_id, $this->table1.room_number,
+        //           $this->table4.check_in_date, $this->table4.check_out_date
+        //           FROM $this->table4
+        //           RIGHT OUTER JOIN $this->table1
+        //           ON $this->table1.room_id = $this->table4.room_id
+        //           WHERE $this->table1.room_number LIKE '%{$search}%' AND 
+        //           ($this->table4.check_in_date != '{$current_date}' AND
+        //           $this->table4.check_in_date > '{$current_date}' OR $this->table4.check_out_date < '{$current_date}'
+        //           OR  $this->table4.check_in_date IS NULL)
+        //           ORDER BY $this->table1.room_id";
 
         $rooms = mysqli_query($this->connection, $query);
 
@@ -214,25 +235,47 @@ class RoomDetails {
     //     return $value;
     // }
 
-    // public function getDataEmployee($emp_id) {
+    public function getDataEmployee($room_id) {
 
-    //     $emp_id = mysqli_real_escape_string($this->connection, $emp_id);
+        $emp_id = mysqli_real_escape_string($this->connection, $room_id);
 
-    //     $query = "SELECT * FROM $this->table
-    //               WHERE emp_id = '{$emp_id}'
-    //               LIMIT 1";
-    //     $employees = mysqli_query($this->connection, $query);
-    //     if($employees){
-    //         if(mysqli_num_rows($employees) == 1) {
-    //             $employee = mysqli_fetch_assoc($employees);
-    //         }
-    //     }
-    //     else {
-    //         echo "Query Error";
-    //     }
+        $query = "SELECT * FROM $this->table1
+                  WHERE room_id = '{$room_id}'
+                  LIMIT 1";
+        $rooms = mysqli_query($this->connection, $query);
+        if($rooms){
+            if(mysqli_num_rows($rooms) == 1) {
+                $room = mysqli_fetch_assoc($rooms);
+            }
+        }
+        else {
+            echo "Query Error";
+        }
 
-    //     return $employee;
-    // }
+        return $employee;
+    }
+
+    public function getRoomDiscount($room_type_id) {
+
+        $room_type_id = mysqli_real_escape_string($this->connection, $room_type_id);
+
+        $query = "SELECT * FROM $this->table3
+                  WHERE room_type_id = '{$room_type_id}'
+                  LIMIT 1";
+
+        $room_discounts = mysqli_query($this->connection, $query);
+
+        if($room_discounts){
+            if(mysqli_num_rows($room_discounts) == 1) {
+                $room_discount = mysqli_fetch_assoc($room_discounts);
+            }
+        }
+        else {
+            echo "Query Error";
+        }
+
+        return $room_discount;
+    }
 
     // public function getEmailOther($email, $emp_id) {
     //     $user = array();

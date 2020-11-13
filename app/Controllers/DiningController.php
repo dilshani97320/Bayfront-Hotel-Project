@@ -6,6 +6,12 @@ class DiningController{
     {
         View::load('dining');
     }
+
+    public function ViewSubPage($id)
+    {
+        $data['id'] = $id;
+        View::load('sub/diningView', $data);
+    }
 }
 
 ?>

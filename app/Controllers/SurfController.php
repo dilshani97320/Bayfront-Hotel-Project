@@ -6,6 +6,12 @@ class SurfController{
     {
         View::load('surf');
     }
+
+    public function ViewSubPage($id)
+    {
+        $data['id'] = $id;
+        View::load('sub/surfView', $data);
+    }
 }
 
 ?>

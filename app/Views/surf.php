@@ -52,7 +52,7 @@
 					      <h5>Book now</h5>
 					    </div>
 					</div>
- 					<a href="landing2.php?article=4"></a>
+ 					<a href="<?php url('Surf/ViewSubPage/4' ); ?>"></a>
 				</figure>
 			<!-- 
 			<h3>Sample topic</h3>
@@ -68,7 +68,7 @@
 					      <h5>book now</h5>
 					    </div>
 					</div>
- 					<a href="landing2.php?article=5"></a>
+ 					<a href="<?php url('Surf/ViewSubPage/5' ); ?>"></a>
 				</figure>
 			<!-- 
 			<h3>Sample topic</h3>

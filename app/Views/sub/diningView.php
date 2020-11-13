@@ -1,28 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="stylesheet" type="text/css" href="css/footer-style.css">
-	<link rel="stylesheet" type="text/css" href="css/basic-style.css">
+	<meta charset="UTF-8">
+	<link rel="icon" type="image/png" href="<?php echo BURL.'assets/img/basic/favicon.png'; ?>" />
+	<title>BAYFRONT DINING </title>
 	
-	
-	<title>Document</title>
 </head>
 <body>
 
-	<?php include("common/header_navbar.php"); ?>
+	<?php include(VIEWS.'inc/header_navbar.php'); ?>
 
 	<?php 
-		if(isset($_GET['article'])) {
-			switch ($_GET['article']) {
+		
+			switch ($id) {
 				case '1':
 	?>
 		<div class="slidecontainer">
-			<img class="image" src="img/post14.jpg" alt="beach side city view">
+			<img class="image" src="<?php echo BURL.'assets/img/dining/post14.jpg'; ?>" alt="beach side city view">
 		 	<div class="bottom-left">
 		 		<h1>Breakfast</h1>
 		 	</div>
@@ -35,7 +30,7 @@
 			
 			<div class="package">
 
-				<img src="img/sub11.png" alt="" class="packImg">
+				<img src="<?php echo BURL.'assets/img/dining/sub11.png'; ?>" alt="" class="packImg">
 				<div class="price">
 					<ul class="inline">
 				
@@ -52,7 +47,7 @@
 			
 				  
 				    <div class="reviewQuote group">
-				        <img src="img/prof1.jpg">
+				        <img src="<?php echo BURL.'assets/img/dining/prof1.jpg'; ?>">
 				        <div class="quote-container">
 				            <blockquote>
 				                <p>It was an amazing hangout with great ambience and soothing music. And the staff is very friendly and welcoming. A clean and calm place to enjoy a delicious dinner. A great taste for the price you pay. ”</p>
@@ -68,7 +63,7 @@
 			<h3> Westerns Menu</h3>
 			<div class="package">
 
-				<img src="img/sub12.jpg" alt="" class="packImg">
+				<img src="<?php echo BURL.'assets/img/dining/sub12.jpg'; ?>" alt="" class="packImg">
 				<div class="price">
 					<ul class="inline">
 				
@@ -85,7 +80,7 @@
 			</div>
 
 			<div class="second">
-				<?php include("common/dinning-catogery.php"); ?>
+				<?php include(VIEWS.'inc/dinning-catogery.php'); ?>
 
 			</div>
 			
@@ -96,7 +91,7 @@
 				case '2':
 	?>
 	<div class="slidecontainer">
-			<img class="image" src="img/post15.jpg" alt="beach side city view">
+			<img class="image" src="<?php echo BURL.'assets/img/dining/post15.jpg'; ?>" alt="beach side city view">
 		 	<div class="bottom-left">
 		 		<h1>Lunch</h1>
 		 	</div>
@@ -110,7 +105,7 @@
 			
 			<div class="package">
 
-				<img src="img/sub13.jpg" alt="" class="packImg">
+				<img src="<?php echo BURL.'assets/img/dining/sub13.jpg'; ?>" alt="" class="packImg">
 				<div class="price">
 					<ul class="inline">
 				
@@ -127,7 +122,7 @@
 			
 				  
 				    <div class="reviewQuote group">
-				        <img src="img/prof2.jpg">
+				        <img src="<?php echo BURL.'assets/img/dining/prof2.jpg'; ?>">
 				        <div class="quote-container">
 				            <blockquote>
 				                <p>Perfect for a perfect day. Recently they open up their at mirissa. Before walking in i was rather concerned about how the relaxed yet sophisticated touch of sea setting. Calm and quiet place with good service. However, the place is actually outside the container facing pool and mirissa sea. Their food menu was limited but food is perfect. Perfect location for catch up with some friends. ”</p>
@@ -143,7 +138,7 @@
 			<h3> Seafood Menu</h3>
 			<div class="package">
 
-				<img src="img/sub14.jpg" alt="" class="packImg">
+				<img src="<?php echo BURL.'assets/img/dining/sub14.jpg'; ?>" alt="" class="packImg">
 				<div class="price">
 					<ul class="inline">
 				
@@ -160,7 +155,7 @@
 			<h3> Pasta & Spegatti Menu</h3>
 			<div class="package">
 
-				<img src="img/sub15.jpg" alt="" class="packImg">
+				<img src="<?php echo BURL.'assets/img/dining/sub15.jpg'; ?>" alt="" class="packImg">
 				<div class="price">
 					<ul class="inline">
 				
@@ -178,7 +173,7 @@
 			</div>
 
 			<div class="second">
-				<?php include("common/dinning-catogery.php"); ?>
+				<?php include(VIEWS.'inc/dinning-catogery.php'); ?>
 
 			</div>
 			
@@ -188,7 +183,7 @@
 				case '3':
 	?>
 	<div class="slidecontainer">
-			<img class="image" src="img/post16.jpg" alt="beach side city view">
+			<img class="image" src="<?php echo BURL.'assets/img/dining/post16.jpg'; ?>" alt="beach side city view">
 		 	<div class="bottom-left">
 		 		<h1>Dinner</h1>
 		 	</div>
@@ -202,7 +197,7 @@
 		
 			<div class="package">
 
-				<img src="img/sub16.jpg" alt="" class="packImg">
+				<img src="<?php echo BURL.'assets/img/dining/sub16.jpg'; ?>" alt="" class="packImg">
 				<div class="price">
 					<ul class="inline">
 				
@@ -221,7 +216,7 @@
 				  <div class="adj-layer">
 				    <!-- <h1>Kudos</h1> -->
 				    <div class="reviewQuote group">
-				        <img src="img/prof3.jpg">
+				        <img src="<?php echo BURL.'assets/img/dining/prof3.jpg'; ?>">
 				        <div class="quote-container">
 				            <blockquote>
 				                <p>Such an incredible place, the view is amazing, very good service with very nice waiters. It's a very new restaurant, best place in all Sri Lanka. The food is super good and taste very good with great presentation. The only high standards place in Sri Lanka. Unique place like this in Mirissa, it worth to go for a good gastronomy diner.  ”</p>
@@ -238,7 +233,7 @@
    			<h3>Soup Menu</h3>
 			<div class="package">
 
-				<img src="img/sub18.jpg" alt="" class="packImg">
+				<img src="<?php echo BURL.'assets/img/dining/sub18.jpg'; ?>" alt="" class="packImg">
 				<div class="price">
 					<ul class="inline">
 				
@@ -256,7 +251,7 @@
 			<h3>Kottu Menu</h3>
 			<div class="package">
 
-				<img src="img/sub19.jpg" alt="" class="packImg">
+				<img src="<?php echo BURL.'assets/img/dining/sub19.jpg'; ?>" alt="" class="packImg">
 				<div class="price">
 					<ul class="inline">
 				
@@ -274,7 +269,7 @@
 			</div>
 			
 			<div class="second">
-				<?php include("common/dinning-catogery.php"); ?>
+			<?php include(VIEWS.'inc/dinning-catogery.php'); ?>
 			</div>
 			
 		</div>
@@ -285,11 +280,9 @@
 					# code...
 					break;
 			}
-		} else {
-			echo "not set";
-		}
+		
 	?>
-	<?php include("common/footer.php"); ?>
+	<?php include(VIEWS.'inc/footer.php'); ?>
 
 	<script type="text/javascript">
 	window.onload = function () {

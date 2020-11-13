@@ -971,3 +971,70 @@ input[type="textarea"] {
 .details {
   display: flex;
 }
+
+/* =================================================Edit Web========================================================================= */
+
+/* select change=============================================================================== */
+
+.badgeSec {
+  display: flex;
+  justify-content: center;
+}
+.horBadge {
+  display: flex;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+  max-width: 260px;
+  border-radius: 10px;
+  position: relative;
+  margin: 15px;
+  transition: 0.3s all ease-in-out;
+  border: 1px solid #eee;
+}
+.horBadge > div {
+  padding: 30px 15px;
+  transition: 0.3s all ease-in-out;
+  display: flex;
+  align-items: center;
+}
+.horBadge a {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.horBadge .icon1 {
+  background-color: #ffd700;
+  color: #fff;
+  font-size: 40px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  box-shadow: 5px 0px 12px -4px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+.horBadge .icon2 {
+  background-color: #ed143d;
+  color: #fff;
+  font-size: 40px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  box-shadow: 5px 0px 12px -4px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+.horBadge .text {
+  background-color: #fff;
+  color: #000;
+  font-size: 22px;
+  letter-spacing: 1px;
+  font-weight: 400;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.horBadge:hover {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+.horBadge:hover .text {
+  background-color: #dcdcdc;
+  color: #000;
+}

@@ -3,8 +3,6 @@ session_start();
 
 class LoginController {
 
-    
-
     public function log() {
         if(isset($_POST['submit'])) {
             // Validation

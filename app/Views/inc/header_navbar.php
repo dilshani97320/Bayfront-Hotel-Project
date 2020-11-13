@@ -88,7 +88,7 @@
                 </div>
 
                 <div class="log-sign" style="--i: 1.8s">
-                    <a href="login.php" class="btn1 transparent">Log in</a>
+                    <a href="<?php url('Home/login'); ?>" class="btn1 transparent">Log in</a>
                     <a href="<?php url('Home/dashboard'); ?>" class="btn1 solid">Dashboard</a>
                 </div>
             </div>

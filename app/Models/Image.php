@@ -2,7 +2,7 @@
 
 class Image{
 
-    private $table = "img";
+    private $table = "room_image";
     public $conn;
     
     public function __construct() {
@@ -14,11 +14,11 @@ class Image{
 
         $this->conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
     }
-    public function upload($fileNewName , $path)
+    public function upload($room_number, $fileNewName , $path)
     {
-        echo $path;
+        // echo $path;
         // exit();
-        $sql = "INSERT INTO $this->table (name, dir) VALUES('$fileNewName' , '$path')";
+        $sql = "INSERT INTO $this->table (room_number, image_name, image_path) VALUES('$room_number', '$fileNewName', '$path')";
         // echo $sql;
         // exit();
          if (mysqli_query($this->conn, $sql)) {
@@ -26,44 +26,56 @@ class Image{
             echo "New record created successfully";
         } else {
             return 0;
-            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+            echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
+            exit();
         }
     }
 
-    public function view()
+    public function view($room_number)
     {
-        $sql = "SELECT * FROM img ";
+        $sql = "SELECT * FROM $this->table WHERE $this->table.room_number = '{$room_number}'";
         $result = mysqli_query($this->conn, $sql);
-        while($room= mysqli_fetch_row($result)){
-            // echo '<pre>' , var_dump($room) , '</pre>';
-            $list = $room;
-       
-        }
+        $room_img= mysqli_fetch_all($result, MYSQLI_ASSOC);
+        
+        // echo '<pre>' , var_dump($room_img) , '</pre>';
         // exit();
-        // echo '<pre>' , var_dump($list) , '</pre>';
-        return $list;
 
 
-        if($result) {
+        if(!count($room_img)==0) {
+            return $room_img;
             
-            mysqli_fetch_row($result);
         }
         else {
-            echo "Database Query Failed";
+            // echo "Database Query Failed";
+            return $room_img;
         }  
-        $imageList =array();
-        $i=0;
-        while ( $room = mysqli_fetch_assoc($result)) {
-            // var_dump($room);
-            // exit();
-            // return $room;
-            // echo "<img src='{$room['dir']}'  width='40%'>";
-            
-
-        }
-       
-        exit();
+        
     }
+
+    public function viewRoom()
+    {
+        $sql = "SELECT * FROM $this->table ";
+        $result = mysqli_query($this->conn, $sql);
+        $room_img= mysqli_fetch_all($result, MYSQLI_ASSOC);
+        
+        // echo '<pre>' , var_dump($room_img) , '</pre>';
+        // exit();
+
+
+        if(!count($room_img)==0) {
+            return $room_img;
+            
+        }
+        else {
+            // echo "Database Query Failed";
+            return $room_img;
+        }  
+        
+    }
+
+    
+       
+    
 }
 
 

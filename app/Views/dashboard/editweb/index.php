@@ -54,8 +54,8 @@
                                 <td><?php echo $row['room_name'];?></td>
                                 <td><?php echo $row['type_name'];?></td>
                                 <?php if($_SESSION['user_level'] == "Owner"): ?>
-                                    <td><a href="<?php url('editweb/selectChange/'.$row['room_id']);?>" class="edit"><i class="material-icons">edit</i>Edit </a></td>
-                                    <td><a href="<?php url('editweb/delete/'.$row['room_id']);?>" onclick="return confirm('Are you sure?');" class="delete"><i class="material-icons">delete</i>Delete</a></td>
+                                    <td><a href="<?php url('editweb/selectChange/'.$row['room_number']);?>" class="edit"><i class="material-icons">edit</i>Edit </a></td>
+                                    <td><a href="<?php url('editweb/delete/'.$row['room_number']);?>" onclick="return confirm('Are you sure?');" class="delete"><i class="material-icons">delete</i>Delete</a></td>
                                 <?php endif; ?>
                             </tbody>
                             <?php endforeach ?> 

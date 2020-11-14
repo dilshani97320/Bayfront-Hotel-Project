@@ -2,7 +2,7 @@
 
 class ImageController {
 
-    public function uploadImg()
+    public function uploadImg($image_name , $room_number)
     {
 
         
@@ -27,25 +27,19 @@ class ImageController {
             if (in_array($fileActualExt, $allowed)) {
                 if ($fileerror === 0) {
                     if ($filesize < 1000000) {
-                        $fileNewName = uniqid('', true).".".$fileActualExt;
-                        $path =   __DIR__.'/../../public/uploads/'.$fileNewName;
+                        $fileNewName = $image_name.".".$fileActualExt;
+                        $path =   __DIR__.'/../../public/uploads/'.$room_number.'/'.$fileNewName;
                         // echo $path;
                         // exit();
         
                         $db = new Image();
-                        if ($db->upload($fileNewName ,  $path)){
+                        if ($db->upload($room_number, $image_name ,  $path)){
                             move_uploaded_file($filetmp_name, $path);
-                            echo "ss";
-                            exit();
+                            $this->viewImg($room_number);
 
                         }else{
                             echo "noo";
                         }
-                        
-        
-        
-                        
-                         
                     }else{
                         echo "Your file too big";
                     }
@@ -61,14 +55,19 @@ class ImageController {
         
     }
 
-    public function index($roomId)
+    public function viewImg($room_number)
     {
      
 
         $db = new Image();
-        $imageRoom =$db->view();
+        $imageRoom =$db->view($room_number);
         // var_dump($imageRoom);
-       
+        $data['room_number'] = $room_number;
+        $data['img_details'] = $imageRoom;
+
+        // echo '<pre>' , var_dump($data['img_details']) , '</pre>';
+        // exit();
+        view::load('dashboard/editweb/changeImage', $data);
         // exit();
         if(!count($imageRoom)== 0){
             //  echo "fbjk";
@@ -76,7 +75,7 @@ class ImageController {
             // echo $data['path'];
             // exit();     
 
-            view::load('dashboard/editweb/changeImage');
+            // view::load('dashboard/editweb/changeImage');
         }
 
             

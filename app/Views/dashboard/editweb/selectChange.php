@@ -50,7 +50,7 @@
                             <div class="text">
                                 Change Room Image
                             </div>
-                            <a href="<?php url('image/index/'.$room_id);?>"></a>
+                            <a href="<?php url('image/viewImg/'.$room_id);?>"></a>
                         </div>
                     </div>
            </div> 

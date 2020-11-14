@@ -21,7 +21,8 @@ class RoomEdit{
 
         $query = "SELECT $this->table1.room_number, $this->table1.room_id, $this->table1.room_name, $this->table2.type_name FROM $this->table1
                   INNER JOIN $this->table2 ON $this->table1.type_id = $this->table2.room_type_id";
-        // echo $query;    
+        // echo $query;  
+        // exit();  
         $rooms = mysqli_query($this->conn, $query);
         // var_dump($rooms);
         if($rooms) {

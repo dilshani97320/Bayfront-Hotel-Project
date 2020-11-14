@@ -144,7 +144,7 @@ i.material-icons {
   width: 30px;
   line-height: 30px;
   text-align: center;
-  color:#a9afbb;;
+  color: #a9afbb;
 }
 
 a:hover > p > i {
@@ -622,32 +622,32 @@ td a {
   margin: 10px;
 }
 
-label {
+/* label {
   font-size: 16px;
   line-height: 1.4em;
   font-weight: 300;
-  /* margin: 10px; */
+  margin: 10px;
   margin-left: 0;
   display: block;
   margin-right: 0;
   width: 40%;
-}
+} */
 
-input {
+/* input {
   display: block;
   margin-left: 0;
   border: none;
   width: 60%;
-  /* font-size: .9rem;
+  font-size: .9rem;
     font-weight: 300;
-    line-height: 1.4em; */
+    line-height: 1.4em;
   border-bottom: 2px solid rgba(0, 0, 0, 0.06);
   height: 40px;
   padding-left: 30px;
   font-size: 1.125rem;
   line-height: 1.4em;
   font-weight: 100;
-}
+} */
 
 /* ::placeholder {
     color: #000;

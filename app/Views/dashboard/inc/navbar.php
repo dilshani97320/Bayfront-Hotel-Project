@@ -4,7 +4,7 @@
 <!-- when in logout -->
 
 <?php if(!isset($_SESSION['user_id'])): ?>
-
+    <!-- class="inputField" -->
     <div class="form">
         <form action="<?php url("login/log"); ?>" class="nav-form" method="post">
             <div class="navbar-input">

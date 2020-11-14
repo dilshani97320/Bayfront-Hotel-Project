@@ -24,16 +24,17 @@
 
         <li class="nav1-item">
             <a href="<?php url('room/index'); ?>" class="nav1-link">
-                <p class="nav-p"><i class="material-icons">room_preferences</i>Rooms</p>         
+                <p class="nav-p"><i class="material-icons">room_preferences</i>Available Rooms</p>         
             </a>
         </li>
 
-        <li class="nav1-item">
-            <a href="<?php url('reservation/index'); ?>" class="nav1-link">
-                <p class="nav-p"><i class="material-icons">book</i>Reservation</p>         
+        
+            <li class="nav1-item">
+            <a href="<?php url('room/view'); ?>" class="nav1-link">
+                <p class="nav-p"><i class="material-icons">book</i>Reservations</p>         
             </a>
-        </li>  
-
+        </li> 
+    
         <li class="nav1-item">
             <a href="#" class="nav1-link">
                 <p class="nav-p"><i class="material-icons">laptop_chromebook</i>Edit Website</p>         

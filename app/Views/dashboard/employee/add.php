@@ -38,141 +38,162 @@
 
                     <div class="section1">
 
-                        <div class="row">
-                        <label for="#"><i class="material-icons">perm_identity</i>Owner ID:</label>
-                        <input type="text" name="owner_user_id"
-                        <?php 
-                            if(!empty($employee)) {
-                                echo 'value="' . $employee[0] . '"';
-                            } 
-                            else if(isset($success)){
-                                echo 'placeholder="###"';
-                            }
-                            else {
-                                echo 'placeholder="###"';
-                            }
-                            
-                        ?>
-                        >
-                        </div>
-
+                        <input type="text" name="owner_user_id" value ="<?php echo $_SESSION['user_id']; ?>" hidden  >
+                        
 
                         <div class="row">
                             <label for="#"><i class="material-icons">account_box</i>First Name:</label>
-                            <input type="text" name="first_name" 
-                            <?php 
-
-                            if(!empty($employee)) {
-                                echo 'value="' . $employee[1] . '"';
-                            }  
-                            else if(isset($success)){
-                                echo 'placeholder="Tharindu"';
-                            }
-                            else {
-                                echo 'placeholder="Tharindu"';
-                            }
-                            
-                            ?>
-                            
-                            >
+                                <div class="animate-form">
+                                    <input type="text"  autocomplete="off" name="first_name" class="inputField"
+                                    <?php 
+                                        if(isset($employee['first_name'])){
+                                            echo 'value="' . $employee['first_name'] . '"';
+                                        }
+                                        else {
+                                            echo 'placeholder="Tharindu"';
+                                        } 
+                                    
+                                    ?>
+                                    
+                                    required
+                                    >
+                                    
+                                        <label for="name" class="label-name">
+                                            <?php if((isset($errors['first_name'])) && (isset($employee['first_name']))): ?>
+                                                <span class="content-name"><i class="material-icons">info</i><?php echo $errors['first_name']; ?></span>
+                                            <?php endif; ?>
+                                        </label>    
+                                </div>     
                         </div>
+
 
                         <div class="row">
                             <label for="#"><i class="material-icons">account_box</i>Last Name:</label>
-                            <input type="text" name="last_name"
-                            <?php 
-                            
-                            if(!empty($employee)) {
-                                echo 'value="' . $employee[2] . '"';
-                            }  
-                            else if(isset($success)){
-                                echo 'placeholder="Gihan"';
-                            }
-                            else {
-                                echo 'placeholder="Gihan"';
-                            }
-                            
-                            
-                            ?>
-                            >
+                                <div class="animate-form">
+                                    <input type="text"  autocomplete="off" name="last_name" class="inputField"
+                                    <?php 
+                                        if(isset($employee['last_name'])){
+                                            echo 'value="' . $employee['last_name'] . '"';
+                                        }
+                                        else {
+                                            echo 'placeholder="Gihan"';
+                                        } 
+                                    
+                                    ?>
+                                    
+                                    required
+                                    >
+                                    
+                                        <label for="name" class="label-name">
+                                            <?php if((isset($errors['last_name'])) && (isset($employee['last_name']))): ?>
+                                                <span class="content-name"><i class="material-icons">info</i><?php echo $errors['last_name']; ?></span>
+                                            <?php endif; ?>
+                                        </label>    
+                                </div>     
                         </div>
 
                         <div class="row">
                             <label for="#"><i class="material-icons">mail</i>Email Address:</label>
-                            <input type="text" name="email"
-                            <?php 
-                            
-                            if(!empty($employee)) {
-                                echo 'value="' . $employee[3] . '"';
-                            } 
-                            else if(isset($success)){
-                                echo 'placeholder="gihan@gmail.com"';
-                            }
-                            else {
-                                echo 'placeholder="gihan@gmail.com"';
-                            }
-                            
-                            
-                            ?>
-                            > 
+                                <div class="animate-form">
+                                    <input type="text"  autocomplete="off" name="email" class="inputField"
+                                    <?php 
+                                        if(isset($employee['email'])){
+                                            echo 'value="' . $employee['email'] . '"';
+                                        }
+                                        else {
+                                            echo 'placeholder="wtgihan@gmail.com"';
+                                        } 
+                                    
+                                    ?>
+                                    required
+                                    
+                                    >
+                                    
+                                        <label for="name" class="label-name">
+                                            <?php if((isset($errors['email'])) && (isset($employee['email']))): ?>
+                                                <span class="content-name"><i class="material-icons">info</i><?php echo $errors['email']; ?></span>
+                                            <?php endif; ?>
+                                        </label>    
+                                </div>     
                         </div>
                         
+
                         <div class="row">
                             <label for="#"><i class="material-icons">payment</i>Salary:</label>
-                            <input type="text" name="salary"
-                            <?php 
-                            
-                            if(!empty($employee)) {
-                                echo 'value="' . $employee[4] . '"';
-                            } 
-                            else if(isset($success)){
-                                echo 'placeholder="000000"';
-                            }
-                            else {
-                                echo 'placeholder="000000"';
-                            }
-                            
-                            
-                            ?>
-                            > 
+                                <div class="animate-form">
+                                    <input type="text"  autocomplete="off" name="salary" class="inputField"
+                                    <?php 
+                                        if(isset($employee['salary'])){
+                                            echo 'value="' . $employee['salary'] . '"';
+                                        }
+                                        else {
+                                            echo 'placeholder="xxxxxxx"';
+                                        } 
+                                    
+                                    ?>
+                                    required
+                                    
+                                    >
+                                    
+                                        <label for="name" class="label-name">
+                                            <?php if((isset($errors['salary'])) && (isset($employee['salary']))): ?>
+                                                <span class="content-name"><i class="material-icons">info</i><?php echo $errors['salary']; ?></span>
+                                            <?php endif; ?>
+                                        </label>    
+                                </div>     
                         </div>
 
                         <div class="row">
-                            <label for="#"><i class="material-icons">location_on</i>Location:</label>
-                            <input type="text" name="location"
-                            <?php 
-                            
-                            if(!empty($employee)) {
-                                echo 'value="' . $employee[5] . '"';
-                            }  
-                            else if(isset($success)){
-                                echo 'placeholder="57/A Galle Road"';
-                            }
-                            else {
-                                echo 'placeholder="57/A Galle Road"';
-                            }
-                            
-                            ?>
-                            > 
+                            <label for="#"><i class="material-icons">public</i>Address:</label>
+                                <div class="animate-form">
+                                    <input type="text"  autocomplete="off" name="location" class="inputField" 
+                                    <?php 
+                                        if(isset($employee['location'])){
+                                            echo 'value="' . $employee['location'] . '"';
+                                        }
+                                        else {
+                                            echo 'placeholder="Sri Lanka Galle"';
+                                        } 
+                                    
+                                    ?>
+                                    
+                                    required
+                                    >
+                                    
+                                        <label for="name" class="label-name">
+                                            <?php if((isset($errors['location'])) && (isset($employee['location']))): ?>
+                                                <span class="content-name"><i class="material-icons">info</i><?php echo $errors['location']; ?></span>
+                                            <?php endif; ?>
+                                            
+                                        </label>    
+                                </div>     
                         </div>
+
+                        
 
                         <div class="row">
                             <label for="#"><i class="material-icons">contacts</i>Contact Number:</label>
-                            <input type="text" name="contact_num"
-                            <?php 
-                            
-                            if(!empty($employee)) {
-                                echo 'value="' . $employee[6] . '"';
-                            }  
-                            else if(isset($success)){
-                                echo 'placeholder="0777456123"';
-                            }
-                            else {
-                                echo 'placeholder="0777456123"';
-                            }
-                            
-                            ?>
-                            > 
+                                <div class="animate-form">
+                                    <input type="text"  autocomplete="off" name="contact_num" class="inputField"
+                                    <?php 
+                                        if(isset($employee['contact_num'])){
+                                            echo 'value="' . $employee['contact_num'] . '"';
+                                        }
+                                        else {
+                                            echo 'placeholder="0778522736"';
+                                        } 
+                                    
+                                    ?>
+                                    
+                                    required
+                                    >
+                                    
+                                        <label for="name" class="label-name">
+                                            <?php if((isset($errors['contact_num'])) && (isset($employee['contact_num']))): ?>
+                                                <span class="content-name"><i class="material-icons">info</i><?php echo $errors['contact_num']; ?></span>
+                                            <?php endif; ?>
+                                        </label>    
+                                </div>     
                         </div>
                         
                         <div class="row">
@@ -182,46 +203,7 @@
                         </div>
                     </div>
 
-                    <div class="section2">
-                        <?php if(!empty($error)) { ?>
-                            <div class="errmsg">
-                            <b>There was error(s) on your form</b><br>
-
-                            <?php $len = sizeof($error);
-                                foreach(array_slice($error, 0, $len) as $error1){
-                                    $error = ucfirst(str_replace("_", " ", $error1));
-                                    echo $error . '<br>';
-                                }    
-                            ?>
-                            </div>
-                        <?php }
-
-                        else if(isset($success)) {?>
-                            <div class="errmsg">
-                            <b>There was Message  your you</b><br>
-                            <?php echo $success; ?>
-                            </div>
-                        <?php } 
-
-                        else if(isset($newerror)) { ?>
-                            <div class="errmsg">
-                            <b>Sorry!!There was Message  your you</b><br>
-                            <?php echo $newerror; ?>
-                            </div>
-                        <?php } 
-
-                        else { ?>
-                            <div class="errphoto">
-                            <!-- <b>Welcome Sir</b><br> -->
-                            <h4>Welcome to Employee Forms</h4>
-                            <img src="<?php echo BURL.'assets/img/employee2.jpg'; ?>" alt="">
-                            <!-- <?php echo $newerror; ?> -->
-                            </div>
-                        <?php } ?>
-
-
-
-                         
+                    <div class="section2"> 
 
                     </div>
 

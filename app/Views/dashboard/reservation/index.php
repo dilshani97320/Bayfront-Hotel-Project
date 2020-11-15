@@ -2,7 +2,7 @@
 <?php 
 
 // Header
-   $title = "Rooms page";
+   $title = "Reservations page";
    include(VIEWS.'dashboard/inc/header.php'); 
 ?>
 
@@ -13,7 +13,7 @@
        $navbar_title = "Rooms Reservations ";
        $search = 1;
        $search_by = 'Room Number';
-       $url = "room/view";
+       $url = "reservation/details";
        
        include(VIEWS.'dashboard/inc/sidebar.php'); //Sidebar
        include(VIEWS.'dashboard/inc/navbar.php'); //Navbar
@@ -30,7 +30,7 @@
                             <?php if($_SESSION['user_level'] != "Owner"): ?>
                                 <a href="<?php url("reservation/index"); ?>" class="addnew"><i class="material-icons">add</i>Add New</a> 
                             <?php endif; ?>
-                            <a href="<?php url("room/view"); ?>" class="refresh"><i class="material-icons">refresh</i>Refresh</a> 
+                            <a href="<?php url("reservation/details"); ?>" class="refresh"><i class="material-icons">refresh</i>Refresh</a> 
                        </span> 
                         
                        </h4>

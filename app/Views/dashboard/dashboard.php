@@ -20,30 +20,92 @@
     ?>
         
         <!-- Table design -->
-    <div class="content">
-        <div class="tablecard">
-            <div class="card">
-                <div class="cardheader">
-                    <div class="options">
-                        <h4>Home Page</h4>    
-                    </div>
-                    <p class="textfortabel">See What is Complete</p>
-                </div>
-                <div class="cardbody">
-                        <h4>Owner email= wtgihan@gmail.com and Password = 1111</h4>
-                        <h4>Reception email= wtgihan@gmail.com and Password = 1234</h4>
-                        <h4>1.Employee Page (Admin)</h4>
-                        <h4>2.Add New Employee Page (Admin)</h4>
-                        <h4>3.Modify Employee Page (Admin)</h4>
-                        <h4>4.Room Page (Reception)</h4>
-                        <h4>5.Room View Page Update (Reception)</h4>
-                        <h4>5.Login Error Checking and view (Reception and Owner)</h4>
-                        <!-- <h4>6.Room Refresh #Done</h4>
-                        <h4>7.Basic Reservation Page #Done But Payment Details Validation NOT DONE</h4> -->
+    <div class="content1">
+        <div class="container1">
+               <div class="row1">
 
+                <div class="data1">
+                    <div class="card1">
+                        <div class="card-header1">
+                            <div class="card-icon1">
+                                <i class="material-icons">meeting_room</i>
+                            </div>
+                            <p class="card-category">Rooms</p>
+                            <h3 class="card-title">
+                                49/50 <small class="special">GB</small>
+                            </h3>
+                        </div>
+                        <div class="card-footer1">
+                            <div class="status1">
+                                <i class="material-icons" >update</i>
+                                Just Updated
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div> 
-        </div>
+
+                <div class="data1">
+                    <div class="card1">
+                        <div class="card-header1">
+                            <div class="card-icon2">
+                                <i class="material-icons">hotel</i>
+                            </div>
+                            <p class="card-category">Reservations</p>
+                            <h3 class="card-title">
+                                49/50 <small class="special">GB</small>
+                            </h3>
+                        </div>
+                        <div class="card-footer1">
+                            <div class="status1">
+                                <i class="material-icons" >update</i>
+                                Just Updated
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="data1">
+                    <div class="card1">
+                        <div class="card-header1">
+                            <div class="card-icon3">
+                                <i class="material-icons">monetization_on</i>
+                            </div>
+                            <p class="card-category">Income</p>
+                            <h3 class="card-title">
+                                49/50 <small class="special">GB</small>
+                            </h3>
+                        </div>
+                        <div class="card-footer1">
+                            <div class="status1">
+                                <i class="material-icons" >update</i>
+                                Just Updated
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="data1">
+                    <div class="card1">
+                        <div class="card-header1">
+                            <div class="card-icon4">
+                                <i class="material-icons">people_alt</i>
+                            </div>
+                            <p class="card-category">Employess</p>
+                            <h3 class="card-title">
+                                49/50 <small class="special">GB</small>
+                            </h3>
+                        </div>
+                        <div class="card-footer1">
+                            <div class="status1">
+                                <i class="material-icons" >update</i>
+                                Just Updated
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+           </div>
     </div>
 
 </div>   

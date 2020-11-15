@@ -28,8 +28,8 @@ class App {
             //definr the action
             $this->action = isset($url[1]) ? $url[1] : "index";
             // echo $this->action;
-            unset($url[0], $url[1]);
-
+            unset($url[0], $url[1]); 
+        // localhost->pulic-
             $this->params = !empty($url) ? array_values($url):[];
             // var_dump($this->params);
 

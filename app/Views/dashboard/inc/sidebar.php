@@ -11,7 +11,10 @@
 <div class="container">
     <ul class="nav1">
         <li class="nav1-item">
-            <a href="<?php url('dashboard/index'); ?>" class="nav1-link">
+
+            
+            <a href="<?php url(); ?>" class="nav1-link">
+
                 <p class="nav-p"><i class="material-icons">dashboard</i>Dashboard</p>   
             </a>
         </li>
@@ -36,8 +39,10 @@
         </li> 
     
         <li class="nav1-item">
-            <a href="#" class="nav1-link">
-                <p class="nav-p"><i class="material-icons">laptop_chromebook</i>Edit Website</p>         
+
+            <a href="<?php url('editweb/index'); ?>" class="nav1-link">
+                <p class="nav-p"><i class="material-icons">build</i>Edit Website</p>         
+
             </a>
         </li> 
         

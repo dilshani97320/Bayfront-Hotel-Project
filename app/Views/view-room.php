@@ -1,18 +1,17 @@
-<?php require 'config/db.php';?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="stylesheet" type="text/css" href="css/footer-style.css">
-	<link rel="stylesheet" type="text/css" href="css/basic-style.css">
 	<title>Document</title>
 </head>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap');
 
+.headImg{
+  margin-top: 100px;
+}
 .container {
   max-width: 1000px;
   margin: auto;
@@ -89,35 +88,44 @@
 }
 </style>
 <body>
-	<?php include("common/header_navbar.php"); ?>
+	<?php include(VIEWS.'inc/header_navbar.php'); ?>
 
-<!-- <div class="slidecontainer">
-			<img class="image" src="img/post14.jpg" alt="beach side city view">
-		 	<div class="bottom-left">
-		 		<h1>Breakfast</h1>
-		 	</div>
-		</div> -->
-		<div class="headImg">
+  
+    <div class="headImg">
 			<div class="first">
 			
-			
-			<h1>Deluxe Double Room with Balcony and Sea View</h1>
+			<h1><?php echo $room_details[0]['room_name']; ?></h1>
 			<div class="container">
-  <div class="main-img">
-    <img src="img/view1.jpg" id="current">
-  </div>
+        <div class="main-img">
 
-  <div class="imgs">
-    <img src="img/view1.jpg">
-    <img src="img/view2.jpg">
-    <img src="img/view3.jpg">
-    <img src="img/view4.jpg">
-    <img src="img/view5.jpg">
-    <img src="img/view6.webp">
-    <img src="img/view7.webp">
-    <img src="img/view8.webp">
-  </div>
-</div>
+        <?php 
+            $count =0;
+            foreach ($img_details as $key=>$value) {
+              // var_dump($value);
+              foreach ($value as $set) {
+                // echo $set;
+                if ($set == 'image_01') {
+                    $count = $key +1;
+                    // echo $count;
+                }
+              }
+            } 
+          ?>
+          <?php  if ($count == 0): ?>
+            
+          <?php else : ?>
+            <img id="current" id="previewImg" src="<?php echo BURL.$img_details[$count-1]['image_path']; ?>" alt="Placeholder">
+          <?php endif;  ?>
+        </div>
+
+        <div class="imgs">
+        
+        <?php  foreach ($img_details as $key=>$value): ?> 
+          <img src="<?php echo BURL.$value['image_path']; ?>">
+        <?php  endforeach;  ?> 
+           
+        </div>
+      </div>
 
   <h2><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
    viewBox="0 0 480 480" height="30" width="30" style="enable-background:new 0 0 480 480;" xml:space="preserve">
@@ -157,7 +165,7 @@ Includes 1 King Size Bed, private kitchen, bathroom and some living spaces.</li>
   </ul>
 
 
-			<?php include("common/facility.php"); ?>			</div>
+			<?php include(VIEWS.'inc/facility.php'); ?>			</div>
 
 
 			<div class="second">
@@ -166,25 +174,17 @@ Includes 1 King Size Bed, private kitchen, bathroom and some living spaces.</li>
           <span class="value">$120.6</span>
           <span class="unit">/Night</span>
         </div>
-				<?php include("common/booking-formY.php"); ?> 
+				<?php include(VIEWS.'inc/booking-formY.php'); ?> 
 			</div>
 			
 		</div>
 
-<?php
-  $sql = "SELECT * FROM img ";
-  $result = mysqli_query($conn, $sql);
- 
-
-  while ( $room = mysqli_fetch_assoc($result)) {
-    echo "<img src='{$room['dir']}'  width='40%'>";
-  }
-?>
-
-<?php include("common/footer.php"); ?>
 
 
-	<script type="text/javascript">
+
+<?php include(VIEWS.'inc/footer.php'); ?>
+
+<script type="text/javascript">
 
   window.onload = function () {
     const navbar= document.querySelector(".nav");
@@ -193,16 +193,16 @@ Includes 1 King Size Bed, private kitchen, bathroom and some living spaces.</li>
   };
 
    const current = document.querySelector('#current');
-const imgs = document.querySelector('.imgs');
-const img = document.querySelectorAll('.imgs img');
-const opacity = 0.6;
+  const imgs = document.querySelector('.imgs');
+  const img = document.querySelectorAll('.imgs img');
+  const opacity = 0.6;
 
 // Set first img opacity
-img[0].style.opacity = opacity;
+  img[0].style.opacity = opacity;
 
-imgs.addEventListener('click', imgClick);
+  imgs.addEventListener('click', imgClick);
 
-function imgClick(e) {
+  function imgClick(e) {
   // Reset the opacity
   img.forEach(img => (img.style.opacity = 1));
 
@@ -219,6 +219,6 @@ function imgClick(e) {
   e.target.style.opacity = opacity;
 }
  
-  </script>
+</script>
 </body>
 </html>

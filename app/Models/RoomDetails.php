@@ -2,11 +2,11 @@
 
 class RoomDetails {
 
+
     private $table = "room";
+
     private $table1 = "room_details";
     private $table2 = "room_type";
-    private $table3 = "room_discount";
-    private $table4 = "reservation";
     private $connection;
 
     public function __construct() {
@@ -18,10 +18,52 @@ class RoomDetails {
 
         $this->connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
     }
+    public function getRoomView()
+    {
+         $query = "SELECT * FROM $this->table1
+                  INNER JOIN $this->table2 ON $this->table1.type_id = $this->table2.room_type_id";
+        // echo $query;  
+        // exit();  
+        $result= mysqli_query($this->connection, $query);
+        // var_dump($rooms);
+        // exit();
+        if($result) {
+            $rooms = mysqli_fetch_all($result,MYSQLI_ASSOC);
+        
+            // var_dump($rooms);
+            // exit();
+            return $rooms;
+        }
+        else {
+            echo "Database Query Failed";
+        }    
+
+    }
+
+    public function getOneRoomView($room_number)
+    {
+         $query = "SELECT * FROM $this->table1
+                  INNER JOIN $this->table2 ON $this->table1.type_id = $this->table2.room_type_id WHERE $this->table1.room_number= '$room_number' ";
+        // echo $query;  
+        // exit();  
+        $result= mysqli_query($this->connection, $query);
+        // var_dump($result);
+        // exit();
+        if($result) {
+            $rooms = mysqli_fetch_all($result,MYSQLI_ASSOC);
+        
+            // var_dump($rooms);
+            // exit();
+            return $rooms;
+        }
+        else {
+            echo "Database Query Failed";
+        }    
 
     public function getRoomTypes() {
         $user = array();
         $query = "SELECT type_name FROM $this->table2";
+
 
         $result = 0;
 
@@ -323,6 +365,7 @@ class RoomDetails {
 
     
 
+
     // public function getOwner($owner_user_id) {
     //     $user = array();
     //     $owner_user_id = mysqli_real_escape_string($this->connection, $owner_user_id);
@@ -407,6 +450,7 @@ class RoomDetails {
         
     //     return $value;
     // }
+
 
     public function getDataEmployee($room_id) {
 

@@ -1,21 +1,3 @@
-<?php 
-	
-
-// require_once 'controllers/authControllers.php'; 
-
-// if(isset($_GET['token'])){
-//         $token =trim($_GET['token']);
-//         verifyUser($token);
-// }
-
-// if(isset($_GET['password-token'])){
-// 	$passwordToken =trim($_GET['password-token']);
-// 	echo $_GET['password-token'];
-// 	resetPassword($passwordToken);
-// }
-
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -62,7 +44,7 @@
           <br />
           <div>
             <h1>SPA & YOGA</h1>
-
+            
             <hr class="line-style" />
             <br />
             <p>
@@ -148,7 +130,7 @@
                     <h6>Hikkaduwa</h6>
                   </div>
                 </div>
-                <a href="landing.php?article=7"></a>
+                <a href="<?php url('Activity/ViewSubPage/7' ); ?>"></a>
               </figure>
             </div>
             <div class="img2">
@@ -160,7 +142,7 @@
                     <h6>Upper Country</h6>
                   </div>
                 </div>
-                <a href="landing.php?article=9"></a>
+                <a href="<?php url('Activity/ViewSubPage/9' ); ?>"></a>
               </figure>
             </div>
             <div class="img3">
@@ -172,7 +154,7 @@
                     <h6>Ella</h6>
                   </div>
                 </div>
-                <a href="landing.php?article=8"></a>
+                <a href="<?php url('Activity/ViewSubPage/8' ); ?>"></a>
               </figure>
             </div>
             <div class="img4">
@@ -184,7 +166,7 @@
                     <h6>Mirissa</h6>
                   </div>
                 </div>
-                <a href="landing.php?article=6"></a>
+                <a href="<?php url('Activity/ViewSubPage/6' ); ?>"></a>
               </figure>
             </div>
             <div class="img5">

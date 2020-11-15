@@ -159,7 +159,7 @@
 
                     <div class="section1">
 					<div class="row">
-                        <label for="#"><i class="material-icons">perm_identity</i>Room Type</label>
+                        <label for="#"><i class="material-icons">night_shelter</i>Room Type</label>
                         <select name="type_name" class="inputField" selected="<?php echo $room_details[0]['type_id']; ?>">
                             <option value="" style="border: none">Select Room Type</option> 
                             <option value="1" <?php if ($room_details[0]['type_id'] == 1 ) echo ' selected="selected"'; ?> style="border: none">Single Room</option> 
@@ -173,13 +173,23 @@
                         </select>
                     </div>
 
-			
+					<div class="row">
+                            <label for="#"><i class="material-icons">house_siding</i>Floor Type</label>
+                            <select name="floor_type" class="inputField" selected="<?php echo $room_details[0]['type_id']; ?>">
+                                <option value="" style="border: none">Select The Floor</option> 
+                                <option value="0"<?php if ($room_details[0]['floor_type'] == 0 ) echo ' selected="selected"'; ?> style="border: none">Ground Floor</option> 
+                                <option value="1" <?php if ($room_details[0]['floor_type'] == 1 ) echo ' selected="selected"'; ?> style="border: none">First Floor </option> 
+                                <option value="2" <?php if ($room_details[0]['floor_type'] == 2 ) echo ' selected="selected"'; ?> style="border: none">Scond Floor</option> 
+                                <option value="3" <?php if ($room_details[0]['floor_type'] == 3 ) echo ' selected="selected"'; ?> style="border: none">Third Floor</option> 
+                                <option value="4"<?php if ($room_details[0]['floor_type'] == 4 ) echo ' selected="selected"'; ?>  style="border: none">Fourth Floor</option> 
+                            </select>
+                        </div>
                         <div class="row">
-                        <label for="#"><i class="material-icons">perm_identity</i>Room Number</label>
+                        <label for="#"><i class="material-icons">money</i>Room Number</label>
                         <input type="text" name="room_number" value="<?php echo $room_details[0]['room_number']; ?>">
 					
-						<?php  echo $errors;  ?>
-                                                <span class="content-name"><i class="material-icons">info</i> <?php  echo $errors;  ?>
+						<?php  //echo $errors;  ?>
+                                                <span class="content-name"><i class="material-icons">info</i> 
 											</span>
                                           
                                             <?php if(isset($success)): ?>
@@ -190,50 +200,58 @@
 
 
                         <div class="row">
-                            <label for="#"><i class="material-icons">account_box</i>Room name</label>
+                            <label for="#"><i class="material-icons">title</i>Room name</label>
                             <input type="text" name="room_name" value="<?php echo $room_details[0]['room_name']; ?>">
                         </div>
 
                         
                         <div class="row">
-                            <label for="#"><i class="material-icons">account_box</i>Room Discription</label>
+                            <label for="#"><i class="material-icons">toc</i>Room Discription</label>
                             <textarea name="room_desc" value="" rows="5" cols="40"><?php echo $room_details[0]['room_desc']; ?></textarea>
                             
                         </div>
 
                         <div class="row">
-                            <label for="#"><i class="material-icons">account_box</i>Floor Type</label>
-                            <input type="text" name="floor_type" value="<?php echo $room_details[0]['floor_type']; ?>">
-                        </div>
-
-                        <div class="row">
-                            <label for="#"><i class="material-icons">account_box</i>Room Size</label>
+                            <label for="#"><i class="material-icons">fullscreen_exit</i>Room Size</label>
                             <input type="text" name="room_size" value="<?php echo $room_details[0]['room_size']; ?>">
                         </div>
 
                         <div class="row">
-                            <label for="#"><i class="material-icons">mail</i>Price</label>
+                            <label for="#"><i class="material-icons">local_atm</i>Price</label>
                             <input type="num" name="price" value="<?php echo $room_details[0]['price']; ?>"> 
                         </div>
                         
                         <div class="row">
-                            <label for="#"><i class="material-icons">payment</i>Air Condition</label>
+                            <label for="#"><i class="material-icons">ac_unit</i>Air Condition</label>
                             <!-- <input type="text" name="salary"> -->
+							<label for="r1">No</label>
                             <input id="s1" type="checkbox" name="air_condition" class="switch" <?php  if($room_details[0]['air_condition']==1) {  echo "checked";} ?> >
+							<label for="r1">Yes</label>
                             
                         </div>
 
                         <div class="row">
-                            <label for="#"><i class="material-icons">location_on</i>Hot Water</label>
+                            <label for="#"><i class="material-icons">hot_tub</i>Hot Water</label>
                             <!-- <input type="text" name="location"> -->
+							<label for="r1">No</label>
                             <input id="s1" type="checkbox" name="hot_water" class="switch" <?php  if($room_details[0]['hot_water']==1) {  echo "checked";} ?> >
+							<label for="r1">Yes</label>
+
                         </div>
 
                         <div class="row">
-                            <label for="#"><i class="material-icons">contacts</i>Free Canseleration</label>
+                            <label for="#"><i class="material-icons">highlight_off</i>Free Canseleration</label>
+							<label for="r1">No</label>
                             <input id="s1" name="free_canseleration" type="checkbox" class="switch" <?php  if($room_details[0]['free_canselaration']==1) {  echo "checked";} ?> >
+							<label for="r1">Yes</label>
+
                         </div>
-                        
+						<div class="row">
+                            <label for="#"><i class="material-icons">local_cafe</i>Breakfast Included</label>
+                            <label for="r1">No</label>
+                            <input id="s1" name="breakfast_included" type="checkbox" class="switch" <?php  if($room_details[0]['breakfast_included']==1) {  echo "checked";} ?> >
+                            <label for="r1">Yes</label>
+                        </div>
                         <div class="row">
                             <div class="button">
                                 <input type="submit" name="submit" value="submit">

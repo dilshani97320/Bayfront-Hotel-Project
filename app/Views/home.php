@@ -14,6 +14,7 @@
 
     <div class="container">
       <?php include(VIEWS.'inc/service-section.php'); ?>
+      
       <?php include(VIEWS.'inc/room-slider.php'); ?>
       <a id="button"></a>
       <div class="activityContainer">

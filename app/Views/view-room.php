@@ -171,8 +171,8 @@ Includes 1 King Size Bed, private kitchen, bathroom and some living spaces.</li>
 			<div class="second">
         <div class="price">
           <span class="titlePrice">Price</span>
-          <span class="value">$120.6</span>
-          <span class="unit">/Night</span>
+          <span class="value"><?php echo $room_details[0]['price']; ?> $</span>
+          <span class="unit">/Per Night</span>
         </div>
 				<?php include(VIEWS.'inc/booking-formY.php'); ?> 
 			</div>

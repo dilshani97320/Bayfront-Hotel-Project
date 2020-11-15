@@ -254,6 +254,7 @@ class EditwebController{
                 array_map('unlink', glob(__DIR__.'/../../public/uploads/'.$room_number.'/*.*'));
                 rmdir(__DIR__.'/../../public/uploads/'.$room_number);
             }
+            // $_POST = array();
             view::load('dashboard/editweb/index', $data);
         }
     }

@@ -7,6 +7,7 @@ class ImageController {
 
         
         if(isset($_POST['submit'])){
+
             $file = $_FILES['file'];
             // print_r($file);
             // exit();
@@ -31,7 +32,14 @@ class ImageController {
                         $path =   __DIR__.'/../../public/uploads/'.$room_number.'/'.$fileNewName;
                         // echo $path;
                         // exit();
-        
+                        if (file_exists(__DIR__.'/../../public/uploads/'.$room_number.'/'.$fileNewName)) {
+                            $db = new Image();
+                            if ($db->imageExists($room_number, $image_name)) {
+                                unlink(__DIR__.'/../../public/uploads/'.$room_number.'/'.$fileNewName);
+                                unset($db);
+                            }
+                            
+                        }
                         $db = new Image();
                         if ($db->upload($room_number, $image_name ,  $path)){
                             move_uploaded_file($filetmp_name, $path);
@@ -81,6 +89,21 @@ class ImageController {
             
         // $data['room_id']= $roomId;
         
+    }
+
+    public function deleteImg( $room_number , $image_name)
+    {
+        
+        if (file_exists(__DIR__.'/../../public/uploads/'.$room_number.'/'.$image_name)) {
+            $img = explode('.',$image_name);
+            $img= current($img);
+            $db = new Image();
+            if ($db->imageExists($room_number, $img)) {
+                unlink(__DIR__.'/../../public/uploads/'.$room_number.'/'.$image_name);
+                unset($db);
+                $this->viewImg($room_number);
+            }
+        }
     }
 }
 

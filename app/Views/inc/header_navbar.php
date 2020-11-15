@@ -25,7 +25,23 @@
                 <div class="nav-links">
                     <ul>
                         <li class="nav-link" style="--i: .85s"><a href="<?php url() ?>">Home</a></li>
-                        <li class="nav-link" style="--i: .85s"><a href="<?php url('Roomsuite/index'); ?>">Room & Lifestyle</a></li>
+                        <li class="nav-link" style="--i: .85s">
+                            <a href="<?php url('Roomsuite/index'); ?>">Room & Lifestyle</a>
+                            <div class="dropdown">
+                                <ul>
+                                    <li class="dropdown-link">
+                                        <a href="#">Single Room</a>
+                                    </li>
+                                    <li class="dropdown-link">
+                                        <a href="#">Double Room</a>
+                                    </li>
+                                    <li class="dropdown-link">
+                                        <a href="#">Family Room</a>
+                                    </li>
+                                    <div class="arrow"></div>
+                                </ul>
+                            </div>
+                        </li>
                         <li class="nav-link" style="--i: .85s"><a href="<?php url('Dining/index'); ?>">Dining</a></li>
                         <li class="nav-link" style="--i: .85s"><a href="<?php url('Surf/index'); ?>">Surf</a></li>
                         <li class="nav-link" style="--i: .85s"><a href="<?php url('Activity/index'); ?>">Activities</a></li>

@@ -1,17 +1,24 @@
 <style>
 .addFile{
-    padding: 10px;
+    padding: 5px;
     width: 150px;
+    margin: 20px auto;
     background: #1e90ff; 
     letter-spacing: 1px;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 15px;
     text-align: center;
     color: #fff;
 }
+span{
+    margin-top: -5px;
+}
 
+.h1{
+    margin: 30px 20px;
+    letter-spacing: 1px;
 
-
+}
 input[type="file"] {
     display: none;
 }
@@ -22,31 +29,51 @@ input[type="file"] {
 .imgLine{
     display: flex;
   flex-direction: row;
+  margin-left: 30px;
 }
-
+.line{
+    width: 33.33%;
+}
 .line1{
     display: flex;
   flex-direction: column;
 }
 .line2{
+    margin: 10px auto;
     display: flex;
   flex-direction: column;
 }
 .line #previewImg{
     width: 200px;
-    margin-left: 50;
+    margin: 5px auto;
     height: 200px;
     object-fit: cover;  
 }
-
-.line .submitBtn{
-    width: 100px;
-    padding: 10px;
+.line .btnDel{
+    width: 75px;
+    text-decoration: none;
+    padding: 5px;
+    margin-bottom: 20px;
     letter-spacing: 1px;
     font-weight: 400;
     color: #fff;
     border: none;
-    font-size: 18px;
+    font-size: 15px;
+    text-align: center;
+    background: #ed143d;
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 0 1px 3px 1px rgba(60,64,67,0.149);
+}
+
+.line .submitBtn{
+    width: 85px;
+    text-decoration: none;
+    padding: 8px;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    font-weight: 400;
+    color: #fff;
+    border: none;
+    font-size: 15px;
     text-align: center;
     background: #00AF87;
     box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 0 1px 3px 1px rgba(60,64,67,0.149);
@@ -72,7 +99,8 @@ function previewFile(input) {
 }
 </script>
 <?php 
-
+unset($_POST);
+$_POST = array();
 // Header
    $title = "Employee page";
    include(VIEWS.'dashboard/inc/header.php'); 
@@ -102,7 +130,7 @@ function previewFile(input) {
                    <p class="textfortabel">Employee View Following Table</p>
                </div>
                
-               <h1>Full Room View</h1>
+               <h1 class="h1">Full Room View</h1>
                <div class="sadara">
                
                 <div class="line">
@@ -137,8 +165,7 @@ function previewFile(input) {
                             </div>
                             
                             <div class="line2">
-                                <a class="submitBtn" href=""><span class="material-icons">create</span></a>
-                                    <!-- <a class="submitBtn" href=""><span class="material-icons">delete</span></a>s -->
+                             
                                 <input class="submitBtn" type="submit"  name="submit" value="Save">
                             </div>
                                 
@@ -147,7 +174,7 @@ function previewFile(input) {
                 </div>
 
                 <div class="line">
-                    <form action="<?php url("image/uploadImg/image_01/$room_number"); ?>" method="post" enctype="multipart/form-data">
+                    <form action="<?php url("image/uploadImg/image_02/$room_number"); ?>" method="post" enctype="multipart/form-data">
                         <div class="imgLine">
                             <div class="line1">
                                 <?php 
@@ -178,8 +205,10 @@ function previewFile(input) {
                             </div>
                             
                             <div class="line2">
-                                <a class="submitBtn" href=""><span class="material-icons">create</span></a>
-                                    <a class="submitBtn" href=""><span class="material-icons">delete</span></a>
+                                 <?php if (isset($img_details[$count-1]['image_path'])):?>
+                                 <?php $img = explode('/',$img_details[$count-1]['image_path']); $img= end($img);?>
+                                    <a class="btnDel" href="<?php url('image/deleteImg/'.$room_number.'/'.$img); ?>"  >Delete</a>
+                                 <?php endif; ?>
                                 <input class="submitBtn" type="submit"  name="submit" value="Save">
                             </div>
                                 
@@ -188,7 +217,7 @@ function previewFile(input) {
                 </div>
 
                 <div class="line">
-                    <form action="<?php url("image/uploadImg/image_01/$room_number"); ?>" method="post" enctype="multipart/form-data">
+                    <form action="<?php url("image/uploadImg/image_03/$room_number"); ?>" method="post" enctype="multipart/form-data">
                         <div class="imgLine">
                             <div class="line1">
                                 <?php 
@@ -219,8 +248,11 @@ function previewFile(input) {
                             </div>
                             
                             <div class="line2">
-                                <a class="submitBtn" href=""><span class="material-icons">create</span></a>
-                                    <a class="submitBtn" href=""><span class="material-icons">delete</span></a>
+                                 
+                                 <?php if (isset($img_details[$count-1]['image_path'])):?>
+                                 <?php $img = explode('/',$img_details[$count-1]['image_path']); $img= end($img);?>
+                                    <a class="btnDel" href="<?php url('image/deleteImg/'.$room_number.'/'.$img); ?>"  >Delete</a>
+                                 <?php endif; ?>
                                 <input class="submitBtn" type="submit"  name="submit" value="Save">
                             </div>
                                 
@@ -228,13 +260,13 @@ function previewFile(input) {
                     </form>
                 </div>
                 </div>
-                <h1>Washroom View</h1>
+                <h1 class="h1">Washroom View</h1>
                 <div class="sadara"> 
 
                 
 
                 <div class="line">
-                    <form action="<?php url("image/uploadImg/image_01/$room_number"); ?>" method="post" enctype="multipart/form-data">
+                    <form action="<?php url("image/uploadImg/image_04/$room_number"); ?>" method="post" enctype="multipart/form-data">
                         <div class="imgLine">
                             <div class="line1">
                                 <?php 
@@ -265,8 +297,11 @@ function previewFile(input) {
                             </div>
                             
                             <div class="line2">
-                                <a class="submitBtn" href=""><span class="material-icons">create</span></a>
-                                    <a class="submitBtn" href=""><span class="material-icons">delete</span></a>
+                                 
+                                 <?php if (isset($img_details[$count-1]['image_path'])):?>
+                                 <?php $img = explode('/',$img_details[$count-1]['image_path']); $img= end($img);?>
+                                    <a class="btnDel" href="<?php url('image/deleteImg/'.$room_number.'/'.$img); ?>"  >Delete</a>
+                                 <?php endif; ?>
                                 <input class="submitBtn" type="submit"  name="submit" value="Save">
                             </div>
                                 
@@ -275,7 +310,7 @@ function previewFile(input) {
                 </div>
 
                 <div class="line">
-                    <form action="<?php url("image/uploadImg/image_01/$room_number"); ?>" method="post" enctype="multipart/form-data">
+                    <form action="<?php url("image/uploadImg/image_05/$room_number"); ?>" method="post" enctype="multipart/form-data">
                         <div class="imgLine">
                             <div class="line1">
                                 <?php 
@@ -306,8 +341,11 @@ function previewFile(input) {
                             </div>
                             
                             <div class="line2">
-                                <a class="submitBtn" href=""><span class="material-icons">create</span></a>
-                                    <a class="submitBtn" href=""><span class="material-icons">delete</span></a>
+                                 
+                                 <?php if (isset($img_details[$count-1]['image_path'])):?>
+                                 <?php $img = explode('/',$img_details[$count-1]['image_path']); $img= end($img);?>
+                                    <a class="btnDel" href="<?php url('image/deleteImg/'.$room_number.'/'.$img); ?>"  >Delete</a>
+                                 <?php endif; ?>
                                 <input class="submitBtn" type="submit"  name="submit" value="Save">
                             </div>
                                 
@@ -316,7 +354,7 @@ function previewFile(input) {
                 </div>
 
                 <div class="line">
-                    <form action="<?php url("image/uploadImg/image_01/$room_number"); ?>" method="post" enctype="multipart/form-data">
+                    <form action="<?php url("image/uploadImg/image_06/$room_number"); ?>" method="post" enctype="multipart/form-data">
                         <div class="imgLine">
                             <div class="line1">
                                 <?php 
@@ -347,8 +385,11 @@ function previewFile(input) {
                             </div>
                             
                             <div class="line2">
-                                <a class="submitBtn" href=""><span class="material-icons">create</span></a>
-                                    <a class="submitBtn" href=""><span class="material-icons">delete</span></a>
+                             
+                                 <?php if (isset($img_details[$count-1]['image_path'])):?>
+                                 <?php $img = explode('/',$img_details[$count-1]['image_path']); $img= end($img);?>
+                                    <a class="btnDel" href="<?php url('image/deleteImg/'.$room_number.'/'.$img); ?>"  >Delete</a>
+                                 <?php endif; ?>
                                 <input class="submitBtn" type="submit"  name="submit" value="Save">
                             </div>
                                 
@@ -356,11 +397,11 @@ function previewFile(input) {
                     </form>
                 </div>
                 </div>
-                <h1>Room  Facility</h1>
+                <h1 class="h1">Room  Facility</h1>
                 <div class="sadara">
                 
                 <div class="line">
-                    <form action="<?php url("image/uploadImg/image_01/$room_number"); ?>" method="post" enctype="multipart/form-data">
+                    <form action="<?php url("image/uploadImg/image_07/$room_number"); ?>" method="post" enctype="multipart/form-data">
                         <div class="imgLine">
                             <div class="line1">
                                 <?php 
@@ -391,8 +432,11 @@ function previewFile(input) {
                             </div>
                             
                             <div class="line2">
-                                <a class="submitBtn" href=""><span class="material-icons">create</span></a>
-                                    <a class="submitBtn" href=""><span class="material-icons">delete</span></a>
+                             
+                                 <?php if (isset($img_details[$count-1]['image_path'])):?>
+                                 <?php $img = explode('/',$img_details[$count-1]['image_path']); $img= end($img);?>
+                                    <a class="btnDel" href="<?php url('image/deleteImg/'.$room_number.'/'.$img); ?>"  >Delete</a>
+                                 <?php endif; ?>
                                 <input class="submitBtn" type="submit"  name="submit" value="Save">
                             </div>
                                 
@@ -401,7 +445,7 @@ function previewFile(input) {
                 </div>
 
                 <div class="line">
-                    <form action="<?php url("image/uploadImg/image_01/$room_number"); ?>" method="post" enctype="multipart/form-data">
+                    <form action="<?php url("image/uploadImg/image_08/$room_number"); ?>" method="post" enctype="multipart/form-data">
                         <div class="imgLine">
                             <div class="line1">
                                 <?php 
@@ -432,8 +476,11 @@ function previewFile(input) {
                             </div>
                             
                             <div class="line2">
-                                <a class="submitBtn" href=""><span class="material-icons">create</span></a>
-                                    <a class="submitBtn" href=""><span class="material-icons">delete</span></a>
+                             
+                                 <?php if (isset($img_details[$count-1]['image_path'])):?>
+                                 <?php $img = explode('/',$img_details[$count-1]['image_path']); $img= end($img);?>
+                                    <a class="btnDel" href="<?php url('image/deleteImg/'.$room_number.'/'.$img); ?>"  >Delete</a>
+                                 <?php endif; ?>
                                 <input class="submitBtn" type="submit"  name="submit" value="Save">
                             </div>
                                 
@@ -441,12 +488,12 @@ function previewFile(input) {
                     </form>
                 </div>
                 </div>
-                <h1>Other</h1>
+                <h1 class="h1">Other</h1>
                 <div class="sadara"> 
                 
 
                 <div class="line">
-                    <form action="<?php url("image/uploadImg/image_01/$room_number"); ?>" method="post" enctype="multipart/form-data">
+                    <form action="<?php url("image/uploadImg/image_09/$room_number"); ?>" method="post" enctype="multipart/form-data">
                         <div class="imgLine">
                             <div class="line1">
                                 <?php 
@@ -477,8 +524,11 @@ function previewFile(input) {
                             </div>
                             
                             <div class="line2">
-                                <a class="submitBtn" href=""><span class="material-icons">create</span></a>
-                                    <a class="submitBtn" href=""><span class="material-icons">delete</span></a>
+                             
+                                 <?php if (isset($img_details[$count-1]['image_path'])):?>
+                                 <?php $img = explode('/',$img_details[$count-1]['image_path']); $img= end($img);?>
+                                    <a class="btnDel" href="<?php url('image/deleteImg/'.$room_number.'/'.$img); ?>"  >Delete</a>
+                                 <?php endif; ?>
                                 <input class="submitBtn" type="submit"  name="submit" value="Save">
                             </div>
                                 
@@ -487,7 +537,7 @@ function previewFile(input) {
                 </div>
 
                 <div class="line">
-                    <form action="<?php url("image/uploadImg/image_01/$room_number"); ?>" method="post" enctype="multipart/form-data">
+                    <form action="<?php url("image/uploadImg/image_10/$room_number"); ?>" method="post" enctype="multipart/form-data">
                         <div class="imgLine">
                             <div class="line1">
                                 <?php 
@@ -518,8 +568,11 @@ function previewFile(input) {
                             </div>
                             
                             <div class="line2">
-                                <a class="submitBtn" href=""><span class="material-icons">create</span></a>
-                                    <a class="submitBtn" href=""><span class="material-icons">delete</span></a>
+                             
+                                 <?php if (isset($img_details[$count-1]['image_path'])):?>
+                                 <?php $img = explode('/',$img_details[$count-1]['image_path']); $img= end($img);?>
+                                    <a class="btnDel" href="<?php url('image/deleteImg/'.$room_number.'/'.$img); ?>"  >Delete</a>
+                                 <?php endif; ?>
                                 <input class="submitBtn" type="submit"  name="submit" value="Save">
                             </div>
                                 

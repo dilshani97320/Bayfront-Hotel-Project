@@ -2,7 +2,6 @@
 .addFile{
     padding: 10px;
     width: 150px;
-    margin-top: 50px;
     background: #1e90ff; 
     letter-spacing: 1px;
     font-weight: 400;
@@ -16,24 +15,33 @@
 input[type="file"] {
     display: none;
 }
+.sadara{
+    display: flex;
+  flex-direction: row;
+}
 .imgLine{
     display: flex;
-  flex-wrap: wrap;
+  flex-direction: row;
 }
-.line{
-    flex-basis: 300px;
+
+.line1{
+    display: flex;
+  flex-direction: column;
+}
+.line2{
+    display: flex;
+  flex-direction: column;
 }
 .line #previewImg{
-    width: 150px;
+    width: 200px;
     margin-left: 50;
-    height: 150px;
+    height: 200px;
     object-fit: cover;  
 }
 
 .line .submitBtn{
-    width: 168px;
+    width: 100px;
     padding: 10px;
-    margin-top: 50px;
     letter-spacing: 1px;
     font-weight: 400;
     color: #fff;
@@ -41,6 +49,7 @@ input[type="file"] {
     font-size: 18px;
     text-align: center;
     background: #00AF87;
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 0 1px 3px 1px rgba(60,64,67,0.149);
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -94,360 +103,431 @@ function previewFile(input) {
                </div>
                
                <h1>Full Room View</h1>
+               <div class="sadara">
                
-              
-                <form action="<?php url("image/uploadImg/image_01/$room_number"); ?>" method="post" enctype="multipart/form-data">
-                    <div class="imgLine">
-                        <div class="line">
-                            <?php 
-                                $count =0;
-                                foreach ($img_details as $key=>$value) {
-                                    // var_dump($value);
-                                    foreach ($value as $set) {
-                                        // echo $set;
-                                        if ($set == 'image_01') {
-                                            $count = $key +1;
+                <div class="line">
+                    <form action="<?php url("image/uploadImg/image_01/$room_number"); ?>" method="post" enctype="multipart/form-data">
+                        <div class="imgLine">
+                            <div class="line1">
+                                <?php 
+                                        $count =0;
+                                        foreach ($img_details as $key=>$value) {
+                                            // var_dump($value);
+                                            foreach ($value as $set) {
+                                                // echo $set;
+                                                if ($set == 'image_01') {
+                                                    $count = $key +1;
+                                                }
+                                            }
                                         }
-                                    }
-                                }
-                            ?>
-                            
-                            <?php  if ($count == 0): ?>
-                                <img id="previewImg" src="<?php echo BURL.'assets/img/addImg.svg'; ?>" alt="Placeholder">
-                            <?php else : ?>
-                                <img id="previewImg" src="<?php echo BURL.$img_details[$count-1]['image_path']; ?>" alt="Placeholder">
-                            <?php endif;  ?>
-                                    
-                        </div>
-                        <div class="line">
-                            <!-- <input type="file" name="file"  onchange="previewFile(this);" required> -->
-                            <label class="addFile">  Select File
-                                <input  type="file" name="file" size="60" onchange="previewFile(this);" required>
-                            </label> 
-                        </div>
-                        <div class="line">
-                            <input class="submitBtn" type="submit"  name="submit" value="Save">
-                        </div>
-                    </div>
+                                ?>
+                                
+                                <?php  if ($count == 0): ?>
+                                    <img id="previewImg" src="<?php echo BURL.'assets/img/addImg.svg'; ?>" alt="Placeholder">
+                                <?php else : ?>
 
-                </form>
-
-                <form action="<?php url("image/uploadImg/image_02/$room_number"); ?>" method="post" enctype="multipart/form-data">
-                    <div class="imgLine">
-                        <div class="line">
+                                    <img id="previewImg" src="<?php echo BURL.$img_details[$count-1]['image_path']; ?>" alt="Placeholder">
+                                <?php endif;  ?>
+                                        
                             
-                            <?php 
-                                $count =0;
-                                foreach ($img_details as $key=>$value) {
-                                    // var_dump($value);
-                                    foreach ($value as $set) {
-                                        // echo $set;
-                                        if ($set == 'image_02') {
-                                            $count = $key +1;
+                                <!-- <input type="file" name="file"  onchange="previewFile(this);" required> -->
+                                <label class="addFile"><span class="material-icons">vertical_align_top</span>  Select File
+                                    <input  type="file" name="file" size="60" onchange="previewFile(this);" required>
+                                </label>
+                            </div>
+                            
+                            <div class="line2">
+                                <a class="submitBtn" href=""><span class="material-icons">create</span></a>
+                                    <!-- <a class="submitBtn" href=""><span class="material-icons">delete</span></a>s -->
+                                <input class="submitBtn" type="submit"  name="submit" value="Save">
+                            </div>
+                                
+                        </div>
+                    </form>
+                </div>
+
+                <div class="line">
+                    <form action="<?php url("image/uploadImg/image_01/$room_number"); ?>" method="post" enctype="multipart/form-data">
+                        <div class="imgLine">
+                            <div class="line1">
+                                <?php 
+                                        $count =0;
+                                        foreach ($img_details as $key=>$value) {
+                                            // var_dump($value);
+                                            foreach ($value as $set) {
+                                                // echo $set;
+                                                if ($set == 'image_02') {
+                                                    $count = $key +1;
+                                                }
+                                            }
                                         }
-                                    }
-                                }
-                            ?>
-                            
-                            <?php  if ($count == 0): ?>
-                                <img id="previewImg" src="<?php echo BURL.'assets/img/addImg.svg'; ?>" alt="Placeholder">
-                            <?php else : ?>
-                                <img id="previewImg" src="<?php echo BURL.$img_details[$count-1]['image_path']; ?>" alt="Placeholder">
-                            <?php endif;  ?>
-                        </div>
-                        <div class="line">
-                            <!-- <input type="file" name="file"  onchange="previewFile(this);" required> -->
-                            <label class="addFile">  Select File
-                                <input  type="file" name="file" size="60" onchange="previewFile(this);" required>
-                            </label> 
-                        </div>
-                        <div class="line">
-                            <input class="submitBtn" type="submit"  name="submit" value="Save">
-                        </div>
-                    </div>
+                                ?>
+                                
+                                <?php  if ($count == 0): ?>
+                                    <img id="previewImg" src="<?php echo BURL.'assets/img/addImg.svg'; ?>" alt="Placeholder">
+                                <?php else : ?>
 
-                </form>
-
-                <form action="<?php url("image/uploadImg/image_03/$room_number"); ?>" method="post" enctype="multipart/form-data">
-                    <div class="imgLine">
-                        <div class="line">
+                                    <img id="previewImg" src="<?php echo BURL.$img_details[$count-1]['image_path']; ?>" alt="Placeholder">
+                                <?php endif;  ?>
+                                        
                             
-                            <?php 
-                                $count =0;
-                                foreach ($img_details as $key=>$value) {
-                                    // var_dump($value);
-                                    foreach ($value as $set) {
-                                        // echo $set;
-                                        if ($set == 'image_03') {
-                                            $count = $key +1;
+                                <!-- <input type="file" name="file"  onchange="previewFile(this);" required> -->
+                                <label class="addFile"><span class="material-icons">vertical_align_top</span>  Select File
+                                    <input  type="file" name="file" size="60" onchange="previewFile(this);" required>
+                                </label>
+                            </div>
+                            
+                            <div class="line2">
+                                <a class="submitBtn" href=""><span class="material-icons">create</span></a>
+                                    <a class="submitBtn" href=""><span class="material-icons">delete</span></a>
+                                <input class="submitBtn" type="submit"  name="submit" value="Save">
+                            </div>
+                                
+                        </div>
+                    </form>
+                </div>
+
+                <div class="line">
+                    <form action="<?php url("image/uploadImg/image_01/$room_number"); ?>" method="post" enctype="multipart/form-data">
+                        <div class="imgLine">
+                            <div class="line1">
+                                <?php 
+                                        $count =0;
+                                        foreach ($img_details as $key=>$value) {
+                                            // var_dump($value);
+                                            foreach ($value as $set) {
+                                                // echo $set;
+                                                if ($set == 'image_03') {
+                                                    $count = $key +1;
+                                                }
+                                            }
                                         }
-                                    }
-                                }
-                            ?>
-                            
-                            <?php  if ($count == 0): ?>
-                                <img id="previewImg" src="<?php echo BURL.'assets/img/addImg.svg'; ?>" alt="Placeholder">
-                            <?php else : ?>
-                                <img id="previewImg" src="<?php echo BURL.$img_details[$count-1]['image_path']; ?>" alt="Placeholder">
-                            <?php endif;  ?>
-                        </div>
-                        <div class="line">
-                            <!-- <input type="file" name="file"  onchange="previewFile(this);" required> -->
-                            <label class="addFile">  Select File
-                                <input type="file" name="file" size="60" onchange="previewFile(this);" required>
-                            </label> 
-                        </div>
-                        <div class="line">
-                            <input class="submitBtn" type="submit"  name="submit" value="Save">
-                        </div>
-                    </div>
+                                ?>
+                                
+                                <?php  if ($count == 0): ?>
+                                    <img id="previewImg" src="<?php echo BURL.'assets/img/addImg.svg'; ?>" alt="Placeholder">
+                                <?php else : ?>
 
-                </form>
+                                    <img id="previewImg" src="<?php echo BURL.$img_details[$count-1]['image_path']; ?>" alt="Placeholder">
+                                <?php endif;  ?>
+                                        
+                            
+                                <!-- <input type="file" name="file"  onchange="previewFile(this);" required> -->
+                                <label class="addFile"><span class="material-icons">vertical_align_top</span>  Select File
+                                    <input  type="file" name="file" size="60" onchange="previewFile(this);" required>
+                                </label>
+                            </div>
+                            
+                            <div class="line2">
+                                <a class="submitBtn" href=""><span class="material-icons">create</span></a>
+                                    <a class="submitBtn" href=""><span class="material-icons">delete</span></a>
+                                <input class="submitBtn" type="submit"  name="submit" value="Save">
+                            </div>
+                                
+                        </div>
+                    </form>
+                </div>
+                </div>
                 <h1>Washroom View</h1>
-                <form action="<?php url("image/uploadImg/image_04/$room_number"); ?>" method="post" enctype="multipart/form-data">
-                    <div class="imgLine">
-                        <div class="line">
-                            <?php 
-                                $count =0;
-                                foreach ($img_details as $key=>$value) {
-                                    // var_dump($value);
-                                    foreach ($value as $set) {
-                                        // echo $set;
-                                        if ($set == 'image_04') {
-                                            $count = $key +1;
+                <div class="sadara"> 
+
+                
+
+                <div class="line">
+                    <form action="<?php url("image/uploadImg/image_01/$room_number"); ?>" method="post" enctype="multipart/form-data">
+                        <div class="imgLine">
+                            <div class="line1">
+                                <?php 
+                                        $count =0;
+                                        foreach ($img_details as $key=>$value) {
+                                            // var_dump($value);
+                                            foreach ($value as $set) {
+                                                // echo $set;
+                                                if ($set == 'image_04') {
+                                                    $count = $key +1;
+                                                }
+                                            }
                                         }
-                                    }
-                                }
-                            ?>
+                                ?>
+                                
+                                <?php  if ($count == 0): ?>
+                                    <img id="previewImg" src="<?php echo BURL.'assets/img/addImg.svg'; ?>" alt="Placeholder">
+                                <?php else : ?>
+
+                                    <img id="previewImg" src="<?php echo BURL.$img_details[$count-1]['image_path']; ?>" alt="Placeholder">
+                                <?php endif;  ?>
+                                        
                             
-                            <?php  if ($count == 0): ?>
-                                <img id="previewImg" src="<?php echo BURL.'assets/img/addImg.svg'; ?>" alt="Placeholder">
-                            <?php else : ?>
-                                <img id="previewImg" src="<?php echo BURL.$img_details[$count-1]['image_path']; ?>" alt="Placeholder">
-                            <?php endif;  ?>
+                                <!-- <input type="file" name="file"  onchange="previewFile(this);" required> -->
+                                <label class="addFile"><span class="material-icons">vertical_align_top</span>  Select File
+                                    <input  type="file" name="file" size="60" onchange="previewFile(this);" required>
+                                </label>
+                            </div>
+                            
+                            <div class="line2">
+                                <a class="submitBtn" href=""><span class="material-icons">create</span></a>
+                                    <a class="submitBtn" href=""><span class="material-icons">delete</span></a>
+                                <input class="submitBtn" type="submit"  name="submit" value="Save">
+                            </div>
+                                
                         </div>
-                        <div class="line">
-                            <!-- <input type="file" name="file"  onchange="previewFile(this);" required> -->
-                            <label class="addFile">  Select File
-                                <input type="file" name="file" size="60" onchange="previewFile(this);" required>
-                            </label> 
-                        </div>
-                        <div class="line">
-                            <input class="submitBtn" type="submit"  name="submit" value="Save">
-                        </div>
-                    </div>
+                    </form>
+                </div>
 
-                </form>
-
-                <form action="<?php url("image/uploadImg/image_05/$room_number"); ?>" method="post" enctype="multipart/form-data">
-                    <div class="imgLine">
-                        <div class="line">
-                            <?php 
-                                $count =0;
-                                foreach ($img_details as $key=>$value) {
-                                    // var_dump($value);
-                                    foreach ($value as $set) {
-                                        // echo $set;
-                                        if ($set == 'image_05') {
-                                            $count = $key +1;
+                <div class="line">
+                    <form action="<?php url("image/uploadImg/image_01/$room_number"); ?>" method="post" enctype="multipart/form-data">
+                        <div class="imgLine">
+                            <div class="line1">
+                                <?php 
+                                        $count =0;
+                                        foreach ($img_details as $key=>$value) {
+                                            // var_dump($value);
+                                            foreach ($value as $set) {
+                                                // echo $set;
+                                                if ($set == 'image_05') {
+                                                    $count = $key +1;
+                                                }
+                                            }
                                         }
-                                    }
-                                }
-                            ?>
+                                ?>
+                                
+                                <?php  if ($count == 0): ?>
+                                    <img id="previewImg" src="<?php echo BURL.'assets/img/addImg.svg'; ?>" alt="Placeholder">
+                                <?php else : ?>
+
+                                    <img id="previewImg" src="<?php echo BURL.$img_details[$count-1]['image_path']; ?>" alt="Placeholder">
+                                <?php endif;  ?>
+                                        
                             
-                            <?php  if ($count == 0): ?>
-                                <img id="previewImg" src="<?php echo BURL.'assets/img/addImg.svg'; ?>" alt="Placeholder">
-                            <?php else : ?>
-                                <img id="previewImg" src="<?php echo BURL.$img_details[$count-1]['image_path']; ?>" alt="Placeholder">
-                            <?php endif;  ?>
+                                <!-- <input type="file" name="file"  onchange="previewFile(this);" required> -->
+                                <label class="addFile"><span class="material-icons">vertical_align_top</span>  Select File
+                                    <input  type="file" name="file" size="60" onchange="previewFile(this);" required>
+                                </label>
+                            </div>
+                            
+                            <div class="line2">
+                                <a class="submitBtn" href=""><span class="material-icons">create</span></a>
+                                    <a class="submitBtn" href=""><span class="material-icons">delete</span></a>
+                                <input class="submitBtn" type="submit"  name="submit" value="Save">
+                            </div>
+                                
                         </div>
-                        <div class="line">
-                            <!-- <input type="file" name="file"  onchange="previewFile(this);" required> -->
-                            <label class="addFile">  Select File
-                                <input type="file" name="file" size="60" onchange="previewFile(this);" required>
-                            </label> 
-                        </div>
-                        <div class="line">
-                            <input class="submitBtn" type="submit"  name="submit" value="Save">
-                        </div>
-                    </div>
+                    </form>
+                </div>
 
-                </form>
-
-                <form action="<?php url("image/uploadImg/image_06/$room_number"); ?>" method="post" enctype="multipart/form-data">
-                    <div class="imgLine">
-                        <div class="line">
-                            <?php 
-                                $count =0;
-                                foreach ($img_details as $key=>$value) {
-                                    // var_dump($value);
-                                    foreach ($value as $set) {
-                                        // echo $set;
-                                        if ($set == 'image_06') {
-                                            $count = $key +1;
+                <div class="line">
+                    <form action="<?php url("image/uploadImg/image_01/$room_number"); ?>" method="post" enctype="multipart/form-data">
+                        <div class="imgLine">
+                            <div class="line1">
+                                <?php 
+                                        $count =0;
+                                        foreach ($img_details as $key=>$value) {
+                                            // var_dump($value);
+                                            foreach ($value as $set) {
+                                                // echo $set;
+                                                if ($set == 'image_06') {
+                                                    $count = $key +1;
+                                                }
+                                            }
                                         }
-                                    }
-                                }
-                            ?>
-                            
-                            <?php  if ($count == 0): ?>
-                                <img id="previewImg" src="<?php echo BURL.'assets/img/addImg.svg'; ?>" alt="Placeholder">
-                            <?php else : ?>
-                                <img id="previewImg" src="<?php echo BURL.$img_details[$count-1]['image_path']; ?>" alt="Placeholder">
-                            <?php endif;  ?>
-                        </div>
-                        <div class="line">
-                            <!-- <input type="file" name="file"  onchange="previewFile(this);" required> -->
-                            <label class="addFile">  Select File
-                                <input type="file" name="file" size="60" onchange="previewFile(this);" required>
-                            </label> 
-                        </div>
-                        <div class="line">
-                            <input class="submitBtn" type="submit"  name="submit" value="Save">
-                        </div>
-                    </div>
+                                ?>
+                                
+                                <?php  if ($count == 0): ?>
+                                    <img id="previewImg" src="<?php echo BURL.'assets/img/addImg.svg'; ?>" alt="Placeholder">
+                                <?php else : ?>
 
-                </form>
+                                    <img id="previewImg" src="<?php echo BURL.$img_details[$count-1]['image_path']; ?>" alt="Placeholder">
+                                <?php endif;  ?>
+                                        
+                            
+                                <!-- <input type="file" name="file"  onchange="previewFile(this);" required> -->
+                                <label class="addFile"><span class="material-icons">vertical_align_top</span>  Select File
+                                    <input  type="file" name="file" size="60" onchange="previewFile(this);" required>
+                                </label>
+                            </div>
+                            
+                            <div class="line2">
+                                <a class="submitBtn" href=""><span class="material-icons">create</span></a>
+                                    <a class="submitBtn" href=""><span class="material-icons">delete</span></a>
+                                <input class="submitBtn" type="submit"  name="submit" value="Save">
+                            </div>
+                                
+                        </div>
+                    </form>
+                </div>
+                </div>
                 <h1>Room  Facility</h1>
-                <form action="<?php url("image/uploadImg/image_07/$room_number"); ?>" method="post" enctype="multipart/form-data">
-                    <div class="imgLine">
-                        <div class="line">
-                            <?php 
-                                $count =0;
-                                foreach ($img_details as $key=>$value) {
-                                    // var_dump($value);
-                                    foreach ($value as $set) {
-                                        // echo $set;
-                                        if ($set == 'image_07') {
-                                            $count = $key +1;
+                <div class="sadara">
+                
+                <div class="line">
+                    <form action="<?php url("image/uploadImg/image_01/$room_number"); ?>" method="post" enctype="multipart/form-data">
+                        <div class="imgLine">
+                            <div class="line1">
+                                <?php 
+                                        $count =0;
+                                        foreach ($img_details as $key=>$value) {
+                                            // var_dump($value);
+                                            foreach ($value as $set) {
+                                                // echo $set;
+                                                if ($set == 'image_07') {
+                                                    $count = $key +1;
+                                                }
+                                            }
                                         }
-                                    }
-                                }
-                            ?>
+                                ?>
+                                
+                                <?php  if ($count == 0): ?>
+                                    <img id="previewImg" src="<?php echo BURL.'assets/img/addImg.svg'; ?>" alt="Placeholder">
+                                <?php else : ?>
+
+                                    <img id="previewImg" src="<?php echo BURL.$img_details[$count-1]['image_path']; ?>" alt="Placeholder">
+                                <?php endif;  ?>
+                                        
                             
-                            <?php  if ($count == 0): ?>
-                                <img id="previewImg" src="<?php echo BURL.'assets/img/addImg.svg'; ?>" alt="Placeholder">
-                            <?php else : ?>
-                                <img id="previewImg" src="<?php echo BURL.$img_details[$count-1]['image_path']; ?>" alt="Placeholder">
-                            <?php endif;  ?>
+                                <!-- <input type="file" name="file"  onchange="previewFile(this);" required> -->
+                                <label class="addFile"><span class="material-icons">vertical_align_top</span>  Select File
+                                    <input  type="file" name="file" size="60" onchange="previewFile(this);" required>
+                                </label>
+                            </div>
+                            
+                            <div class="line2">
+                                <a class="submitBtn" href=""><span class="material-icons">create</span></a>
+                                    <a class="submitBtn" href=""><span class="material-icons">delete</span></a>
+                                <input class="submitBtn" type="submit"  name="submit" value="Save">
+                            </div>
+                                
                         </div>
-                        <div class="line">
-                            <!-- <input type="file" name="file"  onchange="previewFile(this);" required> -->
-                            <label class="addFile">  Select File
-                                <input type="file" name="file" size="60" onchange="previewFile(this);" required>
-                            </label> 
-                        </div>
-                        <div class="line">
-                            <input class="submitBtn" type="submit"  name="submit" value="Save">
-                        </div>
-                    </div>
+                    </form>
+                </div>
 
-                </form>
-
-                <form action="<?php url("image/uploadImg/image_08/$room_number"); ?>" method="post" enctype="multipart/form-data">
-                    <div class="imgLine">
-                        <div class="line">
-                            <?php 
-                                $count =0;
-                                foreach ($img_details as $key=>$value) {
-                                    // var_dump($value);
-                                    foreach ($value as $set) {
-                                        // echo $set;
-                                        if ($set == 'image_08') {
-                                            $count = $key +1;
+                <div class="line">
+                    <form action="<?php url("image/uploadImg/image_01/$room_number"); ?>" method="post" enctype="multipart/form-data">
+                        <div class="imgLine">
+                            <div class="line1">
+                                <?php 
+                                        $count =0;
+                                        foreach ($img_details as $key=>$value) {
+                                            // var_dump($value);
+                                            foreach ($value as $set) {
+                                                // echo $set;
+                                                if ($set == 'image_08') {
+                                                    $count = $key +1;
+                                                }
+                                            }
                                         }
-                                    }
-                                }
-                            ?>
-                            
-                            <?php  if ($count == 0): ?>
-                                <img id="previewImg" src="<?php echo BURL.'assets/img/addImg.svg'; ?>" alt="Placeholder">
-                            <?php else : ?>
-                                <img id="previewImg" src="<?php echo BURL.$img_details[$count-1]['image_path']; ?>" alt="Placeholder">
-                            <?php endif;  ?>
-                        </div>
-                        <div class="line">
-                            <!-- <input type="file" name="file"  onchange="previewFile(this);" required> -->
-                            <label class="addFile">  Select File
-                                <input type="file" name="file" size="60" onchange="previewFile(this);" required>
-                            </label> 
-                        </div>
-                        <div class="line">
-                            <input class="submitBtn" type="submit"  name="submit" value="Save">
-                        </div>
-                    </div>
+                                ?>
+                                
+                                <?php  if ($count == 0): ?>
+                                    <img id="previewImg" src="<?php echo BURL.'assets/img/addImg.svg'; ?>" alt="Placeholder">
+                                <?php else : ?>
 
-                </form>
+                                    <img id="previewImg" src="<?php echo BURL.$img_details[$count-1]['image_path']; ?>" alt="Placeholder">
+                                <?php endif;  ?>
+                                        
+                            
+                                <!-- <input type="file" name="file"  onchange="previewFile(this);" required> -->
+                                <label class="addFile"><span class="material-icons">vertical_align_top</span>  Select File
+                                    <input  type="file" name="file" size="60" onchange="previewFile(this);" required>
+                                </label>
+                            </div>
+                            
+                            <div class="line2">
+                                <a class="submitBtn" href=""><span class="material-icons">create</span></a>
+                                    <a class="submitBtn" href=""><span class="material-icons">delete</span></a>
+                                <input class="submitBtn" type="submit"  name="submit" value="Save">
+                            </div>
+                                
+                        </div>
+                    </form>
+                </div>
+                </div>
                 <h1>Other</h1>
-                <form action="<?php url("image/uploadImg/image_09/$room_number"); ?>" method="post" enctype="multipart/form-data">
-                    <div class="imgLine">
-                        <div class="line">
-                            <?php 
-                                $count =0;
-                                foreach ($img_details as $key=>$value) {
-                                    // var_dump($value);
-                                    foreach ($value as $set) {
-                                        // echo $set;
-                                        if ($set == 'image_09') {
-                                            $count = $key +1;
+                <div class="sadara"> 
+                
+
+                <div class="line">
+                    <form action="<?php url("image/uploadImg/image_01/$room_number"); ?>" method="post" enctype="multipart/form-data">
+                        <div class="imgLine">
+                            <div class="line1">
+                                <?php 
+                                        $count =0;
+                                        foreach ($img_details as $key=>$value) {
+                                            // var_dump($value);
+                                            foreach ($value as $set) {
+                                                // echo $set;
+                                                if ($set == 'image_09') {
+                                                    $count = $key +1;
+                                                }
+                                            }
                                         }
-                                    }
-                                }
-                            ?>
+                                ?>
+                                
+                                <?php  if ($count == 0): ?>
+                                    <img id="previewImg" src="<?php echo BURL.'assets/img/addImg.svg'; ?>" alt="Placeholder">
+                                <?php else : ?>
+
+                                    <img id="previewImg" src="<?php echo BURL.$img_details[$count-1]['image_path']; ?>" alt="Placeholder">
+                                <?php endif;  ?>
+                                        
                             
-                            <?php  if ($count == 0): ?>
-                                <img id="previewImg" src="<?php echo BURL.'assets/img/addImg.svg'; ?>" alt="Placeholder">
-                            <?php else : ?>
-                                <img id="previewImg" src="<?php echo BURL.$img_details[$count-1]['image_path']; ?>" alt="Placeholder">
-                            <?php endif;  ?>
+                                <!-- <input type="file" name="file"  onchange="previewFile(this);" required> -->
+                                <label class="addFile"><span class="material-icons">vertical_align_top</span>  Select File
+                                    <input  type="file" name="file" size="60" onchange="previewFile(this);" required>
+                                </label>
+                            </div>
+                            
+                            <div class="line2">
+                                <a class="submitBtn" href=""><span class="material-icons">create</span></a>
+                                    <a class="submitBtn" href=""><span class="material-icons">delete</span></a>
+                                <input class="submitBtn" type="submit"  name="submit" value="Save">
+                            </div>
+                                
                         </div>
-                        <div class="line">
-                            <!-- <input type="file" name="file"  onchange="previewFile(this);" required> -->
-                            <label class="addFile">  Select File
-                                <input type="file" name="file" size="60" onchange="previewFile(this);" required>
-                            </label> 
-                        </div>
-                        <div class="line">
-                            <input class="submitBtn" type="submit"  name="submit" value="Save">
-                        </div>
-                    </div>
+                    </form>
+                </div>
 
-                </form>
-
-                <form action="<?php url("image/uploadImg/image_10/$room_number"); ?>" method="post" enctype="multipart/form-data">
-                    <div class="imgLine">
-                        <div class="line">
-                            <?php 
-                                $count =0;
-                                foreach ($img_details as $key=>$value) {
-                                    // var_dump($value);
-                                    foreach ($value as $set) {
-                                        // echo $set;
-                                        if ($set == 'image_10') {
-                                            $count = $key +1;
+                <div class="line">
+                    <form action="<?php url("image/uploadImg/image_01/$room_number"); ?>" method="post" enctype="multipart/form-data">
+                        <div class="imgLine">
+                            <div class="line1">
+                                <?php 
+                                        $count =0;
+                                        foreach ($img_details as $key=>$value) {
+                                            // var_dump($value);
+                                            foreach ($value as $set) {
+                                                // echo $set;
+                                                if ($set == 'image_10') {
+                                                    $count = $key +1;
+                                                }
+                                            }
                                         }
-                                    }
-                                }
-                            ?>
-                            
-                            <?php  if ($count == 0): ?>
-                                <img id="previewImg" src="<?php echo BURL.'assets/img/addImg.svg'; ?>" alt="Placeholder">
-                            <?php else : ?>
-                                <img id="previewImg" src="<?php echo BURL.$img_details[$count-1]['image_path']; ?>" alt="Placeholder">
-                            <?php endif;  ?>
-                        </div>
-                        <div class="line">
-                            <!-- <input type="file" name="file"  onchange="previewFile(this);" required> -->
-                            <label class="addFile">  Select File
-                                <input type="file" name="file" size="60" onchange="previewFile(this);" required>
-                            </label> 
-                        </div>
-                        <div class="line">
-                            <input class="submitBtn" type="submit"  name="submit" value="Save">
-                        </div>
-                    </div>
+                                ?>
+                                
+                                <?php  if ($count == 0): ?>
+                                    <img id="previewImg" src="<?php echo BURL.'assets/img/addImg.svg'; ?>" alt="Placeholder">
+                                <?php else : ?>
 
-                </form> 
+                                    <img id="previewImg" src="<?php echo BURL.$img_details[$count-1]['image_path']; ?>" alt="Placeholder">
+                                <?php endif;  ?>
+                                        
+                            
+                                <!-- <input type="file" name="file"  onchange="previewFile(this);" required> -->
+                                <label class="addFile"><span class="material-icons">vertical_align_top</span>  Select File
+                                    <input  type="file" name="file" size="60" onchange="previewFile(this);" required>
+                                </label>
+                            </div>
+                            
+                            <div class="line2">
+                                <a class="submitBtn" href=""><span class="material-icons">create</span></a>
+                                    <a class="submitBtn" href=""><span class="material-icons">delete</span></a>
+                                <input class="submitBtn" type="submit"  name="submit" value="Save">
+                            </div>
+                                
+                        </div>
+                    </form>
+                    </div>
+                </div>
+
            </div> 
        </div>
    </div>

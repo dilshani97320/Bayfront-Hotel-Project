@@ -25,13 +25,14 @@
 
 	<?php $count =0; ?>
 	<?php  foreach ($room_details as $key=>$value): //var_dump($value); ?>
+		<?php  if($value['is_delete']== 0): ?>
 		<div class="room">
 			<div class="room-slider">
 				<div class="room-details ">
 					<div class="content-room">
-						<span class="value" style="color: #000; font-size: 30px;">LKR. </span>
-						<span class="value"> <?php echo $value['price']; ?></span>
-						<span class="unit" style="color: #000;">/Night</span>
+						<span class="value" style="color: #000; font-size: 30px;"> </span>
+						<span class="value"> <?php echo $value['price']; ?> $</span>
+						<span class="unit" style="color: #000;">/Per Night</span>
 						<h1><?php echo $value['room_name']; ?></h1>
 						<span><?php echo $value['type_name']; ?></span>
 						<p>Lorem20 ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum, quas quasi nulla aut blanditiis, minima omnis molestiae! Necessitatibus, adipisci nam id quis natus.</p>
@@ -118,7 +119,7 @@
 			</div>
 		</div>
 			 
-	
+	<?php endif; ?> 
 	<?php endforeach; ?>  
 	</div>             
 		

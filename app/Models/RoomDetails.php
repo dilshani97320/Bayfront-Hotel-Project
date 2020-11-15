@@ -59,7 +59,7 @@ class RoomDetails {
         else {
             echo "Database Query Failed";
         }    
-
+    }
     public function getRoomTypes() {
         $user = array();
         $query = "SELECT type_name FROM $this->table2";

@@ -3,10 +3,10 @@
 		 --active: #275efe;
 		 --active-inner: #fff;
 		 --focus: 2px rgba(39, 94, 254, .3);
-		 --border: #bbc1e1;
+		 --border: #275efe;
 		 --border-hover: #275efe;
 		 --background: #fff;
-		 --disabled: #f6f8ff;
+		 --disabled: #000;
 		 --disabled-inner: #e1e6f9;
 		 -webkit-appearance: none;
 		 -moz-appearance: none;
@@ -36,18 +36,7 @@
 		 --d-t: 0.6s;
 		 --d-t-e: cubic-bezier(0.2, 0.85, 0.32, 1.2);
 	}
-	 input[type='checkbox']:disabled, input[type='radio']:disabled {
-		 --b: var(--disabled);
-		 cursor: not-allowed;
-		 opacity: 0.9;
-	}
-	 input[type='checkbox']:disabled:checked, input[type='radio']:disabled:checked {
-		 --b: var(--disabled-inner);
-		 --bc: var(--border);
-	}
-	 input[type='checkbox']:disabled + label, input[type='radio']:disabled + label {
-		 cursor: not-allowed;
-	}
+	 
 	 input[type='checkbox']:hover:not(:checked):not(:disabled), input[type='radio']:hover:not(:checked):not(:disabled) {
 		 --bc: var(--border-hover);
 	}
@@ -122,7 +111,72 @@
 		 --s: 0.5;
 	}
 
+
+.addFile{
+    padding: 10px;
+    width: 150px;
+    margin-top: 50px;
+    background: #1e90ff; 
+    letter-spacing: 1px;
+    font-weight: 400;
+    font-size: 18px;
+    text-align: center;
+    color: #fff;
+    
+}
+
+
+
+input[type="file"] {
+    display: none;
+}
+.imgLine{
+    display: flex;
+  flex-wrap: wrap;
+}
+.line{
+    flex-basis: 300px;
+}
+.line #previewImg{
+    width: 150px;
+    margin-left: 50;
+    height: 150px;
+    object-fit: cover;  
+}
+
+.line .submitBtn{
+    width: 168px;
+    padding: 10px;
+    margin-top: 50px;
+    letter-spacing: 1px;
+    font-weight: 400;
+    color: #fff;
+    border: none;
+    font-size: 18px;
+    text-align: center;
+    background: #00AF87;
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 0 1px 3px 1px rgba(60,64,67,0.149);
+}
 </style>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    
+
+function previewFile(input) {
+
+    console.log(input);
+    var file = input.files[0];
+    console.log(file);
+  
+    if(file){
+        var reader = new FileReader();
+        reader.onload = function(){
+            $(input).closest('.imgLine').find('#previewImg').attr("src", reader.result);
+        }
+            reader.readAsDataURL(file);
+    }
+}
+</script>
 <?php 
 
 // Header
@@ -155,85 +209,114 @@
                </div>
 
                <div class="cardbody">  
-                    <form action="<?php url("editweb/update/".$room_details[0]['room_id']); ?>" method="post" class="addnewform">
+                    <form action="<?php url("editweb/create/") ?>" method="post" class="addnewform" enctype="multipart/form-data">
 
                     <div class="section1">
-					<div class="row">
-                        <label for="#"><i class="material-icons">perm_identity</i>Room Type</label>
-                        <select name="type_name" class="inputField" selected="<?php echo $room_details[0]['type_id']; ?>">
-                            <option value="" style="border: none">Select Room Type</option> 
-                            <option value="1" <?php if ($room_details[0]['type_id'] == 1 ) echo ' selected="selected"'; ?> style="border: none">Single Room</option> 
-                            <option value="2" <?php if ($room_details[0]['type_id'] == 2 ) echo ' selected="selected"'; ?> style="border: none">Double Room with King Size Bed </option> 
-                        	<option value="3" <?php if ($room_details[0]['type_id'] == 3 ) echo ' selected="selected"'; ?> style="border: none">Double Room with Queen Size Bed</option> 
-                            <option value="4" <?php if ($room_details[0]['type_id'] == 4 ) echo ' selected="selected"'; ?> style="border: none">Triple Room</option> 
-                        	<option value="5" <?php if ($room_details[0]['type_id'] == 5 ) echo ' selected="selected"'; ?> style="border: none">Twin Double Room</option> 
-                            <option value="6" <?php if ($room_details[0]['type_id'] == 6 ) echo ' selected="selected"'; ?> style="border: none">Twin Room</option> 
-                            <option value="7" <?php if ($room_details[0]['type_id'] == 7 ) echo ' selected="selected"'; ?>style="border: none">Family Room</option> 
-                                         
-                        </select>
-                    </div>
+					
+                        <div class="row">
+                            <label for="#"><i class="material-icons">perm_identity</i>Room Type</label>
+                            <select name="type_name" class="inputField" selected="<?php echo $room_details[0]['type_id']; ?>">
+                                <option value="" style="border: none">Select Room Type</option> 
+                                <option value="1" style="border: none">Single Room</option> 
+                                <option value="2" style="border: none">Double Room with King Size Bed </option> 
+                                <option value="3" style="border: none">Double Room with Queen Size Bed</option> 
+                                <option value="4" style="border: none">Triple Room</option> 
+                                <option value="5" style="border: none">Twin Double Room</option> 
+                                <option value="6" style="border: none">Twin Room</option> 
+                                <option value="7" style="border: none">Family Room</option> 
+                                            
+                            </select>
+                        </div>
 
-			
+                        <div class="row">
+                            <label for="#"><i class="material-icons">perm_identity</i>Floor Type</label>
+                            <select name="floor_type" class="inputField" selected="<?php echo $room_details[0]['type_id']; ?>">
+                                <option value="" style="border: none">Select The Floor</option> 
+                                <option value="0" style="border: none">Ground Floor</option> 
+                                <option value="1" style="border: none">First Floor </option> 
+                                <option value="2" style="border: none">Scond Floor</option> 
+                                <option value="3" style="border: none">Third Floor</option> 
+                                <option value="4" style="border: none">Fourth Floor</option> 
+                            </select>
+                        </div>
+                        
                         <div class="row">
                         <label for="#"><i class="material-icons">perm_identity</i>Room Number</label>
-                        <input type="text" name="room_number" value="<?php echo $room_details[0]['room_number']; ?>">
-					
-						<?php  echo $errors;  ?>
-                                                <span class="content-name"><i class="material-icons">info</i> <?php  echo $errors;  ?>
-											</span>
-                                          
-                                            <?php if(isset($success)): ?>
-                                                <span class="content-success"><i class="material-icons">verified_user</i>Updated Success</span>
-                                            <?php endif; ?>
-                                   
+                        <input type="text" name="room_number" value="">
                         </div>
 
 
                         <div class="row">
                             <label for="#"><i class="material-icons">account_box</i>Room name</label>
-                            <input type="text" name="room_name" value="<?php echo $room_details[0]['room_name']; ?>">
+                            <input type="text" name="room_name" value="">
                         </div>
 
                         
                         <div class="row">
                             <label for="#"><i class="material-icons">account_box</i>Room Discription</label>
-                            <textarea name="room_desc" value="" rows="5" cols="40"><?php echo $room_details[0]['room_desc']; ?></textarea>
+                            <textarea name="room_desc" value="" rows="5" cols="40"></textarea>
                             
                         </div>
 
                         <div class="row">
-                            <label for="#"><i class="material-icons">account_box</i>Floor Type</label>
-                            <input type="text" name="floor_type" value="<?php echo $room_details[0]['floor_type']; ?>">
+                            <label for="#"><i class="material-icons">account_box</i>Room View</label>
+                            <input type="text" name="room_view" value="">
+                            
                         </div>
 
                         <div class="row">
                             <label for="#"><i class="material-icons">account_box</i>Room Size</label>
-                            <input type="text" name="room_size" value="<?php echo $room_details[0]['room_size']; ?>">
+                            <input type="text" name="room_size" value="">
                         </div>
 
                         <div class="row">
                             <label for="#"><i class="material-icons">mail</i>Price</label>
-                            <input type="num" name="price" value="<?php echo $room_details[0]['price']; ?>"> 
+                            <input type="num" name="price" value=""> 
                         </div>
                         
                         <div class="row">
                             <label for="#"><i class="material-icons">payment</i>Air Condition</label>
                             <!-- <input type="text" name="salary"> -->
-                            <input id="s1" type="checkbox" name="air_condition" class="switch" <?php  if($room_details[0]['air_condition']==1) {  echo "checked";} ?> >
+                            <label for="r1">No</label>
+                            <input id="s1" type="checkbox" name="air_condition" class="switch"  >
+                            <label for="r1">Yes</label>
                             
                         </div>
 
                         <div class="row">
                             <label for="#"><i class="material-icons">location_on</i>Hot Water</label>
                             <!-- <input type="text" name="location"> -->
-                            <input id="s1" type="checkbox" name="hot_water" class="switch" <?php  if($room_details[0]['hot_water']==1) {  echo "checked";} ?> >
+                            <label for="r1">No</label>
+                            <input id="s1" type="checkbox" name="hot_water" class="switch"  >
+                            <label for="r1">Yes</label>
                         </div>
 
                         <div class="row">
                             <label for="#"><i class="material-icons">contacts</i>Free Canseleration</label>
-                            <input id="s1" name="free_canseleration" type="checkbox" class="switch" <?php  if($room_details[0]['free_canselaration']==1) {  echo "checked";} ?> >
+                            <label for="r1">No</label>
+                            <input id="s1" name="free_canseleration" type="checkbox" class="switch"  >
+                            <label for="r1">Yes</label>
+                        </div>
+
+                        <div class="row">
+                            <label for="#"><i class="material-icons">contacts</i>Breakfast Included</label>
+                            <label for="r1">No</label>
+                            <input id="s1" name="breakfast_included" type="checkbox" class="switch"  >
+                            <label for="r1">Yes</label>
                         </div>
                         
+                        <div class="imgLine">
+                        <div class="line">
+                            <img id="previewImg" src="<?php echo BURL.'assets/img/addImg.svg'; ?>" alt="Placeholder">
+                        </div>
+                        <div class="line">
+                            <!-- <input type="file" name="file"  onchange="previewFile(this);" required> -->
+                            <label class="addFile">  Select File
+                                <input  type="file" name="imgfile" size="60" onchange="previewFile(this);" required>
+                            </label> 
+                        </div>
+                    </div>
+
                         <div class="row">
                             <div class="button">
                                 <input type="submit" name="submit" value="submit">

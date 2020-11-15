@@ -74,7 +74,7 @@ class LoginController {
                 //setcookie(session name, value, expired time, affect side)
                 setcookie(session_name(), '', time()-86400, '/');  //86400s and / mean root folder
             }
-        
+            session_unset();
             session_destroy();
         
             view::load('dashboard/dashboard');

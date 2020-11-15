@@ -24,9 +24,9 @@
                 <div class="cardheader">
                     <div class="options">
                         <h4>New Reservation 
-                        <!-- <span>
-                            <a href="<?php //url("employee/index"); ?>" class="addnew"><i class="material-icons">arrow_back</i>Back To Employee Table</a>  
-                        </span> -->
+                        <span>
+                            <a href="<?php url("room/view"); ?>" class="addnew"><i class="material-icons">arrow_back</i>Back To ALL Reservations Table</a>  
+                        </span>
                         </h4>  
                     </div>
 
@@ -39,315 +39,332 @@
                     <div class="section1">
 
                         <!-- Customer Part -->
-                        
+                        <?php
+                        //  $reservation= array('first_name' => "Tharindu", 'credit_card_number'=>"1234-4567-2589-5634"); 
+                        //  $errors= array('first_name' => "less than 100 characters", 'credit_card_number'=>"Must be required"); 
+                        ?>
                         <div class="row">
                             <label for="#"><i class="material-icons">account_box</i>First Name:</label>
-                            <input type="text" name="first_name" 
-                            <?php 
-
-                            if(!empty($employee)) {
-                                echo 'value="' . $employee[1] . '"';
-                            }  
-                            else if(isset($success)){
-                                echo 'placeholder="Tharindu"';
-                            }
-                            else {
-                                echo 'placeholder="Tharindu"';
-                            }
-                            
-                            ?>
-                            
-                            >
+                                <div class="animate-form">
+                                    <input type="text"  autocomplete="off" name="first_name" class="inputField"
+                                    <?php 
+                                        if(isset($reservation['first_name'])){
+                                            echo 'value="' . $reservation['first_name'] . '"';
+                                        }
+                                        else {
+                                            echo 'placeholder="Tharindu"';
+                                        } 
+                                    
+                                    ?>
+                                    
+                                    required
+                                    >
+                                    
+                                        <label for="name" class="label-name">
+                                            <?php if((isset($errors['first_name'])) && (isset($reservation['first_name']))): ?>
+                                                <span class="content-name"><i class="material-icons">info</i><?php echo $errors['first_name']; ?></span>
+                                            <?php endif; ?>
+                                        </label>    
+                                </div>     
                         </div>
 
+                
                         <div class="row">
                             <label for="#"><i class="material-icons">account_box</i>Last Name:</label>
-                            <input type="text" name="last_name"
-                            <?php 
-                            
-                            if(!empty($employee)) {
-                                echo 'value="' . $employee[2] . '"';
-                            }  
-                            else if(isset($success)){
-                                echo 'placeholder="Gihan"';
-                            }
-                            else {
-                                echo 'placeholder="Gihan"';
-                            }
-                            
-                            
-                            ?>
-                            >
+                                <div class="animate-form">
+                                    <input type="text"  autocomplete="off" name="last_name" class="inputField"
+                                    <?php 
+                                        if(isset($reservation['last_name'])){
+                                            echo 'value="' . $reservation['last_name'] . '"';
+                                        }
+                                        else {
+                                            echo 'placeholder="Gihan"';
+                                        } 
+                                    
+                                    ?>
+                                    
+                                    required
+                                    >
+                                    
+                                        <label for="name" class="label-name">
+                                            <?php if((isset($errors['last_name'])) && (isset($reservation['last_name']))): ?>
+                                                <span class="content-name"><i class="material-icons">info</i><?php echo $errors['last_name']; ?></span>
+                                            <?php endif; ?>
+                                        </label>    
+                                </div>     
                         </div>
 
                         <div class="row">
-                        <label for="#"><i class="material-icons">location_on</i>Location:</label>
-                        <input type="text" name="location"
-                        <?php 
-                            if(!empty($employee)) {
-                                echo 'value="' . $employee[0] . '"';
-                            } 
-                            else if(isset($success)){
-                                echo 'placeholder="Gonapura Poddala"';
-                            }
-                            else {
-                                echo 'placeholder="Gonapura Poddala"';
-                            }
-                            
-                        ?>
-                        >
+                            <label for="#"><i class="material-icons">perm_contact_calendar</i>Date of Birth:</label>
+                                <div class="animate-form">
+                                    <input type="text"  autocomplete="off" name="date_of_birth" class="inputField"
+                                    <?php 
+                                        if(isset($reservation['date_of_birth'])){
+                                            echo 'value="' . $reservation['date_of_birth'] . '"';
+                                        }
+                                        else {
+                                            echo 'placeholder="1998-03-17"';
+                                        } 
+                                    
+                                    ?>
+                                    
+                                    required
+                                    >
+                                    
+                                        <label for="name" class="label-name">
+                                            <?php if((isset($errors['date_of_birth'])) && (isset($reservation['date_of_birth']))): ?>
+                                                <span class="content-name"><i class="material-icons">info</i><?php echo $errors['date_of_birth']; ?></span>
+                                            <?php endif; ?>
+                                        </label>    
+                                </div>     
                         </div>
 
                         <div class="row">
-                        <label for="#"><i class="material-icons">contacts</i>Contact Number:</label>
-                        <input type="text" name="contact_number"
-                        <?php 
-                            if(!empty($employee)) {
-                                echo 'value="' . $employee[0] . '"';
-                            } 
-                            else if(isset($success)){
-                                echo 'placeholder="0778522736"';
-                            }
-                            else {
-                                echo 'placeholder="0778522736"';
-                            }
-                            
-                        ?>
-                        >
+                            <label for="#"><i class="material-icons">perm_contact_calendar</i>Age:</label>
+                                <div class="animate-form">
+                                    <input type="text"  autocomplete="off" name="age" class="inputField"
+                                    <?php 
+                                        if(isset($reservation['age'])){
+                                            echo 'value="' . $reservation['age'] . '"';
+                                        }
+                                        else {
+                                            echo 'placeholder="22"';
+                                        } 
+                                    
+                                    ?>
+                                    
+                                    required
+                                    >
+                                    
+                                        <label for="name" class="label-name">
+                                            <?php if((isset($errors['age'])) && (isset($reservation['age']))): ?>
+                                                <span class="content-name"><i class="material-icons">info</i><?php echo $errors['age']; ?></span>
+                                            <?php endif; ?>
+                                        </label>    
+                                </div>     
                         </div>
+
+                        <div class="row">
+                            <label for="#"><i class="material-icons">public</i>Country:</label>
+                                <div class="animate-form">
+                                    <input type="text"  autocomplete="off" name="location" class="inputField" 
+                                    <?php 
+                                        if(isset($reservation['location'])){
+                                            echo 'value="' . $reservation['location'] . '"';
+                                        }
+                                        else {
+                                            echo 'placeholder="Sri Lanka Galle"';
+                                        } 
+                                    
+                                    ?>
+                                    
+                                    required
+                                    >
+                                    
+                                        <label for="name" class="label-name">
+                                            <?php if((isset($errors['location'])) && (isset($reservation['location']))): ?>
+                                                <span class="content-name"><i class="material-icons">info</i><?php echo $errors['location']; ?></span>
+                                            <?php endif; ?>
+                                        </label>    
+                                </div>     
+                        </div>
+
                         
                         <div class="row">
-                        <label for="#"><i class="material-icons">account_box</i>Date of Birth:</label>
-                        <input type="text" name="date_of_birth"
-                        <?php 
-                            if(!empty($employee)) {
-                                echo 'value="' . $employee[0] . '"';
-                            } 
-                            else if(isset($success)){
-                                echo 'placeholder="1998-03-17"';
-                            }
-                            else {
-                                echo 'placeholder="1998-03-17"';
-                            }
-                            
-                        ?>
-                        >
+                            <label for="#"><i class="material-icons">contacts</i>Contact Number:</label>
+                                <div class="animate-form">
+                                    <input type="text"  autocomplete="off" name="contact_number" class="inputField"
+                                    <?php 
+                                        if(isset($reservation['contact_number'])){
+                                            echo 'value="' . $reservation['contact_number'] . '"';
+                                        }
+                                        else {
+                                            echo 'placeholder="0778522736"';
+                                        } 
+                                    
+                                    ?>
+                                    
+                                    required
+                                    >
+                                    
+                                        <label for="name" class="label-name">
+                                            <?php if((isset($errors['contact_number'])) && (isset($reservation['contact_number']))): ?>
+                                                <span class="content-name"><i class="material-icons">info</i><?php echo $errors['contact_number']; ?></span>
+                                            <?php endif; ?>
+                                        </label>    
+                                </div>     
                         </div>
 
-                        <div class="row">
-                        <label for="#"><i class="material-icons">account_box</i>Age:</label>
-                        <input type="text" name="age"
-                        <?php 
-                            if(!empty($employee)) {
-                                echo 'value="' . $employee[0] . '"';
-                            } 
-                            else if(isset($success)){
-                                echo 'placeholder="22"';
-                            }
-                            else {
-                                echo 'placeholder="22"';
-                            }
-                            
-                        ?>
-                        >
-                        </div>
+                        
+
+                        
 
                         <div class="row">
                             <label for="#"><i class="material-icons">mail</i>Email Address:</label>
-                            <input type="text" name="email"
-                            <?php 
-                            
-                            if(!empty($employee)) {
-                                echo 'value="' . $employee[3] . '"';
-                            } 
-                            else if(isset($success)){
-                                echo 'placeholder="gihan@gmail.com"';
-                            }
-                            else {
-                                echo 'placeholder="gihan@gmail.com"';
-                            }
-                            
-                            
-                            ?>
-                            > 
+                                <div class="animate-form">
+                                    <input type="text"  autocomplete="off" name="email" class="inputField"
+                                    <?php 
+                                        if(isset($reservation['email'])){
+                                            echo 'value="' . $reservation['email'] . '"';
+                                        }
+                                        else {
+                                            echo 'placeholder="wtgihan@gmail.com"';
+                                        } 
+                                    
+                                    ?>
+                                    required
+                                    
+                                    >
+                                    
+                                        <label for="name" class="label-name">
+                                            <?php if((isset($errors['email'])) && (isset($reservation['email']))): ?>
+                                                <span class="content-name"><i class="material-icons">info</i><?php echo $errors['email']; ?></span>
+                                            <?php endif; ?>
+                                        </label>    
+                                </div>     
                         </div>
+
                         <!-- End of Customer Details Part  -->
 
                         <!-- Reservation Details -->
+
                         <div class="row">
-                            <label for="#"><i class="material-icons">account_box</i>Room Number:</label>
-                            <input type="text" name="room_number"
-                            <?php 
-                            
-                            if(!empty($employee)) {
-                                echo 'value="' . $employee[4] . '"';
-                            } 
-                            else if(isset($success)){
-                                echo 'placeholder="000000"';
-                            }
-                            else {
-                                echo 'placeholder="000000"';
-                            }
-                            
-                            
-                            ?>
-                            > 
+                            <label for="#"><i class="material-icons">room</i>Room Number:</label>
+                                <div class="animate-form">
+                                    <input type="text"  autocomplete="off" name="room_number" class="inputField"
+                                    <?php 
+                                        if(isset($reservation['room_number'])){
+                                            echo 'value="' . $reservation['room_number'] . '"';
+                                        }
+                                        else {
+                                            echo 'placeholder="0778522736"';
+                                        } 
+                                    
+                                    ?>
+                                    
+                                    
+                                    >
+                                    
+                                        <label for="name" class="label-name">
+                                            <?php if((isset($errors['room_number'])) && (isset($reservation['room_number']))): ?>
+                                                <span class="content-name"><i class="material-icons">info</i><?php echo $errors['room_number']; ?></span>
+                                            <?php endif; ?>
+                                        </label>    
+                                </div>     
                         </div>
 
                         <div class="row">
                             <label for="#"><i class="material-icons">group_add</i>No of Guest:</label>
-                            <input type="text" name="no_of_guest"
-                            <?php 
-                            
-                            if(!empty($employee)) {
-                                echo 'value="' . $employee[5] . '"';
-                            }  
-                            else if(isset($success)){
-                                echo 'placeholder="5"';
-                            }
-                            else {
-                                echo 'placeholder="5"';
-                            }
-                            
-                            ?>
-                            > 
+                                <div class="animate-form">
+                                    <input type="text"  autocomplete="off" name="max_guest" class="inputField"
+                                    <?php 
+                                        if(isset($reservation['max_guest'])){
+                                            echo 'value="' . $reservation['max_guest'] . '"';
+                                        }
+                                        else {
+                                            echo 'placeholder="5"';
+                                        } 
+                                    
+                                    ?>
+                                    
+                                    
+                                    >
+                                    
+                                        <label for="name" class="label-name">
+                                            <?php if((isset($errors['max_guest'])) && (isset($reservation['nmax_guest']))): ?>
+                                                <span class="content-name"><i class="material-icons">info</i><?php echo $errors['max_guest']; ?></span>
+                                            <?php endif; ?>
+                                        </label>    
+                                </div>     
                         </div>
 
-                        <div class="row">
-                            <label for="#"><i class="material-icons">today</i>Check-In Day:</label>
-                            <input type="text" name="check_in_date"
-                            <?php 
-                            
-                            if(!empty($employee)) {
-                                echo 'value="' . $employee[6] . '"';
-                            }  
-                            else if(isset($success)){
-                                echo 'placeholder="2020-00-00"';
-                            }
-                            else {
-                                echo 'placeholder="2020-00-00"';
-                            }
-                            
-                            ?>
-                            > 
-                        </div>
 
                         <div class="row">
-                            <label for="#"><i class="material-icons">today</i>Check-Out Day:</label>
-                            <input type="text" name="check_out_date"
-                            <?php 
-                            
-                            if(!empty($employee)) {
-                                echo 'value="' . $employee[6] . '"';
-                            }  
-                            else if(isset($success)){
-                                echo 'placeholder="2020-00-00"';
-                            }
-                            else {
-                                echo 'placeholder="2020-00-00"';
-                            }
-                            
-                            ?>
-                            > 
+                            <label for="#"><i class="material-icons">today</i>Check-In Date:</label>
+                                <div class="animate-form">
+                                    <input type="text"  autocomplete="off" name="check_in_date" class="inputField"
+                                    <?php 
+
+                                        date_default_timezone_set("Asia/Colombo");
+                                        $current_date = date('Y-m-d');
+                                        if(isset($reservation['check_in_date'])){
+                                            echo 'value="' . $reservation['check_in_date'] . '"';
+                                        }
+                                        else {
+                                            echo 'value="'.$current_date .'"';
+                                        } 
+                                    
+                                    ?>
+                                    
+                                    
+                                    >
+                                    
+                                        <label for="name" class="label-name">
+                                            <?php if((isset($errors['check_in_date'])) && (isset($reservation['check_in_date']))): ?>
+                                                <span class="content-name"><i class="material-icons">info</i><?php echo $errors['check_in_date']; ?></span>
+                                            <?php endif; ?>
+                                        </label>    
+                                </div>     
+                        </div>
+
+
+                        <div class="row">
+                            <label for="#"><i class="material-icons">today</i>Check-Out Date:</label>
+                                <div class="animate-form">
+                                    <input type="text"  autocomplete="off" name="check_out_date" class="inputField"
+                                    <?php 
+                                        if(isset($reservation['check_out_date'])){
+                                            echo 'value="' . $reservation['check_out_date'] . '"';
+                                        }
+                                        else {
+                                            echo 'placeholder="2020-11-20"';
+                                        } 
+                                    
+                                    ?>
+                                    
+                                    
+                                    >
+                                    
+                                        <label for="name" class="label-name">
+                                            <?php if((isset($errors['check_out_date'])) && (isset($reservation['check_out_date']))): ?>
+                                                <span class="content-name"><i class="material-icons">info</i><?php echo $errors['check_out_date']; ?></span>
+                                            <?php endif; ?>
+                                        </label>    
+                                </div>     
                         </div>
 
                         <!-- End of Reservation Details -->
                           
                         <!-- Payment Details -->
 
-                        <div class="row">
-                            <label for="#"><i class="material-icons">credit_card</i>Name of Card:</label>
-                            <input type="text" name="name_of_card"
-                            <?php 
-                            
-                            if(!empty($employee)) {
-                                echo 'value="' . $employee[6] . '"';
-                            }  
-                            else if(isset($success)){
-                                echo 'placeholder="VISA"';
-                            }
-                            else {
-                                echo 'placeholder="VISA"';
-                            }
-                            
-                            ?>
-                            > 
-                        </div> 
-                        <div class="row">
-                            <label for="#"><i class="material-icons">card_membership</i>Credit Card Number:</label>
-                            <input type="text" name="credit_card_number"
-                            <?php 
-                            
-                            if(!empty($employee)) {
-                                echo 'value="' . $employee[6] . '"';
-                            }  
-                            else if(isset($success)){
-                                echo 'placeholder="XXXX-XXXX-XXXX-XXXX"';
-                            }
-                            else {
-                                echo 'placeholder="XXXX-XXXX-XXXX-XXXX"';
-                            }
-                            
-                            ?>
-                            > 
-                        </div> 
+                        
 
                         <div class="row">
-                            <label for="#"><i class="material-icons">date_range</i>Expire Month:</label>
-                            <input type="text" name="expire_month"
-                            <?php 
-                            
-                            if(!empty($employee)) {
-                                echo 'value="' . $employee[6] . '"';
-                            }  
-                            else if(isset($success)){
-                                echo 'placeholder="January"';
-                            }
-                            else {
-                                echo 'placeholder="January"';
-                            }
-                            
-                            ?>
-                            > 
-                        </div> 
+                            <label for="#"><i class="material-icons">request_quote</i>Payment Method:</label>
+                                <div class="animate-form">
+                                    <input type="text"  autocomplete="off" name="payment_method" class="inputField"
+                                    <?php 
+                                        if(isset($reservation['payment_method'])){
+                                            echo 'value="' . $reservation['payment_method'] . '"';
+                                        }
+                                        else {
+                                            echo 'value="CASH"';
+                                        } 
+                                    
+                                    ?>
+                                    
+                                    readonly="readonly"
+                                    >
+                                    
+                                        <label for="name" class="label-name">
+                                            <?php if((isset($errors['payment_method'])) && (isset($reservation['payment_method']))): ?>
+                                                <span class="content-name"><i class="material-icons">info</i><?php echo $errors['payment_method']; ?></span>
+                                            <?php endif; ?>
+                                        </label>    
+                                </div>     
+                        </div>
 
-                        <div class="row">
-                            <label for="#"><i class="material-icons">date_range</i>Expire Year:</label>
-                            <input type="text" name="expire_year"
-                            <?php 
-                            
-                            if(!empty($employee)) {
-                                echo 'value="' . $employee[6] . '"';
-                            }  
-                            else if(isset($success)){
-                                echo 'placeholder="2022"';
-                            }
-                            else {
-                                echo 'placeholder="2022"';
-                            }
-                            
-                            ?>
-                            > 
-                        </div> 
-
-                        <div class="row">
-                            <label for="#"><i class="material-icons">receipt</i>CVV:</label>
-                            <input type="text" name="name_of_card"
-                            <?php 
-                            
-                            if(!empty($employee)) {
-                                echo 'value="' . $employee[6] . '"';
-                            }  
-                            else if(isset($success)){
-                                echo 'placeholder="XXX"';
-                            }
-                            else {
-                                echo 'placeholder="XXX"';
-                            }
-                            
-                            ?>
-                            > 
-                        </div> 
+                        
                         <!-- End of Payment Details -->
 
                         <div class="row">
@@ -358,45 +375,7 @@
                     </div>
 
                     <div class="section2">
-                        <?php if(!empty($error)) { ?>
-                            <div class="errmsg">
-                            <b>There was error(s) on your form</b><br>
-
-                            <?php $len = sizeof($error);
-                                foreach(array_slice($error, 0, $len) as $error1){
-                                    $error = ucfirst(str_replace("_", " ", $error1));
-                                    echo $error . '<br>';
-                                }    
-                            ?>
-                            </div>
-                        <?php }
-
-                        else if(isset($success)) {?>
-                            <div class="errmsg">
-                            <b>There was Message  your you</b><br>
-                            <?php echo $success; ?>
-                            </div>
-                        <?php } 
-
-                        else if(isset($newerror)) { ?>
-                            <div class="errmsg">
-                            <b>Sorry!!There was Message  your you</b><br>
-                            <?php echo $newerror; ?>
-                            </div>
-                        <?php } 
-
-                        else { ?>
-                            <div class="errphoto">
-                            <!-- <b>Welcome Sir</b><br> -->
-                            <h4>Welcome to Employee Forms</h4>
-                            <img src="<?php echo BURL.'assets/img/employee2.jpg'; ?>" alt="">
-                            <!-- <?php echo $newerror; ?> -->
-                            </div>
-                        <?php } ?>
-
-
-
-                         
+                        
 
                     </div>
 

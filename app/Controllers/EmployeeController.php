@@ -49,6 +49,7 @@ class EmployeeController {
             $data['employee']= $db->getDataEmployee($emp_id);
             //echo $data['first_name'];
             //view::load('inc/test', $data);
+            // echo "tharindu";
             view::load('dashboard/employee/edit', $data);
         }
          
@@ -58,7 +59,7 @@ class EmployeeController {
         if(isset($_POST['submit'])) {
 
             // Validation
-            $errors = array();
+            $errors[] = array();
             
             //$errors = $this->validation();
 
@@ -80,7 +81,7 @@ class EmployeeController {
 
             // Check Email is valid
             if(!$this->is_email($_POST['email'])) {
-                $errors[] = 'Email address is Invalid';
+                $errors['email'] = 'Email address is Invalid';
             }
 
             // Check Employee email already exist
@@ -88,37 +89,34 @@ class EmployeeController {
             $result = $db->getEmail($email); 
 
             if($result == 1) {
-                $errors[] = 'Email address already exists';
+                $errors['email'] = 'Email address already exists';
             }
 
             // Check Owner is valid
             $result = $db->getOwner($owner_user_id);
 
             if($result == 0) {
-                $errors[] = 'Owner ID isn\'t valid';
+                $errors['Owner_id'] = 'Owner ID isn\'t valid';
             }
 
-            $data['error'] = $errors;
-            $data['employee'] = array($owner_user_id, $first_name, $last_name, $email, $salary, $location, $contact_num);
-                 
-            if(!empty($errors)) {
-                view::load("employee/add", $data);
-            }
-            else {
+            $errors = array_filter( $errors ); 
+            
+            if(count( $errors ) == 0) {
                 $data = array($owner_user_id, $first_name, $last_name, $email, $salary, $location, $contact_num);
                 $result = $db->getCreate($data);
 
                 if($result == 1) {
-                    view::load("employee/add", ["success"=>"Data Created Successfully"]);
+                    view::load("dashboard/employee/add", ["success"=>"Data Created Successfully"]);
                 }
                 else {
-                    view::load("employee/add", ["newerror"=>"Data Created Unsuccessfully"]);
+                    view::load("dashboard/employee/add", ["newerror"=>"Data Created Unsuccessfully"]);
                 }
-
-
-
             }
-
+            else {
+                $data['errors'] = $errors;
+                $data['employee'] = array('owner_user_id'=>$owner_user_id, 'first_name'=>$first_name, 'last_name'=>$last_name, 'email'=>$email, 'salary'=>$salary, 'location'=>$location, 'contact_num'=>$contact_num);
+                view::load("dashboard/employee/add", $data);
+            }
 
         }
     }
@@ -149,7 +147,7 @@ class EmployeeController {
 
             // Check Email is valid
             if(!$this->is_email($_POST['email'])) {
-                $errors[] = 'Email address is Invalid';
+                $errors['email'] = 'Email address is Invalid';
             }
 
             // Check Employee email already exist
@@ -157,7 +155,7 @@ class EmployeeController {
             $result = $db->getEmailOther($email, $emp_id); 
 
             if($result == 1) {
-                $errors[] = 'Email address Invalid or already use other';
+                $errors['email'] = 'Email address already use other';
             }
 
             // Check Owner is valid
@@ -167,27 +165,27 @@ class EmployeeController {
                 $errors[] = 'Owner ID isn\'t valid';
             }
 
-            $data['error'] = $errors;
+            $data['errors'] = $errors;
             $data['employee'] = array("emp_id"=>$emp_id, "owner_user_id"=>$owner_user_id, "first_name"=>$first_name, "last_name"=>$last_name, "email"=>$email, "salary"=>$salary, "location"=>$location, "contact_num"=>$contact_num);
-                 
-            if(!empty($errors)) {
-                //view::load("inc/test", $data);
-                view::load("employee/edit", $data);
-            }
-            else {
+              
+            
+            $errors = array_filter( $errors ); 
+            
+            if(count( $errors ) == 0) {
                 $data1 = array($emp_id, $owner_user_id, $first_name, $last_name, $email, $salary, $location, $contact_num);
                 $result = $db->getUpdate($data1);
 
                 if($result == 1) {
-                    view::load("employee/edit", ["success"=>"Employee Update Successfully", 'employee'=>$data['employee']]);
+                    view::load("dashboard/employee/edit", ["success"=>"Employee Update Successfully", 'employee'=>$data['employee']]);
                 }
                 else {
-                    view::load("employee/edit", ["newerror"=>"Data Update Unsuccessfully", 'employee'=>$data['employee']]);
+                    view::load("dashboard/employee/edit", ["newerror"=>"Data Update Unsuccessfully", 'employee'=>$data['employee']]);
                 }
-
-
-
             }
+            else {
+                view::load("dashboard/employee/edit", $data);
+            }
+
 
 
         }
@@ -210,7 +208,7 @@ class EmployeeController {
 
         foreach($req_fields as $field) {
             if(empty(trim($_POST[$field]))) {
-                $errors[] = $field . ' is required';
+                $errors[$field] = ' is required';
             }
         }
 
@@ -223,7 +221,7 @@ class EmployeeController {
     
         foreach($max_len_fields as $field => $max_len) {
             if(strlen(trim($_POST[$field])) > $max_len ) {
-                $errors[] = $field . ' must be less than ' . $max_len . ' characters';
+                $errors[$field] = ' must be less than ' . $max_len . ' characters';
             }
         }
     

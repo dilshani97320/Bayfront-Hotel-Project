@@ -11,20 +11,20 @@ class ReservationController {
         }
         else {
             view::load('dashboard/reservation/create');
-            // $data = array();
-            // $db = new Employee;
-            // if(isset($_POST['search'])) {
-            //     $search = $_POST['search'];
-            //     $data['employee'] = $db->getSearchEmployee($search);
-            //     //echo 'Error1';
-            //     view::load('dashboard/employee/index', $data);
-            // }
-            // else {
-            //     $data['employee'] = $db->getAllEmployee();
-            //     //echo 'Error2';
-            //     view::load('dashboard/employee/index', $data);
-            // }
             
+        }
+           
+    }
+
+    public function view($room_number,$max_guest) {
+        
+        //Checking if a user is logged in
+        if(!isset($_SESSION['user_id'])) {
+            view::load('dashboard/dashboard');    
+        }
+        else {
+            $data['reservation'] = array('room_number' => $room_number, 'max_guest' => $max_guest);
+            view::load('dashboard/reservation/create', $data);
             
         }
            
@@ -59,98 +59,111 @@ class ReservationController {
         if(isset($_POST['submit'])) {
 
             // Validation
-            $errors = array();
+           
             
             //$errors = $this->validation();
 
             $first_name = $_POST['first_name'];
+            $first_name = ucwords($first_name);
             $last_name = $_POST['last_name'];
+            $last_name = ucwords($last_name);
             $location = $_POST['location'];
-            $contact_num = $_POST['contact_num'];
+            $contact_num = $_POST['contact_number'];
             $date_of_birth = $_POST['date_of_birth'];
             $age = $_POST['age'];
             $email = $_POST['email'];
+            $email = strtolower($email);
 
-            $no_of_guest = $_POST['no_of_guest'];
+            $no_of_guest = $_POST['max_guest'];
             $room_number = $_POST['room_number'];
+            $room_number = ucwords($room_number);
             $check_in_date = $_POST['check_in_date'];
             $check_out_date = $_POST['check_out_date'];
 
-            $name_of_card = $_POST['name_of_card'];
-            $credit_card_number = $_POST['credit_card_number'];
-            $expire_month = $_POST['expire_month'];
-            $expire_year = $_POST['expire_year'];
-            $cvv = $_POST['cvv'];
+            $payment_method = $_POST['payment_method'];
+            // echo $payment_method;
+            $payment_method = strtoupper($payment_method);
+            
+            #################################################
+            // echo "Level 1 Completed<br>";
 
             // Check input is empty
-    
-            $req_fields = array('first_name', 'last_name', 'location', 'contact_num', 'date_of_birth', 'age', 'email', 'no_of_guest', 'room_id', 'check_in_date', 'check_out_date', 'name_of_card', 'credit_card_number', 'expire_month', 'expire_year', 'cvv');
+            $errors[] = array();
+            $req_fields = array('first_name', 'last_name', 'location', 'contact_number', 'date_of_birth', 'age', 'email', 'max_guest', 'room_number', 'check_in_date', 'check_out_date', 'payment_method');
             $errors = array_merge($errors, $this->check_req_fields($req_fields));
+            // var_dump($errors);
 
-            // Checking max length
-            $max_len_fields = array('first_name' => 50, 'last_name' => 100, 'location' => 50, 'contact_num' => 10, 'date_of_birth' => 10, 'age' => 3, 'email' => 50, 'no_of_guest' => 2, 'room_id' => 3, 'check_in_date' => 10, 'check_out_date' => 10, 'name_of_card' => 20, 'credit_card_number' => 19, 'expire_month' => 3, 'expire_year' => 4, 'cvv' => 3 );
+            $max_len_fields = array('first_name' => 20, 'last_name' => 20, 'location' => 30, 'contact_number' => 10, 'date_of_birth' => 12, 'age' => 3, 'email' => 30, 'max_guest' => 2, 'room_number' => 4, 'check_in_date' => 10, 'check_out_date' => 10, 'payment_method' => 6);
             $errors = array_merge($errors, $this->check_max_len($max_len_fields));
+
+            #################################################
+            // echo "Level 2 Completed<br>";
 
             // Check Email is valid
             if(!$this->is_email($_POST['email'])) {
-                $errors[] = 'Email address is Invalid';
+                $errors['email'] = 'Email address is Invalid';
             }
 
-            // Check Employee email already exist
-            // $db = new Employee();
-            // $result = $db->getEmail($email); 
-
-            // if($result == 1) {
-            //     $errors[] = 'Email address already exists';
-            // }
-
+            #################################################
+            // echo "Level 3 Completed<br>";
 
             //Check-In Date and Check-Out Date Validation
 
             $result = $this->date_validation($check_in_date, $check_out_date);
 
             if($result == 1) {
-                $errors[] = 'Check-In and Check-Date is not_valid';
+                $errors['check_in_date'] = 'Check-In Date is Not valid';
+                $errors['check_out_date'] = 'Check-Out Date is Not valid';
+                // echo "Level 4 Completed<br>";
             }
             else {
                 // Reservation Checking Validate or not
                 $db = new Reservation();
-                $result = $db->getRoom($room_number, $check_in_date, $check_out_date);
+                $result = $db->getAvalabilityhRoom($room_number, $check_in_date, $check_out_date);
                 if($result == 1) {
-                    $errors[] = 'Room already reserved Sorry';
+                    $errors['room_number'] = 'Room already reserved Sorry';
+                    // echo "Level 5 Completed<br>";
                 }
             }
 
-            // Checking Payment Details is Valid?
+            #################################################
+            // echo "Level 4 Completed<br>";
+            $errors = array_filter( $errors ); 
+            
+            if(count( $errors ) == 0) {
+               
+                // echo "Success<br>";
 
-            //Have to Code
-
-            if(empty($errors)) {
-                
                 // Check customer already user
                 $db = new Reservation();
                 $result = $db->getEmail($email);
-                //$customer_value = 0;
+                
                 if($result == 0) {
                     // Customer already not user
-                    //$customer_value = 1;
-                    $data = $array($first_name, $last_name, $location, $contact_num, $date_of_birth, $age, $email);
+
+                    $data = array($first_name, $last_name, $location, $contact_num, $date_of_birth, $age, $email);
                     $result = $db->getCreateCustomer($data);
 
                     if($result == 0) {
                         $errors[] = "Data Created Unsuccessful";
                     }
+                    // echo "Create Customer process successfull<br>"; 
                 }    
-                
+                // echo "Create Customer process Not Done<br>"; 
+
                 // Make Reservation
                 
                 // Get Customer Id
                 $customer= $db->getCustomerID($email);
                 $customer_id = $customer['customer_id'];
 
+                // echo "Get Customer ID process successfull<br>"; 
+
                 // Get Room Id
                 $room = $db->getRoomID($room_number);
                 $room_id = $room['room_id'];
+
+                // echo "Get Room ID process successfull<br>"; 
 
                 // Date Strings convert to Date data types 
                 $time1 = strtotime($check_in_date);
@@ -164,77 +177,38 @@ class ReservationController {
                 $no_of_guest = (int)$no_of_guest;
 
 
-                $data = $array($customer_id, $reception_user_id, $room_id, $check_in_date, $check_out_date, $no_of_guest);
+
+                $data = array($customer_id, $reception_user_id, $room_id, $check_in_date, $check_out_date, $no_of_guest, $payment_method);
                 $result = $db->getCreateReservation($data);
 
+                // echo "Level1<br>";
+                // var_dump($result);
                 if($result == 1) {
-                    // Check payment details already store
-                    $result = $db->getCreditCardNumber($credit_card_number);
-                    //$payment_value = 0;
-                    if($result == 0) {
-                        // Payment Details create store
-                        $reservation = $db->getReservationID($room_id);
-                        $reservation_id = $reservation['reservation_id'];
-                        $data = $array($reservation_id, $customer_id, $name_of_card, $expire_month, $expire_year, $cvv);
-                        $result = $db->getCreatePayment($data);
-
-                        if($result == 1) {
-                            // Success Process
-                        }
-                        else {
-                            // Process Unsuccessful
-                            // Have to Code
-                        }
-                    
-                    }
-                    else {
                         // Success Process
-                    }
+                        // echo "Create Reservation process successfull<br>";
+                        view::load('dashboard/reservation/create', ["success"=>"Data Created Successfully"]);
                 }
                 else {
                     // Process Unsuccessfull
+                    // echo "Create Reservation process unsuccessfull<br>";
+                    $errors['database'] = "Database Error"; 
+                    $data['errors'] = $errors;
+                    $data['reservation'] = array('first_name' => $first_name, 'last_name' => $last_name, 'location' => $location, 'contact_number' => $contact_num, 'date_of_birth' => $date_of_birth, 'age' => $age, 'email' => $email, 'max_guest' => $no_of_guest, 'room_number' => $room_number, 'check_in_date' => $check_in_date, 'check_out_date' => $check_out_date, 'payment_method' => $payment_method);
+                    // view::load('dashboard/reservation/create', ["newerrord"=>"Data Created Unsuccessfully",'reservation'=>$data['employee'], 'errors'=>$data['errors']]);
+                            
                 }
 
-                
-
-
-            } 
-            else {
-                $data['errors'] = $errors;
-                view::load('dashboard/reservation/create', $data);
             }
-
-            
-            
-
-            // Check Owner is valid
-            // $result = $db->getOwner($owner_user_id);
-
-            // if($result == 0) {
-            //     $errors[] = 'Owner ID isn\'t valid';
-            // }
-
-            // $data['error'] = $errors;
-            // $data['employee'] = array($owner_user_id, $first_name, $last_name, $email, $salary, $location, $contact_num);
-                 
-            // if(!empty($errors)) {
-            //     view::load("employee/add", $data);
-            // }
-            // else {
-            //     $data = array($owner_user_id, $first_name, $last_name, $email, $salary, $location, $contact_num);
-            //     $result = $db->getCreate($data);
-
-            //     if($result == 1) {
-            //         view::load("employee/add", ["success"=>"Data Created Successfully"]);
-            //     }
-            //     else {
-            //         view::load("employee/add", ["newerror"=>"Data Created Unsuccessfully"]);
-            //     }
-
-
-
-            // }
-
+            else {
+                // break process
+                //var_dump($errors);
+                $data['errors'] = $errors;
+                $data['reservation'] = array('first_name' => $first_name, 'last_name' => $last_name, 'location' => $location, 'contact_number' => $contact_num, 'date_of_birth' => $date_of_birth, 'age' => $age, 'email' => $email, 'max_guest' => $no_of_guest, 'room_number' => $room_number, 'check_in_date' => $check_in_date, 'check_out_date' => $check_out_date, 'payment_method' => $payment_method);
+                //  echo "Reservation process Have Errors<br>";
+                view::load('dashboard/reservation/create', $data);
+                
+                
+            }
 
          }
     }
@@ -326,7 +300,7 @@ class ReservationController {
         $time2 = strtotime($check_out_date);
         $check_in_date = date('Y-m-d',$time1);
         $check_out_date = date('Y-m-d',$time2);
-
+        $result = 0;
         $validation = 0;
         if($current_date > $check_in_date || $check_in_date >= $check_out_date) {
             $result = 1;
@@ -340,11 +314,12 @@ class ReservationController {
 
     private function check_req_fields($req_fields) {
         
-        $errors = array();
+        $errors[] = array();
 
         foreach($req_fields as $field) {
             if(empty(trim($_POST[$field]))) {
-                $errors[] = $field . ' is required';
+                // echo "1";
+                $errors[$field] = ' is required';
             }
         }
 
@@ -353,14 +328,14 @@ class ReservationController {
 
     private function check_max_len($max_len_fields) {
         // Check max lengths
-        $errors = array();
+        $errors[] = array();
     
         foreach($max_len_fields as $field => $max_len) {
             if(strlen(trim($_POST[$field])) > $max_len ) {
-                $errors[] = $field . ' must be less than ' . $max_len . ' characters';
+                // echo "2";
+                $errors[$field] = ' must be less than ' . $max_len . ' characters';
             }
         }
-    
         return $errors;
     }
     

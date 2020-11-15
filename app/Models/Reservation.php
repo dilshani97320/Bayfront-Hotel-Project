@@ -1,9 +1,9 @@
 <?php 
 
-class Employee {
+class Reservation {
 
     private $table1 = "customer";
-    private $table2 = "room";
+    private $table2 = "room_details";
     private $table3 = "reservation";
     private $table4 = "payment";
     private $connection;
@@ -18,22 +18,8 @@ class Employee {
         $this->connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
     }
 
-    // public function getAllEmployee() {
 
-    //     $query = "SELECT * FROM  $this->table
-    //               WHERE is_deleted=0 ORDER BY emp_id";
-    //     $users = mysqli_query($this->connection, $query);
-    //     if($users) {
-    //         mysqli_fetch_all($users,MYSQLI_ASSOC);
-    //     }
-    //     else {
-    //         echo "Database Query Failed";
-    //     }    
-
-    // return $users;    
-    // }
-
-    public function getSearchEmployee($room_number, $check_in_date, $check_out_date) {
+    public function getAvalabilityhRoom($room_number, $check_in_date, $check_out_date) {
 
         date_default_timezone_set("Asia/Colombo");
         $current_date = date('Y-m-d');
@@ -105,24 +91,6 @@ class Employee {
         return $result;
     }
 
-    // public function getOwner($owner_user_id) {
-    //     $user = array();
-    //     $owner_user_id = mysqli_real_escape_string($this->connection, $owner_user_id);
-    //     $query = "SELECT * FROM $this->table 
-    //               WHERE owner_user_id = '{$owner_user_id}'
-    //               LIMIT 1";
-    //     $result = 0;
-    //     $result_set = mysqli_query($this->connection, $query);
-    //     if($result_set){
-    //         if(mysqli_num_rows($result_set) == 1) {
-    //             $result = 1;
-    //         }
-    //     }
-    //     else {
-    //         echo "Query Error";
-    //     }
-    //     return $result;
-    // }
 
     public function getCreateCustomer($data) {
         $value = 0;
@@ -134,7 +102,7 @@ class Employee {
         $age = mysqli_real_escape_string($this->connection, $data[5]);
         $email = mysqli_real_escape_string($this->connection, $data[6]);
 
-        $query = "INSERT INTO $this->table (
+        $query = "INSERT INTO $this->table1 (
                   first_name, last_name, location, contact_number, date_of_birth, age, email) 
                   VALUES (
                  '{$first_name}', '{$last_name}', '{$location}', '{$contact_num}', '{$date_of_birth}', '{$age}', '{$email}'
@@ -156,93 +124,31 @@ class Employee {
         $check_in_date = mysqli_real_escape_string($this->connection, $data[3]);
         $check_out_date = mysqli_real_escape_string($this->connection, $data[4]);
         $no_of_guest = mysqli_real_escape_string($this->connection, $data[5]);
+        $payment_method = mysqli_real_escape_string($this->connection, $data[6]);
         
 
         $query = "INSERT INTO $this->table3 (
-                 customer_id, reception_user_id, room_id, check_in_date, check_out_date, no_of_guest, is_valid) 
+                 customer_id, reception_user_id, room_id, check_in_date, check_out_date, no_of_guest, payment_method, is_valid) 
                  VALUES (
-                 '{$customer_id}', '{$reception_user_id}', '{$room_id}', '{$check_in_date}', '{$check_out_date}', '{$no_of_guest}', 1
+                 '{$customer_id}', '{$reception_user_id}', '{$room_id}', '{$check_in_date}', '{$check_out_date}', '{$no_of_guest}', '{$payment_method}', 1
                  )";
         
         $result = mysqli_query($this->connection, $query);
+        // echo "Query Level2";
         if($result) {
             // query successful..
+            // echo "Query Successfull";
             $value = 1;
         }
         return $value;
     }
 
-    public function getCreatePayment($data) {
-        $value = 0;
-        $reservation_id = mysqli_real_escape_string($this->connection, $data[0]);
-        $customer_id = mysqli_real_escape_string($this->connection, $data[1]);
-        $name_of_card = mysqli_real_escape_string($this->connection, $data[2]);
-        $expire_month = mysqli_real_escape_string($this->connection, $data[3]);
-        $expire_year = mysqli_real_escape_string($this->connection, $data[4]);
-        $cvv = mysqli_real_escape_string($this->connection, $data[5]);
-        
-
-        $query = "INSERT INTO $this->table4 (
-                 reservation_id, customer_id, name_of_card, expire_month, expire_year, cvv) 
-                 VALUES (
-                 '{$reservation_id}', '{$customer_id}', '{$name_of_card}', '{$expire_month}', '{$expire_year}', '{$cvv}'
-                 )";
-        
-        $result = mysqli_query($this->connection, $query);
-        if($result) {
-            // query successful..
-            $value = 1;
-        }
-        return $value;
-    }
-
-    // public function getUpdate($data) {
-    //     $value = 0;
-    //     $emp_id = mysqli_real_escape_string($this->connection, $data[0]);
-    //     $owner_user_id = mysqli_real_escape_string($this->connection, $data[1]);
-    //     $first_name = mysqli_real_escape_string($this->connection, $data[2]);
-    //     $last_name = mysqli_real_escape_string($this->connection, $data[3]);
-    //     $email = mysqli_real_escape_string($this->connection, $data[4]);
-    //     $salary = mysqli_real_escape_string($this->connection, $data[5]);
-    //     $location = mysqli_real_escape_string($this->connection, $data[6]);
-    //     $contact_num = mysqli_real_escape_string($this->connection, $data[7]);
-
-    //     $query = "UPDATE $this->table SET
-    //             owner_user_id = '{$owner_user_id}',
-    //             first_name = '{$first_name}',
-    //             last_name = '{$last_name}',
-    //             email = '{$email}',
-    //             salary = '{$salary}',
-    //             location = '{$location}',
-    //             contact_num = '{$contact_num}'
-    //             WHERE emp_id = {$emp_id} LIMIT 1";
-        
-    //     $result = mysqli_query($this->connection, $query);
-    //     if($result) {
-    //         // query successful.. redirecting to users page
-    //         $value = 1;
-    //     }
-    //     return $value;
-    // }
-
-    // public function remove($emp_id) {
-    //     $emp_id = mysqli_real_escape_string($this->connection, $emp_id);
-
-    //     $query = "UPDATE $this->table SET is_deleted =1 WHERE emp_id = {$emp_id} LIMIT 1";
-
-    //     $result = mysqli_query($this->connection, $query);
-    //     if($result) {
-    //         $value = 1;
-    //     }
-        
-    //     return $value;
-    // }
 
     public function getCustomerID($email) {
 
         $email = mysqli_real_escape_string($this->connection, $email);
 
-        $query = "SELECT * FROM $this->table
+        $query = "SELECT * FROM $this->table1
                   WHERE email = '{$email}'
                   LIMIT 1";
         $customers = mysqli_query($this->connection, $query);
@@ -300,23 +206,5 @@ class Employee {
         return $reservation;
     }
 
-    // public function getEmailOther($email, $emp_id) {
-    //     $user = array();
-    //     $email = mysqli_real_escape_string($this->connection, $email);
-    //     $query = "SELECT * FROM $this->table 
-    //               WHERE email = '{$email}'
-    //               AND emp_id != '{$emp_id}'
-    //               LIMIT 1";
-    //     $result = 0;
-    //     $result_set = mysqli_query($this->connection, $query);
-    //     if($result_set){
-    //         if(mysqli_num_rows($result_set) == 1) {
-    //             $result = 1;
-    //         }
-    //     }
-    //     else {
-    //         echo "Query Error";
-    //     }
-    //     return $result;
-    // }
+    
 }

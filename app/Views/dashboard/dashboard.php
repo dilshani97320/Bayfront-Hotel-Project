@@ -32,7 +32,8 @@
                             </div>
                             <p class="card-category">Rooms</p>
                             <h3 class="card-title">
-                                49/50 <small class="special">GB</small>
+                                <?php echo $details['rooms']; ?>
+                                <small class="special">#</small>
                             </h3>
                         </div>
                         <div class="card-footer1">
@@ -52,7 +53,8 @@
                             </div>
                             <p class="card-category">Reservations</p>
                             <h3 class="card-title">
-                                49/50 <small class="special">GB</small>
+                                <?php echo $details['reservations']; ?>
+                                <small class="special">#</small>
                             </h3>
                         </div>
                         <div class="card-footer1">
@@ -72,7 +74,10 @@
                             </div>
                             <p class="card-category">Income</p>
                             <h3 class="card-title">
-                                49/50 <small class="special">GB</small>
+                                <?php 
+                                $income = (int)$details['income'];
+                                echo $income; ?> 
+                               <small class="special">Lkr</small>
                             </h3>
                         </div>
                         <div class="card-footer1">
@@ -92,7 +97,8 @@
                             </div>
                             <p class="card-category">Employess</p>
                             <h3 class="card-title">
-                                49/50 <small class="special">GB</small>
+                                <?php echo $details['employees']; ?>
+                                <small class="special">#</small>
                             </h3>
                         </div>
                         <div class="card-footer1">

@@ -33,3 +33,7 @@ INFO: Unsupported notification method: $/setTraceNotification
 2020.11.14 11:21:01 WARN  Build server is not auto-connectable.
 2020.11.14 11:21:01 WARN  no build tool detected in workspace 'C:\xampp\htdocs\learns\Bayfront-Hotel-Project'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
 2020.11.15 04:24:37 INFO  shutting down Metals
+2020.11.16 13:08:00 INFO  Started: Metals version 0.9.5 in workspace 'C:\xampp\htdocs\learns\Bayfront-Hotel-Project' for client vscode.
+2020.11.16 13:08:03 INFO  time: initialize in 2.36s
+2020.11.16 13:08:10 WARN  Build server is not auto-connectable.
+2020.11.16 13:08:10 WARN  no build tool detected in workspace 'C:\xampp\htdocs\learns\Bayfront-Hotel-Project'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 

@@ -319,25 +319,25 @@ class RoomDetails {
 
     
 
-    public function getDataEmployee($room_id) {
+    // public function getDataEmployee($room_id) {
 
-        $emp_id = mysqli_real_escape_string($this->connection, $room_id);
+    //     $emp_id = mysqli_real_escape_string($this->connection, $room_id);
 
-        $query = "SELECT * FROM $this->table1
-                  WHERE room_id = '{$room_id}'
-                  LIMIT 1";
-        $rooms = mysqli_query($this->connection, $query);
-        if($rooms){
-            if(mysqli_num_rows($rooms) == 1) {
-                $room = mysqli_fetch_assoc($rooms);
-            }
-        }
-        else {
-            echo "Query Error";
-        }
+    //     $query = "SELECT * FROM $this->table1
+    //               WHERE room_id = '{$room_id}'
+    //               LIMIT 1";
+    //     $rooms = mysqli_query($this->connection, $query);
+    //     if($rooms){
+    //         if(mysqli_num_rows($rooms) == 1) {
+    //             $room = mysqli_fetch_assoc($rooms);
+    //         }
+    //     }
+    //     else {
+    //         echo "Query Error";
+    //     }
 
-        return $employee;
-    }
+    //     return $employee;
+    // }
 
     public function getRoomDiscount($room_type_id) {
 

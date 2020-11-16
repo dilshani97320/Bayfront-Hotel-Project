@@ -12,8 +12,16 @@ session_start();
 
         public function index()
         {
+            $db = new RoomDetails();
+            $data['room_details'] = $db->getRoomView(); 
+
+            $db = new Image();
+            $imageRoom =$db->viewRoom();
+            // var_dump($data);
+            // exit;
+            $data['img_details'] = $imageRoom;
             
-            View::load('home');
+            View::load('home', $data);
             
         }
         public function verifyHome($token)

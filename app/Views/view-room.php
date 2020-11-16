@@ -175,6 +175,12 @@ Includes 1 King Size Bed, private kitchen, bathroom and some living spaces.</li>
           <span class="unit">/Per Night</span>
         </div>
 				<?php include(VIEWS.'inc/booking-formY.php'); ?> 
+
+        <div class="">
+          <h4>Hotel Surroundings</h4>
+          
+        </div>
+
 			</div>
 			
 		</div>

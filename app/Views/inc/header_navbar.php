@@ -55,7 +55,7 @@
 
                 <div class="log-sign" style="--i: 1.8s">
 
-                    <a href="<?php url('Home/login'); ?>" class="btn1 transparent">Logout</a>
+                    <a href="<?php url('Auth/logout'); ?>" class="btn1 transparent">Logout</a>
 
                     <a href="<?php url('dashboard/index'); ?>" class="btn1 solid">Dashboard</a>
                 </div>
@@ -274,7 +274,7 @@
 
                     <a href="<?php url('Home/login'); ?>" class="btn1 transparent">Log in</a>
 
-                    <a href="#" class="btn1 solid">Book Now</a>
+                    <!-- <a href="#" class="btn1 solid">Book Now</a> -->
                 </div>
             </div>
 

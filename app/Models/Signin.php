@@ -17,14 +17,15 @@ class Signin {
     
     
     public function getUser($email, $password) {
-        echo $email;
-		echo $password;
+        // echo $email;
+		// echo $password;
 
         $email = mysqli_real_escape_string($this->conn, $email);
         $password = mysqli_real_escape_string($this->conn, $password);
 
         $emailQuery = "SELECT * FROM $this->table WHERE email=? LIMIT 1";
         // echo $emailQuery;
+        // exit;
         $result = 0;
 		$stmt = $this->conn->prepare($emailQuery);
 		$stmt->bind_param('s',$email);
@@ -32,9 +33,11 @@ class Signin {
         $result= $stmt->get_result();
         // var_dump($result);
 		$user = $result->fetch_assoc();
-        // var_dump($user);
+            // var_dump($user);
+            // exit;
 
         if (password_verify($password, $user['password'])) {
+        
             return $user;
         }else{
             return null;
@@ -44,7 +47,7 @@ class Signin {
 
     public function findEmail($email)
     {
-        $emailQuery = "SELECT * FROM user WHERE email=? LIMIT 1";
+        $emailQuery = "SELECT * FROM $this->table WHERE email=? LIMIT 1";
 		$stmt = $this->conn->prepare($emailQuery);
 		$stmt->bind_param('s',$email);
 		$stmt->execute();
@@ -52,8 +55,10 @@ class Signin {
 		$userCount = $result->num_rows;
         $stmt->close();
         // var_dump($result);
+        // echo $userCount;
+        // exit;
         if($userCount > 0){
-            $result = 1;
+            return $userCount;
            
 	    }
         return 0;

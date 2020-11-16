@@ -5,12 +5,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="<?php echo BURL.'assets/css/basic.css'; ?>">
     <title>BAYFRONT SIGNIN</title>
   </head>
   <style>
-
+ * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 .container {
   position: relative;
@@ -18,6 +22,7 @@
   background-color: #fff;
   min-height: 100vh;
   overflow: hidden;
+  margin: 0;
 }
 
 .forms-container {
@@ -418,6 +423,30 @@ select:-webkit-autofill:focus {
     left: 50%;
   }
 }
+.alert {
+  width: 350px;
+  height: auto;
+  justify-content: left;
+  align-items: center;
+  color: red;
+  border-radius: 5px;
+  padding-left: 10px;
+  padding-right: 40px;
+  font-size: 15px;
+  margin: 0 auto;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 0px 15px;
+}
+.error.alert {
+  border-left: 6px solid #ff0000;
+  background: white;
+  text-align: left;
+}
+.error p{
+  margin: 5px 2px;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+}
+
 
   </style>
   <body>
@@ -432,12 +461,9 @@ select:-webkit-autofill:focus {
 
             <?php //var_dump($errors); ?>
              <?php if(count($errors)>0): ?>
-            <div class="alert error" role="alert">
             <?php foreach($errors as $error): ?>
-            
-            <p><?php echo $error;  ?></p>
+            <div class="alert error" role="alert"> <p><i class="fas fa-exclamation-circle"></i><?php echo $error;  ?></p> </div>
             <?php endforeach; ?>
-            </div>
             <?php endif;  ?>
 
 
@@ -446,15 +472,15 @@ select:-webkit-autofill:focus {
             <div class="input-field">
               <i class="fas fa-user"></i>
 
-              <input type="email" name="email" value="<?php //echo $email; ?>" placeholder="Username" />
+              <input type="email" name="email" value="<?php //echo $email; ?>" placeholder="Username" required />
 
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" name="password"  placeholder="Password" />
+              <input type="password" name="password"  placeholder="Password" required />
             </div>
 
-            <input type="submit" value="" name="signin-btn" class="btn solid" />
+            <input type="submit" value="Sign In" name="signin-btn" class="btn solid"/>
              <a  class="social-text" href="<?php url('Home/frogetPassword'); ?>">Frogot Your Password?  </a>  
 
           

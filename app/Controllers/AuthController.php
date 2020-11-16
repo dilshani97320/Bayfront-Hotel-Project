@@ -23,6 +23,7 @@ class AuthController {
 			$errors = $this->validationSignin();
 		
 			// var_dump($errors);
+			// exit;
 			if(empty($errors)){
 
 				$db = new Signin();
@@ -32,7 +33,7 @@ class AuthController {
 				if(!empty($user)) {
 
 					$_SESSION['id']= $user['id'];
-					$_SESSION['username']= $user['name'];
+					$_SESSION['nameuser']= $user['name'];
 					$_SESSION['email']= $user['email'];
 					$_SESSION['verified']= $user['verified'];
 					$_SESSION['usertype']= $user['userType'];
@@ -45,18 +46,34 @@ class AuthController {
 					exit();
 
 				}else{
-					$errors['login_fail']= "wrong credentials";
+					$errors['login_fail']= "You have entered an invalid username or password";
 					$data['errors'] = $errors;
                     view::load('login/login',$data);
 				}
 			}else{
 				$data['errors'] = $errors;
 			
-				var_dump($data);
+				// var_dump($data);
 				
                 view::load('login/login',$data);
 			}
 		}
+	}
+	private function validationSignin() {
+
+        $errors = array();
+		if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+			$errors['email']= "Email adress is invalid";
+		}
+		if(empty($_POST['email'])){
+			$errors['email']="email required";
+		}
+		if(empty($_POST['password'])){
+			$errors['password']="password required";
+		}
+
+		return $errors;
+        
 	}
 
 	public function signupUser()
@@ -118,20 +135,7 @@ class AuthController {
 		
 	}
 
-	private function validationSignin() {
-
-        $errors = array();
-		if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
-			$errors['email']= "Email adress is invalid";
-		}
-		if(empty($_POST['email'])){
-			$errors['email']="email required";
-		}
-		if(empty($_POST['password'])){
-			$errors['password']="password required";
-		}
-        
-	}
+	
 	
 	private function validationSignup() {
 		$errors =array();
@@ -151,17 +155,17 @@ class AuthController {
 			$errors['password']="password required";
 		}
 		if(!(preg_match('/^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=§!\?]{8,}$/',$_POST['password']))){
-			$errors['password']="password required capital, simple 8 letter";
+			$errors['password']="A minimum 8 characters password contains a combination of uppercase and lowercase letter and number are required.";
 		}
 		if($_POST['password'] !== $_POST['passwordConf']){
-			$errors['password']="password not match";
+			$errors['password']="password does not match";
 		}
 		$db = new Signin();
 		   
 		$result = $db->findEmail($_POST['email']);
 
             if($result == 1) {
-                $errors['email'] = 'Email address already exists';
+                $errors['email'] = 'that email is already registered!';
 			}
 		unset($db);
 		return $errors;
@@ -169,15 +173,15 @@ class AuthController {
 	
 	public function logout()
 	{
-		if (isset($_GET['logout'])) {
-			session_destroy;
+		
+		
 			unset($_SESSION['id']);
-			unset($_SESSION['username']);
+			unset($_SESSION['nameuser']);
 			unset($_SESSION['email']);
 			unset($_SESSION['verified']);
-			header('location: index.php');
+			view::load('home');
 			exit();
-		}
+		
 	}
 
 	public function verifyUser($token)

@@ -102,7 +102,8 @@ dl.inline dd:after{
 
 dl.inline dt{
 	display: inline-block;
-	min-width: 200px;
+  min-width: 200px;
+  
 	font-weight: bold;
 	font-size: 15px;
 }

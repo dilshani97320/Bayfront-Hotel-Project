@@ -58,7 +58,7 @@
 }
 .price{
 	flex: 1;
-	margin-left: 30px;
+	/* margin-left: 30px; */
 }
 
 .inline {
@@ -1546,24 +1546,29 @@ figure.imgBlockSurf.hover .title:after {
   flex-wrap: wrap;
   justify-content: space-between;
   background-color: #fff;
-  padding: 25px 20px;
-    margin: 70px auto;
-    border: 1px #d1e8f3 solid;
+  padding: 30px 30px;
+  margin: 5px auto;
+  border: 2px #d1e8f3 solid;
     /*box-shadow: 0px 2px 18px -4px rgba(0,0,0,0.75);*/
-    height: auto;
+   height: auto;
 }
-.block{
+.blockY{
   flex-basis: 100%;
+  margin-bottom: 10px;
 }
-.form-field {
+.blockY label{
+  letter-spacing: 1px;
+  font-weight: 600;
+ }
+.form-fieldY {
   position: relative;
   background-color: #f4f4f4;
-  width: 180px;
+  width: 100%;
   margin-top: 10px;
   box-shadow: -1px -1px 1px rgba(0, 0, 0, 0.25);
 }
 
-.form-field label {
+.form-fieldY label {
   color: #666666;
 } 
 
@@ -1581,15 +1586,18 @@ figure.imgBlockSurf.hover .title:after {
   color: #000;
 }
 
-.form-field input[type='date'],
-.form__dropdown select {
-  height: 45px;
-  width: 300px;
+.form-fieldY input[type='date'],
+.form__dropdownY select {
+  height: 55px;
+  width: 100%;
   text-indent: 10px;
   padding: 0 0 0 3px;
-  background-color: #f5f5f5;
+  background-color: #fff;
   
-  border: 2px solid #000;
+      color: #4c4c4c;
+    border: 2px solid;
+    border-color: #0b2e4f;
+    
   /*border: none;*/
 }
 
@@ -1603,7 +1611,7 @@ figure.imgBlockSurf.hover .title:after {
 .form__dropdown:last-child {
   /*float: right;*/ 
 }
-.form__submit {
+.form__submitY {
   width: 100%;
   margin-top: 30px;
   height: 45px;

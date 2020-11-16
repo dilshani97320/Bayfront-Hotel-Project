@@ -63,28 +63,46 @@
 
 
 .price{
-  border: 1px #d1e8f3 solid;
-      line-height: 30px;
+  border: 2px #d1e8f3 solid;
+    line-height: 30px;
     font-weight: 800;
     font-size: 60px;
     color: #85b5cc;
     font-family: nanum myeongjo,helveticaneue-light,helvetica neue light,helvetica neue,Helvetica,Arial,lucida grande,sans-serif;
 }
+
 .price .titlePrice {
   color: #16131b;
-    font-size: 15px;
-    display: block;
-    margin-bottom: 20px;
+  font-size: 20px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  display: block;
+  margin-left: 15px;
+  margin-bottom: 20px;
 }
 .price .value{
-      font-weight: 800;
-    letter-spacing: -5px;
+    font-weight: 550;
+    letter-spacing: 1px;
+    margin-left: 15px;
 }
 
 .price .unit{
-      font-size: 14px;
+    font-size: 16px;
+    letter-spacing: 1px;
+  font-weight: 600;
     color: #16131b;
-    text-transform: lowercase;
+    text-transform: capitalize;
+}
+
+.ht{
+  letter-spacing: 2px;
+  font-weight: 600;
+  margin-left: 15px;
+  margin-bottom: 20px;
+}
+
+.single-room-meta{
+  border: 2px #d1e8f3 solid;
 }
 </style>
 <body>
@@ -94,7 +112,7 @@
     <div class="headImg">
 			<div class="first">
 			
-			<h1><?php echo $room_details[0]['room_name']; ?></h1>
+			<h1 class="ht"><?php echo $room_details[0]['room_name']; ?></h1>
 			<div class="container">
         <div class="main-img">
 
@@ -126,6 +144,42 @@
            
         </div>
       </div>
+
+
+      <div class="single-room-meta">
+							<div class="meta">
+								
+								<div class="title">
+									<i class="fas fa-user-tie"></i>Guest
+								</div>
+								<div class="value-meta"><?php echo $room_details[0]['max_guest']; ?></div>
+	
+							</div>
+							
+							<div class="meta">
+								
+								<div class="title">
+									<i class="fas fa-compress"></i>Acreage
+								</div>
+								<div class="value-meta"><?php echo $room_details[0]['room_size']; ?> sqft</div>
+	
+							</div>
+							<div class="meta">
+								
+								<div class="title">
+									<i class="fas fa-bed"></i>Beds
+								</div>
+								<div class="value-meta"><?php echo $room_details[0]['bed_type']; ?></div>
+							</div>
+							<div class="meta">
+								
+								<div class="title">
+								<i class="fas fa-eye"></i> View
+								</div>
+								<div class="value-meta"><?php echo $room_details[0]['room_view']; ?></div>
+	
+							</div>
+						</div>
 
   <h2><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
    viewBox="0 0 480 480" height="30" width="30" style="enable-background:new 0 0 480 480;" xml:space="preserve">
@@ -169,7 +223,7 @@ Includes 1 King Size Bed, private kitchen, bathroom and some living spaces.</li>
 
 
 			<div class="second">
-        <div class="price">
+        <div class="price pt">
           <span class="titlePrice">Price</span>
           <span class="value"><?php echo $room_details[0]['price']; ?> $</span>
           <span class="unit">/Per Night</span>
@@ -178,7 +232,21 @@ Includes 1 King Size Bed, private kitchen, bathroom and some living spaces.</li>
 
         <div class="">
           <h4>Hotel Surroundings</h4>
+          <div>
+            <h5>Beaches in the neighbourhood</h5>
+            <ul>
+              <li>Weligama Beach  Golden sand Swimming</li>
           
+            </ul>
+          </div>
+
+          <div>
+            <h5>Public transport</h5>
+            <ul>
+              <li>Weligama Railway Station 600m</li>
+              <li>Weligama Bus Stop 550m</li>
+            </ul>
+          </div>
         </div>
 
 			</div>

@@ -88,7 +88,7 @@
                                             <?php } ?>
                                         </td>
 
-                                        <td><a href="<?php url('room/view/'.$row['room_id'].'/'.$row['room_type_id']);?>" class="edit"><i class="material-icons">zoom_in</i>Details</a></td>
+                                        <td><a href="<?php url('room/details/'.$row['room_number']);?>" class="edit"><i class="material-icons">zoom_in</i>Details</a></td>
                                         <td><a href="<?php url('reservation/view/'.$row['room_number'].'/'.$row['max_guest']);?>" onclick="return confirm('Are you sure?');" class="edit"><i class="material-icons">book_online</i>Reservation</a></td>
                                     </tbody>
                                 <?php endforeach ?> 

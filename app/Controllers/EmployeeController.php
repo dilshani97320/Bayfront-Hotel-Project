@@ -7,7 +7,8 @@ class EmployeeController {
         
         //Checking if a user is logged in
         if(!isset($_SESSION['user_id'])) {
-            view::load('dashboard/dashboard');    
+            $dashboard = new DashboardController();
+            $dashboard->index();   
         }
         else {
             $data = array();
@@ -31,7 +32,8 @@ class EmployeeController {
 
     public function add() {
         if(!isset($_SESSION['user_id'])) {
-            view::load('home');    
+            $dashboard = new DashboardController();
+            $dashboard->index();   
         }
         else {
             view::load('dashboard/employee/add');
@@ -42,7 +44,9 @@ class EmployeeController {
 
     public function edit($emp_id) {
         if(!isset($_SESSION['user_id'])) {
-            view::load('dashboard/dashboard');    
+            // view::load('dashboard/dashboard');  
+            $dashboard = new DashboardController();
+            $dashboard->index();  
         }
         else {
             $db = new Employee();

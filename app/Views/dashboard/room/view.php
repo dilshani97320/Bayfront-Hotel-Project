@@ -1,6 +1,6 @@
 <?php 
    // Header
-   $title = "View-Room page";
+   $title = "Room View page";
    include(VIEWS.'dashboard/inc/header.php');
 ?> 
 
@@ -8,7 +8,7 @@
 <div class="wrapper">
 
     <?php 
-            $navbar_title = "Room View Page";
+            $navbar_title = "Room View";
             $search = 0;
             $search_by = '#';
        
@@ -23,210 +23,404 @@
 
                 <div class="cardheader">
                     <div class="options">
-                        <h4>Add New Employee 
+                        <h4>Room View
                         <span>
-                            <a href="<?php url("room/index"); ?>" class="addnew"><i class="material-icons">arrow_back</i>Back To Employee Table</a>  
+                            <a href="<?php url("reservation/details"); ?>" class="addnew"><i class="material-icons">arrow_back</i>Back To Reservations Table</a>  
+                            <a href="<?php url("room/details/".$room['room_number']); ?>" class="refresh"><i class="material-icons">refresh</i>Refresh</a> 
                         </span>
                         </h4>  
                     </div>
 
-                    <p class="textfortabel">Room Details</p>
+                    <p class="textfortabel">Complete Following Details</p>
                 </div>
 
                 <div class="cardbody">  
-                    <form action="<?php // url("employee/create"); ?>" method="post" class="addnewform">
+                    <form action="#" method="post" class="addnewform">
 
                     <div class="section1">
+                        
 
                         <div class="row">
-                        <label for="#"><i class="material-icons">perm_identity</i>Owner ID:</label>
-                        <input type="text" name="owner_user_id"
-                        <?php 
-                            if(!empty($employee)) {
-                                echo 'value="' . $employee[0] . '"';
-                            } 
-                            else if(isset($success)){
-                                echo 'placeholder="###"';
-                            }
-                            else {
-                                echo 'placeholder="###"';
-                            }
-                            
-                        ?>
-                        >
+                            <label for="#"><i class="material-icons">admin_panel_settings</i>Room Number:</label>
+                                <div class="animate-form">
+                                    <input type="text"  class="inputField"
+                                    <?php 
+                                        if(isset($room['room_number'])){
+                                            echo 'value="' . $room['room_number'] . '"';
+                                        }
+                                    ?>
+                                    
+                                    readonly
+                                    >
+                                    
+                                    <label for="name" class="label-name">
+                                            <?php if($room['room_number'] == ""){ ?>
+                                                <span class="content-success"><i class="material-icons">verified_user</i>Not Granted</span>
+                                            <?php } else {?>
+                                                <span class="content-success"><i class="material-icons">verified_user</i>Granted</span>
+                                            <?php } ?>
+                                    </label>   
+                                </div>     
                         </div>
 
 
                         <div class="row">
-                            <label for="#"><i class="material-icons">account_box</i>First Name:</label>
-                            <input type="text" name="first_name" 
-                            <?php 
-
-                            if(!empty($employee)) {
-                                echo 'value="' . $employee[1] . '"';
-                            }  
-                            else if(isset($success)){
-                                echo 'placeholder="Tharindu"';
-                            }
-                            else {
-                                echo 'placeholder="Tharindu"';
-                            }
-                            
-                            ?>
-                            
-                            >
+                            <label for="#"><i class="material-icons">hotel</i>Room Name:</label>
+                                <div class="animate-form">
+                                    <input type="text"  class="inputField"
+                                    <?php 
+                                        if(isset($room['room_name'])){
+                                            echo 'value="' . $room['room_name'] . '"';
+                                        }
+                                    ?>
+                                    
+                                    readonly
+                                    >
+                                    
+                                    <label for="name" class="label-name">
+                                            <?php if($room['room_name'] == ""){ ?>
+                                                <span class="content-success"><i class="material-icons">verified_user</i>Not Granted</span>
+                                            <?php } else {?>
+                                                <span class="content-success"><i class="material-icons">verified_user</i>Granted</span>
+                                            <?php } ?>
+                                    </label>    
+                                </div>     
                         </div>
 
                         <div class="row">
-                            <label for="#"><i class="material-icons">account_box</i>Last Name:</label>
-                            <input type="text" name="last_name"
-                            <?php 
-                            
-                            if(!empty($employee)) {
-                                echo 'value="' . $employee[2] . '"';
-                            }  
-                            else if(isset($success)){
-                                echo 'placeholder="Gihan"';
-                            }
-                            else {
-                                echo 'placeholder="Gihan"';
-                            }
-                            
-                            
-                            ?>
-                            >
+                            <label for="#"><i class="material-icons">hotel</i>Room Type:</label>
+                                <div class="animate-form">
+                                    <input type="text"  class="inputField"
+                                    <?php 
+                                        if(isset($room_type['type_name'])){
+                                            echo 'value="' . $room_type['type_name'] . '"';
+                                        }
+                                    ?>
+                                    
+                                    readonly
+                                    >
+                                    
+                                    <label for="name" class="label-name">
+                                            <?php if($room_type['type_name'] == ""){ ?>
+                                                <span class="content-success"><i class="material-icons">verified_user</i>Not Granted</span>
+                                            <?php } else {?>
+                                                <span class="content-success"><i class="material-icons">verified_user</i>Granted</span>
+                                            <?php } ?>
+                                    </label>   
+                                </div>     
                         </div>
 
                         <div class="row">
-                            <label for="#"><i class="material-icons">mail</i>Email Address:</label>
-                            <input type="text" name="email"
-                            <?php 
-                            
-                            if(!empty($employee)) {
-                                echo 'value="' . $employee[3] . '"';
-                            } 
-                            else if(isset($success)){
-                                echo 'placeholder="gihan@gmail.com"';
-                            }
-                            else {
-                                echo 'placeholder="gihan@gmail.com"';
-                            }
-                            
-                            
-                            ?>
-                            > 
+                            <label for="#"><i class="material-icons">family_restroom</i>Max Guest:</label>
+                                <div class="animate-form">
+                                    <input type="text"  class="inputField"
+                                    <?php 
+                                        if(isset($room_type['max_guest'])){
+                                            echo 'value="' . $room_type['max_guest'] . '"';
+                                        }
+                                    ?>
+                                    
+                                    readonly
+                                    >
+                                    
+                                    <label for="name" class="label-name">
+                                            <?php if($room_type['max_guest'] == ""){ ?>
+                                                <span class="content-success"><i class="material-icons">verified_user</i>Not Granted</span>
+                                            <?php } else {?>
+                                                <span class="content-success"><i class="material-icons">verified_user</i>Granted</span>
+                                            <?php } ?>
+                                    </label>   
+                                </div>     
+                        </div>
+
+                        <div class="row">
+                            <label for="#"><i class="material-icons">king_bed</i>Bed Type:</label>
+                                <div class="animate-form">
+                                    <input type="text"  class="inputField"
+                                    <?php 
+                                        if(isset($room_type['bed_type'])){
+                                            echo 'value="' . $room_type['bed_type'] . '"';
+                                        }
+                                    ?>
+                                    
+                                    readonly
+                                    >
+                                    
+                                    <label for="name" class="label-name">
+                                            <?php if($room_type['bed_type'] == ""){ ?>
+                                                <span class="content-success"><i class="material-icons">verified_user</i>Not Granted</span>
+                                            <?php } else {?>
+                                                <span class="content-success"><i class="material-icons">verified_user</i>Granted</span>
+                                            <?php } ?>
+                                    </label>    
+                                </div>     
                         </div>
                         
                         <div class="row">
-                            <label for="#"><i class="material-icons">payment</i>Salary:</label>
-                            <input type="text" name="salary"
-                            <?php 
-                            
-                            if(!empty($employee)) {
-                                echo 'value="' . $employee[4] . '"';
-                            } 
-                            else if(isset($success)){
-                                echo 'placeholder="000000"';
-                            }
-                            else {
-                                echo 'placeholder="000000"';
-                            }
-                            
-                            
-                            ?>
-                            > 
+                            <label for="#"><i class="material-icons">deck</i>Room View:</label>
+                                <div class="animate-form">
+                                    <input type="text"  class="inputField"
+                                    <?php 
+                                        if(isset($room['room_view'])){
+                                            echo 'value="' . $room['room_view'] . '"';
+                                        }
+                                    ?>
+                                    
+                                    readonly
+                                    >
+                                    
+                                    <label for="name" class="label-name">
+                                            <?php if($room['room_view'] == ""){ ?>
+                                                <span class="content-success"><i class="material-icons">verified_user</i>Not Granted</span>
+                                            <?php } else {?>
+                                                <span class="content-success"><i class="material-icons">verified_user</i>Granted</span>
+                                            <?php } ?>
+                                    </label>    
+                                </div>     
+                        </div>
+                        
+                        
+
+                        <div class="row">
+                            <label for="#"><i class="material-icons">cast_for_education</i>Room Size:</label>
+                                <div class="animate-form">
+                                    <input type="text"  class="inputField"
+                                    <?php 
+                                        if(isset($room['room_size'])){
+                                            echo 'value="' . $room['room_size'] . '"';
+                                        }
+                                    ?>
+                                    
+                                    readonly
+                                    >
+                                    
+                                    <label for="name" class="label-name">
+                                            <?php if($room['room_size'] == ""){ ?>
+                                                <span class="content-success"><i class="material-icons">verified_user</i>Not Granted</span>
+                                            <?php } else {?>
+                                                <span class="content-success"><i class="material-icons">verified_user</i>Granted</span>
+                                            <?php } ?>
+                                    </label>    
+                                </div>     
                         </div>
 
                         <div class="row">
-                            <label for="#"><i class="material-icons">location_on</i>Location:</label>
-                            <input type="text" name="location"
-                            <?php 
-                            
-                            if(!empty($employee)) {
-                                echo 'value="' . $employee[5] . '"';
-                            }  
-                            else if(isset($success)){
-                                echo 'placeholder="57/A Galle Road"';
-                            }
-                            else {
-                                echo 'placeholder="57/A Galle Road"';
-                            }
-                            
-                            ?>
-                            > 
+                            <label for="#"><i class="material-icons">ac_unit</i>Air Condition:</label>
+                                <div class="animate-form">
+                                    <input type="text"  class="inputField"
+                                    <?php 
+                                        if(isset($room['room_size'])){
+                                            if($room['air_condition'] == 1){
+                                                echo 'value="With Air Condtion"';
+                                            }
+                                            else {
+                                                echo 'value="Without Air Condtion"';
+                                            }
+                                            
+                                        }
+                                    ?>
+                                    
+                                    readonly
+                                    >
+                                    
+                                    <label for="name" class="label-name">
+                                            <?php if($room['air_condition'] == ""){ ?>
+                                                <span class="content-success"><i class="material-icons">verified_user</i>Not Granted</span>
+                                            <?php } else {?>
+                                                <span class="content-success"><i class="material-icons">verified_user</i>Granted</span>
+                                            <?php } ?>
+                                    </label>    
+                                </div>     
+                        </div>
+
+                        
+
+                        
+
+                        <div class="row">
+                            <label for="#"><i class="material-icons">room_service</i>About Breakfast:</label>
+                                <div class="animate-form">
+                                    <input type="text"  class="inputField"
+                                    <?php 
+                                        if(isset($room['breakfast_included'])){
+                                            if($room['breakfast_included'] == 1){
+                                                echo 'value="Breakfast Include"';
+                                            }
+                                            else {
+                                                echo 'value="Breakfast Not Include"';
+                                            }
+                                            
+                                        }
+                                    ?>
+                                    
+                                    readonly
+                                    >
+                                    
+                                    <label for="name" class="label-name">
+                                            <?php if($room['breakfast_included'] == ""){ ?>
+                                                <span class="content-success"><i class="material-icons">verified_user</i>Not Granted</span>
+                                            <?php } else {?>
+                                                <span class="content-success"><i class="material-icons">verified_user</i>Granted</span>
+                                            <?php } ?>
+                                    </label>   
+                                </div>     
+                        </div>
+
+
+                        <div class="row">
+                            <label for="#"><i class="material-icons">hot_tub</i>About Hot Water:</label>
+                                <div class="animate-form">
+                                    <input type="text"  class="inputField"
+                                    <?php 
+                                        if(isset($room['hot_water'])){
+                                            if($room['hot_water'] == 1){
+                                                echo 'value="Hot Water Include"';
+                                            }
+                                            else {
+                                                echo 'value="Hot Water Not Include"';
+                                            }
+                                            
+                                        }
+                                    ?>
+                                    
+                                    readonly
+                                    >
+                                    
+                                    <<label for="name" class="label-name">
+                                            <?php if($room['hot_water'] == ""){ ?>
+                                                <span class="content-success"><i class="material-icons">verified_user</i>Not Granted</span>
+                                            <?php } else {?>
+                                                <span class="content-success"><i class="material-icons">verified_user</i>Granted</span>
+                                            <?php } ?>
+                                    </label>   
+                                </div>     
                         </div>
 
                         <div class="row">
-                            <label for="#"><i class="material-icons">contacts</i>Contact Number:</label>
-                            <input type="text" name="contact_num"
-                            <?php 
-                            
-                            if(!empty($employee)) {
-                                echo 'value="' . $employee[6] . '"';
-                            }  
-                            else if(isset($success)){
-                                echo 'placeholder="0777456123"';
-                            }
-                            else {
-                                echo 'placeholder="0777456123"';
-                            }
-                            
-                            ?>
-                            > 
+                            <label for="#"><i class="material-icons">no_meeting_room</i>About Cancelaration:</label>
+                                <div class="animate-form">
+                                    <input type="text"  class="inputField"
+                                    <?php 
+                                        if(isset($room['free_canselaration'])){
+                                            if($room['free_canselaration'] == 1){
+                                                echo 'value="Free Cancelaration Include"';
+                                            }
+                                            else {
+                                                echo 'value="Free Cancelaration Not Include"';
+                                            }
+                                            
+                                        }
+                                    ?>
+                                    
+                                    readonly
+                                    >
+                                    
+                                    <label for="name" class="label-name">
+                                            <?php if($room['free_canselaration'] == ""){ ?>
+                                                <span class="content-success"><i class="material-icons">verified_user</i>Not Granted</span>
+                                            <?php } else {?>
+                                                <span class="content-success"><i class="material-icons">verified_user</i>Granted</span>
+                                            <?php } ?>
+                                    </label>   
+                                </div>     
+                        </div>
+
+                        <div class="row">
+                            <label for="#"><i class="material-icons">local_offer</i>Room Discount:</label>
+                                <div class="animate-form">
+                                    <input type="text"  class="inputField"
+                                    <?php 
+                                        if(isset($discount['discount'])){
+                                            echo 'value="' . $discount['discount'] . '%"';
+                                        }
+                                    ?>
+                                    
+                                    readonly
+                                    >
+                                    
+                                    <label for="name" class="label-name">
+                                            <?php if($discount['discount'] == ""){ ?>
+                                                <span class="content-success"><i class="material-icons">verified_user</i>Not Granted</span>
+                                            <?php } else {?>
+                                                <span class="content-success"><i class="material-icons">verified_user</i>Granted</span>
+                                            <?php } ?>
+                                    </label>    
+                                </div>     
                         </div>
                         
                         <div class="row">
-                            <div class="button">
-                                <button class="save" name="submit">Save</button>
-                            </div>
+                            <label for="#"><i class="material-icons">local_offer</i>Room Price:</label>
+                                <div class="animate-form">
+                                    <input type="text"  class="inputField"
+                                    <?php 
+                                        if(isset($room['price'])){
+                                            echo 'value="' . $room['price'] . '$"';
+                                        }
+                                    ?>
+                                    
+                                    readonly
+                                    >
+                                    
+                                    <label for="name" class="label-name">
+                                            <?php if($room['price'] == ""){ ?>
+                                                <span class="content-success"><i class="material-icons">verified_user</i>Not Granted</span>
+                                            <?php } else {?>
+                                                <span class="content-success"><i class="material-icons">verified_user</i>Granted</span>
+                                            <?php } ?>
+                                    </label>    
+                                </div>     
                         </div>
+                                              
                     </div>
 
-                    <div class="section2">
-                        <?php if(!empty($error)) { ?>
-                            <div class="errmsg">
-                            <b>There was error(s) on your form</b><br>
-
-                            <?php $len = sizeof($error);
-                                foreach(array_slice($error, 0, $len) as $error1){
-                                    $error = ucfirst(str_replace("_", " ", $error1));
-                                    echo $error . '<br>';
-                                }    
-                            ?>
-                            </div>
-                        <?php }
-
-                        else if(isset($success)) {?>
-                            <div class="errmsg">
-                            <b>There was Message  your you</b><br>
-                            <?php echo $success; ?>
-                            </div>
-                        <?php } 
-
-                        else if(isset($newerror)) { ?>
-                            <div class="errmsg">
-                            <b>Sorry!!There was Message  your you</b><br>
-                            <?php echo $newerror; ?>
-                            </div>
-                        <?php } 
-
-                        else { ?>
-                            <div class="errphoto">
-                            <!-- <b>Welcome Sir</b><br> -->
-                            <h4>Welcome to Employee Forms</h4>
-                            <img src="<?php echo BURL.'assets/img/employee2.jpg'; ?>" alt="">
-                            <!-- <?php echo $newerror; ?> -->
-                            </div>
-                        <?php } ?>
-
-
-
-                         
+                    <div class="section2"> 
 
                     </div>
 
                     </form>
                 </div>  <!--End Card Body -->
+
+                <div class="cardheader">
+                   <div class="options">
+                       <h4>All Reservations</h4>
+                   </div>
+                   <p class="textfortabel">Reservations View Following Table</p>
+               </div>
+               <div class="cardbody">
+                    <div class="tablebody">
+                        <table>
+                            <thead>
+                                <th>Room Number</th>
+                                <th>Customer Name</th>
+                                <th>Customer Email</th>
+                                <th>Reception</th>
+                                <th>Check In Date</th>
+                                <th>Check Out Date</th>
+                                <th>Payment Method</th>
+                            </thead>
+                            <?php foreach($reservations as $row): ?>
+                            <tbody>
+                                <td><?php echo $row['room_number'];?></td>
+                                <td><?php echo $row['first_name'];?></td>
+                               
+                                <td><?php echo $row['email'];?></td>
+                                <td><?php echo $row['username'];?></td>
+                                <td> 
+                                    <div class="in">
+                                        <?php  echo $row['check_in_date'];?>
+                                    </div>
+                                </td>    
+                                <td>
+                                    <div class="out">
+                                        <?php  echo $row['check_out_date'];?>
+                                    </div>
+                                </td>
+                                <td><?php echo $row['payment_method'];?></td>
+                            </tbody>
+                            <?php endforeach ?> 
+                        </table>
+                    </div>
+                </div> 
             </div>  <!--End Card -->
 
             

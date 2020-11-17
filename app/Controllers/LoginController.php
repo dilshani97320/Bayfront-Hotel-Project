@@ -34,14 +34,18 @@ class LoginController {
                     if(empty($user)) {
                         // echo "Invalid User";
                         $errors[] = "Invaild User";
-                        $data['errors'] = $errors;
-                        view::load('dashboard/dashboard', $data);
+                        // $data['errors'] = $errors;
+                        $dashboard = new DashboardController();
+                        $dashboard->index2($errors);
+                        // view::load('dashboard/dashboard', $data);
                     }
                     else {
                         $_SESSION['user_id'] = $user['reception_user_id'];
                         $_SESSION['username'] = $user['username'];
                         $_SESSION['user_level'] = "Reception";
-                        view::load('dashboard/dashboard');
+                        $dashboard = new DashboardController();
+                        $dashboard->index();
+                        // view::load('dashboard/dashboard');
                     }
 
                 }
@@ -49,7 +53,9 @@ class LoginController {
                     $_SESSION['user_id'] = $user['owner_user_id'];
                     $_SESSION['username'] = $user['username'];
                     $_SESSION['user_level'] = "Owner";
-                    view::load('dashboard/dashboard');
+                    $dashboard = new DashboardController();
+                    $dashboard->index();
+                    // view::load('dashboard/dashboard');
                     
                 }    
             }
@@ -57,8 +63,10 @@ class LoginController {
                 // echo "Error";
                 
                 // view::load('dashboard/dashboard');
-                $data['errors'] = $errors;
-                view::load('dashboard/dashboard', $data);
+                // $data['errors'] = $errors;
+                // view::load('dashboard/dashboard', $data);
+                $dashboard = new DashboardController();
+                $dashboard->index2($errors);
             }
         }
         // var_dump($errors);
@@ -77,7 +85,9 @@ class LoginController {
             session_unset();
             session_destroy();
         
-            view::load('dashboard/dashboard');
+            // view::load('dashboard/dashboard');
+            $dashboard = new DashboardController();
+            $dashboard->index();
         
         }
     }

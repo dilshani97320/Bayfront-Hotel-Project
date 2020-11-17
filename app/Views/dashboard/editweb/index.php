@@ -2,7 +2,9 @@
 <?php 
 
 // Header
-   $title = "Dashboard";
+
+   $title = "Edit web page";
+
    include(VIEWS.'dashboard/inc/header.php'); 
 ?>
 
@@ -10,10 +12,11 @@
       
    <?php 
    
-       $navbar_title = "Edit Web Site Details";
-       $search = 0;
-       $search_by = 'name';
-       $url = "employee/index";
+       $navbar_title = "Edit Page";
+       $search = 1;
+       $search_by = 'Room Number';
+       $url = "editweb/index";
+
        
        include(VIEWS.'dashboard/inc/sidebar.php'); //Sidebar
        include(VIEWS.'dashboard/inc/navbar.php'); //Navbar
@@ -23,16 +26,18 @@
            <div class="card">
                <div class="cardheader">
                    <div class="options">
-                       <h4>Employee Page   
+                       <h4>Current Rooms   
                        <span>
                             <?php if($_SESSION['user_level'] == "Owner"): ?>
-                                <a href="<?php url("editweb/createNew/") ?>" class="addnew"><i class="material-icons">add</i>Add New</a> 
+
+                                <a href="<?php url("editweb/createNew"); ?>" class="addnew"><i class="material-icons">add</i>Add New</a> 
                             <?php endif; ?>
-                            
+                            <a href="<?php url("editweb/index"); ?>" class="refresh"><i class="material-icons">refresh</i>Refresh</a> 
+
                        </span> 
                        </h4>
                    </div>
-                   <p class="textfortabel">Employee View Following Table</p>
+                   <p class="textfortabel">Room View Following Table</p>
                </div>
                <div class="cardbody">
                     <div class="tablebody">
@@ -41,7 +46,8 @@
                                 <th>Room Number</th>
                                 <th>Room Name</th>
                                 <th>Room Type</th>
-
+                                <th>Room View</th>
+                                <th>Room Price</th>
                                 <?php if($_SESSION['user_level'] == "Owner"): ?>
                                     <th>Edit</th>
                                     <th>Delete</th> 
@@ -54,6 +60,8 @@
                                 <td><?php echo $row['room_number'];?></td>
                                 <td><?php echo $row['room_name'];?></td>
                                 <td><?php echo $row['type_name'];?></td>
+                                <td><?php echo $row['room_view'];?></td>
+                                <td><?php echo $row['price'];?></td>
                                 <?php if($_SESSION['user_level'] == "Owner"): ?>
                                     <td><a href="<?php url('editweb/selectChange/'.$row['room_number']);?>" class="edit"><i class="material-icons">edit</i>Edit </a></td>
                                     <td><a href="<?php url('editweb/delete/'.$row['room_id'].'/'.$row['room_number']);?>" onclick="return confirm('Are you sure to delete this record?');" class="delete"><i class="material-icons">delete</i>Delete</a></td>

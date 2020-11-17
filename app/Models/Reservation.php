@@ -6,6 +6,8 @@ class Reservation {
     private $table2 = "room_details";
     private $table3 = "reservation";
     private $table4 = "payment";
+    private $table5 = "reception";
+    private $table6 = "room_type";
     private $connection;
 
     public function __construct() {
@@ -32,9 +34,10 @@ class Reservation {
         $query ="SELECT  $this->table2.room_id, $this->table2.room_number,
                  $this->table3.check_in_date, $this->table3.check_out_date
                  FROM $this->table2 LEFT OUTER JOIN $this->table3  ON $this->table2.room_id = $this->table3.room_id
-                 WHERE $this->table2.room_number = '{$room_number}' AND 
+                 WHERE $this->table2.room_number = '{$room_number}' AND $this->table3.is_valid = 1 AND
                  (($this->table3.check_in_date >= '{$current_date}' AND $this->table3.check_in_date <= '{$check_in_date}'  AND  $this->table3.check_out_date > '{$check_in_date}') OR 
-                 ($this->table3.check_in_date <= '{$check_in_date}'  AND  $this->table3.check_out_date >= '{$check_in_date}'))
+                 ($this->table3.check_in_date <= '{$check_in_date}'  AND  $this->table3.check_out_date >= '{$check_in_date}') OR 
+                 ($this->table3.check_in_date <= '{$check_out_date}'  AND  $this->table3.check_out_date >= '{$check_out_date}'))
                  ORDER BY $this->table2.room_id";
 
         $result = mysqli_query($this->connection, $query);
@@ -42,11 +45,11 @@ class Reservation {
         if($result) {
             if(mysqli_num_rows($result) == 1) {
                 $value = 1;
-                //echo "4\n";
+                // echo "4\n";
             }
         }
         else {
-            echo "Database Query Failed";
+            echo "Database Query Failed1";
         }        
     
     return $value;  
@@ -185,12 +188,16 @@ class Reservation {
         return $room;
     }
 
-    public function getReservationID($room_id) {
+    public function getReservationDetails($room_id, $check_in_date, $check_out_date) {
 
         $room_id = mysqli_real_escape_string($this->connection, $room_id);
+        $check_in_date = mysqli_real_escape_string($this->connection, $check_in_date);
+        $check_out_date = mysqli_real_escape_string($this->connection, $check_out_date);
 
         $query = "SELECT * FROM $this->table3
-                  WHERE room_id = '{$room_id}'
+                  WHERE room_id = '{$room_id}' AND
+                        check_in_date = '{$check_in_date}' AND
+                        check_out_date = '{$check_out_date}'
                   LIMIT 1";
 
         $reservations = mysqli_query($this->connection, $query);
@@ -204,6 +211,212 @@ class Reservation {
         }
 
         return $reservation;
+    }
+
+    public function getCustomer($customer_id) {
+        $customer_id = mysqli_real_escape_string($this->connection, $customer_id);
+
+        $query = "SELECT * FROM $this->table1
+                  WHERE customer_id = '{$customer_id}'
+                  LIMIT 1";
+        $customers = mysqli_query($this->connection, $query);
+        if($customers){
+            if(mysqli_num_rows($customers) == 1) {
+                $customer = mysqli_fetch_assoc($customers);
+            }
+        }
+        else {
+            echo "Query Error";
+        }
+
+        return $customer;
+    }
+
+    public function getReception($reception_user_id) {
+        $reception_user_id = mysqli_real_escape_string($this->connection, $reception_user_id);
+
+        $query = "SELECT * FROM $this->table5
+                  WHERE reception_user_id = '{$reception_user_id}'
+                  LIMIT 1";
+        $receptions = mysqli_query($this->connection, $query);
+        if($receptions){
+            if(mysqli_num_rows($receptions) == 1) {
+                $reception = mysqli_fetch_assoc($receptions);
+                // echo "Sucess";
+            }
+        }
+        else {
+            echo "Query Error";
+        }
+
+        return $reception;
+    }
+
+    public function getRoomType($room_type_id) {
+        $room_type_id = mysqli_real_escape_string($this->connection, $room_type_id);
+
+        $query = "SELECT * FROM $this->table6
+                  WHERE room_type_id = '{$room_type_id}'
+                  LIMIT 1";
+        $types = mysqli_query($this->connection, $query);
+        if($types){
+            if(mysqli_num_rows($types) == 1) {
+                $type = mysqli_fetch_assoc($types);
+            }
+        }
+        else {
+            echo "Query Error";
+        }
+
+        return $type;
+    }
+    
+    public function reservationDetails($reservation_id) {
+        $reservation_id = mysqli_real_escape_string($this->connection, $reservation_id);
+
+        $query = "SELECT * FROM $this->table3
+                  WHERE reservation_id = '{$reservation_id}' AND $this->table3.is_valid = 1
+                  LIMIT 1";
+
+        $reservations = mysqli_query($this->connection, $query);
+        if($reservations){
+            if(mysqli_num_rows($reservations) == 1) {
+                $reservation = mysqli_fetch_assoc($reservations);
+            }
+        }
+        else {
+            echo "Query Error";
+        }
+
+        return $reservation;
+
+    }
+
+    public function reservationDateToZero($reservation_id) {
+
+        $reservation_id = mysqli_real_escape_string($this->connection, $reservation_id);
+
+        $query = "UPDATE $this->table3 SET $this->table3.check_in_date = '2020-11-11', $this->table3.check_out_date = '2020-11-11' 
+                  WHERE $this->table3.reservation_id = '{$reservation_id}' AND $this->table3.is_valid = 1  LIMIT 1";
+
+        $result = mysqli_query($this->connection, $query);
+        
+        $value =0;
+        if($result) {
+            $value = 1;
+        }
+        // echo $value;
+        return $value;
+    }
+
+    public function resetReservationDates($reservation_id, $check_in_date, $check_out_date) {
+
+        $reservation_id = mysqli_real_escape_string($this->connection, $reservation_id);
+        $check_in_date = mysqli_real_escape_string($this->connection, $check_in_date);
+        $check_out_date = mysqli_real_escape_string($this->connection, $check_out_date);
+        
+
+        $query = "UPDATE $this->table3 SET $this->table3.check_in_date = '{$check_in_date}', $this->table3.check_out_date = '{$check_out_date}' 
+                  WHERE $this->table3.reservation_id = {$reservation_id} AND $this->table3.is_valid = 1 LIMIT 1";
+
+        $result = mysqli_query($this->connection, $query);
+        
+        $value =0;
+        if($result) {
+            $value = 1;
+        }
+        
+        return $value;
+
+    }
+
+    public function getUpdateReservation($reservation_id, $check_in_date, $check_out_date) {
+        $reservation_id = mysqli_real_escape_string($this->connection, $reservation_id);
+        $check_in_date = mysqli_real_escape_string($this->connection, $check_in_date);
+        $check_out_date = mysqli_real_escape_string($this->connection, $check_out_date);
+        // echo $check_in_date;
+
+        $query = "UPDATE $this->table3 SET $this->table3.check_in_date = '{$check_in_date}', $this->table3.check_out_date = '{$check_out_date}' 
+                  WHERE $this->table3.reservation_id = {$reservation_id} AND $this->table3.is_valid = 1  LIMIT 1";
+
+        $result = mysqli_query($this->connection, $query);
+        
+        $value =0;
+
+        if($result) {
+            $value = 1;
+        }
+        
+        return $value;
+    }
+
+    public function getReservationDelete($room_id, $check_in_date, $check_out_date) {
+
+        $room_id = mysqli_real_escape_string($this->connection, $room_id);
+        $check_in_date = mysqli_real_escape_string($this->connection, $check_in_date);
+        $check_out_date = mysqli_real_escape_string($this->connection, $check_out_date);
+
+        $query = "UPDATE $this->table3 SET $this->table3.is_valid = 0
+                  WHERE $this->table3.room_id = '{$room_id}' AND $this->table3.check_in_date = '{$check_in_date}' AND $this->table3.check_out_date = '{$check_out_date}' LIMIT 1";
+
+        $result = mysqli_query($this->connection, $query);
+                
+        $value =0;
+
+        if($result) {
+            $value = 1;
+        }
+
+        return $value;
+    }
+
+    public function getSearchRoomAll($search) {
+
+        $search = mysqli_real_escape_string($this->connection, $search);
+
+        $query = "SELECT $this->table2.room_number,  $this->table2.room_name, $this->table2.price, $this->table6.max_guest,
+                  $this->table3.check_in_date, $this->table3.check_out_date
+                  FROM $this->table2
+                  INNER JOIN $this->table6
+                  ON  $this->table2.type_id = $this->table6.room_type_id
+                  LEFT OUTER JOIN $this->table3
+                  ON $this->table2.room_id = $this->table3.room_id
+                  WHERE $this->table2.room_number LIKE '%{$search}%' AND $this->table3.is_valid = 1
+                  ORDER BY $this->table2.room_id";
+
+        $rooms = mysqli_query($this->connection, $query);
+
+        if($rooms) {
+            mysqli_fetch_all($rooms,MYSQLI_ASSOC);
+        }
+        else {
+            echo "Database Query Failed";
+        }        
+    
+    return $rooms;  
+    }
+
+    public function getAllRoomAll() {
+
+        $query = "SELECT $this->table2.room_number,  $this->table2.room_name, $this->table2.price, $this->table6.max_guest,
+                  $this->table3.check_in_date, $this->table3.check_out_date
+                  FROM $this->table2
+                  INNER JOIN $this->table6
+                  ON  $this->table2.type_id = $this->table6.room_type_id
+                  LEFT OUTER JOIN $this->table3
+                  ON $this->table2.room_id = $this->table3.room_id
+                  WHERE $this->table3.is_valid = 1 
+                  ORDER BY $this->table2.room_id";
+
+        $rooms = mysqli_query($this->connection, $query);
+        if($rooms) {
+            mysqli_fetch_all($rooms,MYSQLI_ASSOC);
+        }
+        else {
+            echo "Database Query Failed";
+        }    
+
+    return $rooms;    
     }
 
     

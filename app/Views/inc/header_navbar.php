@@ -274,7 +274,8 @@
 
                     <a href="<?php url('Home/login'); ?>" class="btn1 transparent">Log in</a>
 
-                    <!-- <a href="#" class="btn1 solid">Book Now</a> -->
+                    <a href="<?php url('Dashboard/index'); ?>" class="btn1 solid">Dashboard</a>
+
                 </div>
             </div>
 

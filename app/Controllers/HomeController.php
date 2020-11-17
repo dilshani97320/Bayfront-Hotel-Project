@@ -44,6 +44,7 @@ session_start();
 
         public function dashboard()
         {
+
             View::load('dashboard/dashboard');
         }
         

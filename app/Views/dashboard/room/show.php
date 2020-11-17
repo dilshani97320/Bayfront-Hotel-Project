@@ -2,7 +2,7 @@
 <?php 
 
 // Header
-   $title = "Reservations page";
+   $title = "Rooms page";
    include(VIEWS.'dashboard/inc/header.php'); 
 ?>
 
@@ -10,7 +10,7 @@
       
    <?php 
    
-       $navbar_title = "All Reservations Page";
+       $navbar_title = "Rooms Reservations ";
        $search = 1;
        $search_by = 'Room Number';
        $url = "room/view";
@@ -25,7 +25,7 @@
            <div class="card">
                <div class="cardheader">
                    <div class="options">
-                       <h4>All Reservations Page   
+                       <h4>All Room Reservations Page  
                        <span>
                             <?php if($_SESSION['user_level'] != "Owner"): ?>
                                 <a href="<?php url("reservation/index"); ?>" class="addnew"><i class="material-icons">add</i>Add New</a> 
@@ -35,7 +35,7 @@
                         
                        </h4>
                    </div>
-                   <p class="textfortabel">Reservations View Following Table</p>
+                   <p class="textfortabel">Rooms Reservations View Following Table</p>
                </div>
                <div class="cardbody">
                <div class="tablebody">
@@ -52,7 +52,9 @@
                                             <th>Edit</th>
                                             <th>Delete</th>
                                         <?php endif; ?>
-
+                                        <?php if($_SESSION['user_level'] != "Owner" ): ?>
+                                            <th>Reservation</th>
+                                        <?php endif; ?>
                                                                                  
                                     </thead>
 
@@ -96,13 +98,13 @@
                                             <?php } ?>
                                         </td>
 
-                                        <td><a href="<?php url('room/view/'.$row['room_id'].'/'.$row['room_type_id']);?>" class="edit"><i class="material-icons">zoom_in</i>Details</a></td>
+                                        <td><a href="<?php url('room/details/'.$row['room_number']);?>" class="edit"><i class="material-icons">zoom_in</i>Details</a></td>
                                         <?php if($_SESSION['user_level'] != "Owner" ): ?>
                                             <td><a href="<?php url('reservation/view/'.$row['room_number'].'/'.$row['max_guest']);?>" onclick="return confirm('Are you sure?');" class="edit"><i class="material-icons">book_online</i>Reservation</a></td>
                                         <?php endif; ?>
                                         <?php if($_SESSION['user_level'] == "Owner"): ?>
-                                            <td><a href="<?php url('reservation/edit/'.$row['emp_id']);?>" class="edit"><i class="material-icons">edit</i>Edit</a></td>
-                                            <td><a href="<?php url('reservation/delete/'.$row['emp_id']);?>" onclick="return confirm('Are you sure?');" class="delete"><i class="material-icons">delete</i>Delete</a></td>
+                                            <td><a href="<?php url('reservation/edit/'.$row['room_number'].'/'.$row['check_in_date'].'/'.$row['check_out_date']);?>" class="edit"><i class="material-icons">edit</i>Edit</a></td>
+                                            <td><a href="<?php url('reservation/delete/'.$row['room_number'].'/'.$row['check_in_date'].'/'.$row['check_out_date']);?>" onclick="return confirm('Are you sure?');" class="delete"><i class="material-icons">delete</i>Delete</a></td>
                                         <?php endif; ?>
                                     </tbody>
                                 <?php endforeach ?> 

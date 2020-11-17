@@ -11,7 +11,8 @@ class RoomController {
         $current_date = date('Y-m-d');
         
         if(!isset($_SESSION['user_id'])) {
-            view::load('dashboard/dashboard');    
+            $dashboard = new DashboardController();
+            $dashboard->index();   
         }
         else {
             $db = new RoomDetails();
@@ -28,7 +29,8 @@ class RoomController {
 
     public function view() {
         if(!isset($_SESSION['user_id'])) {
-            view::load('dashboard/dashboard');    
+            $dashboard = new DashboardController();
+            $dashboard->index();   
         }
         else {
                 $data = array();
@@ -48,7 +50,8 @@ class RoomController {
 
     public function details($room_number) {
         if(!isset($_SESSION['user_id'])) {
-            view::load('dashboard/dashboard');    
+            $dashboard = new DashboardController();
+            $dashboard->index();   
         }
         else {
             // Get Given Room number details

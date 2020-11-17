@@ -1,26 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="icon" type="image/png" href="img/favicon.png"/>
-	<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="stylesheet" type="text/css" href="css/footer-style.css">
-	<link rel="stylesheet" type="text/css" href="css/basic-style.css">
-	<title>Surf Packages</title>
+	<link rel="icon" type="image/png" href="<?php echo BURL.'assets/img/basic/favicon.png'; ?>" />
+	<title>BAYFRONT SURF</title>
+
 </head>
 <body>
 
-	<?php include("common/header_navbar.php"); ?>
+	<?php include(VIEWS.'inc/header_navbar.php'); ?>
 
 	<?php 
-		if(isset($_GET['article'])) {
-			switch ($_GET['article']) {
+
+			switch ($id) {
 				case '1':
 	?>
 		<div class="slidecontainer">
-			<img class="image" src="img/post9.jpg" alt="beach side city view">
+			<img class="image" src="<?php echo BURL.'assets/img/surf/post9.jpg' ?>" alt="beach side city view">
 		 	<div class="bottom-left">
 		 		<h1>Beginner Courses</h1>
 		 	</div>
@@ -36,7 +33,7 @@
 			</ul>
 			<div class="package">
 
-				<img src="img/sub1.jpg" alt="" class="packImg">
+				<img src="<?php echo BURL.'assets/img/surf/sub1.jpg' ?>" alt="" class="packImg">
 				<div class="price">
 					<dl class="inline">
 						<p class="head">We offer experienced professional instructors in small groups which allows for fast learning and lots of fun. Our lessons begin on the beach and in the easier white waves where we take you through the basic theory and techniques of surfing..</p>
@@ -56,7 +53,7 @@
 			
 				  
 				    <div class="reviewQuote group">
-				        <img src="img/prof1.jpg">
+				        <img src="<?php echo BURL.'assets/img/surf/prof1.jpg' ?>">
 				        <div class="quote-container">
 				            <blockquote>
 				                <p>Had my first ever surf lesson here and it was incredible! We were recommended Freedom as the best surf school in Weligama by our hostel and I see why- I got a one-to-one lesson for 2000 LKR and my teacher was patient, encouraging and gave me feedback on how to improve each time I didn't manage to stand up! ”</p>
@@ -72,7 +69,7 @@
 			
 			<div class="package">
 
-				<img src="img/sub2.jpg" alt="" class="packImg">
+				<img src="<?php echo BURL.'assets/img/surf/sub2.jpg' ?>" alt="" class="packImg">
 				<div class="price">
 					<dl class="inline">
 						<p class="head">Three to six people in the group but need to be booked as a with minimum 3 people. Unou Other guests may join this lesson. Too book a private group lesson and guarantee other students won't join the particular lesson we will charge the duo rates. Price per person.</p>
@@ -92,7 +89,7 @@
 			</div>
 
 			<div class="second">
-				<?php include("common/surf-catogery.php"); ?>
+				<?php include(VIEWS.'inc/surf-catogery.php'); ?>
 
 			</div>
 			
@@ -103,7 +100,7 @@
 				case '2':
 	?>
 	<div class="slidecontainer">
-			<img class="image" src="img/post10.jpg" alt="beach side city view">
+			<img class="image" src="<?php echo BURL.'assets/img/surf/post10.jpg' ?>" alt="beach side city view">
 		 	<div class="bottom-left">
 		 		<h1>Intermediate Courses</h1>
 		 	</div>
@@ -118,7 +115,7 @@
 				<li>You want to push your limits; you will finetune your paddle, stance and style and begin developing more radical manoeuvers surfing both frontside and backside.</li>
 			</ul>
 			<div class="package">
-				<img src="img/sub4.jpg" alt="" class="packImg">
+				<img src="<?php echo BURL.'assets/img/surf/sub4.jpg' ?>" alt="" class="packImg">
 				<div class="price">
 					<dl class="inline">
 						<p class="head">We offer experienced professional instructors in small groups which allows for fast learning and lots of fun. Our lessons begin on the beach and in the easier white waves where we take you through the basic theory and techniques of surfing..</p>
@@ -140,7 +137,7 @@
 				  <div class="adj-layer">
 				    <!-- <h1>Kudos</h1> -->
 				    <div class="reviewQuote group">
-				        <img src="img/prof2.jpg">
+				        <img src="<?php echo BURL.'assets/img/surf/prof2.jpg' ?>">
 				        <div class="quote-container">
 				            <blockquote>
 				                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce hendrerit justo augue, vitae lobortis sapien interdum ut. Phasellus condimentum leo ut sem pulvinar, in sodales erat feugiat. Pellentesque ac cursus odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. ”</p>
@@ -157,7 +154,7 @@
 
 			<div class="package">
 
-				<img src="img/sub3.jpg" alt="" class="packImg">
+				<img src="<?php echo BURL.'assets/img/surf/sub3.jpg' ?>" alt="" class="packImg">
 				<div class="price">
 					<dl class="inline">
 						<p class="head">Three to six people in the group but need to be booked as a with minimum 3 people. Unou Other guests may join this lesson. Too book a private group lesson and guarantee other students won't join the particular lesson we will charge the duo rates. Price per person.</p>
@@ -176,7 +173,7 @@
 			</div>
 			</div>
 			<div class="second">
-				<?php include("common/surf-catogery.php"); ?>
+				<?php include(VIEWS.'inc/surf-catogery.php'); ?>
 			</div>
 			
 		</div>
@@ -185,7 +182,7 @@
 				case '3':
 	?>
 	<div class="slidecontainer">
-			<img class="image" src="img/post11.jpg" alt="beach side city view">
+			<img class="image" src="<?php echo BURL.'assets/img/surf/post11.jpg' ?>" alt="beach side city view">
 		 	<div class="bottom-left">
 		 		<h1>Advanced Courses</h1>
 		 	</div>
@@ -201,7 +198,7 @@
 			</ul>
 			<div class="package">
 
-				<img src="img/sub5.jpg" alt="" class="packImg">
+				<img src="<?php echo BURL.'assets/img/surf/sub5.jpg' ?>" alt="" class="packImg">
 				<div class="price">
 					<dl class="inline">
 						<p class="head">We offer experienced professional instructors in small groups which allows for fast learning and lots of fun. Our lessons begin on the beach and in the easier white waves where we take you through the basic theory and techniques of surfing..</p>
@@ -223,7 +220,7 @@
 				  <div class="adj-layer">
 				    <!-- <h1>Kudos</h1> -->
 				    <div class="reviewQuote group">
-				        <img src="img/prof3.jpg">
+				        <img src="<?php echo BURL.'assets/img/surf/prof3.jpg' ?>">
 				        <div class="quote-container">
 				            <blockquote>
 				                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce hendrerit justo augue, vitae lobortis sapien interdum ut. Phasellus condimentum leo ut sem pulvinar, in sodales erat feugiat. Pellentesque ac cursus odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. ”</p>
@@ -240,7 +237,7 @@
 
 			<div class="package">
 
-				<img src="img/sub6.jpg" alt="" class="packImg">
+				<img src="<?php echo BURL.'assets/img/surf/sub6.jpg' ?>" alt="" class="packImg">
 				<div class="price">
 					<dl class="inline">
 						<p class="head">Three to six people in the group but need to be booked as a with minimum 3 people. Unou Other guests may join this lesson. Too book a private group lesson and guarantee other students won't join the particular lesson we will charge the duo rates. Price per person.</p>
@@ -259,7 +256,7 @@
 			</div>
 			</div>
 			<div class="second">
-				<?php include("common/surf-catogery.php"); ?>
+				<?php include(VIEWS.'inc/surf-catogery.php'); ?>
 			</div>
 			
 		</div>
@@ -268,7 +265,7 @@
 				case '4':
 	?>
 	<div class="slidecontainer">
-			<img class="image" src="img/post12.jpg" alt="beach side city view">
+			<img class="image" src="<?php echo BURL.'assets/img/surf/post12.jpg' ?>" alt="beach side city view">
 		 	<div class="bottom-left">
 		 		<h1>Group Lesson</h1>
 		 	</div>
@@ -281,7 +278,7 @@
 			<h3> AT A GLANCE</h3>
 			<div class="package">
 
-				<img src="img/sub7.jpg" alt="" class="packImg">
+				<img src="<?php echo BURL.'assets/img/surf/sub7.jpg' ?>" alt="" class="packImg">
 				<div class="price">
 					<dl class="inline">
 						<p class="head">We offer experienced professional instructors in small groups which allows for fast learning and lots of fun. Our lessons begin on the beach and in the easier white waves where we take you through the basic theory and techniques of surfing..</p>
@@ -303,7 +300,7 @@
 				  <div class="adj-layer">
 				    <!-- <h1>Kudos</h1> -->
 				    <div class="reviewQuote group">
-				        <img src="img/prof4.jpg">
+				        <img src="<?php echo BURL.'assets/img/surf/prof4.jpg' ?>"">
 				        <div class="quote-container">
 				            <blockquote>
 				                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce hendrerit justo augue, vitae lobortis sapien interdum ut. Phasellus condimentum leo ut sem pulvinar, in sodales erat feugiat. Pellentesque ac cursus odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. ”</p>
@@ -320,7 +317,7 @@
 
 			<div class="package">
 
-				<img src="img/sub8.jpg" alt="" class="packImg">
+				<img src="<?php echo BURL.'assets/img/surf/sub8.jpg' ?>" alt="" class="packImg">
 				<div class="price">
 					<dl class="inline">
 						<p class="head">Three to six people in the group but need to be booked as a with minimum 3 people. Unou Other guests may join this lesson. Too book a private group lesson and guarantee other students won't join the particular lesson we will charge the duo rates. Price per person.</p>
@@ -339,7 +336,7 @@
 			</div>
 			</div>
 			<div class="second">
-				<?php include("common/surf-catogery.php"); ?>
+				<?php include(VIEWS.'inc/surf-catogery.php'); ?>
 			</div>
 			
 		</div>
@@ -349,7 +346,7 @@
 				case '5':
 	?>
 	<div class="slidecontainer">
-			<img class="image" src="img/post13.jpg" alt="beach side city view">
+			<img class="image" src="<?php echo BURL.'assets/img/surf/post13.jpg' ?>" alt="beach side city view">
 		 	<div class="bottom-left">
 		 		<h1>Solo lesson</h1>
 		 	</div>
@@ -362,7 +359,7 @@
 			<h3> AT A GLANCE</h3>
 			<div class="package">
 
-				<img src="img/sub9.jpg" alt="" class="packImg">
+				<img src="<?php echo BURL.'assets/img/surf/sub9.jpg' ?>" alt="" class="packImg">
 				<div class="price">
 					<dl class="inline">
 						<p class="head">We offer experienced professional instructors in small groups which allows for fast learning and lots of fun. Our lessons begin on the beach and in the easier white waves where we take you through the basic theory and techniques of surfing..</p>
@@ -384,7 +381,7 @@
 				  <div class="adj-layer">
 				    <!-- <h1>Kudos</h1> -->
 				    <div class="reviewQuote group">
-				        <img src="img/prof5.jpg">
+				        <img src="<?php echo BURL.'assets/img/surf/prof5.jpg' ?>">
 				        <div class="quote-container">
 				            <blockquote>
 				                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce hendrerit justo augue, vitae lobortis sapien interdum ut. Phasellus condimentum leo ut sem pulvinar, in sodales erat feugiat. Pellentesque ac cursus odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. ”</p>
@@ -401,7 +398,7 @@
 
 			<div class="package">
 
-				<img src="img/sub10.jpg" alt="" class="packImg">
+				<img src="<?php echo BURL.'assets/img/surf/sub10.jpg' ?>" alt="" class="packImg">
 				<div class="price">
 					<dl class="inline">
 						<p class="head">Three to six people in the group but need to be booked as a with minimum 3 people. Unou Other guests may join this lesson. Too book a private group lesson and guarantee other students won't join the particular lesson we will charge the duo rates. Price per person.</p>
@@ -420,7 +417,7 @@
 			</div>
 			</div>
 			<div class="second">
-				<?php include("common/surf-catogery.php"); ?>
+				<?php include(VIEWS.'inc/surf-catogery.php'); ?>
 			</div>
 			
 		</div>
@@ -430,11 +427,9 @@
 					# code...
 					break;
 			}
-		} else {
-			echo "not set";
-		}
+	
 	?>
-	<?php include("common/footer.php"); ?>
+	<?php include(VIEWS.'inc/footer.php'); ?>
 
 	
 	<script type="text/javascript">

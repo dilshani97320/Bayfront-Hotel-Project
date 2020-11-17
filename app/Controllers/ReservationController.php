@@ -7,7 +7,8 @@ class ReservationController {
         
         //Checking if a user is logged in
         if(!isset($_SESSION['user_id'])) {
-            view::load('dashboard/dashboard');    
+            $dashboard = new DashboardController();
+            $dashboard->index();   
         }
         else {
             view::load('dashboard/reservation/create');
@@ -20,7 +21,8 @@ class ReservationController {
         
         //Checking if a user is logged in
         if(!isset($_SESSION['user_id'])) {
-            view::load('dashboard/dashboard');    
+            $dashboard = new DashboardController();
+            $dashboard->index();   
         }
         else {
             $data['reservation'] = array('room_number' => $room_number, 'max_guest' => $max_guest);
@@ -32,7 +34,8 @@ class ReservationController {
 
     public function details() {
         if(!isset($_SESSION['user_id'])) {
-            view::load('dashboard/dashboard');    
+            $dashboard = new DashboardController();
+            $dashboard->index();    
         }
         else {
                 $data = array();
@@ -209,7 +212,8 @@ class ReservationController {
         
 
         if(!isset($_SESSION['user_id'])) {
-            view::load('dashboard/dashboard');    
+            $dashboard = new DashboardController();
+            $dashboard->index();   
         }
         else {
             $db = new Reservation();
@@ -376,7 +380,8 @@ class ReservationController {
 
     public function delete($room_number, $check_in_date, $check_out_date) {
         if(!isset($_SESSION['user_id'])) {
-            view::load('dashboard/dashboard');    
+            $dashboard = new DashboardController();
+            $dashboard->index();    
         }
         else {
             $db = new Reservation();

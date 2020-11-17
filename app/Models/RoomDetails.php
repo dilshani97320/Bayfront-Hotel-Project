@@ -2,12 +2,14 @@
 
 class RoomDetails {
 
+
     private $table1 = "room_details";
     private $table2 = "room_type";
     private $table3 = "room_discount";
     private $table4 = "reservation";
     private $table5 = "customer";
     private $table6 = "reception";
+
     private $connection;
 
     public function __construct() {
@@ -15,14 +17,57 @@ class RoomDetails {
         $dbhost = 'localhost';
         $dbuser = 'root';
         $dbpass = '';
-        $dbname = 'bayfront_hotel';
+        $dbname = 'bayfront_hotel1';
 
         $this->connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+    }
+    public function getRoomView()
+    {
+         $query = "SELECT * FROM $this->table1
+                  INNER JOIN $this->table2 ON $this->table1.type_id = $this->table2.room_type_id";
+        // echo $query;  
+        // exit();  
+        $result= mysqli_query($this->connection, $query);
+        // var_dump($rooms);
+        // exit();
+        if($result) {
+            $rooms = mysqli_fetch_all($result,MYSQLI_ASSOC);
+        
+            // var_dump($rooms);
+            // exit();
+            return $rooms;
+        }
+        else {
+            echo "Database Query Failed";
+        }    
+
+    }
+
+    public function getOneRoomView($room_number)
+    {
+         $query = "SELECT * FROM $this->table1
+                  INNER JOIN $this->table2 ON $this->table1.type_id = $this->table2.room_type_id WHERE $this->table1.room_number= '$room_number' ";
+        // echo $query;  
+        // exit();  
+        $result= mysqli_query($this->connection, $query);
+        // var_dump($result);
+        // exit();
+        if($result) {
+            $rooms = mysqli_fetch_all($result,MYSQLI_ASSOC);
+        
+            // var_dump($rooms);
+            // exit();
+            return $rooms;
+        }
+        else {
+            echo "Database Query Failed";
+        }    
     }
 
     public function getRoomTypes() {
         $user = array();
         $query = "SELECT type_name FROM $this->table2";
+
 
         $result = 0;
 
@@ -318,6 +363,37 @@ class RoomDetails {
     
 
     
+
+
+    // public function getDataEmployee($room_id) {
+
+    //     $emp_id = mysqli_real_escape_string($this->connection, $room_id);
+
+    //     $query = "SELECT * FROM $this->table1
+    //               WHERE room_id = '{$room_id}'
+
+
+    // public function getOwner($owner_user_id) {
+    //     $user = array();
+    //     $owner_user_id = mysqli_real_escape_string($this->connection, $owner_user_id);
+    //     $query = "SELECT * FROM $this->table 
+    //               WHERE owner_user_id = '{$owner_user_id}'
+
+    //               LIMIT 1";
+    //     $rooms = mysqli_query($this->connection, $query);
+    //     if($rooms){
+    //         if(mysqli_num_rows($rooms) == 1) {
+    //             $room = mysqli_fetch_assoc($rooms);
+    //         }
+    //     }
+    //     else {
+    //         echo "Query Error";
+    //     }
+
+    //     return $employee;
+    // }
+
+
 
     // public function getDataEmployee($room_id) {
 

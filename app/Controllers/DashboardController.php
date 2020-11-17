@@ -1,27 +1,76 @@
 <?php 
-session_start();
+// session_start();
 
 class DashboardController {
 
     public function index() {
         
-        $data = array();
+        if(isset($_SESSION)) {
+            $data = array();
 
-        $db = new Dashboard();
+            $db = new Dashboard();
 
-        $resultRoom = $db->getRoomCount();
-        $resultReservation = $db->getReservationCount();
-        $resultIncome = $db->getReservationIncome();
-        $resultEmployee = $db->getEmployeeCount();
+            $resultRoom = $db->getRoomCount();
+            $resultReservation = $db->getReservationCount();
+            $resultIncome = $db->getReservationIncome();
+            $resultEmployee = $db->getEmployeeCount();
 
-        // echo $resultRoom['total'];
-        // echo $resultEmployee['total'];
-        // echo $resultReservation['total'];
-        // echo $resultIncome['total'];
-        $data['details'] = array("rooms" => $resultRoom['total'], "reservations" => $resultReservation['total'], "income" => $resultIncome['total'], "employees" => $resultEmployee['total']);
-        view::load('dashboard/dashboard', $data);
+            $data['details'] = array("rooms" => $resultRoom['total'], "reservations" => $resultReservation['total'], "income" => $resultIncome['total'], "employees" => $resultEmployee['total']);
+            view::load('dashboard/dashboard', $data);
+        }
+
+        else {
+            session_start();
+            $data = array();
+
+            $db = new Dashboard();
+
+            $resultRoom = $db->getRoomCount();
+            $resultReservation = $db->getReservationCount();
+            $resultIncome = $db->getReservationIncome();
+            $resultEmployee = $db->getEmployeeCount();
+
+            $data['details'] = array("rooms" => $resultRoom['total'], "reservations" => $resultReservation['total'], "income" => $resultIncome['total'], "employees" => $resultEmployee['total']);
+            view::load('dashboard/dashboard', $data);
+        }
+        
         // view::load('dashboard/dashboard');
            
+    }
+
+    public function index2($errors) {
+
+        if(isset($_SESSION)) {
+            $data = array();
+
+            $db = new Dashboard();
+
+            $resultRoom = $db->getRoomCount();
+            $resultReservation = $db->getReservationCount();
+            $resultIncome = $db->getReservationIncome();
+            $resultEmployee = $db->getEmployeeCount();
+            
+            $data['errors'] = $errors;
+            $data['details'] = array("rooms" => $resultRoom['total'], "reservations" => $resultReservation['total'], "income" => $resultIncome['total'], "employees" => $resultEmployee['total']);
+            view::load('dashboard/dashboard', $data);
+        }
+
+        else {
+            session_start();
+            $data = array();
+
+            $db = new Dashboard();
+
+            $resultRoom = $db->getRoomCount();
+            $resultReservation = $db->getReservationCount();
+            $resultIncome = $db->getReservationIncome();
+            $resultEmployee = $db->getEmployeeCount();
+            
+            $data['errors'] = $errors;
+            $data['details'] = array("rooms" => $resultRoom['total'], "reservations" => $resultReservation['total'], "income" => $resultIncome['total'], "employees" => $resultEmployee['total']);
+            view::load('dashboard/dashboard', $data);
+        }
+        
     }
 }    
 

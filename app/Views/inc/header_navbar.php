@@ -25,7 +25,7 @@
                 <div class="nav-links">
                     <ul>
                         <li class="nav-link" style="--i: .85s"><a href="<?php url() ?>">Home</a></li>
-                        <li class="nav-link" style="--i: .85s"><a href="<?php url('Room/index'); ?>">Room & Lifestyle</a></li>
+                        <li class="nav-link" style="--i: .85s"><a href="<?php url('Roomsuite/index'); ?>">Room & Lifestyle</a></li>
                         <li class="nav-link" style="--i: .85s"><a href="<?php url('Dining/index'); ?>">Dining</a></li>
                         <li class="nav-link" style="--i: .85s"><a href="<?php url('Surf/index'); ?>">Surf</a></li>
                         <li class="nav-link" style="--i: .85s"><a href="<?php url('Activity/index'); ?>">Activities</a></li>
@@ -88,8 +88,10 @@
                 </div>
 
                 <div class="log-sign" style="--i: 1.8s">
-                    <a href="<?php url('LoginWeb/index'); ?>" class="btn1 transparent">Log in</a>
-                    <a href="<?php url('Home/dashboard'); ?>" class="btn1 solid">Dashboard</a>
+
+                    <a href="<?php url('Home/login'); ?>" class="btn1 transparent">Log in</a>
+
+                    <a href="<?php url('Dashboard/index'); ?>" class="btn1 solid">Dashboard</a>
                 </div>
             </div>
 

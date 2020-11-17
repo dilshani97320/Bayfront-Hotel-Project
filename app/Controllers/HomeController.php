@@ -12,14 +12,42 @@
 
         public function index()
         {
+            
+            View::load('home');
+            
+        }
+        public function verifyHome($token)
+        {
+            $token =trim($token);
+            $user = new AuthController;
+            $user->verifyUser($token);
+            echo $_SESSION['message'];
             View::load('home');
         }
 
         public function dashboard()
         {
+
             View::load('dashboard/dashboard');
         }
         
+        public function login()
+        {
+            $data['errors']= [];
+            View::load('login/login' , $data);
+        }
+
+        public function signup()
+        {
+            $data['errors']= [];
+            View::load('login/signup',$data);
+        }
+        
+        public function frogetPassword()
+        {
+            $data['errors']= [];
+            View::load('login/frogot', $data);
+        }
     }
 
 ?>

@@ -1,4 +1,4 @@
-<?php require_once 'controllers/authControllers.php'; ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -167,76 +167,29 @@ select:-webkit-autofill:focus {
 }
 
 .alert {
-  width: 500px;
-  height: 50px;
-  display: flex;
+  width: 350px;
+  height: auto;
   justify-content: left;
   align-items: center;
+  color: red;
   border-radius: 5px;
   padding-left: 10px;
   padding-right: 40px;
-  font-size: 18px;
+  font-size: 15px;
   margin: 0 auto;
   box-shadow: rgba(0, 0, 0, 0.06) 0px 0px 15px;
 }
-/*.close-alert {
-  color: #000000;
-  font-size: 25px;
-  display: flex;
-  align-items: center;
-  position: absolute;
-  right: 15px;
-  cursor: pointer;
-}
-.close-alert:hover {
-  color: #000000;
-  background: #f1f1f1;
-  border-radius: 50%;
-}*/
-.successful.alert {
-  border-left: 6px solid #02c302;
-  background: white;
-}
-
-.successful.alert:before {
-  content: "\2713";
-  color: #02c302;
-  font-size: 25px;
-  font-family: "boxicons" !important;
-  font-weight: normal;
-  font-style: normal;
-  font-variant: normal;
-  line-height: 1;
-  display: inline-block;
-  text-transform: none;
-  speak: none;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  padding-right: 10px;
-}
-
 .error.alert {
   border-left: 6px solid #ff0000;
   background: white;
   text-align: left;
 }
-
-.error.alert:before {
-  content: "\2612";
-  color: #ff0000;
-  font-size: 25px;
-  font-family: "boxicons" !important;
-  font-weight: normal;
-  font-style: normal;
-  font-variant: normal;
-  line-height: 1;
-  display: inline-block;
-  text-transform: none;
-  speak: none;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  padding-right: 10px;
+.error p{
+  margin: 5px 2px;
+  text-transform: capitalize;
+  letter-spacing: 1px;
 }
+
 .image {
   width: 400px;
   height: 300px;
@@ -263,22 +216,22 @@ select:-webkit-autofill:focus {
 			 </ul>
 	  	</div>
 	  	<h1>Change Your Password </h1>
-	  	<form action="reset_password.php" method="post">
-			<?php if(count($errors)>0): ?>
-				<div class="alert">
-					<?php foreach($errors as $error): ?>
-					<li><?php echo $error;  ?></li>
-					<?php endforeach; ?>
-				</div>
-					<?php endif; ?>
+	  	<form action="<?php url("auth/resetUserPassword/$token"); ?>" method="post">
+
+			      <?php //var_dump($errors); ?>
+            <?php if(count($errors)>0): ?>
+            <?php foreach($errors as $error): ?>
+            <div class="alert error" role="alert"> <p><i class="fas fa-exclamation-circle"></i><?php echo $error;  ?></p> </div>
+            <?php endforeach; ?>
+            <?php endif;  ?>
 				
 				<div class="input-field">
 					<i class="fas fa-lock"></i>
-              <input type="password" name="password"  placeholder="Password" />
+              <input type="password" name="password"  placeholder="Password" required/>
 				</div>
                 <div class="input-field">
 					<i class="fas fa-lock"></i>
-              <input type="password" name="passwordConf"  placeholder="Confirm Password" />
+              <input type="password" name="passwordConf"  placeholder="Confirm Password" required/>
 				</div>
 				<div class="form-group">
 					<button type="submit" name="reset-btn" class="btn">Confirm</button>

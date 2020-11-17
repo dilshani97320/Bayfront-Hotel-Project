@@ -637,6 +637,7 @@ figure.imgBlock.hover .title:after {
 .single-room-meta {
     display: flex;
     flex-wrap: wrap;
+    ali
     flex: 1;
     margin-top: 0;
     /* border: 2px solid #85b5cc; */
@@ -646,7 +647,7 @@ figure.imgBlock.hover .title:after {
 }
 .single-room-meta .meta{
   display: block;
-  margin-left: 40px;
+  margin-right: 50px;
 }
 .single-room-meta .title{
   display: block;
@@ -656,6 +657,13 @@ figure.imgBlock.hover .title:after {
   margin-right: 8px;
   color: #85b5cc;
 }
+.single-room-meta  .value-meta{
+  margin: 2px auto;
+  padding: 1px;
+  text-align: center;
+  font-weight: 650;
+}
+</
 .room-details h1{
   text-align: left; 
 }

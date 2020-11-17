@@ -106,7 +106,7 @@ class Signin {
 
     public function frogot($email)
     {
-        echo $email;
+        // echo $email;
         $sql= "SELECT * FROM $this->table WHERE email= ? LIMIT 1";
 		$stmt = $this->conn->prepare($sql);
 		$stmt->bind_param('s',$email);
@@ -118,4 +118,16 @@ class Signin {
         
 
     }
+
+   public function resetPw($password , $token)
+   {
+    $sql="UPDATE $this->table SET password ='$password' WHERE token='$token'";
+    $result = mysqli_query($this->conn, $sql);
+    
+    if ($result) {
+        return 1;
+    }else{
+        return 0;
+    }
+   }
 }

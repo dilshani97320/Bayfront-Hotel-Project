@@ -101,8 +101,35 @@
   margin-bottom: 20px;
 }
 
-.single-room-meta{
-  border: 2px #d1e8f3 solid;
+.single-room-meta2 {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1;
+    margin: 10px 10px;
+    border: 2px solid #85b5cc;
+    padding: 10px 0;
+    /* font-family: nanum myeongjo,helveticaneue-light,helvetica neue light,helvetica neue,Helvetica,Arial,lucida grande,sans-serif; */
+    
+}
+.single-room-meta2 .meta2{
+  display: block;
+  width:  150px;
+  margin-left: 40px;
+}
+.single-room-meta2 .title{
+  display: block;
+  margin-top: 0;
+}
+.single-room-meta2 .title i{
+  margin-right: 8px;
+  color: #85b5cc;
+}
+
+.single-room-meta2 .value-meta{
+  margin: 2px auto;
+  padding: 1px;
+  text-align: center;
+  font-weight: 700;
 }
 </style>
 <body>
@@ -146,8 +173,8 @@
       </div>
 
 
-      <div class="single-room-meta">
-							<div class="meta">
+      <div class="single-room-meta2" >
+							<div class="meta2" >
 								
 								<div class="title">
 									<i class="fas fa-user-tie"></i>Guest
@@ -156,7 +183,7 @@
 	
 							</div>
 							
-							<div class="meta">
+							<div class="meta2">
 								
 								<div class="title">
 									<i class="fas fa-compress"></i>Acreage
@@ -164,19 +191,41 @@
 								<div class="value-meta"><?php echo $room_details[0]['room_size']; ?> sqft</div>
 	
 							</div>
-							<div class="meta">
+							<div class="meta2">
 								
 								<div class="title">
 									<i class="fas fa-bed"></i>Beds
 								</div>
 								<div class="value-meta"><?php echo $room_details[0]['bed_type']; ?></div>
 							</div>
-							<div class="meta">
+							<div class="meta2">
 								
 								<div class="title">
 								<i class="fas fa-eye"></i> View
 								</div>
 								<div class="value-meta"><?php echo $room_details[0]['room_view']; ?></div>
+	
+							</div>
+              <div class="meta2">
+								
+								<div class="title">
+								<i class="fas fa-building"></i>Floor 
+								</div>
+								<div class="value-meta">
+                <?php 
+                if ($room_details[0]['floor_type']==0) {
+                  echo "Ground Floor";
+                }
+                if ($room_details[0]['floor_type']==1) {
+                  echo "First Floor";
+                }
+                if ($room_details[0]['floor_type']==2) {
+                  echo "Second Floor";
+                }
+                if ($room_details[0]['floor_type']==3) {
+                  echo "Third Floor";
+                }
+                 ?></div>
 	
 							</div>
 						</div>

@@ -145,9 +145,7 @@ i.material-icons {
   width: 30px;
   line-height: 30px;
   text-align: center;
-
-  color: #8f97a7;
-
+  color:#a9afbb;;
 }
 
 a:hover > p > i {
@@ -236,6 +234,7 @@ a:hover > p > i {
   padding-left: 30px;
   line-height: 1.4em;
   font-weight: 100;
+  
 }
 
 /* .nav-mail,
@@ -843,7 +842,7 @@ input#text {
   width: 35%;
 }
 
-/* input[type="checkbox"] {
+input[type="checkbox"] {
   display: block;
   text-align: center;
   width: 20px;
@@ -854,7 +853,7 @@ input#text {
   border: #000;
   margin-left: 0;
   padding-left: 0;
-} */
+}
 
 input[type="text"]:disabled {
   display: block;
@@ -885,10 +884,10 @@ input[type="email"]:disabled {
 }
 
 input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-  box-shadow: 0 0 0 30px white inset !important;
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+    box-shadow: 0 0 0 30px white inset !important;
 }
 
 input:-webkit-autofill {
@@ -920,12 +919,14 @@ select:after {
   content: " ";
   border: none;
   display: inline-block;
-  width: 24px;
-  height: 24px;
+  width: 24px; height: 24px;
   /* background: blue; */
 }
 
+
+
 /* room-view style */
+
 
 .row1 {
   display: inline-flex;
@@ -1056,7 +1057,7 @@ input[type="textarea"] {
 .animate-form input:focus + .label-name::after,
 .animate-form input:valid + .label-name::after {
   transform: translateX();
-  border-bottom: 2px solid rgba(0, 0, 0, 0.06);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.06)
 }
 
 /* Reservation style */
@@ -1459,9 +1460,13 @@ flex-wrap: wrap;
 } */
 .line #previewImg{
  width: 150px;
- margin-left: 50;
+ margin-left: 50px;
  height: 150px;
  object-fit: cover;  
+}
+
+#previewImg{
+  margin-left: 50;
 }
 
 .line .submitBtn{

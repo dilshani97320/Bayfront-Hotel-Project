@@ -1,3 +1,4 @@
+
 <?php 
    // Header
    $title = "Add-Room page";
@@ -266,10 +267,12 @@
 
                     <div class="section2"> 
 
+
                     </div>
 
                     </form>
                 </div>  <!--End Card Body -->
+
             </div>  <!--End Card -->
 
             

@@ -164,76 +164,30 @@ select:-webkit-autofill:focus {
 }
 
 .alert {
-  width: 500px;
-  height: 50px;
-  display: flex;
+  width: 350px;
+  height: auto;
   justify-content: left;
   align-items: center;
+  color: red;
   border-radius: 5px;
   padding-left: 10px;
   padding-right: 40px;
-  font-size: 18px;
+  font-size: 15px;
   margin: 0 auto;
   box-shadow: rgba(0, 0, 0, 0.06) 0px 0px 15px;
 }
-/*.close-alert {
-  color: #000000;
-  font-size: 25px;
-  display: flex;
-  align-items: center;
-  position: absolute;
-  right: 15px;
-  cursor: pointer;
-}
-.close-alert:hover {
-  color: #000000;
-  background: #f1f1f1;
-  border-radius: 50%;
-}*/
-.successful.alert {
-  border-left: 6px solid #02c302;
-  background: white;
-}
-
-.successful.alert:before {
-  content: "\2713";
-  color: #02c302;
-  font-size: 25px;
-  font-family: "boxicons" !important;
-  font-weight: normal;
-  font-style: normal;
-  font-variant: normal;
-  line-height: 1;
-  display: inline-block;
-  text-transform: none;
-  speak: none;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  padding-right: 10px;
-}
-
 .error.alert {
   border-left: 6px solid #ff0000;
   background: white;
   text-align: left;
 }
-
-.error.alert:before {
-  content: "\2612";
-  color: #ff0000;
-  font-size: 25px;
-  font-family: "boxicons" !important;
-  font-weight: normal;
-  font-style: normal;
-  font-variant: normal;
-  line-height: 1;
-  display: inline-block;
-  text-transform: none;
-  speak: none;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  padding-right: 10px;
+.error p{
+  margin: 5px 2px;
+  text-transform: capitalize;
+  letter-spacing: 1px;
 }
+
+
 .image {
   width: 300px;
   height: 200px;
@@ -258,31 +212,26 @@ select:-webkit-autofill:focus {
           <li class="second"></li>
           <li class="third"></li>
 			 </ul>
-	  	</div>
+	  </div>
 			<form action="<?php url("auth/frogotUser"); ?>" method="post">
-			
-
-				
-                <h1>Reset Your Password</h1>
-                <p>Enter your user account's verified email address and we will send you a password reset link.</p>
-                <?php if(count($errors)>0): ?>
-        <div class="alert error" role="alert">
+          <h1>Reset Your Password</h1>
+          <p>Enter your user account's verified email address and we will send you a password reset link.</p>
+          
+          <?php if(count($errors)>0): ?>
           <?php foreach($errors as $error): ?>
-          <p><?php echo $error;  ?></p>
+          <div class="alert error" role="alert"><p><i class="fas fa-exclamation-circle"></i><?php echo $error;  ?></p></div>
           <?php endforeach; ?>
-        </div>
-      <?php endif; ?>
-				
-				 <div class="input-field">
-	              <i class="fas fa-envelope"></i>
-	              <input type="email" name="email" value="<?php //echo $email; ?>" placeholder="Email" />
-	            </div>
-				<div class="form-group">
+          <?php endif;  ?>
+         
+          <div class="input-field">
+	          <i class="fas fa-envelope"></i>
+	          <input type="email" name="email" value="<?php //echo $email; ?>" placeholder="Email" />
+	          </div>
+				  <div class="form-group">
 					<button type="submit" name="frogot-password" class="btn">Send Link Reset Email</button>
-				</div>
-				
+				  </div>
 			</form>
-		</div>
+	</div>
 	
 </body>
 </html>

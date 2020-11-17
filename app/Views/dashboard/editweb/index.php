@@ -2,7 +2,9 @@
 <?php 
 
 // Header
+
    $title = "Edit web page";
+
    include(VIEWS.'dashboard/inc/header.php'); 
 ?>
 
@@ -14,6 +16,7 @@
        $search = 1;
        $search_by = 'Room Number';
        $url = "editweb/index";
+
        
        include(VIEWS.'dashboard/inc/sidebar.php'); //Sidebar
        include(VIEWS.'dashboard/inc/navbar.php'); //Navbar
@@ -26,9 +29,11 @@
                        <h4>Current Rooms   
                        <span>
                             <?php if($_SESSION['user_level'] == "Owner"): ?>
+
                                 <a href="<?php url("editweb/createNew"); ?>" class="addnew"><i class="material-icons">add</i>Add New</a> 
                             <?php endif; ?>
                             <a href="<?php url("editweb/index"); ?>" class="refresh"><i class="material-icons">refresh</i>Refresh</a> 
+
                        </span> 
                        </h4>
                    </div>
@@ -45,7 +50,8 @@
                                 <th>Room Price</th>
                                 <?php if($_SESSION['user_level'] == "Owner"): ?>
                                     <th>Edit</th>
-                                    <th>Delete</th>  
+                                    <th>Delete</th> 
+                                    <th>View In Website</th>  
                                 <?php endif; ?>
                             </thead>
                             
@@ -58,7 +64,8 @@
                                 <td><?php echo $row['price'];?></td>
                                 <?php if($_SESSION['user_level'] == "Owner"): ?>
                                     <td><a href="<?php url('editweb/selectChange/'.$row['room_number']);?>" class="edit"><i class="material-icons">edit</i>Edit </a></td>
-                                    <td><a href="<?php url('editweb/delete/'.$row['room_number']);?>" onclick="return confirm('Are you sure?');" class="delete"><i class="material-icons">delete</i>Delete</a></td>
+                                    <td><a href="<?php url('editweb/delete/'.$row['room_id'].'/'.$row['room_number']);?>" onclick="return confirm('Are you sure to delete this record?');" class="delete"><i class="material-icons">delete</i>Delete</a></td>
+                                    <td><a href="<?php url('RoomSuite/ViewRoom/'.$row['room_number']);?>"  class="view"><i class="material-icons">visibility</i>View Room</a></td>
                                 <?php endif; ?>
                             </tbody>
                             <?php endforeach ?> 

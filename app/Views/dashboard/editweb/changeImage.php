@@ -1,30 +1,8 @@
-<style>
 
-/* .addFile1{
-    padding: 5px;
-    width: 110px;
-    height: 28px;
-    margin: 20px auto;
-    margin-left: 15px;
-    background: #020d18;
-    letter-spacing: 1px;
-    font-weight: 400;
-    font-size: 15px;
-    text-align: center;
-    color: #fff;
-    border-radius: 4px;
-} */
-
-
-
-
-</style>
 
 <?php 
 unset($_POST);
 $_POST = array();
-
-
 
 // Header
    $title = "Image page";
@@ -43,6 +21,7 @@ $_POST = array();
        include(VIEWS.'dashboard/inc/sidebar.php'); //Sidebar
        include(VIEWS.'dashboard/inc/navbar.php'); //Navbar
    ?>
+
     <div class="content">
         <div class="tablecard">
             <div class="card">
@@ -539,8 +518,12 @@ $_POST = array();
                                     
                             </div>
                         </form>
+
                         </div>
+                    </form>
                     </div>
+                </div>
+
 
             </div> 
         </div>

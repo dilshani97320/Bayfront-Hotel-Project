@@ -87,7 +87,18 @@ class Image{
     }
 
     
-       
+    public function imageExists($room_number, $image_name)  
+    {
+        $sql = "DELETE FROM $this->table WHERE room_number ='$room_number' AND image_name = '$image_name' ";
+        if (mysqli_query($this->conn, $sql)) {
+            return 1;
+           echo "New record created successfully";
+       } else {
+           return 0;
+           echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
+           exit();
+       }
+    }
     
 }
 

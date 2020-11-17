@@ -1,5 +1,5 @@
 <?php 
-
+session_start();
     class HomeController{
         // public function index($id, $id2){
             
@@ -12,8 +12,16 @@
 
         public function index()
         {
+            $db = new RoomDetails();
+            $data['room_details'] = $db->getRoomView(); 
+
+            $db = new Image();
+            $imageRoom =$db->viewRoom();
+            // var_dump($data);
+            // exit;
+            $data['img_details'] = $imageRoom;
             
-            View::load('home');
+            View::load('home', $data);
             
         }
         public function verifyHome($token)
@@ -21,8 +29,17 @@
             $token =trim($token);
             $user = new AuthController;
             $user->verifyUser($token);
-            echo $_SESSION['message'];
+            // echo $_SESSION['message'];
             View::load('home');
+        }
+
+        public function reset($token)
+        {
+            $token =trim($token);
+            $user = new AuthController;
+            $user->resetPassword($token);
+            // echo $_SESSION['message'];
+            
         }
 
         public function dashboard()

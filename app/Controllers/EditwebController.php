@@ -44,6 +44,7 @@ class EditwebController{
 
 
 
+
     public function changeDetails($room_number) {
     
         $db = new RoomDetails();
@@ -260,13 +261,14 @@ class EditwebController{
                 $free_canseleration = $_POST['free_canseleration'];
                 $hot_water = $_POST['hot_water'];
                 $breakfast_included = $_POST['breakfast_included'];
+
             // var_dump($price);
             // exit();
 
              // Check input is empty
             //  $req_fields = array('room_number', 'room_name', 'room_desc', 'floor_type', 'room_size', 'price');
             //  $errors = array_merge($errors, $this->check_req_fields($req_fields));
-            
+
             //  if(isset($_POST['air_condition'])){
             //     $air_condition =1;
             // }else{
@@ -289,9 +291,11 @@ class EditwebController{
             $room_datails = $db1->getOneRoomView($room_number);
             // var_dump($room_datails);
             $room_id = $room_datails[0]['room_id'];
+
             $db = new RoomEdit;
         
             $updateDetails = $db->updateRoom($room_id, $room_number, $type_name, $room_name, $room_desc, $floor_type, $room_size, $price,  $air_condition, $free_canseleration, $hot_water);
+
 
             if($updateDetails == 1){
 
@@ -306,6 +310,7 @@ class EditwebController{
             }
             }
         }    
+
     }
     
 }

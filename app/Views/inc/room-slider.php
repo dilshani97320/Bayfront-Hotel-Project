@@ -11,6 +11,8 @@
 
 <div id="slideshow">
    <div class="slideitem current">
+
+   
      <div class="room-slider">
 		<div class="room-details">
 	

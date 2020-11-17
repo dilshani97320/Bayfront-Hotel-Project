@@ -5,7 +5,7 @@ class RoomEdit{
     private $table1 = "room_details";
     private $table2 = "room_type";
     private $table3 = "hotel_room";
-    private $connection;
+    private $conn;
 
     public function __construct() {
         
@@ -19,10 +19,12 @@ class RoomEdit{
 
     public function getAllRoom() {
 
+
         $query = "SELECT $this->table1.room_number, $this->table1.room_id, $this->table1.room_name, $this->table1.room_view, $this->table1.price,
                   $this->table2.type_name 
                   FROM $this->table1
                   INNER JOIN $this->table2 ON $this->table1.type_id = $this->table2.room_type_id";
+
         // echo $query;  
         // exit();  
         $rooms = mysqli_query($this->connection, $query);
@@ -89,7 +91,9 @@ class RoomEdit{
     // echo $sql;  
     //     exit(); 
 
+
         $result = mysqli_query($this->connection, $sql);
+
         if($result) {
             // query successful.. redirecting to users page
             return 1;
@@ -150,7 +154,7 @@ class RoomEdit{
         
         // echo  var_dump($sql);
         // exit();
-
+        
         $result = mysqli_query($this->connection, $sql);
         if($result) {
             // echo "success";
@@ -158,11 +162,10 @@ class RoomEdit{
             return 1;
         }else{
             echo "fail";
+
             return 0;
         }
     }
-
-
 }
 
 ?>

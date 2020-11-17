@@ -1,7 +1,10 @@
 <?php
 
-
-session_start();
+if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
+// session_start();
 
 
 class AuthController {
@@ -23,6 +26,7 @@ class AuthController {
 			$errors = $this->validationSignin();
 		
 			// var_dump($errors);
+			// exit;
 			if(empty($errors)){
 
 				$db = new Signin();
@@ -32,7 +36,7 @@ class AuthController {
 				if(!empty($user)) {
 
 					$_SESSION['id']= $user['id'];
-					$_SESSION['username']= $user['name'];
+					$_SESSION['nameuser']= $user['name'];
 					$_SESSION['email']= $user['email'];
 					$_SESSION['verified']= $user['verified'];
 					$_SESSION['usertype']= $user['userType'];
@@ -45,18 +49,34 @@ class AuthController {
 					exit();
 
 				}else{
-					$errors['login_fail']= "wrong credentials";
+					$errors['login_fail']= "You have entered an invalid username or password";
 					$data['errors'] = $errors;
                     view::load('login/login',$data);
 				}
 			}else{
 				$data['errors'] = $errors;
 			
-				var_dump($data);
+				// var_dump($data);
 				
                 view::load('login/login',$data);
 			}
 		}
+	}
+	private function validationSignin() {
+
+        $errors = array();
+		if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+			$errors['email']= "Email adress is invalid";
+		}
+		if(empty($_POST['email'])){
+			$errors['email']="email required";
+		}
+		if(empty($_POST['password'])){
+			$errors['password']="password required";
+		}
+
+		return $errors;
+        
 	}
 
 	public function signupUser()
@@ -118,20 +138,7 @@ class AuthController {
 		
 	}
 
-	private function validationSignin() {
-
-        $errors = array();
-		if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
-			$errors['email']= "Email adress is invalid";
-		}
-		if(empty($_POST['email'])){
-			$errors['email']="email required";
-		}
-		if(empty($_POST['password'])){
-			$errors['password']="password required";
-		}
-        
-	}
+	
 	
 	private function validationSignup() {
 		$errors =array();
@@ -151,17 +158,17 @@ class AuthController {
 			$errors['password']="password required";
 		}
 		if(!(preg_match('/^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=§!\?]{8,}$/',$_POST['password']))){
-			$errors['password']="password required capital, simple 8 letter";
+			$errors['password']="A minimum 8 characters password contains a combination of uppercase and lowercase letter and number are required.";
 		}
 		if($_POST['password'] !== $_POST['passwordConf']){
-			$errors['password']="password not match";
+			$errors['password']="password does not match";
 		}
 		$db = new Signin();
 		   
 		$result = $db->findEmail($_POST['email']);
 
             if($result == 1) {
-                $errors['email'] = 'Email address already exists';
+                $errors['email'] = 'that email is already registered!';
 			}
 		unset($db);
 		return $errors;
@@ -169,15 +176,15 @@ class AuthController {
 	
 	public function logout()
 	{
-		if (isset($_GET['logout'])) {
-			session_destroy;
+		
+		
 			unset($_SESSION['id']);
-			unset($_SESSION['username']);
+			unset($_SESSION['nameuser']);
 			unset($_SESSION['email']);
 			unset($_SESSION['verified']);
-			header('location: index.php');
+			view::load('home');
 			exit();
-		}
+		
 	}
 
 	public function verifyUser($token)
@@ -219,41 +226,59 @@ class AuthController {
 			if(empty($email)){
 				$errors['email']="That address is not a verified primary email or is not associated with a personal user account. Organization billing emails are only for notifications";
 			}
+
+			$db = new Signin();
+		   
+			$result = $db->findEmail($_POST['email']);
+
+				if($result == 0) {
+					$errors['email'] = 'that email is not registered!';
+				}
+			unset($db);
 		
 			if(count($errors)== 0){
 				
 				$db = new Signin();
 				$user = $db->frogot($email);
+
 				$token= $user['token'];
 				$userName = $user['name'];
 
 				$sendMail = new EmailController;
 				
 				$sendMail->sendPasswordResultLink($email, $token, $userName);
-				
-				view::load('login/password_message');
+				$data['email']= $email;
+				view::load('login/password_message', $data);
 				unset($sendMail);
 				exit();
 		
+			}else{
+				$data['errors'] = $errors;
+            	View::load('login/frogot', $data);
 			}
+
+				
+			
 		
 		}
 	}
 
-	public function resetPassword()
+	public function resetPassword($token)
 	{
-		global $conn;
-		$sql = "SELECT * FROM user WHERE token='$token' LIMIT 1";
-		$result = mysqli_query($conn, $sql);
-		$user = mysqli_fetch_assoc($result);
-		$_SESSION['email']= $user['email'];
-		header('location: reset_password.php');
-		exit();
+		
+		$db = new Signin();
+		$user = $db->verify($token);
+		$data['errors']= [];
+		$data['token'] =$token;
+		View::load('login/reset_password',$data);
 	}
 
-	public function resetUserPassword()
+	public function resetUserPassword($token)
 	{
+		// echo $token;
+		// exit;
 		if (isset($_POST['reset-btn'])) {
+			$errors =array();
 			$password= $_POST['password'];
 			$passwordConf= $_POST['passwordConf'];
 		
@@ -261,21 +286,25 @@ class AuthController {
 				$errors['password']="password required";
 			}
 			if(!(preg_match('/^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=§!\?]{8,}$/',$password))){
-				$errors['password']="password required capita simple 8 letter";
+				$errors['password']="A minimum 8 characters password contains a combination of uppercase and lowercase letter and number are required";
 			}
 			if($password !== $passwordConf){
-				$errors['password']="password not match";
+				$errors['password']="password does not match";
 			}
 			$password = password_hash($password, PASSWORD_DEFAULT);
 			$email= $_SESSION['email'];
 		
 			if(count($errors)== 0){
-				$sql="UPDATE user SET password ='$password' WHERE email='$email'";
-				$result = mysqli_query($conn, $sql);
+				$db = new Signin();
+				$result =$db->resetPw($password , $token);
 				if ($result) {
-					header('location: login.php');
-					exit(0);
+					$data['errors'] =[];
+					View::load('login/login',$data);
+					exit();
 				}
+			}else{
+				$data['errors'] = $errors;
+				View::load('login/reset_password',$data);
 			}
 		}
 		

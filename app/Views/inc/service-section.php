@@ -18,7 +18,6 @@
           </div>
           <div class='service-title'>Cozy and Charming rooms</div>
           <div class='description'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing              elit, sed do eiusmod tempor incididunt ut labore              et dolore magna aliqua
           </div>
         </div>
         
@@ -29,7 +28,6 @@
           </div>
           <div class='service-title'>Bar Drinks</div>
           <div class='description'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing              elit, sed do eiusmod tempor incididunt ut labore              et dolore magna aliqua
           </div>
         </div>
         
@@ -40,7 +38,6 @@
           </div>
           <div class='service-title'>Relax in a beautiful contest</div>
           <div class='description'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing              elit, sed do eiusmod tempor incididunt ut labore              et dolore magna aliqua
           </div>
         </div>
         
@@ -51,7 +48,6 @@
           </div>
           <div class='service-title'>Exceptional Food</div>
           <div class='description'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing              elit, sed do eiusmod tempor incididunt ut labore              et dolore magna aliqua
           </div>
         </div>
         

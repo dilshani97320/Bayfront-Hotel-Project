@@ -5,7 +5,6 @@ class ImageController {
 
     public function uploadImg($image_name , $room_number) {
 
-
         if(!isset($_SESSION['user_id'])) {
             $dashboard = new DashboardController();
             $dashboard->index();      
@@ -125,6 +124,7 @@ class ImageController {
         }    
         
         
+
     }
 }
 

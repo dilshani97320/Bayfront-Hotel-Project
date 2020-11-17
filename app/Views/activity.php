@@ -14,6 +14,8 @@
 	
 	<?php include(VIEWS.'inc/header_activity.php'); ?>
 
+	
+
 <div class="blog-wrapper">
 	<div class="blog-card">
 		<div class="card-img">
@@ -101,6 +103,8 @@
 			<a class="btn" href="<?php url('Activity/ViewSubPage/6' ); ?>">Read more</a>
 			</div>
 	</div>
+
+	
 </div>		
 	<?php include(VIEWS.'inc/footer.php'); ?>
 

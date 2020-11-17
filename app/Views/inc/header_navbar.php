@@ -1,3 +1,4 @@
+<?php  ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,6 +13,172 @@
 </head>
 
 <body>
+
+    <?php if (isset($_SESSION['id'])): ?>
+        <?php switch ($_SESSION['usertype']): case '0':?>
+                
+            <header class="nav">
+        <div class="navbarContainer">
+            <input type="checkbox" name="" id="check">
+            
+            <div class="logo-container">
+                <img src="<?php echo BURL.'assets/img/basic/logo.png'; ?>" alt="">
+                <h3 class="logo">BAY FRONT</h3>
+            </div>
+
+            <div class="nav-btn">
+                <div class="nav-links">
+                    <ul>
+                        <li class="nav-link" style="--i: .85s"><a href="<?php url() ?>">Home</a></li>
+                        <li class="nav-link" style="--i: .85s">
+                            <a href="<?php url('Roomsuite/index'); ?>">Room & Lifestyle</a>
+                            <div class="dropdown">
+                                <ul>
+                                    <li class="dropdown-link">
+                                        <a href="#">Single Room</a>
+                                    </li>
+                                    <li class="dropdown-link">
+                                        <a href="#">Double Room</a>
+                                    </li>
+                                    <li class="dropdown-link">
+                                        <a href="#">Family Room</a>
+                                    </li>
+                                    <div class="arrow"></div>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-link" style="--i: .85s"><a href="<?php url('Dining/index'); ?>">Dining</a></li>
+                        <li class="nav-link" style="--i: .85s"><a href="<?php url('Surf/index'); ?>">Surf</a></li>
+                        <li class="nav-link" style="--i: .85s"><a href="<?php url('Activity/index'); ?>">Activities</a></li>
+                    </ul>
+                </div>
+
+                <div class="log-sign" style="--i: 1.8s">
+
+                    <a href="<?php url('Auth/logout'); ?>" class="btn1 transparent">Logout</a>
+
+                    <a href="<?php url('dashboard/index'); ?>" class="btn1 solid">Dashboard</a>
+                </div>
+            </div>
+
+            <div class="hamburger-menu-container">
+                <div class="hamburger-menu">
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </header>
+        <?php break; case '1': ?> 
+            <header class="nav">
+        <div class="navbarContainer">
+            <input type="checkbox" name="" id="check">
+            
+            <div class="logo-container">
+                <img src="<?php echo BURL.'assets/img/basic/logo.png'; ?>" alt="">
+                <h3 class="logo">BAY FRONT</h3>
+            </div>
+
+            <div class="nav-btn">
+                <div class="nav-links">
+                    <ul>
+                        <li class="nav-link" style="--i: .85s"><a href="<?php url() ?>">Home</a></li>
+                        <li class="nav-link" style="--i: .85s">
+                            <a href="<?php url('Roomsuite/index'); ?>">Room & Lifestyle</a>
+                            <div class="dropdown">
+                                <ul>
+                                    <li class="dropdown-link">
+                                        <a href="#">Single Room</a>
+                                    </li>
+                                    <li class="dropdown-link">
+                                        <a href="#">Double Room</a>
+                                    </li>
+                                    <li class="dropdown-link">
+                                        <a href="#">Family Room</a>
+                                    </li>
+                                    <div class="arrow"></div>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-link" style="--i: .85s"><a href="<?php url('Dining/index'); ?>">Dining</a></li>
+                        <li class="nav-link" style="--i: .85s"><a href="<?php url('Surf/index'); ?>">Surf</a></li>
+                        <li class="nav-link" style="--i: .85s"><a href="<?php url('Activity/index'); ?>">Activities</a></li>
+                    </ul>
+                </div>
+
+                <div class="log-sign" style="--i: 1.8s">
+
+                    <a href="<?php url('Auth/logout'); ?>" class="btn1 transparent">Logout</a>
+
+                    <a href="#" class="btn1 solid"><i class="far fa-user-circle" ></i><?php echo $_SESSION['nameuser']; ?></a>
+                </div>
+            </div>
+
+            <div class="hamburger-menu-container">
+                <div class="hamburger-menu">
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </header>
+        <?php break; case '2': ?> 
+            <header class="nav">
+        <div class="navbarContainer">
+            <input type="checkbox" name="" id="check">
+            
+            <div class="logo-container">
+                <img src="<?php echo BURL.'assets/img/basic/logo.png'; ?>" alt="">
+                <h3 class="logo">BAY FRONT</h3>
+            </div>
+
+            <div class="nav-btn">
+                <div class="nav-links">
+                    <ul>
+                        <li class="nav-link" style="--i: .85s"><a href="<?php url() ?>">Home</a></li>
+                        <li class="nav-link" style="--i: .85s">
+                            <a href="<?php url('Roomsuite/index'); ?>">Room & Lifestyle</a>
+                            <div class="dropdown">
+                                <ul>
+                                    <li class="dropdown-link">
+                                        <a href="#">Single Room</a>
+                                    </li>
+                                    <li class="dropdown-link">
+                                        <a href="#">Double Room</a>
+                                    </li>
+                                    <li class="dropdown-link">
+                                        <a href="#">Family Room</a>
+                                    </li>
+                                    <div class="arrow"></div>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-link" style="--i: .85s"><a href="<?php url('Dining/index'); ?>">Dining</a></li>
+                        <li class="nav-link" style="--i: .85s"><a href="<?php url('Surf/index'); ?>">Surf</a></li>
+                        <li class="nav-link" style="--i: .85s"><a href="<?php url('Activity/index'); ?>">Activities</a></li>
+                    </ul>
+                </div>
+
+                <div class="log-sign" style="--i: 1.8s">
+
+                    <a href="<?php url('Auth/logout'); ?>" class="btn1 transparent">Logout</a>
+
+                    <a href="#" class="btn1 solid"><i class="far fa-user-circle" ></i><?php echo $_SESSION['nameuser']; ?></a>
+                </div>
+            </div>
+
+            <div class="hamburger-menu-container">
+                <div class="hamburger-menu">
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </header>
+        <?php break; default: ?>
+
+        <?php break; endswitch; ?> 
+    <?php else: ?>
+    
+
+
     <header class="nav">
         <div class="navbarContainer">
             <input type="checkbox" name="" id="check">
@@ -25,7 +192,23 @@
                 <div class="nav-links">
                     <ul>
                         <li class="nav-link" style="--i: .85s"><a href="<?php url() ?>">Home</a></li>
-                        <li class="nav-link" style="--i: .85s"><a href="<?php url('Roomsuite/index'); ?>">Room & Lifestyle</a></li>
+                        <li class="nav-link" style="--i: .85s">
+                            <a href="<?php url('Roomsuite/index'); ?>">Room & Lifestyle</a>
+                            <div class="dropdown">
+                                <ul>
+                                    <li class="dropdown-link">
+                                        <a href="#">Single Room</a>
+                                    </li>
+                                    <li class="dropdown-link">
+                                        <a href="#">Double Room</a>
+                                    </li>
+                                    <li class="dropdown-link">
+                                        <a href="#">Family Room</a>
+                                    </li>
+                                    <div class="arrow"></div>
+                                </ul>
+                            </div>
+                        </li>
                         <li class="nav-link" style="--i: .85s"><a href="<?php url('Dining/index'); ?>">Dining</a></li>
                         <li class="nav-link" style="--i: .85s"><a href="<?php url('Surf/index'); ?>">Surf</a></li>
                         <li class="nav-link" style="--i: .85s"><a href="<?php url('Activity/index'); ?>">Activities</a></li>
@@ -92,6 +275,7 @@
                     <a href="<?php url('Home/login'); ?>" class="btn1 transparent">Log in</a>
 
                     <a href="<?php url('Dashboard/index'); ?>" class="btn1 solid">Dashboard</a>
+
                 </div>
             </div>
 
@@ -102,7 +286,7 @@
             </div>
         </div>
     </header>
-   
+    <?php endif; ?>
 </body>
 
 </html>

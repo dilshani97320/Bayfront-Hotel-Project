@@ -6,24 +6,24 @@
 </head>
 <body>
 	<div class="bookingFormContainerY">
-		<div class="block chech-in">
+		<div class="blockY chech-in">
 			<label >Check in</label>
-           	<div id='check-in' class='form-field'>
+           	<div id='check-in' class='form-fieldY'>
                 <input type="date" value="" placeholder="9 July, 2016">
                 <!-- <div class='datepicker'><i class="fa fa-calendar" aria-hidden="true"></i></div> -->
             </div>
 		</div>
-		<div class="block check-out">
+		<div class="blockY check-out">
 			<label >Check out</label>
-                <div id='check-out' class='form-field'>
+                <div id='check-out' class='form-fieldY'>
                     <input type="date" value="" placeholder="19 July, 2016">
                  	<!-- <div class='datepicker'><i class="fa fa-calendar" aria-hidden="true"></i></div> -->
                 </div>
 		</div>
-		<div class="block num-of-guest">
-			<div class='form__dropdown'>
+		<div class="blockY num-of-guest">
+			<div class='form__dropdownY'>
                                 <label >Rooms</label>
-                                <div class='form-field'> 
+                                <div class='form-fieldY'> 
                                 <select id='adultsAmount'>    
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -36,11 +36,11 @@
                             </div>
                             </div>
 		</div>
-		<div class="block num-of-room">
-			<div class='form__dropdown'>
+		<div class="blockY num-of-room">
+			<div class='form__dropdownY'>
                                 <label >Guests</label>
                                 <br>
-                              <div class='form-field'> 
+                              <div class='form-fieldY'> 
                                 <select id='childrenAmount'> 
                                         <option value="" selected="selected">0</option>                        
                                         <option value="1" >1</option>
@@ -54,8 +54,8 @@
                                 </div>
                             </div>
 		</div>
-		<div class="block search">
-			 <input type="submit" id='bookingSubmit' class='form__submit' value='Search rooms'>
+		<div class="blockY search">
+			 <input type="submit" id='bookingSubmit' class='form__submitY' value='Check  Availability'>
 		</div>
 	</div>
 </body>

@@ -1,3 +1,4 @@
+
 <?php 
    // Header
    $title = "Add-Edit page";
@@ -11,7 +12,7 @@
             $navbar_title = "Update Room Page";
             $search = 0;
             $search_by = '#';
-       
+
             include(VIEWS.'dashboard/inc/sidebar.php'); //Sidebar
             include(VIEWS.'dashboard/inc/navbar.php'); //Navbar
     ?>
@@ -53,10 +54,12 @@
                                         
                                     </select>    
                                 </div>     
+
                         </div>
 
 
                         <div class="row">
+
                             <label for="#"><i class="material-icons">room</i>Floor Type:</label>
                                 <div class="animate-form">
                                     <select name="floor_type" class="inputField" selected="<?php echo $room_details[0]['type_id']; ?>"> 
@@ -97,9 +100,12 @@
                                             <?php endif; ?>
                                         </label>    
                                 </div>     
+
                         </div>
 
+                        
                         <div class="row">
+
                             <label for="#"><i class="material-icons">hotel</i>Room Name:</label>
                                 <div class="animate-form">
                                     <input type="text"  autocomplete="off" name="room_name" class="inputField"
@@ -125,10 +131,12 @@
                                             <?php endif; ?>
                                         </label>    
                                 </div>     
+
                         </div>
                         
 
                         <div class="row">
+
                             <label for="#"><i class="material-icons">deck</i>Room View:</label>
                                 <div class="animate-form">
                                     <input type="text"  autocomplete="off" name="room_view" class="inputField"
@@ -183,11 +191,13 @@
                                             
                                         </label>    
                                 </div>     
+
                         </div>
 
                         
 
                         <div class="row">
+
                             <label for="#"><i class="material-icons">local_offer</i>Room Price:</label>
                                 <div class="animate-form">
                                     <input type="text"  autocomplete="off" name="price" class="inputField"
@@ -243,7 +253,9 @@
                                         <option value="1" <?php if ($room_details[0]['hot_water'] == 1 ) echo ' selected="selected"'; ?> style="border: none">Yes</option>          
                                     </select>   
                                 </div>     
+
                         </div>
+
 
                         <div class="row">
                             <label for="#"><i class="material-icons">room_service</i>Breakfast Included:</label>
@@ -265,6 +277,7 @@
                     </div>
 
                     <div class="section2"> 
+
 
                     </div>
 

@@ -256,7 +256,7 @@ ul li {
 	  	</div>
 			
 			<div class="alert successful" role="alert">
-         		<p>An email has been sent to your rescue email address, <strong><?php echo $_SESSION['email'];?></strong>. Follow the directions in the email to reset your password. </p>
+         		<p>An email has been sent to your rescue email address, <strong><?php echo $email;?></strong>. Follow the directions in the email to reset your password. </p>
          	</div>
 		</div>
 	

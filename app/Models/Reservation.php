@@ -170,7 +170,7 @@ class Reservation {
     public function getRoomID($room_number) {
 
         $room_number = mysqli_real_escape_string($this->connection, $room_number);
-
+        $room = array();
         $query = "SELECT * FROM $this->table2
                   WHERE room_number = '{$room_number}'
                   LIMIT 1";

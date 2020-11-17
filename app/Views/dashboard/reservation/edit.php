@@ -25,7 +25,7 @@
                     <div class="options">
                         <h4>Edit Reservation 
                         <span>
-                            <a href="<?php url("reservation/details"); ?>" class="addnew"><i class="material-icons">arrow_back</i>Back To Employee Table</a>  
+                            <a href="<?php url("reservation/details"); ?>" class="addnew"><i class="material-icons">arrow_back</i>Back To Reservations Table</a>  
                         </span>
                         </h4>  
                     </div>
@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="cardbody">  
-                    <form action="<?php url("reservation/update"); ?>" method="post" class="addnewform">
+                    <form action="<?php url("reservation/update/".$reservation['check_in_date']); ?>" method="post" class="addnewform">
 
                     <div class="section1">
 
@@ -60,9 +60,9 @@
                                     
                                         <label for="name" class="label-name">
                                             <?php if($reservation['reservation_id'] == ""){ ?>
-                                                <span class="content-success"><i class="material-icons">verified_user</i>Not Granted</span>
+                                                <span class="content-success"><i class="material-icons">privacy_tip</i></span>
                                             <?php } else {?>
-                                                <span class="content-success"><i class="material-icons">verified_user</i>Granted</span>
+                                                <span class="content-success"><i class="material-icons">verified_user</i></span>
                                             <?php } ?>
                                         </label>    
                                 </div>     
@@ -86,9 +86,9 @@
                                     
                                         <label for="name" class="label-name">
                                             <?php if($customer['first_name'] == ""){ ?>
-                                                <span class="content-success"><i class="material-icons">verified_user</i>Not Granted</span>
+                                                <span class="content-success"><i class="material-icons">privacy_tip</i></span>
                                             <?php } else {?>
-                                                <span class="content-success"><i class="material-icons">verified_user</i>Granted</span>
+                                                <span class="content-success"><i class="material-icons">verified_user</i></span>
                                             <?php } ?>
                                         </label>    
                                 </div>     
@@ -111,9 +111,9 @@
                                     
                                         <label for="name" class="label-name">
                                             <?php if($customer['last_name'] == ""){ ?>
-                                                <span class="content-success"><i class="material-icons">verified_user</i>Not Granted</span>
+                                                <span class="content-success"><i class="material-icons">privacy_tip</i></span>
                                             <?php } else {?>
-                                                <span class="content-success"><i class="material-icons">verified_user</i>Granted</span>
+                                                <span class="content-success"><i class="material-icons">verified_user</i></span>
                                             <?php } ?>
                                         </label>    
                                 </div>     
@@ -135,9 +135,9 @@
                                     
                                         <label for="name" class="label-name">
                                             <?php if($customer['contact_number'] == ""){ ?>
-                                                <span class="content-success"><i class="material-icons">verified_user</i>Not Granted</span>
+                                                <span class="content-success"><i class="material-icons">privacy_tip</i></span>
                                             <?php } else {?>
-                                                <span class="content-success"><i class="material-icons">verified_user</i>Granted</span>
+                                                <span class="content-success"><i class="material-icons">verified_user</i></span>
                                             <?php } ?>
                                         </label>    
                                 </div>     
@@ -159,9 +159,9 @@
                                     
                                         <label for="name" class="label-name">
                                             <?php if($customer['email'] == ""){ ?>
-                                                <span class="content-success"><i class="material-icons">verified_user</i>Not Granted</span>
+                                                <span class="content-success"><i class="material-icons">privacy_tip</i></span>
                                             <?php } else {?>
-                                                <span class="content-success"><i class="material-icons">verified_user</i>Granted</span>
+                                                <span class="content-success"><i class="material-icons">verified_user</i></span>
                                             <?php } ?>
                                         </label>    
                                 </div>     
@@ -183,9 +183,9 @@
                                     
                                         <label for="name" class="label-name">
                                             <?php if($customer['location'] == ""){ ?>
-                                                <span class="content-success"><i class="material-icons">verified_user</i>Not Granted</span>
+                                                <<span class="content-success"><i class="material-icons">privacy_tip</i></span>
                                             <?php } else {?>
-                                                <span class="content-success"><i class="material-icons">verified_user</i>Granted</span>
+                                                <span class="content-success"><i class="material-icons">verified_user</i></span>
                                             <?php } ?>
                                         </label>    
                                 </div>     
@@ -208,9 +208,9 @@
                                     
                                         <label for="name" class="label-name">
                                             <?php if($room['room_number'] == ""){ ?>
-                                                <span class="content-success"><i class="material-icons">verified_user</i>Not Granted</span>
+                                                <<span class="content-success"><i class="material-icons">privacy_tip</i></span>
                                             <?php } else {?>
-                                                <span class="content-success"><i class="material-icons">verified_user</i>Granted</span>
+                                                <span class="content-success"><i class="material-icons">verified_user</i></span>
                                             <?php } ?>
                                         </label>    
                                 </div>     
@@ -233,9 +233,9 @@
                                     
                                         <label for="name" class="label-name">
                                             <?php if($room['room_name'] == ""){ ?>
-                                                <span class="content-success"><i class="material-icons">verified_user</i>Not Granted</span>
+                                                <<span class="content-success"><i class="material-icons">privacy_tip</i></span>
                                             <?php } else {?>
-                                                <span class="content-success"><i class="material-icons">verified_user</i>Granted</span>
+                                                <span class="content-success"><i class="material-icons">verified_user</i></span>
                                             <?php } ?>
                                         </label>    
                                 </div>     
@@ -258,9 +258,9 @@
                                     
                                         <label for="name" class="label-name">
                                             <?php if($room_type['type_name'] == ""){ ?>
-                                                <span class="content-success"><i class="material-icons">verified_user</i>Not Granted</span>
+                                                <<span class="content-success"><i class="material-icons">privacy_tip</i></span>
                                             <?php } else {?>
-                                                <span class="content-success"><i class="material-icons">verified_user</i>Granted</span>
+                                                <span class="content-success"><i class="material-icons">verified_user</i></span>
                                             <?php } ?>
                                         </label>    
                                 </div>     
@@ -284,9 +284,9 @@
                                     
                                         <label for="name" class="label-name">
                                             <?php if($room['price'] == ""){ ?>
-                                                <span class="content-success"><i class="material-icons">verified_user</i>Not Granted</span>
+                                                <span class="content-success"><i class="material-icons">privacy_tip</i></span>
                                             <?php } else {?>
-                                                <span class="content-success"><i class="material-icons">verified_user</i>Granted</span>
+                                                <span class="content-success"><i class="material-icons">verified_user</i></span>
                                             <?php } ?>
                                         </label>    
                                 </div>     
@@ -307,9 +307,9 @@
                                     
                                         <label for="name" class="label-name">
                                             <?php if($reception['username'] == ""){ ?>
-                                                <span class="content-success"><i class="material-icons">verified_user</i>Not Granted</span>
+                                                <span class="content-success"><i class="material-icons">privacy_tip</i></span>
                                             <?php } else {?>
-                                                <span class="content-success"><i class="material-icons">verified_user</i>Granted</span>
+                                                <span class="content-success"><i class="material-icons">verified_user</i></span>
                                             <?php } ?>
                                         </label>    
                                 </div>     

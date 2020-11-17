@@ -30,7 +30,7 @@
                     <div class="card1">
                         <div class="card-header1">
                             <div class="card-icon1">
-                                <i class="material-icons">meeting_room</i>
+                                <i class="material-icons">night_shelter</i>
                             </div>
                             <p class="card-category">Rooms</p>
                             <h3 class="card-title">

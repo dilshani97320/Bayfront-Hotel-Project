@@ -10,7 +10,7 @@ class Image{
         $dbhost = 'localhost';
         $dbuser = 'root';
         $dbpass = '';
-        $dbname = 'bayfront_hotel1';
+        $dbname = 'bayfront_hotel';
 
         $this->conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
     }

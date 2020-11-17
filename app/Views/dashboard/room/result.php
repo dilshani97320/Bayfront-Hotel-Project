@@ -2,7 +2,7 @@
 <?php 
 
 // Header
-   $title = "Employee page";
+   $title = "Room Result page";
    include(VIEWS.'dashboard/inc/header.php'); 
 ?>
 
@@ -10,7 +10,7 @@
       
    <?php 
    
-       $navbar_title = "Employee Page";
+       $navbar_title = "Room Result Page";
        $search = 0;
        $search_by = 'name';
        $url = "employee/index";
@@ -25,14 +25,14 @@
            <div class="card">
                <div class="cardheader">
                    <div class="options">
-                       <h4>Employee Page   
+                       <h4>Room Result Page   
                        <span>
                             <a href="<?php url("room/index"); ?>" class="addnew"><i class="material-icons">arrow_back</i>Back To Search</a>  
                         </span>
                         
                        </h4>
                    </div>
-                   <p class="textfortabel">Employee View Following Table</p>
+                   <p class="textfortabel">Room  Result Following Table</p>
                </div>
                <div class="cardbody">
                <div class="tablebody">
@@ -45,9 +45,14 @@
                                         <th>Check In Date</th>
                                         <th>Check In Date</th>
                                         <th>Details</th>
-                                        <th>Make Reservation</th>                                         
+                                        <?php //if($_SESSION['user_level'] == "Reception"): ?>
+                                            <th>Make Reservation</th>  
+                                        <?php //endif; ?>
+                                                                               
                                     </thead>
-
+                                    <?php 
+                                    // $data = array();
+                                    // $data['values']= $rooms; ?>
                                     <?php foreach($rooms as $row): ?>
                                     <tbody>
                                         
@@ -88,8 +93,11 @@
                                             <?php } ?>
                                         </td>
 
-                                        <td><a href="<?php url('room/details/'.$row['room_number']);?>" class="edit"><i class="material-icons">zoom_in</i>Details</a></td>
-                                        <td><a href="<?php url('reservation/view/'.$row['room_number'].'/'.$row['max_guest']);?>" onclick="return confirm('Are you sure?');" class="edit"><i class="material-icons">book_online</i>Reservation</a></td>
+                                        <td><a href="<?php url('room/details1/'.$row['room_number'].'/'.$details['check_in_date'].'/'.$details['check_out_date'].'/'.$details['type_name']);?>" class="edit"><i class="material-icons">zoom_in</i>Details</a></td>
+                                        
+                                        <?php //if($_SESSION['user_level'] == "Reception"): ?>
+                                            <td><a href="<?php url('reservation/view1/'.$row['room_number'].'/'.$row['max_guest'].'/'.$details['check_in_date'].'/'.$details['check_out_date'].'/'.$details['type_name']);?>" onclick="return confirm('Are you sure?');" class="edit"><i class="material-icons">book_online</i>Reservation</a></td>
+                                        <?php //endif; ?>
                                     </tbody>
                                 <?php endforeach ?> 
                                 </table>

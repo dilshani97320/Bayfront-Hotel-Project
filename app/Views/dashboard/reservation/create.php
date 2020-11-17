@@ -25,7 +25,11 @@
                     <div class="options">
                         <h4>New Reservation 
                         <span>
-                            <a href="<?php url("room/view"); ?>" class="addnew"><i class="material-icons">arrow_back</i>Back To ALL Reservations Table</a>  
+                        <?php if(isset($discount['value'])){ ?>
+                            <a href="<?php url("room/preview/".$details['check_in_date'].'/'.$details['check_out_date'].'/'.$details['type_name']) ?>" class="addnew"><i class="material-icons">arrow_back</i>Back To ALL Result Table</a>  
+                        <?php } else { ?>
+                            <a href="<?php url("reservation/details"); ?>" class="addnew"><i class="material-icons">arrow_back</i>Back To ALL Reservations Table</a>
+                        <?php } ?>
                         </span>
                         </h4>  
                     </div>
@@ -271,7 +275,7 @@
                                     >
                                     
                                         <label for="name" class="label-name">
-                                            <?php if((isset($errors['max_guest'])) && (isset($reservation['nmax_guest']))): ?>
+                                            <?php if((isset($errors['max_guest'])) && (isset($reservation['max_guest']))): ?>
                                                 <span class="content-name"><i class="material-icons">info</i><?php echo $errors['max_guest']; ?></span>
                                             <?php endif; ?>
                                         </label>    

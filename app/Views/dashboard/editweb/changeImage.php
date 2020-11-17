@@ -28,7 +28,9 @@ $_POST = array();
                 <div class="cardheader">
                     <div class="options">
                         <h4><?php echo $room_number." "; ?>Edit Image Page   
-                        
+                        <span>
+                            <a href="<?php url("editweb/index"); ?>" class="addnew"><i class="material-icons">arrow_back</i>Back To Rooms Table</a>  
+                        </span>
                         </h4>
                     </div>
                     <p class="textfortabel">Image Views Following Room</p>
@@ -63,7 +65,7 @@ $_POST = array();
                                             
                                     <div class="line3">
                                     <!-- <input type="file" name="file"  onchange="previewFile(this);" required> -->
-                                        <label class="addFile1"><span><i class="material-icons" style = "margin-right:0px">get_app</i>  Select File <span>
+                                        <label class="addFile"> <span><i class="material-icons " style = "margin-right:0px">publish</i>  Select File</span>
                                             <input  type="file" name="file" size="60" onchange="previewFile(this);" required>
                                         </label>
                                     </div>
@@ -105,7 +107,7 @@ $_POST = array();
                                             
                                     <div class="line3">
                                         <!-- <input type="file" name="file"  onchange="previewFile(this);" required> -->
-                                        <label class="addFile1"><span><i class="material-icons " style = "margin-right:0px">get_app</i>  Select File</span>
+                                        <label class="addFile"><span><i class="material-icons " style = "margin-right:0px">publish</i>  Select File</span>
                                             <input  type="file" name="file" size="60" onchange="previewFile(this);" required>
                                         </label>
                                         
@@ -154,7 +156,7 @@ $_POST = array();
                                             
                                     <div class="line3">
                                         <!-- <input type="file" name="file"  onchange="previewFile(this);" required> -->
-                                        <label class="addFile1"><span><i class="material-icons " style = "margin-right:0px">get_app</i>  Select File</span>
+                                        <label class="addFile"><span><span><i class="material-icons " style = "margin-right:0px">publish</i>  Select File</span>
                                             <input  type="file" name="file" size="60" onchange="previewFile(this);" required>
                                         </label>
 
@@ -208,7 +210,7 @@ $_POST = array();
                                             
                                     <div class="line3">
                                         <!-- <input type="file" name="file"  onchange="previewFile(this);" required> -->
-                                        <label class="addFile1"><i class="material-icons " style = "margin-right:0px">get_app</i>  Select File</span>
+                                        <label class="addFile"><span><i class="material-icons " style = "margin-right:0px">publish</i>  Select File</span>
                                             <input  type="file" name="file" size="60" onchange="previewFile(this);" required>
                                         </label>
 
@@ -255,7 +257,7 @@ $_POST = array();
                                             
                                     <div class="line3">
                                     <!-- <input type="file" name="file"  onchange="previewFile(this);" required> -->
-                                    <label class="addFile1"><i class="material-icons " style = "margin-right:0px">get_app</i>  Select File</span>
+                                    <label class="addFile"><span><i class="material-icons " style = "margin-right:0px">publish</i>  Select File</span>
                                         <input  type="file" name="file" size="60" onchange="previewFile(this);" required>
                                     </label>
                                     
@@ -303,7 +305,7 @@ $_POST = array();
                                             
                                     <div class="line3">
                                         <!-- <input type="file" name="file"  onchange="previewFile(this);" required> -->
-                                        <label class="addFile1"><i class="material-icons " style = "margin-right:0px">get_app</i>  Select File</span>
+                                        <label class="addFile"><span><i class="material-icons " style = "margin-right:0px">publish</i>  Select File</span>
                                             <input  type="file" name="file" size="60" onchange="previewFile(this);" required>
                                         </label>
                                         <?php if (isset($img_details[$count-1]['image_path'])):?>
@@ -355,7 +357,7 @@ $_POST = array();
                                             
                                     <div class="line3">
                                         <!-- <input type="file" name="file"  onchange="previewFile(this);" required> -->
-                                        <label class="addFile1"><i class="material-icons " style = "margin-right:0px">get_app</i>  Select File</span>
+                                        <label class="addFile"><span><i class="material-icons " style = "margin-right:0px">publish</i>  Select File</span>
                                             <input  type="file" name="file" size="60" onchange="previewFile(this);" required>
                                         </label>
                                         <?php if (isset($img_details[$count-1]['image_path'])):?>
@@ -402,7 +404,7 @@ $_POST = array();
                                             
                                     <div class="line3">
                                     <!-- <input type="file" name="file"  onchange="previewFile(this);" required> -->
-                                    <label class="addFile1"><i class="material-icons " style = "margin-right:0px">get_app</i>  Select File</span>
+                                    <label class="addFile"><span><i class="material-icons " style = "margin-right:0px">publish</i>  Select File</span>
                                         <input  type="file" name="file" size="60" onchange="previewFile(this);" required>
                                     </label>
 
@@ -454,7 +456,7 @@ $_POST = array();
                                             
                                     <div class="line3">
                                         <!-- <input type="file" name="file"  onchange="previewFile(this);" required> -->
-                                        <label class="addFile1"><i class="material-icons " style = "margin-right:0px">get_app</i>  Select File</span>
+                                        <label class="addFile"><span><i class="material-icons " style = "margin-right:0px">publish</i>  Select File</span>
                                             <input  type="file" name="file" size="60" onchange="previewFile(this);" required>
                                         </label>
                                         <?php if (isset($img_details[$count-1]['image_path'])):?>
@@ -500,7 +502,7 @@ $_POST = array();
                                             
                                     <div class="line3">
                                         <!-- <input type="file" name="file"  onchange="previewFile(this);" required> -->
-                                        <label class="addFile1"><i class="material-icons " style = "margin-right:0px">get_app</i>  Select File</span>
+                                        <label class="addFile"><span><i class="material-icons " style = "margin-right:0px">publish</i>  Select File</span>
                                             <input  type="file" name="file" size="60" onchange="previewFile(this);" required>
                                         </label>
                                         <?php if (isset($img_details[$count-1]['image_path'])):?>

@@ -17,7 +17,7 @@ class RoomDetails {
         $dbhost = 'localhost';
         $dbuser = 'root';
         $dbpass = '';
-        $dbname = 'bayfront_hotel1';
+        $dbname = 'bayfront_hotel';
 
         $this->connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
     }

@@ -213,14 +213,7 @@ class EditwebController{
                     }else{
                         echo "Cant allowed";
                     }
-                    echo "fedssssssssssssssss";
-                    exit;
-                    $a = !file_exists(__DIR__.'/../../public/uploads/A006');
-                    echo  $a;
-                    if (file_exists(__DIR__.'/../../public/uploads/A006')) {
-                        // mkdir(__DIR__.'/../../public/uploads/A006', 0777, true);
-                        rmdir(__DIR__.'/../../public/uploads/A006');
-                    }
+                    
 
                 }
 
@@ -311,6 +304,23 @@ class EditwebController{
             }
         }    
 
+    }
+
+    public function delete($room_id , $room_number)
+    {
+        
+        $db = new RoomEdit;
+        if($db->deleteRoom($room_id)){
+            $db = new RoomEdit;
+            $data['rooms'] = $db->getAllRoom();
+            if (file_exists(__DIR__.'/../../public/uploads/'.$room_number)) {
+                // mkdir(__DIR__.'/../../public/uploads/'.$room_number, 0777, true);
+                array_map('unlink', glob(__DIR__.'/../../public/uploads/'.$room_number.'/*.*'));
+                rmdir(__DIR__.'/../../public/uploads/'.$room_number);
+            }
+            // $_POST = array();
+            view::load('dashboard/editweb/index', $data);
+        }
     }
     
 }

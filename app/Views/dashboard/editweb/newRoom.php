@@ -44,6 +44,7 @@
                             <label for="#"><i class="material-icons">hotel</i>Room Type:</label>
                                 <div class="animate-form">
                                     <select name="type_name" class="inputField" selected="<?php echo $room['type_name']; ?>" >
+                                        <option value="" style="border: none">-Select Room Type-</option> 
                                         <option value="1" style="border: none">Single Room</option> 
                                         <option value="2" style="border: none">Double Room with King Size Bed </option> 
                                         <option value="3" style="border: none">Double Room with Queen Size Bed</option> 
@@ -60,6 +61,7 @@
                             <label for="#"><i class="material-icons">room</i>Floor Type:</label>
                                 <div class="animate-form">
                                     <select name="floor_type" class="inputField" selected="<?php echo $room['floor_type']; ?>"> 
+                                        <option value="" style="border: none">-Select Room Floor-</option> 
                                         <option value="0" style="border: none">Ground Floor</option> 
                                         <option value="1" style="border: none">First Floor </option> 
                                         <option value="2" style="border: none">Scond Floor</option> 
@@ -124,6 +126,12 @@
                         <div class="row">
                             <label for="#"><i class="material-icons">deck</i>Room View:</label>
                                 <div class="animate-form">
+                                    <select name="floor_type" class="inputField" selected="<?php echo $room['floor_type']; ?>"> 
+                                        <option value="" style="border: none">-Select Room View-</option> 
+                                        <option value="Garden View" style="border: none">Garden View</option> 
+                                        <option value="Sea View" style="border: none">Sea View </option> 
+                                        <option value="City View" style="border: none">City View</option>    
+                                    </select>   
                                     <input type="text"  autocomplete="off" name="room_view" class="inputField"
                                     <?php 
                                         if(isset($room['room_view'])){
@@ -241,16 +249,17 @@
 
                         <div class="row">
                             <label for="#"><i class="material-icons">insert_photo</i>Room Photo:</label>
-                            <div class="imgLine">
-                                <div class="line">
-                                    <img id="previewImg" src="<?php echo BURL.'assets/img/addImg.svg'; ?>" alt="Placeholder">
-                                </div>
-                                <div class="line">
+                            <div class="imgLine1">
+                            <div class="line">
                                     <!-- <input type="file" name="file"  onchange="previewFile(this);" required> -->
                                     <label class="addFile">  Select File
                                         <input  type="file" name="imgfile" size="60" onchange="previewFile(this);" required>
                                     </label> 
                                 </div>
+                                <div class="line">
+                                    <img id="previewImg" src="<?php echo BURL.'assets/img/addImg.svg'; ?>" alt="Placeholder">
+                                </div>
+                               
                             </div>   
                         </div>
 

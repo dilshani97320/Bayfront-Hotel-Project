@@ -94,26 +94,26 @@ ul#category-tabs li a i {
 					<ul id="category-tabs">
 					    <li><a href="javascript:void" class="main-category">Breakfast <i class="fa fa-minus"></i></a>
 					        <ul class="sub-category-tabs">
-					            <li><a href="landing3.php?article=1">Traditional Menu </a></li>
-					            <li><a href="landing3.php?article=1">Western Menu</a></li>
+					            <li><a href="<?php url('Dining/ViewSubPage/1' ); ?>">Traditional Menu </a></li>
+					            <li><a href="<?php url('Dining/ViewSubPage/1' ); ?>">Western Menu</a></li>
 					        </ul>
 					    </li>
 					</ul>
 					<ul id="category-tabs">
 					    <li><a href="javascript:void" class="main-category">Lunch<i class="fa fa-minus"></i></a>
 					        <ul class="sub-category-tabs">
-					            <li><a href="landing3.php?article=2">Traditional Menu</a></li>
-					            <li><a href="landing3.php?article=2">Seafood Menu</a></li>
-                                <li><a href="landing3.php?article=2">Pasta & Spegatti Menu</a></li>
+					            <li><a href="<?php url('Dining/ViewSubPage/2' ); ?>">Traditional Menu</a></li>
+					            <li><a href="<?php url('Dining/ViewSubPage/2' ); ?>">Seafood Menu</a></li>
+                                <li><a href="<?php url('Dining/ViewSubPage/2' ); ?>">Pasta & Spegatti Menu</a></li>
 					        </ul>
 					    </li>
 					</ul>
 					<ul id="category-tabs">
 					    <li><a href="javascript:void" class="main-category">Dinner<i class="fa fa-minus"></i></a>
 					        <ul class="sub-category-tabs">
-					            <li><a href="landing3.php?article=3">Traditional Menu</a></li>
-					            <li><a href="landing3.php?article=3">Soup Menu</a></li>
-                                <li><a href="landing3.php?article=3">Kottu Menu</a></li>
+					            <li><a href="<?php url('Dining/ViewSubPage/3' ); ?>">Traditional Menu</a></li>
+					            <li><a href="<?php url('Dining/ViewSubPage/3' ); ?>">Soup Menu</a></li>
+                                <li><a href="<?php url('Dining/ViewSubPage/3' ); ?>">Kottu Menu</a></li>
 					        </ul>
 					    </li>
 					</ul>

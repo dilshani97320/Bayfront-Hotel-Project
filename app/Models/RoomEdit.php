@@ -12,7 +12,7 @@ class RoomEdit{
         $dbhost = 'localhost';
         $dbuser = 'root';
         $dbpass = '';
-        $dbname = 'bayfront_hotel1';
+        $dbname = 'bayfront_hotel';
 
         $this->connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
     }
@@ -23,7 +23,7 @@ class RoomEdit{
         $query = "SELECT $this->table1.room_number, $this->table1.room_id, $this->table1.room_name, $this->table1.room_view, $this->table1.price,
                   $this->table2.type_name 
                   FROM $this->table1
-                  INNER JOIN $this->table2 ON $this->table1.type_id = $this->table2.room_type_id";
+                  INNER JOIN $this->table2 ON $this->table1.type_id = $this->table2.room_type_id AND $this->table1.is_delete = 0";
 
         // echo $query;  
         // exit();  

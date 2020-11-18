@@ -65,24 +65,7 @@ class RoomEdit{
         } 
     }
 
-    public function getRoomTypes() {
-        $user = array();
-        $query = "SELECT type_name FROM $this->table2";
-
-
-        $result = 0;
-
-        $room_types = mysqli_query($this->connection, $query);
-
-        if($room_types) {
-            mysqli_fetch_all($room_types,MYSQLI_ASSOC);
-        }
-        else {
-            echo "Database Query Failed";
-        }
-        return $room_types;
-    }
-
+    
 
     public function createRoom( $room_number, $type_name, $room_name,  $room_desc,  $floor_type, $room_size, $price, $room_view,  $air_condition, $free_canseleration, $hot_water ,$breakfast_included) {
 

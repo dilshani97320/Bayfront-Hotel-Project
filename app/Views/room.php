@@ -52,7 +52,7 @@
 								<div class="title">
 									<i class="fas fa-compress"></i>Acreage
 								</div>
-								<div class="value-meta"><?php echo $value['room_size']; ?> sqft</div>
+								<div class="value-meta"><?php echo $value['room_size']; ?> sq.ft</div>
 	
 							</div>
 							<div class="meta">

@@ -1464,26 +1464,26 @@ input[type="file"] {
  flex-basis: 300px;
 } */
 
-.line #previewImg{
- width: 150px;
- margin-left: 50px;
- height: 150px;
- object-fit: cover;  
+.line #previewImg {
+  width: 150px;
+  margin-left: 50px;
+  height: 150px;
+  object-fit: cover;
 }
 
-.line .submitBtn{
- width: 168px;
- padding: 10px;
- margin-top: 50px;
- letter-spacing: 1px;
- font-weight: 400;
- color: #fff;
- border: none;
- font-size: 18px;
- text-align: center;
- background: #00AF87;
- box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 0 1px 3px 1px rgba(60,64,67,0.149);
-
+.line .submitBtn {
+  width: 168px;
+  padding: 10px;
+  margin-top: 50px;
+  letter-spacing: 1px;
+  font-weight: 400;
+  color: #fff;
+  border: none;
+  font-size: 18px;
+  text-align: center;
+  background: #00af87;
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302),
+    0 1px 3px 1px rgba(60, 64, 67, 0.149);
 }
 
 /* Edit Image style */
@@ -1506,7 +1506,20 @@ input[type="file"] {
   line-height: 1.4em;
   font-weight: 300;
 }
-
+.line .submitBtn1 {
+  width: 168px;
+  padding: 10px;
+  margin-top: 50px;
+  letter-spacing: 1px;
+  font-weight: 400;
+  color: #fff;
+  border: none;
+  font-size: 18px;
+  text-align: center;
+  background: #00af87;
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302),
+    0 1px 3px 1px rgba(60, 64, 67, 0.149);
+}
 span {
   display: inline-flex;
   margin-top: 0px;
@@ -1532,7 +1545,7 @@ input[type="file"] {
 }
 .imgLine {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   margin-left: 30px;
 }
 .line {
@@ -1711,8 +1724,7 @@ input[type="file"] {
 }
 
 .footer-container-calendar option {
-  background:  #050633;
-  
+  background: #050633;
 }
 
 #month {

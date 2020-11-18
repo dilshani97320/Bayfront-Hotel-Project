@@ -30,7 +30,7 @@ $_POST = array();
                         <h4><?php echo $room_number." "; ?>Edit Image Page   
                         <span>
                             <a href="<?php url("editweb/index"); ?>" class="addnew"><i class="material-icons">arrow_back</i>Back To Rooms Table</a>  
-                        </span>
+                        </span> 
                         </h4>
                     </div>
                     <p class="textfortabel">Image Views Following Room</p>

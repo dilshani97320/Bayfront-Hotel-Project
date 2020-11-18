@@ -17,9 +17,7 @@
             <img src="<?php echo BURL.'assets/img/gallery/service_block/food.png'; ?>" alt="">
           </div>
           <div class='service-title'>THE HOT COFFEE</div>
-          <div class='description'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut laboreet dolore magna aliqua
-          </div>
+          <div class='description'></div>
         </div>
         
         <div class='service-box'>
@@ -28,9 +26,7 @@
             <img src="<?php echo BURL.'assets/img/gallery/service_block/liquor.png'; ?>" alt="">
           </div>
           <div class='service-title'>Bar Drinks</div>
-          <div class='description'>
-            Lorem ipsum dolor sit amet, consectetur adipiscingelit, sed do eiusmod tempor incididunt ut laboreet dolore magna aliqua
-          </div>
+          <div class='description'></div>
         </div>
         
         <div class='service-box'>
@@ -39,9 +35,7 @@
             <img src="<?php echo BURL.'assets/img/gallery/service_block/distance.png'; ?>" alt="">
           </div>
           <div class='service-title'>Relax in a beautiful contest</div>
-          <div class='description'>
-            Lorem ipsum dolor sit amet, consectetur adipiscingelit, sed do eiusmod tempor incididunt ut laboreet dolore magna aliqua
-          </div>
+          <div class='description'> </div>
         </div>
         
         <div class='service-box'>
@@ -50,9 +44,7 @@
             <img src="<?php echo BURL.'assets/img/gallery/service_block/time.png'; ?>" alt="">
           </div>
           <div class='service-title'>Exceptional Food</div>
-          <div class='description'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing              elit, sed do eiusmod tempor incididunt ut labore              et dolore magna aliqua
-          </div>
+          <div class='description'></div>
         </div>
         
       </div>

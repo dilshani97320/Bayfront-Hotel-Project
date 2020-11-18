@@ -43,15 +43,16 @@
                         <div class="row">
                             <label for="#"><i class="material-icons">hotel</i>Room Type:</label>
                                 <div class="animate-form">
-                                    <select name="type_name" class="inputField" selected="<?php echo $room['type_name']; ?>" >
-                                        <option value="" style="border: none">-Select Room Type-</option> 
-                                        <option value="1" style="border: none">Single Room</option> 
-                                        <option value="2" style="border: none">Double Room with King Size Bed </option> 
-                                        <option value="3" style="border: none">Double Room with Queen Size Bed</option> 
-                                        <option value="4" style="border: none">Triple Room</option> 
-                                        <option value="5" style="border: none">Twin Double Room</option> 
-                                        <option value="6" style="border: none">Twin Room</option> 
-                                        <option value="7" style="border: none">Family Room</option>    
+                                <?php echo $room['type_id']; ?> 
+                                    <select name="type_id" class="inputField" selected="" >
+                                    <option value="1" <?php if ($room['type_id'] == 1 ) echo ' selected="selected"'; ?> style="border: none">Single Room</option> 
+                                    <option value="2" <?php if ($room['type_id'] == 2 ) echo ' selected="selected"'; ?> style="border: none">Double Room with King Size Bed </option> 
+                                    <option value="3" <?php if ($room['type_id'] == 3 ) echo ' selected="selected"'; ?> style="border: none">Double Room with Queen Size Bed</option> 
+                                    <option value="4" <?php if ($room['type_id'] == 4 ) echo ' selected="selected"'; ?> style="border: none">Triple Room</option> 
+                                    <option value="5" <?php if ($room['type_id'] == 5 ) echo ' selected="selected"'; ?> style="border: none">Twin Double Room</option> 
+                                    <option value="6" <?php if ($room['type_id'] == 6 ) echo ' selected="selected"'; ?> style="border: none">Twin Room</option> 
+                                    <option value="7" <?php if ($room['type_id'] == 7 ) echo ' selected="selected"'; ?>style="border: none">Family Room</option> 
+                                        
                                     </select>    
                                 </div>     
                         </div>
@@ -60,14 +61,14 @@
                         <div class="row">
                             <label for="#"><i class="material-icons">room</i>Floor Type:</label>
                                 <div class="animate-form">
-                                    <select name="floor_type" class="inputField" selected="<?php echo $room['floor_type']; ?>"> 
-                                        <option value="" style="border: none">-Select Room Floor-</option> 
-                                        <option value="0" style="border: none">Ground Floor</option> 
-                                        <option value="1" style="border: none">First Floor </option> 
-                                        <option value="2" style="border: none">Scond Floor</option> 
-                                        <option value="3" style="border: none">Third Floor</option> 
-                                        <option value="4" style="border: none">Fourth Floor</option>      
-                                    </select>    
+                                    <select name="floor_type" class="inputField" selected=""> 
+                                    <option value="" style="border: none">Select The Floor</option> 
+                                    <option value="0"<?php if ($room['floor_type'] == 0 ) echo ' selected="selected"'; ?> style="border: none">Ground Floor</option> 
+                                    <option value="1" <?php if ($room['floor_type'] == 1 ) echo ' selected="selected"'; ?> style="border: none">First Floor </option> 
+                                    <option value="2" <?php if ($room['floor_type'] == 2 ) echo ' selected="selected"'; ?> style="border: none">Scond Floor</option> 
+                                    <option value="3" <?php if ($room['floor_type'] == 3 ) echo ' selected="selected"'; ?> style="border: none">Third Floor</option> 
+                                    <option value="4"<?php if ($room['floor_type'] == 4 ) echo ' selected="selected"'; ?>  style="border: none">Fourth Floor</option> 
+                                </select>   
                                 </div>     
                         </div>
 
@@ -126,25 +127,12 @@
                         <div class="row">
                             <label for="#"><i class="material-icons">deck</i>Room View:</label>
                                 <div class="animate-form">
-                                    <select name="floor_type" class="inputField" selected="<?php echo $room['floor_type']; ?>"> 
+                                    <select name="room_view" class="inputField" selected="<?php echo $room['room_view']; ?>"> 
                                         <option value="" style="border: none">-Select Room View-</option> 
-                                        <option value="Garden View" style="border: none">Garden View</option> 
-                                        <option value="Sea View" style="border: none">Sea View </option> 
-                                        <option value="City View" style="border: none">City View</option>    
-                                    </select>   
-                                    <input type="text"  autocomplete="off" name="room_view" class="inputField"
-                                    <?php 
-                                        if(isset($room['room_view'])){
-                                            echo 'value="' . $room['room_view'] . '"';
-                                        }
-                                        else {
-                                            echo 'placeholder="Sea View"';
-                                        } 
-                                    
-                                    ?>
-                                    required
-                                    
-                                    >
+                                        <option value="Garden View"  <?php if ($room['room_view'] == "Garden View" ) echo ' selected="selected"'; ?> style="border: none">Garden View</option> 
+                                        <option value="Sea View" <?php if ($room['room_view'] == "Sea View" ) echo ' selected="selected"'; ?> style="border: none">Sea View </option> 
+                                        <option value="City View" <?php if ($room['room_view'] == "City View" ) echo ' selected="selected"'; ?> style="border: none">City View</option>    
+                                    </select> 
                                     
                                         <label for="name" class="label-name">
                                             <?php if((isset($errors['room_view'])) && (isset($room['room_view']))): ?>
@@ -250,16 +238,15 @@
                         <div class="row">
                             <label for="#"><i class="material-icons">insert_photo</i>Room Photo:</label>
                             <div class="imgLine1">
-                            <div class="line">
-                                    <!-- <input type="file" name="file"  onchange="previewFile(this);" required> -->
-                                    <label class="addFile">  Select File
-                                        <input  type="file" name="imgfile" size="60" onchange="previewFile(this);" required>
-                                    </label> 
-                                </div>
                                 <div class="line">
                                     <img id="previewImg" src="<?php echo BURL.'assets/img/addImg.svg'; ?>" alt="Placeholder">
                                 </div>
-                               
+                                <div class="line">
+                                    <!-- <input type="file" name="file"  onchange="previewFile(this);" required> -->
+                                    <label class="addFile1">  Select File
+                                        <input  type="file" name="imgfile" size="60" onchange="previewFile(this);" required>
+                                    </label> 
+                                </div>
                             </div>   
                         </div>
 
@@ -303,7 +290,7 @@ function previewFile(input) {
     if(file){
         var reader = new FileReader();
         reader.onload = function(){
-            $(input).closest('.imgLine').find('#previewImg').attr("src", reader.result);
+            $(input).closest('.imgLine1').find('#previewImg').attr("src", reader.result);
         }
             reader.readAsDataURL(file);
     }

@@ -1079,6 +1079,7 @@ background: radial-gradient(circle, rgba(214,21,0,0.5917717428768383) 100%, rgba
 .single-menu img{
   max-width:100px;
   height: 100px;
+  object-fit: cover;
   margin-right:30px;
   border-radius:50%;
   border:1px solid #ddd;
@@ -1731,6 +1732,7 @@ figure.imgBlockSurf.hover .title:after {
   text-align: center;
   text-transform: uppercase;
   font-size: 30px;
+  
 }
 
 .service-container {
@@ -1766,9 +1768,11 @@ figure.imgBlockSurf.hover .title:after {
   font-size: 26px;
 }
 .service-title {
-  font-size: 18px;
+  font-size: 20px;
   text-transform: uppercase;
   margin-bottom: 10px;
+  letter-spacing: 1px;
+  font-weight: 650;
 }
 .description {
   font-size: 14px;

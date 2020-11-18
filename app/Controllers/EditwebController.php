@@ -61,12 +61,9 @@ class EditwebController{
         }
 
         else {
-            $db = new RoomEdit();
+            
 
-            // all room types
-            $typename = $db->getRoomTypes();
-
-            $data['typename'] = $typename;
+            $data['room'] = array("room_number"=>"", "room_name"=>"", "type_id"=>"", "room_desc"=>"", "price"=>"", "room_view"=>"", "floor_type"=>"", "room_size"=>"", "air_condition"=>"", "free_canseleration"=>"", "hot_water"=>"", "breakfast_included"=>"");
             view::load('dashboard/editweb/newRoom', $data);
 
         }
@@ -157,7 +154,15 @@ class EditwebController{
                     
                 }
                 
-                $errors = array_filter( $errors ); 
+                if(preg_match("/^\d+(\.\d{2})?$/" , $price)){
+                    $errors['price'] = 'Entered Price is Invalid';
+                }
+                if(preg_match("/^\d+(\.\d{2})?$/" , $room_size)){
+                    $errors['room_size'] = 'Entered Room Size is Invalid';
+                }
+
+
+                // $errors = array_filter( $errors ); 
             
                 if(count( $errors ) == 0) {
 
@@ -219,7 +224,7 @@ class EditwebController{
 
                 else {
                     $data['errors'] = $errors;
-                    $data['room'] = array("room_number"=>$room_number, "room_name"=>$room_name, "type_name"=>$type_name, "room_desc"=>$room_desc, "price"=>$price, "room_view"=>$room_view, "floor_type"=>$floor_type, "room_size"=>$room_size, "air_condition"=>$air_condition, "free_canseleration"=>$free_canseleration, "hot_water"=>$hot_water, "breakfast_included"=>$breakfast_included);
+                    $data['room'] = array("room_number"=>$room_number, "room_name"=>$room_name, "type_id"=>$type_name, "room_desc"=>$room_desc, "price"=>$price, "room_view"=>$room_view, "floor_type"=>$floor_type, "room_size"=>$room_size, "air_condition"=>$air_condition, "free_canseleration"=>$free_canseleration, "hot_water"=>$hot_water, "breakfast_included"=>$breakfast_included);
                     view::load('dashboard/editweb/newRoom', $data);
                 }
                 

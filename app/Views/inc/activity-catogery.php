@@ -92,42 +92,42 @@ ul#category-tabs li a i {
 	<div class="side-nav-categories">
 					<div class="title"><strong>Things To Do</strong></div>
 					<ul id="category-tabs">
-					    <li><a href=" landing.php?article=0" class="main-category">Spa & Yoga </a></li>
+					    <li><a href="<?php url('Activity/ViewSubPage/0' ); ?>" class="main-category">Spa & Yoga </a></li>
 					</ul>
                     <ul id="category-tabs">
-                        <li><a href=" landing.php?article=7" class="main-category">World's Best Coral Reefs for Scuba Diving   </a></li>
+                        <li><a href="<?php url('Activity/ViewSubPage/7' ); ?>" class="main-category">World's Best Coral Reefs for Scuba Diving   </a></li>
                     </ul>
                     <ul id="category-tabs">
-                        <li><a href=" landing.php?article=9" class="main-category">The Best Hiking and Trekking Trails in Sri Lanka  </a></li>
+                        <li><a href="<?php url('Activity/ViewSubPage/9' ); ?>" class="main-category">The Best Hiking and Trekking Trails in Sri Lanka  </a></li>
                     </ul>
                     <ul id="category-tabs">
-                        <li><a href=" landing.php?article=6" class="main-category">Blue whale watching in Sri Lanka </a></li>
+                        <li><a href=" <?php url('Activity/ViewSubPage/6' ); ?>" class="main-category">Blue whale watching in Sri Lanka </a></li>
                     </ul>
                     <ul id="category-tabs">
-                        <li><a href=" landing.php?article=1" class="main-category">The best turtle hatchery in Sri Lanka  </a></li>
+                        <li><a href=" <?php url('Activity/ViewSubPage/1' ); ?>" class="main-category">The best turtle hatchery in Sri Lanka  </a></li>
                     </ul>
                     <ul id="category-tabs">
-                        <li><a href=" landing.php?article=2" class="main-category">White Water Rafting in Kitulgala, Sri Lanka  </a></li>
+                        <li><a href=" <?php url('Activity/ViewSubPage/2' ); ?>" class="main-category">White Water Rafting in Kitulgala, Sri Lanka  </a></li>
                     </ul>
                     <ul id="category-tabs">
-                        <li><a href=" landing.php?article=4" class="main-category">Rural Bike Ride </a></li>
+                        <li><a href=" <?php url('Activity/ViewSubPage/4' ); ?>" class="main-category">Rural Bike Ride </a></li>
                     </ul>
                     <ul id="category-tabs">
-                        <li><a href=" landing.php?article=5" class="main-category"> Sea Kayaking in Sri Lanka  </a></li>
+                        <li><a href=" <?php url('Activity/ViewSubPage/5' ); ?>" class="main-category"> Sea Kayaking in Sri Lanka  </a></li>
                     </ul>
                     <ul id="category-tabs">
-                        <li><a href=" landing.php?article=11" class="main-category">Visits to Historic Sites and points of interest  </a></li>
+                        <li><a href=" <?php url('Activity/ViewSubPage/11' ); ?>" class="main-category">Visits to Historic Sites and points of interest  </a></li>
                     </ul>
                     <ul id="category-tabs">
-                        <li><a href=" landing.php?article=10" class="main-category">Swinging on a rope  </a></li>
+                        <li><a href=" <?php url('Activity/ViewSubPage/10' ); ?>" class="main-category">Swinging on a rope  </a></li>
                     </ul>
                     <ul id="category-tabs">
-                        <li><a href=" landing.php?article=8" class="main-category">Most Scenic Train Ride in Sri Lanka </a></li>
+                        <li><a href=" <?php url('Activity/ViewSubPage/8' ); ?>" class="main-category">Most Scenic Train Ride in Sri Lanka </a></li>
                     </ul>
 					
 				</div>
 
-				<script type="text/javascript">
+	<script type="text/javascript">
 		$('#category-tabs li a').click(function(){
 		$(this).next('ul').slideToggle('500');
 		$(this).find('i').toggleClass('fa-minus fa-plus ')

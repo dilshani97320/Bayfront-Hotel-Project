@@ -66,8 +66,7 @@
   border: 2px #d1e8f3 solid;
     line-height: 30px;
     font-weight: 800;
-    font-size: 60px;
-    color: #85b5cc;
+    color: #62aacc;
     font-family: nanum myeongjo,helveticaneue-light,helvetica neue light,helvetica neue,Helvetica,Arial,lucida grande,sans-serif;
 }
 
@@ -82,8 +81,9 @@
 }
 .price .value{
     font-weight: 550;
+    font-size: 55px;
     letter-spacing: 1px;
-    margin-left: 15px;
+    margin-left: 10px;
 }
 
 .price .unit{
@@ -105,7 +105,7 @@
     display: flex;
     flex-wrap: wrap;
     flex: 1;
-    margin: 10px 10px;
+    margin: 20px 10px;
     border: 2px solid #85b5cc;
     padding: 10px 0;
     /* font-family: nanum myeongjo,helveticaneue-light,helvetica neue light,helvetica neue,Helvetica,Arial,lucida grande,sans-serif; */
@@ -114,7 +114,7 @@
 .single-room-meta2 .meta2{
   display: block;
   width:  150px;
-  margin-left: 40px;
+  margin-left: 30px;
 }
 .single-room-meta2 .title{
   display: block;
@@ -230,8 +230,8 @@
 							</div>
 						</div>
 
-  <h2><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-   viewBox="0 0 480 480" height="30" width="30" style="enable-background:new 0 0 480 480;" xml:space="preserve">
+  <h4><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+   viewBox="0 0 480 480" height="20" width="20" style="enable-background:new 0 0 480 480;" xml:space="preserve">
 <g>
   <g>
     <path d="M472,272h-8v-24c-0.021-15.886-9.44-30.254-24-36.608V88c-0.002-3.18-1.886-6.056-4.8-7.328
@@ -260,7 +260,13 @@
     <path d="M440,352H104c-4.418,0-8,3.582-8,8s3.582,8,8,8h336c4.418,0,8-3.582,8-8S444.418,352,440,352z"/>
   </g>
 </g>
-</svg>Room <small>400 sq.ft</small></h2>
+</svg> <?php 
+                if ($room_details[0]['air_condition']==1) {
+                  echo "A/C";
+                }else{
+                  echo "Non A/C";
+                }
+                 ?> Room</h4>
   <ul style="margin-bottom: 30px;">
     <li>A feast to start your day, the Grand Breakfast offers an exquisite array of international delicacies including a healthy and vegetarian corner, to put you on the right track. Detox Butlers, Croissant Butlers and Chefs at the many action stations are at your command to make your breakfast, a feast fit for a king.</li>
     <li>

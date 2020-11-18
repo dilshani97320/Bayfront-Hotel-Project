@@ -1025,13 +1025,16 @@ background: radial-gradient(circle, rgba(214,21,0,0.5917717428768383) 100%, rgba
 
 .title h4{
   
-  font-size: 36px;
+  font-size: 30px;
   position: relative;
   display: inline-block;
   padding-bottom: 10px;
   text-transform: uppercase;
 }
-
+.title h5{
+  margin-top: 40px;
+  font-size: 20px;
+}
 /*.title h4 span{
   display: block;
   font-size: 18px;
@@ -1079,6 +1082,7 @@ background: radial-gradient(circle, rgba(214,21,0,0.5917717428768383) 100%, rgba
 .single-menu img{
   max-width:100px;
   height: 100px;
+  object-fit: cover;
   margin-right:30px;
   border-radius:50%;
   border:1px solid #ddd;
@@ -1641,7 +1645,7 @@ figure.imgBlockSurf.hover .title:after {
   justify-content: space-between;
   background-color: #fff;
   padding: 5px 30px;
-  width:1400px;
+  width:1200px;
     margin: auto;
     box-shadow: 0px 2px 18px -4px rgba(0,0,0,0.75);
     height: 100px;
@@ -1700,7 +1704,7 @@ figure.imgBlockSurf.hover .title:after {
 }
 .form__submit {
   width: 100%;
-  margin-top: 30px;
+  margin-top: 20px;
   height: 45px;
   border: 1px solid transparent;
   font-size: 15px;
@@ -1731,12 +1735,13 @@ figure.imgBlockSurf.hover .title:after {
   text-align: center;
   text-transform: uppercase;
   font-size: 30px;
+  
 }
 
 .service-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 .service-box {
@@ -1766,9 +1771,11 @@ figure.imgBlockSurf.hover .title:after {
   font-size: 26px;
 }
 .service-title {
-  font-size: 18px;
+  font-size: 20px;
   text-transform: uppercase;
   margin-bottom: 10px;
+  letter-spacing: 1px;
+  font-weight: 650;
 }
 .description {
   font-size: 14px;

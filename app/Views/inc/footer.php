@@ -15,7 +15,7 @@
            <iframe
         src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15872.630594741284!2d80.4331891!3d5.9730164!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xc30788ae9b82a0c7!2sBayfront!5e0!3m2!1sen!2slk!4v1594919424506!5m2!1sen!2slk"
         width="80%"
-        height="350px"
+        height="250px"
         frameborder="0"
         style="border: 0; margin-bottom: 30px"
         allowfullscreen=""
@@ -40,6 +40,7 @@
                     <i class="fa fa-envelope"></i>
                     <p><a href="bayfrontweli45@gmail.com">bayfrontweli45@gmail.com</a></p>
                 </div>
+                
 
             </div>
 
@@ -57,7 +58,7 @@
                 <span>Find us also :</span>
                 <div class="footer-icons">
                    
-                    <img src="img/logo-trivision.png" alt="">
+                    <img src="<?php echo BURL.'assets/img/basic/tripadvisor.png'; ?>" alt="">
                 </div>
 
             </div>

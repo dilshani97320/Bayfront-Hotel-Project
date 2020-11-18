@@ -45,12 +45,19 @@ class AuthController {
 
 					$data['errors'] = $errors;
 					// setcookie('email', $user['email'], time()+60*60*7 );
+					$db = new RoomDetails();
+					$data['room_details'] = $db->getRoomView(); 
+
+					$db = new Image();
+					$imageRoom =$db->viewRoom();
+					$data['img_details'] = $imageRoom;
 					view::load('home', $data);
 					exit();
 
 				}else{
 					$errors['login_fail']= "You have entered an invalid username or password";
 					$data['errors'] = $errors;
+
                     view::load('login/login',$data);
 				}
 			}else{
@@ -107,7 +114,7 @@ class AuthController {
 					
 					// $user_id = $conn->insert_id;
 					// $_SESSION['id']= $user_id;
-					$_SESSION['username']= $username;
+					$_SESSION['nameuser']= $username;
 					$_SESSION['email']= $email;
 					$_SESSION['verified']= $verified;
 
@@ -182,7 +189,13 @@ class AuthController {
 			unset($_SESSION['nameuser']);
 			unset($_SESSION['email']);
 			unset($_SESSION['verified']);
-			view::load('home');
+			$db = new RoomDetails();
+					$data['room_details'] = $db->getRoomView(); 
+
+					$db = new Image();
+					$imageRoom =$db->viewRoom();
+					$data['img_details'] = $imageRoom;
+			view::load('home', $data);
 			exit();
 		
 	}
@@ -292,7 +305,7 @@ class AuthController {
 				$errors['password']="password does not match";
 			}
 			$password = password_hash($password, PASSWORD_DEFAULT);
-			$email= $_SESSION['email'];
+			// $email= $_SESSION['email'];
 		
 			if(count($errors)== 0){
 				$db = new Signin();

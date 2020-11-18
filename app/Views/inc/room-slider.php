@@ -9,274 +9,161 @@
 <body>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div id="slideshow">
-   <div class="slideitem current">
 
-   
-     <div class="room-slider">
-		<div class="room-details">
-	
-			<div class="content-room">
-				
-			<span class="value">$120.6</span>
-          <span class="unit">/Night</span>
-       
-			<h1>Superior Double Room with Partial Sea View</h1>
-
-			<span>room type</span>
-			<p>Lorem20 ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum, quas quasi nulla aut blanditiis, minima omnis molestiae! Necessitatibus, adipisci nam id quis natus.</p>
-			
-			<div class="single-room-meta">
-				<div class="meta">
-					
-					<div class="title">
-						<i class="fas fa-user-tie"></i>Adults
-					</div>
-					<div class="value-meta">2</div>
-
-				</div>
-				<div class="meta">
-					
-					<div class="title">
-						<i class="fa fa-child" ></i>Children
-					</div>
-					<div class="value-meta">1</div>
-
-				</div>
-				<!-- <div class="meta">
-					
-					<div class="title">
-						<i class="fas fa-compress"></i>Acreage
-					</div>
-					<div class="value-meta">400 sq.ft</div>
-
-				</div> -->
-				<div class="meta">
-					
-					<div class="title">
-						<i class="fas fa-bed"></i>Beds
-					</div>
-					<div class="value-meta">1 King Size Bed</div>
-				</div>
-				<div class="meta">
-					
-					<div class="title">
-					<i class="fas fa-eye"></i> View
-					</div>
-					<div class="value-meta">Sea View</div>
-
-				</div>
-			</div>
-			</div>
-
-			<div class="bttn">
-				<a class="btn" href="#">VIEW MORE</i></a>
-				<a class="btn" href="#">BOOK NOW</i></a>
-			</div>
-		</div>
-		<div class="room-img">
-			<img src="<?php echo BURL.'assets/img/room1.jpg'; ?>" alt="">
-		</div>
-
-	</div>
-   </div>
-	<div class="slideitem">
+<?php  foreach ($room_details as $key=>$value): //var_dump($value); ?>	
+		<?php  if($value['is_delete']== 0): ?>							
+	<div class="slideitem current">
 		<div class="room-slider">
 			<div class="room-details ">
 				<div class="content-room">
-					<span class="value">$320.6</span>
-					<span class="unit">/Night</span>
-					<h1>Standard Double Room</h1>
-					<span>room type</span>
+					<span class="value"> <?php echo $value['price']; ?> $</span>
+					<span class="unit">/Per Night</span>
+					<h1><?php echo $value['room_name']; ?></h1>
+					<span><?php echo $value['type_name']; ?></span>
 					<p>Lorem20 ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum, quas quasi nulla aut blanditiis, minima omnis molestiae! Necessitatibus, adipisci nam id quis natus.</p>
 					
 					<div class="single-room-meta">
 						<div class="meta">
 							
 							<div class="title">
-								<i class="fas fa-user-tie"></i>Adults
+								<i class="fas fa-user-tie"></i>Guest
 							</div>
-							<div class="value-meta">2</div>
+							<div class="value-meta"><?php echo $value['max_guest']; ?>2</div>
 
 						</div>
 						<div class="meta">
 							
 							<div class="title">
-								<i class="fa fa-child" ></i>Children
-							</div>
-							<div class="value-meta">1</div>
-
-						</div>
-						<!-- <div class="meta">
-							
-							<div class="title">
 								<i class="fas fa-compress"></i>Acreage
 							</div>
-							<div class="value-meta">400 sq.ft</div>
+							<div class="value-meta"><?php echo $value['room_size']; ?> sq.ft</div>
 
-						</div> -->
+						</div>
 						<div class="meta">
 							
 							<div class="title">
 								<i class="fas fa-bed"></i>Beds
 							</div>
-							<div class="value-meta">1 King Size Bed</div>
+							<div class="value-meta"><?php echo $value['bed_type']; ?></div>
 						</div>
 						<div class="meta">
 							
 							<div class="title">
 							<i class="fas fa-eye"></i> View
 							</div>
-							<div class="value-meta">Sea View</div>
+							<div class="value-meta"><?php echo $value['room_view']; ?></div>
 
 						</div>
 					</div>
 				</div>
 				<div class="bttn">
-					<a class="btn" href="#">VIEW MORE <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+					<a class="btn" href="<?php url('RoomSuite/ViewRoom/'.$value['room_number'] ); ?>">VIEW MORE <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
 					<a class="btn" href="#">BOOK NOW <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
 				</div>
 			</div>
 			<div class="room-img">
-				<img src="<?php echo BURL.'assets/img/room2.jpg'; ?>" alt="">
+			<?php  foreach ($img_details as $key=>$valueImg): //var_dump($value); ?>
+						
+						<?php if ($valueImg['room_number'] == $value['room_number'] ): ?>
+							<?php if ($valueImg['image_name'] == 'image_01' ): ?>
+								<img src="<?php echo BURL.$img_details[$key]['image_path']; ?>" alt="">
+							<?php endif; ?>
+						<?php endif; ?>
+				<?php endforeach; ?> 
 			</div>
 		</div>
 	</div>
-   		<div class="slideitem">
-     		<div class="room-slider">
-				<div class="room-details">
-					<div class="content-room">
-						<span class="value">$170.6</span>
-						<span class="unit">/Night</span>
-						<h1>Executive Suite with Sea View </h1>
-						<span>room type</span>
-						<p>Lorem20 ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum, quas quasi nulla aut blanditiis, minima omnis molestiae! Necessitatibus, adipisci nam id quis natus.</p>
-						
-						<div class="single-room-meta">
-							<div class="meta">
-								
-								<div class="title">
-									<i class="fas fa-user-tie"></i>Adults
-								</div>
-								<div class="value-meta">2</div>
-
-							</div>
-							<div class="meta">
-								
-								<div class="title">
-									<i class="fa fa-child" ></i>Children
-								</div>
-								<div class="value-meta">1</div>
-
-							</div>
-							<!-- <div class="meta">
-								
-								<div class="title">
-									<i class="fas fa-compress"></i>Acreage
-								</div>
-								<div class="value-meta">400 sq.ft</div>
-
-							</div> -->
-							<div class="meta">
-								
-								<div class="title">
-									<i class="fas fa-bed"></i>Beds
-								</div>
-								<div class="value-meta">1 King Size Bed</div>
-							</div>
-							<div class="meta">
-								
-								<div class="title">
-								<i class="fas fa-eye"></i> View
-								</div>
-								<div class="value-meta">Sea View</div>
-
-							</div>
-						</div>
-						</div>
-						<div class="bttn">
-							<a class="btn" href="#">VIEW MORE <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-						<a class="btn" href="#">BOOK NOW <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-					</div>
+							<?php break;  ?> 
+	<?php endif; ?> 
+	<?php endforeach;  ?> 
+		
+   <?php  foreach ($room_details as $key=>$value): //var_dump($value); ?>	
+		<?php  if($value['is_delete']== 0 && $key>0): ?>	
+									
+	<div class="slideitem">
+		<div class="room-slider">
+			<div class="room-details ">
+				<div class="content-room">
+					<span class="value"> <?php echo $value['price']; ?> $</span>
+					<span class="unit">/Per Night</span>
+					<h1><?php echo $value['room_name']; ?></h1>
+					<span><?php echo $value['type_name']; ?></span>
+					<p>Lorem20 ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum, quas quasi nulla aut blanditiis, minima omnis molestiae! Necessitatibus, adipisci nam id quis natus.</p>
 					
+					<div class="single-room-meta">
+						<div class="meta">
+							
+							<div class="title">
+								<i class="fas fa-user-tie"></i>Guest
+							</div>
+							<div class="value-meta"><?php echo $value['max_guest']; ?>2</div>
 
+						</div>
+						<div class="meta">
+							
+							<div class="title">
+								<i class="fas fa-compress"></i>Acreage
+							</div>
+							<div class="value-meta"><?php echo $value['room_size']; ?> sq.ft</div>
+
+						</div>
+						<div class="meta">
+							
+							<div class="title">
+								<i class="fas fa-bed"></i>Beds
+							</div>
+							<div class="value-meta"><?php echo $value['bed_type']; ?></div>
+						</div>
+						<div class="meta">
+							
+							<div class="title">
+							<i class="fas fa-eye"></i> View
+							</div>
+							<div class="value-meta"><?php echo $value['room_view']; ?></div>
+
+						</div>
 					</div>
-					<div class="room-img">
-						<img src="<?php echo BURL.'assets/img/room3.jpg'; ?>" alt="">
-					
+				</div>
+				<div class="bttn">
+					<a class="btn" href="<?php url('RoomSuite/ViewRoom/'.$value['room_number'] ); ?>">VIEW MORE <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+					<a class="btn" href="#">BOOK NOW <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
 				</div>
 			</div>
-		</div>
-
-   <!-- <div class="slideitem">
-     <div class="room-slider">
-		<div class="room-details">
-			<h1>Room Name</h1>
-			<span>room type</span>
-			<p>Lorem20 ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum, quas quasi nulla aut blanditiis, minima omnis molestiae! Necessitatibus, adipisci nam id quis natus.</p>
-			
-				<i class="fa fa-wifi" aria-hidden="true"></i>
-				<i class="fa fa-cutlery" aria-hidden="true"></i>
-				<i class="fa fa-coffee" aria-hidden="true"></i>
-				<i class="fa fa-car" aria-hidden="true"></i>
-			<br>
-			<div class="bttn">
-				 <a class="btn" href="#">VIEW MORE <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-			  <a class="btn" href="#">BOOK NOW <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-		</div>
-			
-		</div>
-		<div class="room-img">
-			<img src="img/room1.jpg" alt="">
+			<div class="room-img">
+			<?php  foreach ($img_details as $key=>$valueImg): //var_dump($value); ?>
+						
+						<?php if ($valueImg['room_number'] == $value['room_number'] ): ?>
+							<?php if ($valueImg['image_name'] == 'image_01' ): ?>
+								<img src="<?php echo BURL.$img_details[$key]['image_path']; ?>" alt="">
+							<?php endif; ?>
+						<?php endif; ?>
+				<?php endforeach; ?> 
+			</div>
 		</div>
 	</div>
-   </div>
-   <div class="slideitem">
-     <div class="room-slider">
-		<div class="room-details">
-			<h1>Room Name</h1>
-			<span>room type</span>
-			<p>Lorem20 ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum, quas quasi nulla aut blanditiis, minima omnis molestiae! Necessitatibus, adipisci nam id quis natus.</p>
-			
-				<i class="fa fa-wifi" aria-hidden="true"></i>
-				<i class="fa fa-cutlery" aria-hidden="true"></i>
-				<i class="fa fa-coffee" aria-hidden="true"></i>
-				<i class="fa fa-car" aria-hidden="true"></i>
-			<br>
-			<div class="bttn">
-				 <a class="btn" href="#">VIEW MORE <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-			  <a class="btn" href="#">BOOK NOW <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-		</div>
-			
-		</div>
-		<div class="room-img">
-			<img src="img/room2.jpg" alt="">
-		</div>
-	</div>
-   </div>
-   <div class="slideitem">
-     <div class="room-slider">
-		<div class="room-details">
-			<h1>Room Name</h1>
-			<span>room type</span>
-			<p>Lorem20 ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum, quas quasi nulla aut blanditiis, minima omnis molestiae! Necessitatibus, adipisci nam id quis natus.</p>
-			
-				<i class="fa fa-wifi" aria-hidden="true"></i>
-				<i class="fa fa-cutlery" aria-hidden="true"></i>
-				<i class="fa fa-coffee" aria-hidden="true"></i>
-				<i class="fa fa-car" aria-hidden="true"></i>
-			<br>
-			<div class="bttn">
-				 <a class="btn" href="#">VIEW MORE <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-			  <a class="btn" href="#">BOOK NOW <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-		</div>
-			
-		</div>
-		<div class="room-img">
-			<img src="img/room3.jpg" alt="">
-		</div>
-	</div>
-   </div> -->
+	<?php endif; ?> 
+	<?php endforeach; ?> 
 </div>
 
 			

@@ -94,40 +94,40 @@ ul#category-tabs li a i {
 					<ul id="category-tabs">
 					    <li><a href="javascript:void" class="main-category">Beginners Package <i class="fa fa-minus"></i></a>
 					        <ul class="sub-category-tabs">
-					            <li><a href="landing2.php?article=1">Solo </a></li>
-					            <li><a href="landing2.php?article=1">Group</a></li>
+					            <li><a href="<?php url('Surf/ViewSubPage/1' ); ?>">Solo </a></li>
+					            <li><a href="<?php url('Surf/ViewSubPage/1' ); ?>">Group</a></li>
 					        </ul>
 					    </li>
 					</ul>
 					<ul id="category-tabs">
 					    <li><a href="javascript:void" class="main-category">Intermediate Package<i class="fa fa-minus"></i></a>
 					        <ul class="sub-category-tabs">
-					            <li><a href="landing2.php?article=2">Solo </a></li>
-					            <li><a href="landing2.php?article=2">Group</a></li>
+					            <li><a href="<?php url('Surf/ViewSubPage/2' ); ?>">Solo </a></li>
+					            <li><a href="<?php url('Surf/ViewSubPage/2' ); ?>">Group</a></li>
 					        </ul>
 					    </li>
 					</ul>
 					<ul id="category-tabs">
 					    <li><a href="javascript:void" class="main-category">Advanced Package<i class="fa fa-minus"></i></a>
 					        <ul class="sub-category-tabs">
-					            <li><a href="landing2.php?article=3">Solo </a></li>
-					            <li><a href="landing2.php?article=3">Group</a></li>
+					            <li><a href="<?php url('Surf/ViewSubPage/3' ); ?>">Solo </a></li>
+					            <li><a href="<?php url('Surf/ViewSubPage/3' ); ?>">Group</a></li>
 					        </ul>
 					    </li>
 					</ul>
 					<ul id="category-tabs">
 					    <li><a href="javascript:void" class="main-category">Group Lesson<i class="fa fa-minus"></i></a>
 					        <ul class="sub-category-tabs">
-					            <li><a href="landing2.php?article=4">7 Days Package </a></li>
-					            <li><a href="landing2.php?article=4">3 Days Package</a></li>
+					            <li><a href="<?php url('Surf/ViewSubPage/4' ); ?>">7 Days Package </a></li>
+					            <li><a href="<?php url('Surf/ViewSubPage/4' ); ?>">3 Days Package</a></li>
 					        </ul>
 					    </li>
 					</ul>
 					<ul id="category-tabs">
 					    <li><a href="javascript:void" class="main-category">Solo Lesson<i class="fa fa-minus"></i></a>
 					        <ul class="sub-category-tabs">
-					            <li><a href="landing2.php?article=5">7 Days Package </a></li>
-					            <li><a href="landing2.php?article=5">3 Days Package</a></li>
+					            <li><a href="<?php url('Surf/ViewSubPage/5' ); ?>">7 Days Package </a></li>
+					            <li><a href="<?php url('Surf/ViewSubPage/5  ' ); ?>">3 Days Package</a></li>
 					        </ul>
 					    </li>
 					</ul>

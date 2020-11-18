@@ -13,7 +13,7 @@
 	<!-- Restuarant part -->
 	<div class="boxes">
 		<div class="title">
-				<h5>Restaurant</h5>
+				<h1>Restaurant</h1>
 				<hr class="line-style"><br>
 		</div>
 		<div class="details">
@@ -30,25 +30,25 @@
 	    </div>
 	  
 		<div class="galleryimg img1">
-			<img src="<?php echo BURL.'assets/img/dinning/12.jpg'; ?>">
+			<img src="<?php echo BURL.'assets/img/dining/12.jpg'; ?>">
 			
 		</div>
 		<div class="galleryimg img2">
 			
-			<img src="<?php echo BURL.'assets/img/dinning/4.jpg'; ?>">
+			<img src="<?php echo BURL.'assets/img/dining/4.jpg'; ?>">
 			
 		</div>
 		<div class="galleryimg img3">
 			
-			<img src="<?php echo BURL.'assets/img/dinning/5.jpg'; ?>">
+			<img src="<?php echo BURL.'assets/img/dining/5.jpg'; ?>">
 			
 		</div>
 		<div class="galleryimg img4">
 			
-			<img src="<?php echo BURL.'assets/img/dinning/11.jpg'; ?>">
+			<img src="<?php echo BURL.'assets/img/dining/11.jpg'; ?>">
 		</div>
 		<div class="galleryimg i img5">
-			<img src="<?php echo BURL.'assets/img/dinning/2.jpg'; ?>">
+			<img src="<?php echo BURL.'assets/img/dining/2.jpg'; ?>">
 		</div>
 	</div>
     <!-- End Restuarant Part -->
@@ -120,7 +120,7 @@
 		
 		<div class="menu">
 			<div class="single-menu">
-				<img src="img/4.jpg">
+				<img src="<?php echo BURL.'assets/img/dining/a.jpg'; ?>">
 				<div class="menu-content">
 					<h4>Chicken Fried Salad <span>$45</span></h4>
 					<p class="text">Aperiam tempore sit,perferendis numquam repudiandae porro voluptate dicta saepe facilis</p>
@@ -128,7 +128,7 @@
 			</div>
 
 			<div class="single-menu">
-				<img src="img/4.jpg">
+				<img src="<?php echo BURL.'assets/img/dining/b.jpg'; ?>">
 				<div class="menu-content">
 					<h4>Chicken Fried Salad <span>$45</span></h4>
 					<p class="text">Aperiam tempore sit,perferendis numquam repudiandae porro voluptate dicta saepe facilis</p>
@@ -136,7 +136,7 @@
 			</div>
 
 			<div class="single-menu">
-				<img src="img/4.jpg">
+				<img src="<?php echo BURL.'assets/img/dining/c.jpg'; ?>">
 				<div class="menu-content">
 					<h4>Chicken Fried Salad <span>$45</span></h4>
 					<p class="text">Aperiam tempore sit,perferendis numquam repudiandae porro voluptate dicta saepe facilis</p>
@@ -144,21 +144,21 @@
 			</div>
 
 			<div class="single-menu">
-				<img src="img/4.jpg">
+				<img src="<?php echo BURL.'assets/img/dining/d.jpg'; ?>">
 				<div class="menu-content">
 					<h4>Chicken Fried Salad <span>$45</span></h4>
 					<p class="text">Aperiam tempore sit,perferendis numquam repudiandae porro voluptate dicta saepe facilis</p>
 				</div>
 			</div>
 			<div class="single-menu">
-				<img src="img/4.jpg">
+				<img src="<?php echo BURL.'assets/img/dining/e.jpg'; ?>">
 				<div class="menu-content">
 					<h4>Chicken Fried Salad <span>$45</span></h4>
 					<p class="text">Aperiam tempore sit,perferendis numquam repudiandae porro voluptate dicta saepe facilis</p>
 				</div>
 			</div>
 			<div class="single-menu">
-				<img src="img/4.jpg">
+				<img src="<?php echo BURL.'assets/img/dining/f.jpg'; ?>">
 				<div class="menu-content">
 					<h4>Chicken Fried Salad <span>$45</span></h4>
 					<p class="text">Aperiam tempore sit,perferendis numquam repudiandae porro voluptate dicta saepe facilis</p>

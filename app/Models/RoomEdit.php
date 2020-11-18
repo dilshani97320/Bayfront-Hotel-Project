@@ -23,7 +23,7 @@ class RoomEdit{
         $query = "SELECT $this->table1.room_number, $this->table1.room_id, $this->table1.room_name, $this->table1.room_view, $this->table1.price,
                   $this->table2.type_name 
                   FROM $this->table1
-                  INNER JOIN $this->table2 ON $this->table1.type_id = $this->table2.room_type_id";
+                  INNER JOIN $this->table2 ON $this->table1.type_id = $this->table2.room_type_id AND $this->table1.is_delete = 0";
 
         // echo $query;  
         // exit();  
@@ -65,24 +65,7 @@ class RoomEdit{
         } 
     }
 
-    public function getRoomTypes() {
-        $user = array();
-        $query = "SELECT type_name FROM $this->table2";
-
-
-        $result = 0;
-
-        $room_types = mysqli_query($this->connection, $query);
-
-        if($room_types) {
-            mysqli_fetch_all($room_types,MYSQLI_ASSOC);
-        }
-        else {
-            echo "Database Query Failed";
-        }
-        return $room_types;
-    }
-
+    
 
     public function createRoom( $room_number, $type_name, $room_name,  $room_desc,  $floor_type, $room_size, $price, $room_view,  $air_condition, $free_canseleration, $hot_water ,$breakfast_included) {
 

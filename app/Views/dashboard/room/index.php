@@ -42,6 +42,7 @@
                             <label for="#"><i class="material-icons">room</i>Room Type:</label>
                                 <div class="animate-form">
                                     <select name="type_name" class="inputField">
+                                         <option value="">-Select Room Type-</option>
                                     <?php foreach($typename as $types): ?>
                                         <option value="<?php echo $types['type_name']; ?>" style="border: none"><?php echo $types['type_name']; ?></option> 
                                     <?php endforeach; ?>     

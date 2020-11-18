@@ -1463,26 +1463,27 @@ input[type="file"] {
 /* .line{
  flex-basis: 300px;
 } */
-.line #previewImg {
-  width: 175px;
-  margin-left: 50;
-  height: 175px;
-  object-fit: cover;
+
+.line #previewImg{
+ width: 150px;
+ margin-left: 50px;
+ height: 150px;
+ object-fit: cover;  
 }
 
-.line .submitBtn {
-  width: 168px;
-  padding: 10px;
-  margin-top: 50px;
-  letter-spacing: 1px;
-  font-weight: 400;
-  color: #fff;
-  border: none;
-  font-size: 18px;
-  text-align: center;
-  background: #00af87;
-  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302),
-    0 1px 3px 1px rgba(60, 64, 67, 0.149);
+.line .submitBtn{
+ width: 168px;
+ padding: 10px;
+ margin-top: 50px;
+ letter-spacing: 1px;
+ font-weight: 400;
+ color: #fff;
+ border: none;
+ font-size: 18px;
+ text-align: center;
+ background: #00AF87;
+ box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 0 1px 3px 1px rgba(60,64,67,0.149);
+
 }
 
 /* Edit Image style */
@@ -1683,6 +1684,15 @@ input[type="file"] {
   border: none;
 }
 
+#next:focus {
+  border: none;
+  outline: none;
+}
+
+#previous:focus {
+  outline: none;
+}
+
 .footer-container-calendar {
   margin-top: 1em;
   border-top: 1px solid #dadada;
@@ -1698,6 +1708,11 @@ input[type="file"] {
   border: 1px solid #bfc5c5;
   border-radius: 3px;
   padding: 5px 1em;
+}
+
+.footer-container-calendar option {
+  background:  #050633;
+  
 }
 
 #month {

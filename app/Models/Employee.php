@@ -14,7 +14,9 @@ class Employee {
 
         $this->connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
     }
+    
 
+    //Done
     public function getAllEmployee() {
 
         $query = "SELECT * FROM  $this->table
@@ -30,7 +32,9 @@ class Employee {
     return $users;    
     }
 
+    //Done
     public function getSearchEmployee($search) {
+
         $search = mysqli_real_escape_string($this->connection, $search);
         $query = "SELECT * FROM $this->table WHERE 
                 (first_name LIKE '%{$search}%' OR last_name LIKE '%{$search}%' OR email LIKE '%{$search}%')
@@ -52,7 +56,26 @@ class Employee {
         $user = array();
         $email = mysqli_real_escape_string($this->connection, $email);
         $query = "SELECT * FROM $this->table 
-                  WHERE email = '{$email}'
+                  WHERE email = '{$email}' AND is_deleted=0
+                  LIMIT 1";
+        $result = 0;
+        $result_set = mysqli_query($this->connection, $query);
+        if($result_set){
+            if(mysqli_num_rows($result_set) == 1) {
+                $result = 1;
+            }
+        }
+        else {
+            echo "Query Error";
+        }
+        return $result;
+    }
+
+    public function getPhoneNumber($contact_num) {
+        $user = array();
+        $contact_num = mysqli_real_escape_string($this->connection, $contact_num);
+        $query = "SELECT * FROM $this->table 
+                  WHERE contact_num = '{$contact_num}' AND is_deleted=0
                   LIMIT 1";
         $result = 0;
         $result_set = mysqli_query($this->connection, $query);
@@ -86,6 +109,7 @@ class Employee {
         return $result;
     }
 
+    //Done
     public function getCreate($data) {
         $value = 0;
         $owner_user_id = mysqli_real_escape_string($this->connection, $data[0]);
@@ -110,6 +134,7 @@ class Employee {
         return $value;
     }
 
+    // Done
     public function getUpdate($data) {
         $value = 0;
         $emp_id = mysqli_real_escape_string($this->connection, $data[0]);
@@ -139,6 +164,7 @@ class Employee {
         return $value;
     }
 
+    //Done
     public function remove($emp_id) {
         $emp_id = mysqli_real_escape_string($this->connection, $emp_id);
 
@@ -152,12 +178,13 @@ class Employee {
         return $value;
     }
 
+    //Done
     public function getDataEmployee($emp_id) {
 
         $emp_id = mysqli_real_escape_string($this->connection, $emp_id);
 
         $query = "SELECT * FROM $this->table
-                  WHERE emp_id = '{$emp_id}'
+                  WHERE emp_id = '{$emp_id}' AND is_deleted=0
                   LIMIT 1";
         $employees = mysqli_query($this->connection, $query);
         if($employees){
@@ -172,13 +199,36 @@ class Employee {
         return $employee;
     }
 
+    //Done
     public function getEmailOther($email, $emp_id) {
         $user = array();
         $email = mysqli_real_escape_string($this->connection, $email);
         $query = "SELECT * FROM $this->table 
                   WHERE email = '{$email}'
+                  AND emp_id != '{$emp_id}' AND is_deleted=0
+                  LIMIT 1";
+        $result = 0;
+        $result_set = mysqli_query($this->connection, $query);
+        if($result_set){
+            if(mysqli_num_rows($result_set) == 1) {
+                $result = 1;
+            }
+        }
+        else {
+            echo "Query Error";
+        }
+        return $result;
+    }
+
+    //Done
+    public function getPhoneNumberOther($contact_num, $emp_id) {
+        $user = array();
+        $contact_num = mysqli_real_escape_string($this->connection, $contact_num);
+        $query = "SELECT * FROM $this->table 
+                  WHERE contact_num = '{$contact_num}'
                   AND emp_id != '{$emp_id}'
                   LIMIT 1";
+
         $result = 0;
         $result_set = mysqli_query($this->connection, $query);
         if($result_set){

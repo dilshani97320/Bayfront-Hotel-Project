@@ -22,7 +22,7 @@
 			<img src="<?php echo BURL.'assets/img/activity/post1.jpg'; ?>">
 			
 		</div>
-		<div class="card-details"><h1>Visits to Historic Sites and points of interest</h1></div>
+		<div class="card-details"><h1>Relaxing Beaches Perfect for Summer</h1></div>
 		<div class="card-text">
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas assumenda, culpa doloribus corporis, quaerat illum nobis aliquid consequuntur nesciunt! Perferendis? ipsum dolor sit amet, consectetur adipiscing elit. Si verbum sequimur, primum longius verbum praepositum quam bonum.</p>
 		</div>

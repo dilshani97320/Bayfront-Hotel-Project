@@ -35,13 +35,13 @@
                             <div class="dropdown">
                                 <ul>
                                     <li class="dropdown-link">
-                                        <a href="#">Single Room</a>
+                                        <a href="<?php url('Roomsuite/subPage/1'); ?>">Single Room</a>
                                     </li>
                                     <li class="dropdown-link">
-                                        <a href="#">Double Room</a>
+                                        <a href="<?php url('Roomsuite/subPage/2'); ?>">Double Room</a>
                                     </li>
                                     <li class="dropdown-link">
-                                        <a href="#">Family Room</a>
+                                        <a href="<?php url('Roomsuite/subPage/7'); ?>">Family Room</a>
                                     </li>
                                     <div class="arrow"></div>
                                 </ul>
@@ -87,13 +87,13 @@
                             <div class="dropdown">
                                 <ul>
                                     <li class="dropdown-link">
-                                        <a href="#">Single Room</a>
+                                        <a href="<?php url('Roomsuite/subPage/1'); ?>">Single Room</a>
                                     </li>
                                     <li class="dropdown-link">
-                                        <a href="#">Double Room</a>
+                                        <a href="<?php url('Roomsuite/subPage/2'); ?>">Double Room</a>
                                     </li>
                                     <li class="dropdown-link">
-                                        <a href="#">Family Room</a>
+                                        <a href="<?php url('Roomsuite/subPage/7'); ?>">Family Room</a>
                                     </li>
                                     <div class="arrow"></div>
                                 </ul>
@@ -108,8 +108,7 @@
                 <div class="log-sign" style="--i: 1.8s">
 
                     <a href="<?php url('Auth/logout'); ?>" class="btn1 transparent">Logout</a>
-
-                    <a href="#" class="btn1 solid"><i class="far fa-user-circle" ></i><?php echo $_SESSION['nameuser']; ?></a>
+                    <a href="<?php url('dashboard/index'); ?>" class="btn1 solid">Dashboard</a>
                 </div>
             </div>
 
@@ -139,13 +138,13 @@
                             <div class="dropdown">
                                 <ul>
                                     <li class="dropdown-link">
-                                        <a href="#">Single Room</a>
+                                        <a href="<?php url('Roomsuite/subPage/1'); ?>">Single Room</a>
                                     </li>
                                     <li class="dropdown-link">
-                                        <a href="#">Double Room</a>
+                                        <a href="<?php url('Roomsuite/subPage/2'); ?>">Double Room</a>
                                     </li>
                                     <li class="dropdown-link">
-                                        <a href="#">Family Room</a>
+                                        <a href="<?php url('Roomsuite/subPage/7'); ?>">Family Room</a>
                                     </li>
                                     <div class="arrow"></div>
                                 </ul>
@@ -197,13 +196,13 @@
                             <div class="dropdown">
                                 <ul>
                                     <li class="dropdown-link">
-                                        <a href="#">Single Room</a>
+                                        <a href="<?php url('Roomsuite/subPage/1'); ?>">Single Room</a>
                                     </li>
                                     <li class="dropdown-link">
-                                        <a href="#">Double Room</a>
+                                        <a href="<?php url('Roomsuite/subPage/2'); ?>">Double Room</a>
                                     </li>
                                     <li class="dropdown-link">
-                                        <a href="#">Family Room</a>
+                                        <a href="<?php url('Roomsuite/subPage/7'); ?>">Family Room</a>
                                     </li>
                                     <div class="arrow"></div>
                                 </ul>
@@ -274,7 +273,7 @@
 
                     <a href="<?php url('Home/login'); ?>" class="btn1 transparent">Log in</a>
 
-                    <a href="<?php url('Dashboard/index'); ?>" class="btn1 solid">Dashboard</a>
+                    <!-- <a href="<?php //url('Dashboard/index'); ?>" class="btn1 solid">Dashboard</a> -->
 
                 </div>
             </div>

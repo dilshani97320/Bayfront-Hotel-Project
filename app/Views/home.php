@@ -93,7 +93,7 @@
               id quis natus, adipisci nam id quis natusadipisci nam id quis
               natus, adipisci nam id quis natus.
             </p>
-            <a class="btn" href="dining.php"
+            <a class="btn" href="<?php url('Dining/index'); ?>"
               >FIND OUT MORE
               <i class="fa fa-chevron-right" aria-hidden="true"></i
             ></a>
@@ -104,7 +104,7 @@
               <img src="<?php echo BURL.'assets/img/home/dining1.jpg'; ?>" alt="sample35" />
               <div class="title">
                 <div>
-                  <h4>Traditional Food</h4>
+                  <h4>Yummy Food</h4>
                   <!-- <h6>Hikkaduwa</h6>/ -->
                 </div>
               </div>
@@ -113,7 +113,7 @@
               <img src="<?php echo BURL.'assets/img/home/dining2.webp'; ?>" alt="sample35" />
               <div class="title">
                 <div>
-                  <h4>Western Food</h4>
+                  <h4>Tasty Beverages</h4>
                   <!-- <h6>Hikkaduwa</h6> -->
                 </div>
               </div>
@@ -134,7 +134,7 @@
               laborum repudiandae facilis quidem voluptates impedit unde nulla
               explicabo atque, consequatur. Sit culpa aliquam quo.
             </p>
-            <a class="btn" href="activity.php"
+            <a class="btn" href="<?php url('Activity/index'); ?>  "
               >FIND OUT MORE
               <i class="fa fa-chevron-right" aria-hidden="true"></i
             ></a>

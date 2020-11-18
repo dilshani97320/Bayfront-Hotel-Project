@@ -1540,6 +1540,7 @@ input[type="file"] {
   display: none;
 }
 .sadara {
+  width: 1100px;
   display: flex;
   flex-direction: row;
 }

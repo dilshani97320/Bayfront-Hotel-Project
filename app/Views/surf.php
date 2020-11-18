@@ -48,7 +48,7 @@
 				<img class="img1" src="<?php echo BURL.'assets/img/surf/29.jpg'; ?>">
   					<div class="title">
     					<div>
-					      <h3>group lesons</h3>
+					      <h4>group lesons</h4>
 					      <h5>Book now</h5>
 					    </div>
 					</div>
@@ -64,7 +64,7 @@
 				<img class="img2" src="<?php echo BURL.'assets/img/surf/32.jpg'; ?>">
   					<div class="title">
     					<div>
-					      <h3>Solo lesons</h3>
+					      <h4>Solo lesons</h4>
 					      <h5>book now</h5>
 					    </div>
 					</div>
@@ -77,8 +77,8 @@
 	</div><!--section2-->
 	<section class="section3 clearfix">
 		<br>
-	<h1>SURFING FOR ALL ABILITIES</h1> 
-	<hr class="line-style"><br>
+	<!-- <h1>SURFING FOR ALL ABILITIES</h1> 
+	<hr class="line-style"><br> -->
 	
 	<?php include(VIEWS.'inc/surf-block.php'); ?>
 	<?php include(VIEWS.'inc/footer.php'); ?>

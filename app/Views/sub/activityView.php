@@ -202,9 +202,9 @@
 			case '8':
 	?>
 		<div class="slidecontainer">
-			<img class="image" src="img/post8-1.jpg" alt="beach side city view">
+			<img class="image" src="<?php echo BURL.'assets/img/activity/post9.jpg'; ?>" alt="beach side city view">
 		 	<div class="bottom-left">
-		 		<h1>Most Scenic Train Ride in Sri Lanka</h1>
+		 		<h1>Stilt Fishermen in Sri Lanka</h1>
 		 	</div>
 		</div>
 		<div class="headImg">
@@ -226,9 +226,9 @@
 			case '9':
 	?>
 		<div class="slidecontainer">
-			<img class="image" src="<?php echo BURL.'assets/img/activity/act2.jpg'; ?>" alt="beach side city view">
+			<img class="image" src="<?php echo BURL.'assets/img/activity/post10.jpg'; ?>" alt="beach side city view">
 		 	<div class="bottom-left">
-		 		<h1>The Best Hiking and Trekking Trails in Sri Lanka</h1>
+		 		<h1>The Best Trekking Trails in Sri Lanka</h1>
 		 	</div>
 		</div>
 		<div class="headImg">
@@ -250,7 +250,7 @@
 			case '10':
 	?>
 		<div class="slidecontainer">
-			<img class="image" src="img/post8-2.jpg" alt="beach side city view">
+			<img class="image" src="<?php echo BURL.'assets/img/activity/post8-2.jpg'; ?>" alt="beach side city view">
 		 	<div class="bottom-left">
 		 		<h1>Swinging On a Rope Thalpe</h1>
 		 	</div>

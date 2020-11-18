@@ -37,6 +37,7 @@ $_POST = array();
                 </div>
                 
                 <h4 class="imgh1">Full Room View</h4>
+
                 <div class="sadara">
                 
                     <div class="line">
@@ -80,7 +81,7 @@ $_POST = array();
                         </form>
                     </div>
 
-                <!-- Change phase -->
+                    <!-- Change phase -->
                     <div class="line">
                         <form action="<?php url("image/uploadImg/image_02/$room_number"); ?>" method="post" enctype="multipart/form-data">
                             <div class="imgLine">
@@ -177,7 +178,7 @@ $_POST = array();
                             </div>
                         </form>
                     </div>
-                    </div>
+                </div>
 
                     <h4 class="imgh1">Washroom View</h4>
                     <div class="sadara"> 

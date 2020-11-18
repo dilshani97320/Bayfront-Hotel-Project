@@ -1025,13 +1025,16 @@ background: radial-gradient(circle, rgba(214,21,0,0.5917717428768383) 100%, rgba
 
 .title h4{
   
-  font-size: 36px;
+  font-size: 30px;
   position: relative;
   display: inline-block;
   padding-bottom: 10px;
   text-transform: uppercase;
 }
-
+.title h5{
+  margin-top: 40px;
+  font-size: 20px;
+}
 /*.title h4 span{
   display: block;
   font-size: 18px;

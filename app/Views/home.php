@@ -158,8 +158,8 @@
                 <img src="<?php echo BURL.'assets/img/home/act2.jpg'; ?>" alt="" class="img1" />
                 <div class="title">
                   <div>
-                    <h4>Hiking</h4>
-                    <h6>Upper Country</h6>
+                    <h4>Trekking Trails</h4>
+                    <h6>Sinharaja</h6>
                   </div>
                 </div>
                 <a href="<?php url('Activity/ViewSubPage/9' ); ?>"></a>
@@ -170,8 +170,8 @@
                 <img src="<?php echo BURL.'assets/img/home/act3.jpg'; ?>" alt="" class="img1" />
                 <div class="title">
                   <div>
-                    <h4>Train Ride</h4>
-                    <h6>Ella</h6>
+                    <h4>Stilt Fishing</h4>
+                    <h6>Weligama</h6>
                   </div>
                 </div>
                 <a href="<?php url('Activity/ViewSubPage/8' ); ?>"></a>
@@ -198,7 +198,7 @@
                     <h6>Thalpe</h6>
                   </div>
                 </div>
-                <a href="landing.php?article=10"></a>
+                <a href="<?php url('Activity/ViewSubPage/10' ); ?>"></a>
               </figure>
             </div>
           </div>

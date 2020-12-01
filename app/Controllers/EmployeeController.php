@@ -4,6 +4,18 @@ session_start();
 class EmployeeController {
 
 
+
+    public function option() {
+        if(!isset($_SESSION['user_id'])) {
+            $dashboard = new DashboardController();
+            $dashboard->index();
+        }
+        else {
+            view::load('dashboard/employee/selectOption');
+        }
+    }
+
+
     // Done
     public function index() {
         
@@ -86,6 +98,7 @@ class EmployeeController {
                 $salary = $_POST['salary'];
                 $location = $_POST['location'];
                 $contact_num = $_POST['contact_num'];
+                $post = $_POST['post'];
     
                 // Check input is empty
                 $req_fields = array('first_name', 'last_name', 'email', 'salary', 'location', 'contact_num');
@@ -147,12 +160,29 @@ class EmployeeController {
                 $errors = array_filter( $errors ); 
                 
                 if(count( $errors ) == 0) {
-                    $data = array($owner_user_id, $first_name, $last_name, $email, $salary, $location, $contact_num);
+                    $data = array($owner_user_id, $first_name, $last_name, $email, $salary, $location, $contact_num, $post);
                     $result = $db->getCreate($data);
     
                     if($result == 1) {
                         // view::load("dashboard/employee/add", ["success"=>"Data Created Successfully"]);
-                        $this->index();
+                        // $this->index();
+                        if($post = "Reception") {
+                            $employee = $db->getEmployee($email);
+                            $emp_id = $employee['emp_id'];
+                            //default reception create in reception table
+                            $db1 = new Reception();
+                            $result = $db1->getCreate($emp_id);
+                            if($result == 1) {
+                                $this->index();
+                            }
+                            else {
+                                view::load("dashboard/employee/add", ["newerror"=>"Data Created Unsuccessfully"]);
+                            }
+                            
+                        }
+                        else {
+                            $this->index();
+                        }
                     }
                     else {
                         view::load("dashboard/employee/add", ["newerror"=>"Data Created Unsuccessfully"]);

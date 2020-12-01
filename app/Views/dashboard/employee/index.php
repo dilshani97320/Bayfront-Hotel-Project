@@ -31,6 +31,8 @@
                                 <a href="<?php url("employee/add"); ?>" class="addnew"><i class="material-icons">add</i>Add New</a> 
                             <?php endif; ?>
                             <a href="<?php url("employee/index"); ?>" class="refresh"><i class="material-icons">refresh</i>Refresh</a> 
+                            <a href="<?php url("employee/option"); ?>" class="addnew"><i class="material-icons">arrow_back</i>Back To Select Option</a>  
+                        
                        </span> 
                        </h4>
                    </div>
@@ -47,6 +49,7 @@
                                 <th>Salary</th>
                                 <th>Location</th>
                                 <th>Contact Number</th>
+                                <th>Post</th>
                                 <?php if($_SESSION['user_level'] == "Owner"): ?>
                                     <th>Edit</th>
                                     <th>Delete</th>  
@@ -61,6 +64,7 @@
                                 <td><?php echo $row['salary'];?></td>
                                 <td><?php echo $row['location'];?></td>
                                 <td><?php echo $row['contact_num'];?></td>
+                                <td><?php echo $row['post'];?></td>
                                 <?php if($_SESSION['user_level'] == "Owner"): ?>
                                     <td><a href="<?php url('employee/edit/'.$row['emp_id']);?>" class="edit"><i class="material-icons">edit</i>Edit</a></td>
                                     <td><a href="<?php url('employee/delete/'.$row['emp_id']);?>" onclick="return confirm('Are you sure?');" class="delete"><i class="material-icons">delete</i>Delete</a></td>

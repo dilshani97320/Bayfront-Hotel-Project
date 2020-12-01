@@ -195,6 +195,19 @@
                                         </label>    
                                 </div>     
                         </div>
+
+                        <div class="row">
+                            <label for="#"><i class="material-icons">military_tech</i>Post:</label>
+                                <div class="animate-form">
+                                    <select name="post" class="inputField" selected=""> 
+                                    <option value="" style="border: none">Select The POST</option> 
+                                    <option value="Waiter" style="border: none">Waiter</option> 
+                                    <option value="Chef" style="border: none">Chef </option> 
+                                    <option value="Reception" style="border: none">Reception</option> 
+                                    <option value="Other" style="border: none">Other</option> 
+                                </select>   
+                                </div>     
+                        </div>
                         
                         <div class="row">
                             <div class="button">

@@ -101,14 +101,13 @@ class Reservation {
         $last_name = mysqli_real_escape_string($this->connection, $data[1]);
         $location = mysqli_real_escape_string($this->connection, $data[2]);
         $contact_num = mysqli_real_escape_string($this->connection, $data[3]);
-        $date_of_birth = mysqli_real_escape_string($this->connection, $data[4]);
-        $age = mysqli_real_escape_string($this->connection, $data[5]);
-        $email = mysqli_real_escape_string($this->connection, $data[6]);
+        $age = mysqli_real_escape_string($this->connection, $data[4]);
+        $email = mysqli_real_escape_string($this->connection, $data[5]);
 
         $query = "INSERT INTO $this->table1 (
-                  first_name, last_name, location, contact_number, date_of_birth, age, email) 
+                  first_name, last_name, location, contact_number, age, email) 
                   VALUES (
-                 '{$first_name}', '{$last_name}', '{$location}', '{$contact_num}', '{$date_of_birth}', '{$age}', '{$email}'
+                 '{$first_name}', '{$last_name}', '{$location}', '{$contact_num}', '{$age}', '{$email}'
                   )";
         
         $result = mysqli_query($this->connection, $query);
@@ -129,7 +128,7 @@ class Reservation {
         $no_of_guest = mysqli_real_escape_string($this->connection, $data[5]);
         $payment_method = mysqli_real_escape_string($this->connection, $data[6]);
         
-
+        // var_dump($data);
         $query = "INSERT INTO $this->table3 (
                  customer_id, reception_user_id, room_id, check_in_date, check_out_date, no_of_guest, payment_method, is_valid) 
                  VALUES (
@@ -142,8 +141,12 @@ class Reservation {
             // query successful..
             // echo "Query Successfull";
             $value = 1;
+            return $value;
         }
-        return $value;
+        else {
+            echo "Query failed";
+        }
+        
     }
 
 

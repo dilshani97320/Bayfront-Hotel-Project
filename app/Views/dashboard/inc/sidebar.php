@@ -21,7 +21,7 @@
         </li>
 
         <li class="nav1-item">
-            <a href="<?php url('employee/index'); ?>" class="nav1-link">
+            <a href="<?php url('employee/option'); ?>" class="nav1-link">
                 <p class="nav-p"><i class="material-icons">people</i>Employee</p>         
             </a>
         </li> 

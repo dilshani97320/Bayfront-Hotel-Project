@@ -94,7 +94,7 @@ class ReservationController {
                 $last_name = ucwords($last_name);
                 $location = $_POST['location'];
                 $contact_num = $_POST['contact_number'];
-                $date_of_birth = $_POST['date_of_birth'];
+                // $date_of_birth = $_POST['date_of_birth'];
                 $age = $_POST['age'];
                 $email = $_POST['email'];
                 $email = strtolower($email);
@@ -113,11 +113,11 @@ class ReservationController {
     
                 // Check input is empty
                 $errors[] = array();
-                $req_fields = array('first_name', 'last_name', 'location', 'contact_number', 'date_of_birth', 'age', 'email', 'max_guest', 'room_number', 'check_in_date', 'check_out_date', 'payment_method');
+                $req_fields = array('first_name', 'last_name', 'location', 'contact_number', 'age', 'email', 'max_guest', 'room_number', 'check_in_date', 'check_out_date', 'payment_method');
                 $errors = array_merge($errors, $this->check_req_fields($req_fields));
                 
     
-                $max_len_fields = array('first_name' => 20, 'last_name' => 20, 'location' => 30, 'contact_number' => 10, 'date_of_birth' => 12, 'age' => 3, 'email' => 30, 'max_guest' => 2, 'room_number' => 4, 'check_in_date' => 10, 'check_out_date' => 10, 'payment_method' => 6);
+                $max_len_fields = array('first_name' => 20, 'last_name' => 20, 'location' => 30, 'contact_number' => 10, 'age' => 3, 'email' => 30, 'max_guest' => 2, 'room_number' => 4, 'check_in_date' => 10, 'check_out_date' => 10, 'payment_method' => 6);
                 $errors = array_merge($errors, $this->check_max_len($max_len_fields));
     
                 
@@ -146,11 +146,6 @@ class ReservationController {
                 //check Phone number is valid
                 if(!$this->is_num($_POST['contact_number'])) {
                     $errors['contact_number'] = 'Contact Number is Invalid';
-                }
-
-                //check Date of Birth is valid
-                if(!$this->is_date($_POST['date_of_birth'])) {
-                    $errors['date_of_birth'] = 'Date of Birth is Invalid';
                 }
 
                 // Check In Date validation
@@ -208,7 +203,7 @@ class ReservationController {
                     if($result == 0) {
                         // Customer already not user
     
-                        $data = array($first_name, $last_name, $location, $contact_num, $date_of_birth, $age, $email);
+                        $data = array($first_name, $last_name, $location, $contact_num, $age, $email);
                         $result = $db->getCreateCustomer($data);
     
                         if($result == 0) {
@@ -262,7 +257,7 @@ class ReservationController {
                                 $data['errors'] = $errors;
                                 $data['reservation'] = array('first_name' => $first_name, 'last_name' => $last_name, 'location' => $location, 'contact_number' => $contact_num, 'date_of_birth' => $date_of_birth, 'age' => $age, 'email' => $email, 'max_guest' => $no_of_guest, 'room_number' => $room_number, 'check_in_date' => $check_in_date, 'check_out_date' => $check_out_date, 'payment_method' => $payment_method);
                                 view::load('dashboard/reservation/create', $data);
-                                // view::load('dashboard/reservation/create', ["newerrord"=>"Data Created Unsuccessfully",'reservation'=>$data['employee'], 'errors'=>$data['errors']]);
+                                view::load('dashboard/reservation/create', ["newerrord"=>"Data Created Unsuccessfully",'reservation'=>$data['employee'], 'errors'=>$data['errors']]);
                                         
                             }
                         }
@@ -281,7 +276,7 @@ class ReservationController {
                     else {
                         $errors['room_number'] = "Room Number not Valid";
                         $data['errors'] = $errors;
-                        $data['reservation'] = array('first_name' => $first_name, 'last_name' => $last_name, 'location' => $location, 'contact_number' => $contact_num, 'date_of_birth' => $date_of_birth, 'age' => $age, 'email' => $email, 'max_guest' => $no_of_guest, 'room_number' => $room_number, 'check_in_date' => $check_in_date, 'check_out_date' => $check_out_date, 'payment_method' => $payment_method);
+                        $data['reservation'] = array('first_name' => $first_name, 'last_name' => $last_name, 'location' => $location, 'contact_number' => $contact_num,'age' => $age, 'email' => $email, 'max_guest' => $no_of_guest, 'room_number' => $room_number, 'check_in_date' => $check_in_date, 'check_out_date' => $check_out_date, 'payment_method' => $payment_method);
                         
                         view::load('dashboard/reservation/create', $data);
                         }
@@ -292,7 +287,7 @@ class ReservationController {
                     // break process
                     
                     $data['errors'] = $errors;
-                    $data['reservation'] = array('first_name' => $first_name, 'last_name' => $last_name, 'location' => $location, 'contact_number' => $contact_num, 'date_of_birth' => $date_of_birth, 'age' => $age, 'email' => $email, 'max_guest' => $no_of_guest, 'room_number' => $room_number, 'check_in_date' => $check_in_date, 'check_out_date' => $check_out_date, 'payment_method' => $payment_method);
+                    $data['reservation'] = array('first_name' => $first_name, 'last_name' => $last_name, 'location' => $location, 'contact_number' => $contact_num, 'age' => $age, 'email' => $email, 'max_guest' => $no_of_guest, 'room_number' => $room_number, 'check_in_date' => $check_in_date, 'check_out_date' => $check_out_date, 'payment_method' => $payment_method);
                     
                     view::load('dashboard/reservation/create', $data);
                     

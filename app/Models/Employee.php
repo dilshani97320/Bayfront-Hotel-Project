@@ -119,11 +119,12 @@ class Employee {
         $salary = mysqli_real_escape_string($this->connection, $data[4]);
         $location = mysqli_real_escape_string($this->connection, $data[5]);
         $contact_num = mysqli_real_escape_string($this->connection, $data[6]);
+        $post = mysqli_real_escape_string($this->connection, $data[7]);
 
         $query = "INSERT INTO $this->table (
-                  owner_user_id,first_name, last_name, email, salary, location, contact_num, is_deleted) 
+                  owner_user_id,first_name, last_name, email, salary, location, contact_num, is_deleted, post) 
                   VALUES (
-                 '{$owner_user_id}', '{$first_name}', '{$last_name}', '{$email}', '{$salary}', '{$location}', '{$contact_num}', 0
+                 '{$owner_user_id}', '{$first_name}', '{$last_name}', '{$email}', '{$salary}', '{$location}', '{$contact_num}', 0, '{$post}'
                   )";
         
         $result = mysqli_query($this->connection, $query);
@@ -240,5 +241,29 @@ class Employee {
             echo "Query Error";
         }
         return $result;
+    }
+
+    public function getEmployee($email) {
+        $email = mysqli_real_escape_string($this->connection, $email);
+
+        $query = "SELECT * FROM $this->table 
+                  WHERE email = '{$email}'
+                  AND is_deleted = 0
+                  LIMIT 1";
+        
+        $result = mysqli_query($this->connection, $query);
+
+        if($result ){
+            if(mysqli_num_rows($result ) == 1) {
+                $employee = mysqli_fetch_assoc($result );
+            }
+        }
+        else {
+            echo "Query Error";
+        }
+
+        return $employee;
+
+
     }
 }

@@ -146,6 +146,7 @@ class Employee {
         $salary = mysqli_real_escape_string($this->connection, $data[5]);
         $location = mysqli_real_escape_string($this->connection, $data[6]);
         $contact_num = mysqli_real_escape_string($this->connection, $data[7]);
+        $post = mysqli_real_escape_string($this->connection, $data[8]);
 
         $query = "UPDATE $this->table SET
                 owner_user_id = '{$owner_user_id}',
@@ -154,7 +155,8 @@ class Employee {
                 email = '{$email}',
                 salary = '{$salary}',
                 location = '{$location}',
-                contact_num = '{$contact_num}'
+                contact_num = '{$contact_num}',
+                post = '{$post}'
                 WHERE emp_id = {$emp_id} LIMIT 1";
         
         $result = mysqli_query($this->connection, $query);

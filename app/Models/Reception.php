@@ -134,7 +134,7 @@ class Reception {
 
     }
 
-    public function create($emp_id) {
+    public function getCreate($emp_id) {
         $emp_id = mysqli_real_escape_string($this->connection, $emp_id);
         $username = "Reception";
         $user_level = 2;
@@ -150,6 +150,72 @@ class Reception {
         $result = mysqli_query($this->connection, $query);
         if($result) {
             // query successful.. redirecting to users page
+            $value = 1;
+        }
+
+        return $value;
+    }
+
+    public function checkReception($emp_id) {
+        // echo "<br>This is Employee ID=".$emp_id."<br>";
+        $emp_id = mysqli_real_escape_string($this->connection, $emp_id);
+
+        $query = "SELECT * FROM $this->table1 
+                  WHERE emp_id = '{$emp_id}' AND is_deleted=0
+                  LIMIT 1";
+
+        $result = 0;
+        $result_set = mysqli_query($this->connection, $query);
+        if($result_set){
+            if(mysqli_num_rows($result_set) == 1) {
+                $result = 1;
+            }
+        }
+        else {
+            echo "Query Error";
+        }
+        return $result;
+
+
+    }
+
+    public function removeReception($emp_id) {
+        $emp_id = mysqli_real_escape_string($this->connection, $emp_id);
+
+        $query = "UPDATE $this->table1 SET is_deleted =1 WHERE emp_id = {$emp_id} LIMIT 1";
+
+        $result = mysqli_query($this->connection, $query);
+        if($result) {
+            $value = 1;
+        }
+        
+        return $value;
+    }
+
+    public function getCheckDeleteReception($emp_id) {
+        $emp_id = mysqli_real_escape_string($this->connection, $emp_id);
+
+        $query = "SELECT * FROM $this->table1 
+                 WHERE emp_id = '{$emp_id}' AND is_deleted=1
+                 LIMIT 1";
+        $value = 0;
+        $result = mysqli_query($this->connection, $query);
+        if($result) {
+            if(mysqli_num_rows($result) == 1) {
+                $value = 1;
+            }
+        }
+        return $value;
+    }
+
+    public function getUpdateReception($emp_id) {
+
+        $emp_id = mysqli_real_escape_string($this->connection, $emp_id);
+
+        $query = "UPDATE $this->table1 SET is_deleted =0 WHERE emp_id = {$emp_id} LIMIT 1";
+
+        $result = mysqli_query($this->connection, $query);
+        if($result) {
             $value = 1;
         }
         

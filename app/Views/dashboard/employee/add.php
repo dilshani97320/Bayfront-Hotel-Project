@@ -199,13 +199,23 @@
                         <div class="row">
                             <label for="#"><i class="material-icons">military_tech</i>Post:</label>
                                 <div class="animate-form">
+                                <?php if(isset($employee['post'])){ ?>
+                                    <select name="post" class="inputField" selected="<?php echo $employee['post']; ?>" >
+                                    <option value="" <?php if ($employee['post'] == "" ) echo ' selected="selected"'; ?> style="border: none">-Select Post-</option>    
+                                    <option value="Waiter" <?php if ($employee['post'] == "Waiter" ) echo ' selected="selected"'; ?> style="border: none">Waiter</option> 
+                                    <option value="Chef" <?php if ($employee['post'] == "Chef" ) echo ' selected="selected"'; ?> style="border: none">Chef</option> 
+                                    <option value="Reception" <?php if ($employee['post'] == "Reception" ) echo ' selected="selected"'; ?> style="border: none">Reception</option> 
+                                    <option value="Other" <?php if ($employee['post'] == "Other" ) echo ' selected="selected"'; ?> style="border: none">Other</option>   
+                                    </select>
+                                <?php }else{ ?>    
                                     <select name="post" class="inputField" selected=""> 
-                                    <option value="" style="border: none">Select The POST</option> 
+                                    <option value="" style="border: none">-Select The POST-</option> 
                                     <option value="Waiter" style="border: none">Waiter</option> 
                                     <option value="Chef" style="border: none">Chef </option> 
                                     <option value="Reception" style="border: none">Reception</option> 
                                     <option value="Other" style="border: none">Other</option> 
-                                </select>   
+                                </select>  
+                                <?php }; ?> 
                                 </div>     
                         </div>
                         

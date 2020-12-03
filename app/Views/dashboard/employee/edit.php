@@ -212,10 +212,24 @@
                                         </label>    
                                 </div>     
                         </div>
+
+                        <div class="row">
+                            <label for="#"><i class="material-icons">military_tech</i>Post:</label>
+                                <div class="animate-form">
+                                    <select name="post" class="inputField" selected="<?php echo $employee['post']; ?>" >
+                                    <option value="" <?php if ($employee['post'] == "" ) echo ' selected="selected"'; ?> style="border: none">-Select Post-</option>    
+                                    <option value="Waiter" <?php if ($employee['post'] == "Waiter" ) echo ' selected="selected"'; ?> style="border: none">Waiter</option> 
+                                    <option value="Chef" <?php if ($employee['post'] == "Chef" ) echo ' selected="selected"'; ?> style="border: none">Chef</option> 
+                                    <option value="Reception" <?php if ($employee['post'] == "Reception" ) echo ' selected="selected"'; ?> style="border: none">Reception</option> 
+                                    <option value="Other" <?php if ($employee['post'] == "Other" ) echo ' selected="selected"'; ?> style="border: none">Other</option> 
+                                    </select>    
+                                </div>     
+
+                        </div>
                         
                         <div class="row">
                             <div class="button">
-                                <button class="save" name="submit">Save</button>
+                                <button class="save" name="submit">Update</button>
                             </div>
                         </div>
                     </div>

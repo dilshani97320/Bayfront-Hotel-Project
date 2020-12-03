@@ -40,6 +40,7 @@ class ReceptionController {
         }
     }
 
+    // Update password and username
     public function update() {
         if(!isset($_SESSION['user_id'])) {
             $dashboard = new DashboardController();
@@ -107,6 +108,144 @@ class ReceptionController {
         }
     }
 
+    public function delete($reception_user_id) {
+        if(!isset($_SESSION['user_id'])) {
+            $dashboard = new DashboardController();
+            $dashboard->index();
+        }
+        else {
+            // Get reception's $emp_id and $username
+            $db = new Reception;
+            $reception = $db->getReception($reception_user_id);
+            $data['reception'] = $reception;
+            view::load("dashboard/employee/reception/deleteOption", $data);
+        }
+    }
+
+    public function editPost($emp_id, $reception_user_id) {
+        if(!isset($_SESSION['user_id'])) {
+            $dashboard = new DashboardController();
+            $dashboard->index();
+        }
+        else {
+            // get employee details
+            $db = new Employee();
+            $employee = $db->getDataEmployee($emp_id);
+            $data['employee'] = $employee;
+            $data['reception'] = array("reception_user_id"=>$reception_user_id);
+            view::load("dashboard/employee/reception/editPost", $data);
+        }
+    }
+
+    // update Post
+    public function updatePost($emp_id, $reception_user_id) {
+
+        if(!isset($_SESSION['user_id'])) {
+            // view::load('dashboard/dashboard');  
+            $dashboard = new DashboardController();
+            $dashboard->index();  
+        }
+
+        else {
+            if(isset($_POST['submit'])) {
+
+                // Validation
+                $errors = array();
+                
+                //$errors = $this->validation();
+    
+                $owner_user_id = $_POST['owner_user_id'];
+                $first_name = $_POST['first_name'];
+                $last_name = $_POST['last_name'];
+                $email = $_POST['email'];
+                $salary = $_POST['salary'];
+                $location = $_POST['location'];
+                $contact_num = $_POST['contact_num'];
+                $post = $_POST['post'];
+    
+                // Check input is empty
+                $req_fields = array('salary');
+                $errors = array_merge($errors, $this->check_req_fields($req_fields));
+    
+                // Checking max length
+                $max_len_fields = array('salary' => 10);
+                $errors = array_merge($errors, $this->check_max_len($max_len_fields));
+    
+                //check Salary is valid
+                if(!$this->is_num($_POST['salary'])) {
+                    $errors['salary'] = 'Salary is Invalid';
+                }
+    
+                // Check Owner is valid
+                $db = new Employee();
+                $result = $db->getOwner($owner_user_id);
+    
+                if($result == 0) {
+                    $errors[] = 'Owner ID isn\'t valid';
+                }
+    
+                $data['errors'] = $errors;
+                $data['reception'] = array("reception_user_id"=>$reception_user_id);
+                $data['employee'] = array("emp_id"=>$emp_id, "owner_user_id"=>$owner_user_id, "first_name"=>$first_name, "last_name"=>$last_name, "email"=>$email, "salary"=>$salary, "location"=>$location, "contact_num"=>$contact_num, "post"=>$post);
+                  
+                
+                $errors = array_filter( $errors ); 
+                
+                if(count( $errors ) == 0) {
+                    $data1 = array($emp_id, $owner_user_id, $first_name, $last_name, $email, $salary, $location, $contact_num, $post);
+                    $result = $db->getUpdate($data1);
+                    
+                    if($result == 1) {
+                        // Check This employee already receptionist
+                        $db1 = new Reception();
+                        $result = $db1->checkReception($emp_id);
+                        
+                        if($result == 1) {
+                            // Previous Reception but now not
+                            if($post != "Reception") {
+                                $result =$db1->removeReception($emp_id);
+                                //Query should run then not check it
+                                
+                            }
+                            // location should change***************************************************
+                            // after reception not can't go back
+                            view::load("dashboard/employee/reception/editPost", ["success"=>"Employee Update Successfully", 'employee'=>$data['employee'], 'reception'=>$data['reception']]);
+                        }
+                        else {
+                            // Previous Not Reception but now Reception 
+                            if($post == "Reception") {
+                                // check previous have and is_deleted =1
+                                // have is_deleted =0
+                                $result1 = $db1->getCheckDeleteReception($emp_id);
+                                if($result1 == 1) {
+                                    // Exist the reception and is_deleted = 1
+                                    $db1->getUpdateReception($emp_id);
+                                }
+                                else {
+                                    $result = $db1->getCreate($emp_id);
+                                }    
+                            }
+                            view::load("dashboard/employee/reception/editPost", ["success"=>"Employee Update Successfully", 'employee'=>$data['employee'], 'reception'=>$data['reception']]);
+                        }
+                        
+                    }
+                    else {
+                        view::load("dashboard/employee/reception/editPost", ["newerror"=>"Data Update Unsuccessfully", 'employee'=>$data['employee'], 'reception'=>$data['reception']]);
+                    }
+                }
+                else {
+                    view::load("dashboard/employee/reception/editPost", $data);
+                }
+    
+    
+    
+            }
+        }
+
+
+        
+    }
+
     private function check_req_fields($req_fields) {
         $errors = array();
 
@@ -139,5 +278,9 @@ class ReceptionController {
     // Only Contains numbers and length 4
     private function is_password($password) {
         return(preg_match("/^\d{4,4}$/", $password));
+    }
+
+    private function is_num($num) {
+        return(preg_match('/^[0-9]+$/', $num));
     }
 }

@@ -27,11 +27,12 @@
                    <div class="options">
                        <h4>Employee Page   
                        <span>
+                            <a href="<?php url("employee/option"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>
                             <?php if($_SESSION['user_level'] == "Owner"): ?>
-                                <a href="<?php url("employee/add"); ?>" class="addnew"><i class="material-icons">add</i>Add New</a> 
+                                <a href="<?php url("employee/add"); ?>" class="addnew1"><i class="material-icons">add_circle</i></a> 
                             <?php endif; ?>
-                            <a href="<?php url("employee/index"); ?>" class="refresh"><i class="material-icons">refresh</i>Refresh</a> 
-                            <a href="<?php url("employee/option"); ?>" class="addnew"><i class="material-icons">arrow_back</i>Back To Select Option</a>  
+                            <a href="<?php url("employee/index"); ?>" class="refresh"><i class="material-icons">loop</i></a> 
+                              
                         
                        </span> 
                        </h4>
@@ -66,8 +67,8 @@
                                 <td><?php echo $row['contact_num'];?></td>
                                 <td><?php echo $row['post'];?></td>
                                 <?php if($_SESSION['user_level'] == "Owner"): ?>
-                                    <td><a href="<?php url('employee/edit/'.$row['emp_id']);?>" class="edit"><i class="material-icons">edit</i>Edit</a></td>
-                                    <td><a href="<?php url('employee/delete/'.$row['emp_id']);?>" onclick="return confirm('Are you sure?');" class="delete"><i class="material-icons">delete</i>Delete</a></td>
+                                    <td><a href="<?php url('employee/edit/'.$row['emp_id']);?>" class="edit"><i class="material-icons">create</i></a></td>
+                                    <td><a href="<?php url('employee/delete/'.$row['emp_id']);?>" onclick="return confirm('Are you sure?');" class="delete"><i class="material-icons">delete</i></a></td>
                                 <?php endif; ?>
                             </tbody>
                             <?php endforeach ?> 

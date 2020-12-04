@@ -27,11 +27,9 @@
                    <div class="options">
                        <h4>Reception Page   
                        <span>
-                            <!-- <?php if($_SESSION['user_level'] == "Owner"): ?>
-                                <a href="<?php url("employee/add"); ?>" class="addnew"><i class="material-icons">add</i>Add New</a> 
-                            <?php endif; ?> -->
-                            <a href="<?php url("reception/index"); ?>" class="refresh"><i class="material-icons">refresh</i>Refresh</a> 
-                            <a href="<?php url("employee/option"); ?>" class="addnew"><i class="material-icons">arrow_back</i>Back To Select Option</a>  
+                       <a href="<?php url("employee/option"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>  
+                            <a href="<?php url("reception/index"); ?>" class="refresh"><i class="material-icons">loop</i></a> 
+                            
                         
                        </span> 
                        </h4>
@@ -68,14 +66,14 @@
                                 <td><?php echo $row['location'];?></td>
                                 <td>Receptionist</td>
                                 <?php if($_SESSION['user_level'] == "Owner"): ?>
-                                    <td><a href="<?php url('reception/edit/'.$row['reception_user_id']);?>" class="edit"><i class="material-icons">edit</i>Edit</a></td>
-                                    <td><a href="<?php url('reception/delete/'.$row['reception_user_id']);?>" class="delete"><i class="material-icons">delete</i>Delete</a></td>
+                                    <td><a href="<?php url('reception/edit/'.$row['reception_user_id']);?>" class="edit"><i class="material-icons">edit</i></a></td>
+                                    <td><a href="<?php url('reception/delete/'.$row['reception_user_id']);?>" class="delete"><i class="material-icons">delete</i></a></td>
                                 <?php endif; ?>
                                 <?php if($_SESSION['user_level'] != "Owner") {
                                         if($_SESSION['user_id'] == $row['reception_user_id']) { ?>
-                                             <td><a href="<?php url('employee/view/'.$row['emp_id']);?>" class="edit"><i class="material-icons">visibility</i>View</a></td>
+                                             <td><a href="<?php url('reception/edit/'.$row['reception_user_id']);?>" class="edit"><i class="material-icons">visibility</i></a></td>
                                         <?php }else {; ?>
-                                             <td><a href="#" class="edit"><i class="material-icons">visibility_off</i>View</a></td>
+                                             <td><a href="#" class="edit"><i class="material-icons">visibility_off</i></a></td>
                                 <?php } }; ?>
                             </tbody>
                             <?php endforeach ?> 

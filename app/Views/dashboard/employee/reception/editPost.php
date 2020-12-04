@@ -25,10 +25,11 @@
                     <div class="options">
                         <h4>Edit Reception Employee Post 
                         <span>
+                            <!-- when new Post isn't similar to Reception -->
                             <?php if($employee['post'] != "Reception") { ?>
-                                <a href="<?php url("reception/index"); ?>" class="addnew"><i class="material-icons">arrow_back</i>Back To Reception Table</a>  
+                                <a href="<?php url("reception/index"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>  
                             <?php }else { ?>       
-                                <a href="<?php url("reception/delete/".$reception['reception_user_id']); ?>" class="addnew"><i class="material-icons">arrow_back</i>Back To Delete Option</a>  
+                                <a href="<?php url("reception/delete/".$reception['reception_user_id']); ?>" class="addnew"><i class="material-icons">reply_all</i></a>  
                             <?php }; ?>
                         </span>
                         </h4>  

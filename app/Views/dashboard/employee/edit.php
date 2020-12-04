@@ -25,7 +25,7 @@
                     <div class="options">
                         <h4>Edit Employee 
                         <span>
-                            <a href="<?php url("employee/index"); ?>" class="addnew"><i class="material-icons">arrow_back</i>Back To Employee Table</a>  
+                            <a href="<?php url("employee/index"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>  
                         </span>
                         </h4>  
                     </div>

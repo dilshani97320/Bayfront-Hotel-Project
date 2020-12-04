@@ -28,7 +28,7 @@
                    <div class="options">
                        <h4>Reception Delete Option Page
                        <span>
-                            <a href="<?php url("reception/index"); ?>" class="addnew"><i class="material-icons">arrow_back</i>Back To Reception Table</a>  
+                            <a href="<?php url("reception/index"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>  
                        </span>
                        </h4>
                    </div>
@@ -39,7 +39,7 @@
                         <div class="horBadge">
                         
                             <div class="icon1">
-                                <i class="fas fa-user-tag"></i>
+                                <i class="fas fa-user-times"></i>
                             </div>
                             <div class="text">
                                 <?php echo $reception['username']."<br>"; ?>
@@ -50,14 +50,14 @@
 
                         <div class="horBadge">
                             <div class="icon2">
-                                <i class="fas fa-users"></i>
+                                <i class="fas fa-user-slash"></i>
                             </div>
                             <div class="text">
                                 Remove 
                                 <?php echo "<br>".$reception['username']; ?>
                                 Employee
                             </div>
-                            <a href="<?php url('employee/delete/'.$reception['emp_id']);?>"></a>
+                            <a href="<?php url('reception/deleteEmployee/'.$reception['emp_id']);?>" onclick="return confirm('Are you sure?');"></a>
                         </div>
                     </div>
            </div> 

@@ -70,7 +70,7 @@ class Login {
         $user = array();
         $query = "SELECT * FROM $this->table2 
                   WHERE emp_id = '{$emp_id}'
-                  AND password = '{$hashed_password}'
+                  AND password = '{$hashed_password}' AND is_deleted = 0
                   LIMIT 1";
 
         $result_set = mysqli_query($this->connection, $query);

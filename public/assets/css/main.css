@@ -447,6 +447,14 @@ h4 {
   color: #a9afbb;
 }
 
+.addnew {
+  display: flex;
+  margin-right: 10px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #a9afbb;
+}
+
 .addnew > .material-icons {
   color: #a9afbb;
 }
@@ -456,6 +464,18 @@ h4 {
 }
 
 .addnew:hover > .material-icons {
+  color: #fff;
+}
+
+.addnew1 > .material-icons {
+  color: #a9afbb;
+}
+
+.addnew1:hover {
+  color: #fff;
+}
+
+.addnew1:hover > .material-icons {
   color: #fff;
 }
 
@@ -556,6 +576,15 @@ td {
   border-radius: 3px;
 }
 
+.outofdate {
+  color: #fff;
+  font-weight: 300;
+  background-color: #030c14;
+  width: 80px;
+  text-align: center;
+  border-radius: 3px;
+}
+
 .table > thead > tr > th {
   border-color: #ddd;
 }
@@ -569,17 +598,17 @@ td a {
   /* display: flex; */
   text-transform: uppercase;
   text-align: center;
-  color: green;
+  color: rgb(9, 71, 9);
 
   /* border: 1px solid #000000 ; */
 }
 
 .edit:hover {
-  color: green;
+  color: rgb(9, 71, 9);
 }
 
 .edit:hover > .material-icons {
-  color: green;
+  color: rgb(9, 71, 9);
 }
 
 .delete {
@@ -588,11 +617,11 @@ td a {
 }
 
 .delete:hover {
-  color: #f62d51;
+  color: #550a17;
 }
 
 .delete:hover > .material-icons {
-  color: red;
+  color: #550a17;
 }
 
 .edit > .material-icons {

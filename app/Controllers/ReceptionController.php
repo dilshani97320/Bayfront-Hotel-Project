@@ -246,6 +246,22 @@ class ReceptionController {
         
     }
 
+    public function deleteEmployee($emp_id) {
+        if(!isset($_SESSION['user_id'])) {
+            // view::load('dashboard/dashboard');  
+            $dashboard = new DashboardController();
+            $dashboard->index();  
+        }
+        else {
+            $db = new Employee();
+            $result = $db->remove($emp_id);
+
+            if($result == 1) {
+                $this->index();
+            }
+        }
+    }
+
     private function check_req_fields($req_fields) {
         $errors = array();
 

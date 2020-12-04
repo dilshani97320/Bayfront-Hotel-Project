@@ -25,7 +25,7 @@
                     <div class="options">
                         <h4>Edit Reservation 
                         <span>
-                            <a href="<?php url("reservation/details"); ?>" class="addnew"><i class="material-icons">arrow_back</i>Back To Reservations Table</a>  
+                            <a href="<?php url("reservation/details"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>  
                         </span>
                         </h4>  
                     </div>

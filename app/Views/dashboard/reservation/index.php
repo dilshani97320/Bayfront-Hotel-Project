@@ -28,9 +28,9 @@
                        <h4>All Room Reservations Page  
                        <span>
                             <?php if($_SESSION['user_level'] != "Owner"): ?>
-                                <a href="<?php url("reservation/index"); ?>" class="addnew"><i class="material-icons">add</i>Add New</a> 
+                                <a href="<?php url("reservation/index"); ?>" class="addnew"><i class="material-icons">add_circle</i></a> 
                             <?php endif; ?>
-                            <a href="<?php url("reservation/details"); ?>" class="refresh"><i class="material-icons">refresh</i>Refresh</a> 
+                            <a href="<?php url("reservation/details"); ?>" class="refresh"><i class="material-icons">loop</i></a> 
                        </span> 
                         
                        </h4>
@@ -46,7 +46,7 @@
                                         <th>Room Price</th>
                                         <th>No of Guest</th>
                                         <th>Check In Date</th>
-                                        <th>Check In Date</th>
+                                        <th>Check Out Date</th>
                                         <th>Details</th>
                                         <?php if($_SESSION['user_level'] == "Owner" ): ?>
                                             <th>Edit</th>
@@ -73,13 +73,19 @@
                                             $current_date = date("Y-m-d"); 
                                             
                                                 if($row['check_in_date'] == NULL || $row['check_out_date'] < $current_date && $_SESSION['user_level'] == "Reception"){ ?>
-                                                <div class="out">
-                                                    <?php echo "Past Booked";?>
+                                                <div class="outofdate">
+                                                    <?php echo "Out of Date";?>
                                                 </div> 
                                             <?php } else { ?>  
-                                                <div class="in">
-                                                    <?php  echo $row['check_in_date'];?>
-                                                </div>
+                                                <?php if($current_date > $row['check_out_date']) { ?>
+                                                    <div class="outofdate">
+                                                        <?php  echo $row['check_in_date'];?>
+                                                    </div>
+                                                <?php } else { ?>
+                                                    <div class="in">
+                                                        <?php  echo $row['check_in_date'];?>
+                                                    </div>
+                                                <?php } ?>
                                             <?php } 
                                             
                                             
@@ -88,23 +94,38 @@
 
                                         <td>
                                             <?php if($row['check_out_date'] == NULL || $row['check_out_date'] < $current_date && $_SESSION['user_level'] == "Reception") {?>
-                                            <div class="out">
-                                                <?php echo "Past Booked";?>
+                                            <div class="outofdate">
+                                                <?php echo "Out of Date";?>
                                             </div> 
-                                            <?php } else { ?>  
-                                            <div class="out">
-                                                <?php  echo $row['check_out_date'];?>
-                                            </div>
+                                            <?php } else { ?> 
+                                                <?php if($current_date > $row['check_out_date']) { ?>
+                                                    <div class="outofdate">
+                                                        <?php  echo $row['check_out_date'];?>
+                                                    </div>    
+                                                <?php } else { ?>
+                                                    <div class="out">
+                                                        <?php  echo $row['check_out_date'];?>
+                                                    </div>
+                                                <?php } ?>
                                             <?php } ?>
                                         </td>
 
-                                        <td><a href="<?php url('room/details/'.$row['room_number']);?>" class="edit"><i class="material-icons">zoom_in</i>Details</a></td>
+                                        <td><a href="<?php url('room/details/'.$row['room_number']);?>" class="edit"><i class="material-icons">preview</i></a></td>
                                         <?php if($_SESSION['user_level'] != "Owner" ): ?>
-                                            <td><a href="<?php url('reservation/view/'.$row['room_number'].'/'.$row['max_guest']);?>" onclick="return confirm('Are you sure?');" class="edit"><i class="material-icons">book_online</i>Reservation</a></td>
+                                            <?php if($current_date < $row['check_out_date']) { ?>
+                                                <td><a href="#" onclick="return confirm('Can not Do Reservation Sorry!!?');" class="edit"><i class="material-icons">book_online</i></a></td>
+                                            <?php } else { ?>
+                                                <td><a href="<?php url('reservation/view/'.$row['room_number'].'/'.$row['max_guest']);?>" onclick="return confirm('Are you sure?');" class="edit"><i class="material-icons">book_online</i></a></td>
+                                            <?php }; ?> 
+                                            
                                         <?php endif; ?>
                                         <?php if($_SESSION['user_level'] == "Owner"): ?>
-                                            <td><a href="<?php url('reservation/edit/'.$row['room_number'].'/'.$row['check_in_date'].'/'.$row['check_out_date']);?>" class="edit"><i class="material-icons">edit</i>Edit</a></td>
-                                            <td><a href="<?php url('reservation/delete/'.$row['room_number'].'/'.$row['check_in_date'].'/'.$row['check_out_date']);?>" onclick="return confirm('Are you sure?');" class="delete"><i class="material-icons">delete</i>Delete</a></td>
+                                            <?php if($current_date > $row['check_out_date']) { ?>
+                                                <td><a href="#" onclick="return confirm('Can not Edit Sorry!!');" class="edit"><i class="material-icons">edit</i></a></td>
+                                            <?php } else { ?>   
+                                                <td><a href="<?php url('reservation/edit/'.$row['room_number'].'/'.$row['check_in_date'].'/'.$row['check_out_date']);?>" class="edit"><i class="material-icons">edit</i></a></td>
+                                            <?php }; ?>    
+                                            <td><a href="<?php url('reservation/delete/'.$row['room_number'].'/'.$row['check_in_date'].'/'.$row['check_out_date']);?>" onclick="return confirm('Are you sure?');" class="delete"><i class="material-icons">delete</i></a></td>
                                         <?php endif; ?>
                                     </tbody>
                                 <?php endforeach ?> 

@@ -28,7 +28,7 @@
                         <?php if(isset($discount['value'])){ ?>
                             <a href="<?php url("room/preview/".$details['check_in_date'].'/'.$details['check_out_date'].'/'.$details['type_name']) ?>" class="addnew"><i class="material-icons">arrow_back</i>Back To ALL Result Table</a>  
                         <?php } else { ?>
-                            <a href="<?php url("reservation/details"); ?>" class="addnew"><i class="material-icons">arrow_back</i>Back To ALL Reservations Table</a>
+                            <a href="<?php url("reservation/details"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>
                         <?php } ?>
                         </span>
                         </h4>  
@@ -98,30 +98,6 @@
                                 </div>     
                         </div>
 
-                        <div class="row">
-                            <label for="#"><i class="material-icons">perm_contact_calendar</i>Date of Birth:</label>
-                                <div class="animate-form">
-                                    <input type="text"  autocomplete="off" name="date_of_birth" class="inputField"
-                                    <?php 
-                                        if(isset($reservation['date_of_birth'])){
-                                            echo 'value="' . $reservation['date_of_birth'] . '"';
-                                        }
-                                        else {
-                                            echo 'placeholder="1998-03-17"';
-                                        } 
-                                    
-                                    ?>
-                                    
-                                    required
-                                    >
-                                    
-                                        <label for="name" class="label-name">
-                                            <?php if((isset($errors['date_of_birth'])) && (isset($reservation['date_of_birth']))): ?>
-                                                <span class="content-name"><i class="material-icons">info</i><?php echo $errors['date_of_birth']; ?></span>
-                                            <?php endif; ?>
-                                        </label>    
-                                </div>     
-                        </div>
 
                         <div class="row">
                             <label for="#"><i class="material-icons">perm_contact_calendar</i>Age:</label>
@@ -241,7 +217,7 @@
                                             echo 'value="' . $reservation['room_number'] . '"';
                                         }
                                         else {
-                                            echo 'placeholder="0778522736"';
+                                            echo 'placeholder="A001"';
                                         } 
                                     
                                     ?>

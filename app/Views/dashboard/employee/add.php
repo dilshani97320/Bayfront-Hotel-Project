@@ -25,7 +25,7 @@
                     <div class="options">
                         <h4>Add New Employee 
                         <span>
-                            <a href="<?php url("employee/index"); ?>" class="addnew"><i class="material-icons">arrow_back</i>Back To Employee Table</a>  
+                            <a href="<?php url("employee/index"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>  
                         </span>
                         </h4>  
                     </div>
@@ -193,6 +193,29 @@
                                                 <span class="content-name"><i class="material-icons">info</i><?php echo $errors['contact_num']; ?></span>
                                             <?php endif; ?>
                                         </label>    
+                                </div>     
+                        </div>
+
+                        <div class="row">
+                            <label for="#"><i class="material-icons">military_tech</i>Post:</label>
+                                <div class="animate-form">
+                                <?php if(isset($employee['post'])){ ?>
+                                    <select name="post" class="inputField" selected="<?php echo $employee['post']; ?>" >
+                                    <option value="" <?php if ($employee['post'] == "" ) echo ' selected="selected"'; ?> style="border: none">-Select Post-</option>    
+                                    <option value="Waiter" <?php if ($employee['post'] == "Waiter" ) echo ' selected="selected"'; ?> style="border: none">Waiter</option> 
+                                    <option value="Chef" <?php if ($employee['post'] == "Chef" ) echo ' selected="selected"'; ?> style="border: none">Chef</option> 
+                                    <option value="Reception" <?php if ($employee['post'] == "Reception" ) echo ' selected="selected"'; ?> style="border: none">Reception</option> 
+                                    <option value="Other" <?php if ($employee['post'] == "Other" ) echo ' selected="selected"'; ?> style="border: none">Other</option>   
+                                    </select>
+                                <?php }else{ ?>    
+                                    <select name="post" class="inputField" selected=""> 
+                                    <option value="" style="border: none">-Select The POST-</option> 
+                                    <option value="Waiter" style="border: none">Waiter</option> 
+                                    <option value="Chef" style="border: none">Chef </option> 
+                                    <option value="Reception" style="border: none">Reception</option> 
+                                    <option value="Other" style="border: none">Other</option> 
+                                </select>  
+                                <?php }; ?> 
                                 </div>     
                         </div>
                         

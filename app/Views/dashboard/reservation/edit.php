@@ -11,7 +11,6 @@
             $navbar_title = "Edit Reservation Page";
             $search = 0;
             $search_by = '#';
-       
             include(VIEWS.'dashboard/inc/sidebar.php'); //Sidebar
             include(VIEWS.'dashboard/inc/navbar.php'); //Navbar
     ?>

@@ -26,7 +26,8 @@
                         <h4>New Reservation 
                         <span>
                         <?php if(isset($discount['value'])){ ?>
-                            <a href="<?php url("room/preview/".$details['check_in_date'].'/'.$details['check_out_date'].'/'.$details['type_name']) ?>" class="addnew"><i class="material-icons">arrow_back</i>Back To ALL Result Table</a>  
+                            <!-- <a href="<?php url("room/preview/".$details['check_in_date'].'/'.$details['check_out_date'].'/'.$details['type_name']) ?>" class="addnew"><i class="material-icons">reply_all</i></a>   -->
+                            <a href="<?php url("room/preview/".$reservation['check_in_date'].'/'.$reservation['check_out_date'].'/'.$reservation['type_name']) ?>" class="addnew"><i class="material-icons">reply_all</i></a>
                         <?php } else { ?>
                             <a href="<?php url("reservation/details"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>
                         <?php } ?>
@@ -38,8 +39,11 @@
                 </div>
 
                 <div class="cardbody">  
+                <?php if(isset($discount['value'])){ ?>
+                    <form action="<?php url("reservation/create/".$discount['value'].'/'.$reservation['check_in_date'].'/'.$reservation['check_out_date'].'/'.$reservation['type_name']); ?>" method="post" class="addnewform">
+                <?php } else { ?>
                     <form action="<?php url("reservation/create"); ?>" method="post" class="addnewform">
-
+                <?php } ?>    
                     <div class="section1">
 
                         <!-- Customer Part -->

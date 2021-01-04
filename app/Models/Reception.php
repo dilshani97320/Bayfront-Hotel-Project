@@ -2,20 +2,19 @@
 
 class Reception extends Employee{
 
-    private $reception_user_id;
+    public $reception_user_id;
     // private $emp_id ==> Foreign Key
     private $reception_user_level;
     private $reception_username;
     private $reception_password;
     private $reception_is_deleted;
-    private $reception_table = "reception";
+    public $reception_table = "reception";
     // private $table1 = "reception";
     // private $table2 = "employee";
     // private $connection;
 
     public function __construct() {
         Employee::__construct();
-
     }
 
     public function setReception($reception_user_id) {
@@ -225,5 +224,26 @@ class Reception extends Employee{
         }
         
         return $value;
+    }
+
+    public function getReceptionDetail($reception_user_id) {
+
+        $this->reception_user_id = mysqli_real_escape_string($this->connection, $reception_user_id);
+
+        $query = "SELECT * FROM $this->reception_table
+                  WHERE reception_user_id = '{$this->reception_user_id}'
+                  LIMIT 1";
+        $receptions = mysqli_query($this->connection, $query);
+        if($receptions){
+            if(mysqli_num_rows($receptions) == 1) {
+                $reception = mysqli_fetch_assoc($receptions);
+                // echo "Sucess";
+            }
+        }
+        else {
+            echo "Query Error";
+        }
+
+        return $reception;
     }
 }

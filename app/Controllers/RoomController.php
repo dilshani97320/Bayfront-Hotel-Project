@@ -1,11 +1,9 @@
 <?php 
 session_start();
 
-
-
 class RoomController {
 
-    private $details;
+    // private $details;
 
     //Done
     public function index() {
@@ -17,11 +15,9 @@ class RoomController {
             $dashboard->index();   
         }
         else {
-            $db = new RoomDetails();
+            $db = new RoomType();
             $typename = $db->getRoomTypes();
-            $data['typename'] = $typename;
-            
-            
+            $data['typename'] = $typename;            
             view::load('dashboard/room/index', $data);
 
         }
@@ -36,7 +32,7 @@ class RoomController {
         }
         else {
                 $data = array();
-                $db = new RoomDetails;
+                $db = new RoomDetails();
                 if(isset($_POST['search'])) {
                     $search = $_POST['search'];
                                       
@@ -50,6 +46,7 @@ class RoomController {
         }
     }
 
+
     public function details($room_number) {
         if(!isset($_SESSION['user_id'])) {
             $dashboard = new DashboardController();
@@ -57,7 +54,7 @@ class RoomController {
         }
         else {
             // Get Given Room number details
-            $db = new RoomDetails;
+            $db = new RoomDetails();
             $room = $db->getRoom($room_number);
             
             // Get Given Room number Room type
@@ -68,7 +65,9 @@ class RoomController {
             date_default_timezone_set("Asia/Colombo");
             $current_date = date("Y-m-d"); 
 
-            $discount = $db->getRoomDiscount($room_type_id);
+            $db1 = new RoomDiscount();
+            $db1->setRoomTypeId($room_type_id);
+            $discount = $db1->getRoomDiscount();
             // var_dump($discount);
             if(!empty($discount)) {
                 $start_date = $discount['start_date'];
@@ -90,8 +89,8 @@ class RoomController {
             
 
 
-           
-            $room_type = $db->getRoomType($room_type_id);
+            $db->setRoomTypeId($room_type_id);
+            $room_type = $db->getRoomType();
             
             $room_id = $room['room_id'];
             $reservations = $db->getReservations($room_id);
@@ -114,7 +113,7 @@ class RoomController {
         }
         else {
             // Get Given Room number details
-            $db = new RoomDetails;
+            $db = new RoomDetails();
             $room = $db->getRoom($room_number);
             
             // Get Given Room number Room type
@@ -125,7 +124,9 @@ class RoomController {
             date_default_timezone_set("Asia/Colombo");
             $current_date = date("Y-m-d"); 
 
-            $discount = $db->getRoomDiscount($room_type_id);
+            $db1 = new RoomDiscount();
+            $db1->setRoomTypeId($room_type_id);
+            $discount = $db1->getRoomDiscount();
             // var_dump($discount);
             if(!empty($discount)) {
                 $start_date = $discount['start_date'];
@@ -147,8 +148,8 @@ class RoomController {
             
 
 
-           
-            $room_type = $db->getRoomType($room_type_id);
+            $db->setRoomTypeId($room_type_id);
+            $room_type = $db->getRoomType();
             
             $room_id = $room['room_id'];
             $reservations = $db->getReservations($room_id);
@@ -165,6 +166,7 @@ class RoomController {
         }
     }
 
+    //Done
     public function preview($check_in_date, $check_out_date, $type_name) {
         if(!isset($_SESSION['user_id'])) {
             $dashboard = new DashboardController();
@@ -172,10 +174,12 @@ class RoomController {
         }
         else {
             $db = new RoomDetails();
+            
             $type_id = $db->getTypeID($type_name);
             $room_type_id = $type_id['room_type_id'];
-                    
-            $rooms = $db->getRoomAllID($room_type_id);
+            
+            $db->setRoomTypeId($room_type_id);
+            $rooms = $db->getRoomAllID();
             $update = $db->getRoomsUpdate();
                     
             if($update == 1) {
@@ -192,8 +196,8 @@ class RoomController {
                 }
             }
                 
-    
-                    $rooms = $db->getAvailableRooms($room_type_id, $check_in_date, $check_out_date);
+                    $db->setRoomTypeId($room_type_id);
+                    $rooms = $db->getAvailableRooms($check_in_date, $check_out_date);
                     $typename = $db->getRoomTypes();
                     $data['typename'] = $typename; 
                     $data['rooms'] = $rooms;
@@ -205,6 +209,7 @@ class RoomController {
         
     }
 
+    //Done
     public function check() {
 
         if(!isset($_SESSION['user_id'])) {
@@ -246,7 +251,9 @@ class RoomController {
                     $db = new RoomDetails();
                     $type_id = $db->getTypeID($type_name);
                     $room_type_id = $type_id['room_type_id'];
+                    $db->setRoomTypeId($room_type_id);
                     
+                    // $rooms = $db->getRoomAllID($room_type_id);
                     $rooms = $db->getRoomAllID($room_type_id);
                     // var_dump($rooms);
                     // echo "<br>";
@@ -254,7 +261,7 @@ class RoomController {
                     // var_dump($rooms);
                     if($update == 1) {
                         foreach($rooms as $room) {
-                            // var_dump($result); 
+                            // var_dump($result);
                             // echo $room['room_id'];
                             // echo "<br>";
                             $result = $db->roomAvalability($room['room_id'],$check_in_date,$check_out_date);
@@ -270,8 +277,9 @@ class RoomController {
                         }
                     }
                 
-    
-                    $rooms = $db->getAvailableRooms($room_type_id, $check_in_date, $check_out_date);
+                    $db->setRoomTypeId($room_type_id);
+                    // $rooms = $db->getAvailableRooms($room_type_id, $check_in_date, $check_out_date);
+                    $rooms = $db->getAvailableRooms($check_in_date, $check_out_date);
                     // echo "sucess1";
                     // var_dump($rooms);
                     // exit();
@@ -286,7 +294,7 @@ class RoomController {
                     else {
                         // $this->details = $rooms;
                         $data['rooms'] = $rooms;
-                        $data['details'] = array("check_in_date"=>$check_in_date, "check_out_date"=>$check_in_date, "type_name"=>$type_name);
+                        $data['details'] = array("check_in_date"=>$check_in_date, "check_out_date"=>$check_out_date, "type_name"=>$type_name);
                         // var_dump($this->details);
                        
                         view::load("dashboard/room/result", $data);

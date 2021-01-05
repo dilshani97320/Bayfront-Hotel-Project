@@ -29,23 +29,32 @@ class LoginController {
                 $user = $db->getOwner($email, $hashed_password); 
 
                 if(empty($user)) {
-                    $user = $db->getReception($email, $hashed_password);
-                    
-                    if(empty($user)) {
-                        // echo "Invalid User";
+                    $emp_user = $db->getUserID($email);
+                    if(empty($emp_user)) {
                         $errors[] = "Invaild User";
-                        // $data['errors'] = $errors;
                         $dashboard = new DashboardController();
                         $dashboard->index2($errors);
-                        // view::load('dashboard/dashboard', $data);
                     }
                     else {
-                        $_SESSION['user_id'] = $user['reception_user_id'];
-                        $_SESSION['username'] = $user['username'];
-                        $_SESSION['user_level'] = "Reception";
-                        $dashboard = new DashboardController();
-                        $dashboard->index();
-                        // view::load('dashboard/dashboard');
+                        $emp_id = $emp_user['emp_id'];
+                        $user = $db->getReception($emp_id, $hashed_password);
+
+                        if(empty($user)) {
+                            // echo "Invalid User";
+                            $errors[] = "Invaild User";
+                            // $data['errors'] = $errors;
+                            $dashboard = new DashboardController();
+                            $dashboard->index2($errors);
+                            // view::load('dashboard/dashboard', $data);
+                        }
+                        else {
+                            $_SESSION['user_id'] = $user['reception_user_id'];
+                            $_SESSION['username'] = $user['username'];
+                            $_SESSION['user_level'] = "Reception";
+                            $dashboard = new DashboardController();
+                            $dashboard->index();
+                            // view::load('dashboard/dashboard');
+                        }
                     }
 
                 }

@@ -89,7 +89,7 @@ ul.inline li:after{
 }
 dl.inline dd{
 	display: inline;
-	margin-left: : 50%;
+	margin-left: 50%;
 }
 
 dl.inline dd:after{
@@ -637,7 +637,6 @@ figure.imgBlock.hover .title:after {
 .single-room-meta {
     display: flex;
     flex-wrap: wrap;
-    ali
     flex: 1;
     margin-top: 0;
     /* border: 2px solid #85b5cc; */
@@ -663,7 +662,7 @@ figure.imgBlock.hover .title:after {
   text-align: center;
   font-weight: 650;
 }
-</
+
 .room-details h1{
   text-align: left; 
 }
@@ -1020,7 +1019,7 @@ background: radial-gradient(circle, rgba(214,21,0,0.5917717428768383) 100%, rgba
 
 .title{
   text-align: center;
-  margin-top: 60px;*
+  margin-top: 60px;
 }
 
 .title h4{

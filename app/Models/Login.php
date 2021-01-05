@@ -4,6 +4,7 @@ class Login {
 
     private $table1 = "owner";
     private $table2 = "reception";
+    private $table3 = "employee";
     public $connection;
     
     public function __construct() {
@@ -46,11 +47,30 @@ class Login {
         return $user;
     } 
 
-    public function getReception($email, $hashed_password) {
+    public function getUserID($email) {
+        $user = array();
+        $query = "SELECT * FROM $this->table3 
+                  WHERE email = '{$email}' AND is_deleted = 0
+                  LIMIT 1";
+        
+        $result_set = mysqli_query($this->connection, $query);
+
+        if($result_set) {
+            if(mysqli_num_rows($result_set) == 1) {
+                $user = mysqli_fetch_assoc($result_set);
+            }
+        }
+        else {
+            echo "Query Error";
+        }
+        return $user;
+    }
+
+    public function getReception($emp_id, $hashed_password) {
         $user = array();
         $query = "SELECT * FROM $this->table2 
-                  WHERE email = '{$email}'
-                  AND password = '{$hashed_password}'
+                  WHERE emp_id = '{$emp_id}'
+                  AND password = '{$hashed_password}' AND is_deleted = 0
                   LIMIT 1";
 
         $result_set = mysqli_query($this->connection, $query);

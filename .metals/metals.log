@@ -43,3 +43,44 @@ INFO: Unsupported notification method: $/setTraceNotification
 2020.11.17 09:33:22 WARN  Build server is not auto-connectable.
 2020.11.17 09:33:22 WARN  no build tool detected in workspace 'C:\xampp\htdocs\learns\Bayfront-Hotel-Project'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
 2020.11.17 16:59:35 INFO  shutting down Metals
+2020.11.18 03:35:23 INFO  Started: Metals version 0.9.5 in workspace 'C:\xampp\htdocs\learns\Bayfront-Hotel-Project' for client vscode.
+2020.11.18 03:35:25 INFO  time: initialize in 2.44s
+2020.11.18 03:35:31 WARN  Build server is not auto-connectable.
+2020.11.18 03:35:31 WARN  no build tool detected in workspace 'C:\xampp\htdocs\learns\Bayfront-Hotel-Project'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+Nov 18, 2020 3:48:17 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTraceNotification
+Nov 18, 2020 3:48:40 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTraceNotification
+2020.11.18 03:59:24 INFO  shutting down Metals
+2020.11.27 14:27:59 INFO  Started: Metals version 0.9.7 in workspace 'C:\xampp\htdocs\MVC' for client vscode.
+2020.11.27 14:28:02 INFO  time: initialize in 3.38s
+2020.11.27 14:28:06 WARN  Build server is not auto-connectable.
+2020.11.27 14:28:06 WARN  no build tool detected in workspace 'C:\xampp\htdocs\MVC'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2020.11.27 14:51:14 INFO  shutting down Metals
+2020.12.01 13:12:38 INFO  Started: Metals version 0.9.7 in workspace 'C:\xampp\htdocs\MVC' for client vscode.
+2020.12.01 13:12:41 INFO  time: initialize in 2.6s
+2020.12.01 13:12:45 WARN  Build server is not auto-connectable.
+2020.12.01 13:12:45 WARN  no build tool detected in workspace 'C:\xampp\htdocs\MVC'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+Dec 01, 2020 11:34:23 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTraceNotification
+2020.12.02 01:32:56 INFO  shutting down Metals
+2020.12.03 14:32:27 INFO  Started: Metals version 0.9.7 in workspace 'C:\xampp\htdocs\MVC' for client vscode.
+2020.12.03 14:32:29 INFO  time: initialize in 2.08s
+2020.12.03 14:32:37 WARN  Build server is not auto-connectable.
+2020.12.03 14:32:37 WARN  no build tool detected in workspace 'C:\xampp\htdocs\MVC'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2020.12.03 20:26:01 INFO  shutting down Metals
+2020.12.03 20:35:48 INFO  Started: Metals version 0.9.7 in workspace 'C:\xampp\htdocs\MVC' for client vscode.
+2020.12.03 20:35:49 INFO  time: initialize in 1.94s
+2020.12.03 20:35:51 WARN  Build server is not auto-connectable.
+2020.12.03 20:35:51 WARN  no build tool detected in workspace 'C:\xampp\htdocs\MVC'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2020.12.03 22:38:53 INFO  shutting down Metals
+2020.12.04 18:40:56 INFO  Started: Metals version 0.9.7 in workspace 'C:\xampp\htdocs\MVC' for client vscode.
+2020.12.04 18:40:58 INFO  time: initialize in 2.16s
+2020.12.04 18:41:00 WARN  Build server is not auto-connectable.
+2020.12.04 18:41:00 WARN  no build tool detected in workspace 'C:\xampp\htdocs\MVC'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2020.12.04 23:19:43 INFO  shutting down Metals
+2020.12.06 20:46:15 INFO  Started: Metals version 0.9.7 in workspace 'C:\xampp\htdocs\MVC' for client vscode.
+2020.12.06 20:46:17 INFO  time: initialize in 1.92s
+2020.12.06 20:46:19 WARN  Build server is not auto-connectable.
+2020.12.06 20:46:19 WARN  no build tool detected in workspace 'C:\xampp\htdocs\MVC'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2020.12.06 20:46:56 INFO  shutting down Metals

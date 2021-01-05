@@ -28,9 +28,9 @@
                             <?php if(isset($discount['value'])){ ?>
                                 <a href="<?php url("room/preview/".$details['check_in_date'].'/'.$details['check_out_date'].'/'.$details['type_name']); ?>" class="addnew"><i class="material-icons">arrow_back</i>Back To Result Table</a>  
                             <?php } else { ?>
-                                <a href="<?php url("reservation/details"); ?>" class="addnew"><i class="material-icons">arrow_back</i>Back To Reservations Table</a>
+                                <a href="<?php url("reservation/details"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>
                             <?php } ?>
-                            <a href="<?php url("room/details/".$room['room_number']); ?>" class="refresh"><i class="material-icons">refresh</i>Refresh</a> 
+                            <a href="<?php url("room/details/".$room['room_number']); ?>" class="refresh"><i class="material-icons">loop</i></a> 
                         </span>
                         </h4>  
                     </div>

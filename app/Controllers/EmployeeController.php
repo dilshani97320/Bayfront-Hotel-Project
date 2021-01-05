@@ -4,6 +4,18 @@ session_start();
 class EmployeeController {
 
 
+
+    public function option() {
+        if(!isset($_SESSION['user_id'])) {
+            $dashboard = new DashboardController();
+            $dashboard->index();
+        }
+        else {
+            view::load('dashboard/employee/selectOption');
+        }
+    }
+
+
     // Done
     public function index() {
         
@@ -14,14 +26,17 @@ class EmployeeController {
         }
         else {
             $data = array();
-            $db = new Employee;
+            // $db = new Employee;
             if(isset($_POST['search'])) {
                 $search = $_POST['search'];
-                $data['employee'] = $db->getSearchEmployee($search);
+                $db = new Employee();
+                $db->setSearchEmployee($search);
+                $data['employee'] = $db->getSearchEmployee();
                 //echo 'Error1';
                 view::load('dashboard/employee/index', $data);
             }
             else {
+                $db = new Employee();
                 $data['employee'] = $db->getAllEmployee();
                 //echo 'Error2';
                 view::load('dashboard/employee/index', $data);
@@ -54,7 +69,8 @@ class EmployeeController {
         }
         else {
             $db = new Employee();
-            $data['employee']= $db->getDataEmployee($emp_id);
+            $db->setEmployee_id($emp_id);
+            $data['employee']= $db->getDataEmployee();
             //echo $data['first_name'];
             //view::load('inc/test', $data);
             // echo "tharindu";
@@ -86,6 +102,7 @@ class EmployeeController {
                 $salary = $_POST['salary'];
                 $location = $_POST['location'];
                 $contact_num = $_POST['contact_num'];
+                $post = $_POST['post'];
     
                 // Check input is empty
                 $req_fields = array('first_name', 'last_name', 'email', 'salary', 'location', 'contact_num');
@@ -123,7 +140,8 @@ class EmployeeController {
     
                 // Check Employee email already exist
                 $db = new Employee();
-                $result = $db->getEmail($email); 
+                $db->setEmailEmployee($email);
+                $result = $db->checkEmailEmployee(); 
     
                 if($result == 1) {
                     $errors['email'] = 'Email address already exists';
@@ -131,28 +149,53 @@ class EmployeeController {
     
                 // Check Phone number already exist
                 $db = new Employee();
-                $result = $db->getPhoneNumber($contact_num); 
+                $db->setPhoneNumberEmployee($contact_num);
+                $result = $db->checkPhoneNumberEmployee(); 
     
                 if($result == 1) {
                     $errors['contact_num'] = 'Contact Number already exists';
                 }
     
                 // Check Owner is valid
-                $result = $db->getOwner($owner_user_id);
+                // $result = $db->getOwner($owner_user_id);
+                $db->setOwnerId($owner_user_id);
+                $result = $db->checkOwner();
     
                 if($result == 0) {
                     $errors['Owner_id'] = 'Owner ID isn\'t valid';
                 }
-    
-                $errors = array_filter( $errors ); 
+                // echo $result;
+                // die();
+
+                $errors = array_filter( $errors );
                 
                 if(count( $errors ) == 0) {
-                    $data = array($owner_user_id, $first_name, $last_name, $email, $salary, $location, $contact_num);
-                    $result = $db->getCreate($data);
+                    $data = array($first_name, $last_name, $email, $salary, $location, $contact_num, $post);
+                    $db->setCreateEmployee($data);
+                    $result = $db->getCreateEmployee();
     
                     if($result == 1) {
                         // view::load("dashboard/employee/add", ["success"=>"Data Created Successfully"]);
-                        $this->index();
+                        // $this->index();
+                        if($post == "Reception") {
+                            $db->setEmailEmployee($email);
+                            $employee = $db->getEmployee();
+                            $emp_id = $employee['emp_id'];
+                            //default reception create in reception table
+                            $db1 = new Reception();
+                            $db1->setEmployee_id($emp_id);
+                            $result = $db1->getCreateReception();
+                            if($result == 1) {
+                                $this->index();
+                            }
+                            else {
+                                view::load("dashboard/employee/add", ["newerror"=>"Data Created Unsuccessfully"]);
+                            }
+                            
+                        }
+                        else {
+                            $this->index();
+                        }
                     }
                     else {
                         view::load("dashboard/employee/add", ["newerror"=>"Data Created Unsuccessfully"]);
@@ -160,7 +203,7 @@ class EmployeeController {
                 }
                 else {
                     $data['errors'] = $errors;
-                    $data['employee'] = array('owner_user_id'=>$owner_user_id, 'first_name'=>$first_name, 'last_name'=>$last_name, 'email'=>$email, 'salary'=>$salary, 'location'=>$location, 'contact_num'=>$contact_num);
+                    $data['employee'] = array('owner_user_id'=>$owner_user_id, 'first_name'=>$first_name, 'last_name'=>$last_name, 'email'=>$email, 'salary'=>$salary, 'location'=>$location, 'contact_num'=>$contact_num, 'post'=>$post);
                     view::load("dashboard/employee/add", $data);
                 }
     
@@ -169,7 +212,7 @@ class EmployeeController {
         
     }
 
-    //Done
+    //Reception CLass must have update
     public function update($emp_id) {
 
         if(!isset($_SESSION['user_id'])) {
@@ -193,6 +236,7 @@ class EmployeeController {
                 $salary = $_POST['salary'];
                 $location = $_POST['location'];
                 $contact_num = $_POST['contact_num'];
+                $post = $_POST['post'];
     
                 // Check input is empty
                 $req_fields = array('first_name', 'last_name', 'email', 'salary', 'location', 'contact_num');
@@ -230,38 +274,77 @@ class EmployeeController {
     
                 // Check Employee email already exist
                 $db = new Employee();
-                $result = $db->getEmailOther($email, $emp_id); 
+                $db->setEmailOtherEmployee($email, $emp_id);
+                $result = $db->getEmailOtherEmployee();
     
                 if($result == 1) {
                     $errors['email'] = 'Email address already use other';
                 }
 
                 // Check Employee contact number already exist
-                $result = $db->getPhoneNumberOther($contact_num, $emp_id); 
+                $db->setPhoneNumberOtherEmployee($contact_num, $emp_id);
+                $result = $db->getPhoneNumberOtherEmployee(); 
     
                 if($result == 1) {
                     $errors['contact_num'] = 'Conatct Number already use other';
                 }
     
                 // Check Owner is valid
-                $result = $db->getOwner($owner_user_id);
+
+                // $result = $db->getOwner($owner_user_id);
+                $db->setOwnerId($owner_user_id);
+                $result = $db->checkOwner();
     
                 if($result == 0) {
                     $errors[] = 'Owner ID isn\'t valid';
                 }
     
                 $data['errors'] = $errors;
-                $data['employee'] = array("emp_id"=>$emp_id, "owner_user_id"=>$owner_user_id, "first_name"=>$first_name, "last_name"=>$last_name, "email"=>$email, "salary"=>$salary, "location"=>$location, "contact_num"=>$contact_num);
+                $data['employee'] = array("emp_id"=>$emp_id, "owner_user_id"=>$owner_user_id, "first_name"=>$first_name, "last_name"=>$last_name, "email"=>$email, "salary"=>$salary, "location"=>$location, "contact_num"=>$contact_num, "post"=>$post);
                   
                 
                 $errors = array_filter( $errors ); 
                 
                 if(count( $errors ) == 0) {
-                    $data1 = array($emp_id, $owner_user_id, $first_name, $last_name, $email, $salary, $location, $contact_num);
-                    $result = $db->getUpdate($data1);
-    
+                    $data1 = array($emp_id, $first_name, $last_name, $email, $salary, $location, $contact_num, $post);
+                    $db->setUpdateEmployee($data1);
+                    $result = $db->getUpdateEmployee();
+                    
                     if($result == 1) {
-                        view::load("dashboard/employee/edit", ["success"=>"Employee Update Successfully", 'employee'=>$data['employee']]);
+                        // Check This employee already receptionist
+                        $db1 = new Reception();
+                        $db1->setEmployee_id($emp_id);
+                        $result = $db1->checkReception();
+                        
+                        if($result == 1) {
+                            // Previous Reception but now not
+                            if($post != "Reception") {
+                                $db1->setEmployee_id($emp_id);
+                                $result =$db1->removeReception();
+                                //Query should run then not check it
+                                
+                            }
+                            view::load("dashboard/employee/edit", ["success"=>"Employee Update Successfully", 'employee'=>$data['employee']]);
+                        }
+                        else {
+                            // Previous Not Reception but now Reception 
+                            if($post == "Reception") {
+                                $result1= 0;
+                                $db1->setEmployee_id($emp_id);
+                                $result1 = $db1->getCheckDeleteReception();
+                                if($result1 == 1) {
+                                    // Exist the reception and is_deleted = 1
+                                    $db1->getUpdateReception();
+                                    // echo "1";
+                                }
+                                else {
+                                    $result = $db1->getCreateReception();
+                                    // echo "2";
+                                } 
+                            }
+                            view::load("dashboard/employee/edit", ["success"=>"Employee Update Successfully", 'employee'=>$data['employee']]);
+                        }
+                        
                     }
                     else {
                         view::load("dashboard/employee/edit", ["newerror"=>"Data Update Unsuccessfully", 'employee'=>$data['employee']]);
@@ -289,7 +372,8 @@ class EmployeeController {
         }
         else {
             $db = new Employee();
-            $result = $db->remove($emp_id);
+            $db->setEmployee_id($emp_id);
+            $result = $db->removeEmployee();
 
             if($result == 1) {
                 $this->index();

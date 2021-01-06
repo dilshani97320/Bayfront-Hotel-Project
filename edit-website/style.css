@@ -1,0 +1,120 @@
+body{
+    padding: 0;
+    margin: 0;
+   
+
+}
+.container h1{
+    
+    padding-bottom: 4px;
+    text-align: center;
+    font-family: sans-serif;
+}
+.container2{
+    width: 400px;
+	height: 500px;
+	position: relative;
+	background:#2F4F4F;
+	margin: 6% auto;
+    padding: 10px 5px;
+    border-radius: 5px;
+    float: left;
+    margin-left: 3px;
+	
+
+}
+.container2 input{
+    border:2px solid rgb(113, 223, 223);
+    border-radius: 4px;
+    display:block;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 5px;
+    width: 80%;
+    margin :25px ;
+}
+
+}
+.buttonbox{
+    
+    position: relative;
+    display: flex;
+    justify-content: center;
+    
+   
+
+}
+.buttonbox button{
+    padding: 10px 20px;
+    margin: 20px 20px;
+    border-radius: 10px;
+    font-size: 15px;
+    
+    
+}
+button:hover{
+    cursor: pointer;
+}
+.btn1{
+    background: green;
+    color: white;
+}
+.btn2{
+    background: blue;
+    color: white;
+}
+.btn3{
+    background: rgb(226, 226, 28);
+    color: white;
+}
+.btn4{
+    background: red;
+    color: white;
+}
+.tablebox{
+
+    margin-top: 70px;
+    display: flex;
+    justify-content: center;
+}
+table{
+    width: 75%;
+    height: auto;
+    border-collapse: collapse;
+    
+}
+table,th,td{
+    
+    text-align: center;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+tr:nth-child(even){
+    background-color: #e9dbdb;
+}
+
+.msg{
+    margin: 30px auto;
+    padding: 10px;
+    border-radius: 5px;
+    color: #3c763d;
+    background: #dff0d8;
+    border:1px solid #3c763d;
+    width: 50%;
+    text-align: center;
+}
+.edit_btn{
+    text-decoration: none;
+    padding: 10px 20px;
+    background: #ffa500;
+    color: white;
+    border-radius: 10px;
+    
+}
+ .delete_btn{
+    text-decoration: none;
+    padding: 10px 20px;
+    background: red;
+    color: white;
+    border-radius: 10px;
+}

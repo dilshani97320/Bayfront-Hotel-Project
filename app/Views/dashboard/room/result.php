@@ -108,7 +108,7 @@
                                         <td><a href="<?php url('room/details1/'.$row['room_number'].'/'.$details['check_in_date'].'/'.$details['check_out_date'].'/'.$details['type_name']);?>" class="edit"><i class="material-icons">preview</i></a></td>
                                         
                                         <?php if($_SESSION['user_level'] == "Reception"): ?>
-                                            <td><a href="<?php url('reservation/view1/'.$row['room_number'].'/'.$row['max_guest'].'/'.$details['check_in_date'].'/'.$details['check_out_date'].'/'.$details['type_name']);?>" onclick="return confirm('Are you sure?');" class="edit"><i class="material-icons">book_online</i></a></td>
+                                            <td><a href="<?php url('reservation/view1/'.$row['room_number'].'/'.$row['max_guest'].'/'.$details['check_in_date'].'/'.$details['check_out_date'].'/'.$details['type_name'].'/'.$customer['id']);?>" onclick="return confirm('Are you sure?');" class="edit"><i class="material-icons">book_online</i></a></td>
                                         <?php endif; ?>
                                     </tbody>
                                 <?php endforeach ?> 

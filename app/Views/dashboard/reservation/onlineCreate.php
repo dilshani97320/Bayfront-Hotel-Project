@@ -26,7 +26,7 @@
                         <h4>New Reservation 
                         <span>
                         <?php if(isset($discount['value'])){ ?>
-                            <!-- <a href="<?php //url("room/preview/".$details['check_in_date'].'/'.$details['check_out_date'].'/'.$details['type_name']) ?>" class="addnew"><i class="material-icons">reply_all</i></a>   -->
+                            <!-- <a href="<?php url("room/preview/".$details['check_in_date'].'/'.$details['check_out_date'].'/'.$details['type_name']) ?>" class="addnew"><i class="material-icons">reply_all</i></a>   -->
                             <a href="<?php url("room/preview/".$reservation['check_in_date'].'/'.$reservation['check_out_date'].'/'.$reservation['type_name']) ?>" class="addnew"><i class="material-icons">reply_all</i></a>
                         <?php } else { ?>
                             <a href="<?php url("reservation/details"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>
@@ -59,9 +59,6 @@
                                         if(isset($reservation['first_name'])){
                                             echo 'value="' . $reservation['first_name'] . '"';
                                         }
-                                        if(isset($customer['first_name'])) {
-                                            echo 'value="' . $customer['first_name'] . '"';
-                                        }
                                         else {
                                             echo 'placeholder="Tharindu"';
                                         } 
@@ -87,9 +84,6 @@
                                     <?php 
                                         if(isset($reservation['last_name'])){
                                             echo 'value="' . $reservation['last_name'] . '"';
-                                        }
-                                        if(isset($customer['last_name'])) {
-                                            echo 'value="' . $customer['last_name'] . '"';
                                         }
                                         else {
                                             echo 'placeholder="Gihan"';
@@ -117,9 +111,6 @@
                                         if(isset($reservation['age'])){
                                             echo 'value="' . $reservation['age'] . '"';
                                         }
-                                        if(isset($customer['age'])) {
-                                            echo 'value="' . $customer['age'] . '"';
-                                        }
                                         else {
                                             echo 'placeholder="22"';
                                         } 
@@ -144,9 +135,6 @@
                                     <?php 
                                         if(isset($reservation['location'])){
                                             echo 'value="' . $reservation['location'] . '"';
-                                        }
-                                        if(isset($customer['location'])) {
-                                            echo 'value="' . $customer['location'] . '"';
                                         }
                                         else {
                                             echo 'placeholder="Sri Lanka Galle"';
@@ -173,9 +161,6 @@
                                     <?php 
                                         if(isset($reservation['contact_number'])){
                                             echo 'value="' . $reservation['contact_number'] . '"';
-                                        }
-                                        if(isset($customer['contact_number'])) {
-                                            echo 'value="' . $customer['contact_number'] . '"';
                                         }
                                         else {
                                             echo 'placeholder="0778522736"';
@@ -205,9 +190,6 @@
                                     <?php 
                                         if(isset($reservation['email'])){
                                             echo 'value="' . $reservation['email'] . '"';
-                                        }
-                                        if(isset($customer['email'])) {
-                                            echo 'value="' . $customer['email'] . '"';
                                         }
                                         else {
                                             echo 'placeholder="wtgihan@gmail.com"';
@@ -342,27 +324,13 @@
                         
 
                         <div class="row">
-                            <label for="#"><i class="material-icons">request_quote</i>Payment Method:</label>
+                            <label for="#"><i class="material-icons">request_quote</i>Payment Type:</label>
                                 <div class="animate-form">
-                                    <input type="text"  autocomplete="off" name="payment_method" class="inputField"
-                                    <?php 
-                                        if(isset($reservation['payment_method'])){
-                                            echo 'value="' . $reservation['payment_method'] . '"';
-                                        }
-                                        else {
-                                            echo 'value="CASH"';
-                                        } 
-                                    
-                                    ?>
-                                    
-                                    readonly="readonly"
-                                    >
-                                    
-                                        <label for="name" class="label-name">
-                                            <?php if((isset($errors['payment_method'])) && (isset($reservation['payment_method']))): ?>
-                                                <span class="content-name"><i class="material-icons">info</i><?php echo $errors['payment_method']; ?></span>
-                                            <?php endif; ?>
-                                        </label>    
+                                    <select name="type_name" class="inputField">
+                                         <option value="">-Select Payment Type-</option>
+                                         <option value="ONLINE" style="border: none">ONLINE</option>      
+                                         <option value="CASH" style="border: none">CASH</option>      
+                                    </select>    
                                 </div>     
                         </div>
 

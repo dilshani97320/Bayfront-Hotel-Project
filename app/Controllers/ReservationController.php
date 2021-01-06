@@ -3,7 +3,7 @@ session_start();
 
 class ReservationController {
 
-    public function index() {
+    public function index($customer_id = 0) {
         
         //Checking if a user is logged in
         if(!isset($_SESSION['user_id'])) {
@@ -11,10 +11,30 @@ class ReservationController {
             $dashboard->index();   
         }
         else {
-            view::load('dashboard/reservation/create');
+            if($customer_id != 0) {
+                $customer = new Customer();
+                $customerDetails = $customer->getCustomer($customer_id);
+                $data['customer'] = $customerDetails;
+                view::load('dashboard/reservation/create',$data);
+            }
+            else {
+                view::load('dashboard/reservation/create');
+            }
+            
             
         }
            
+    }
+
+    public function indexOnline() {
+        // Checking if a user is logged in
+        if(!isset($_SESSION['user_id'])) {
+            $dashboard = new DashboardController();
+            $dashboard->index();
+        }
+        else {
+            view::load('dashboard/reservation/onlineCreate');
+        }
     }
 
     public function view($room_number,$max_guest) {
@@ -33,7 +53,7 @@ class ReservationController {
            
     }
 
-    public function view1($room_number,$max_guest, $check_in_date, $check_out_date, $type_name) {
+    public function view1($room_number,$max_guest, $check_in_date, $check_out_date, $type_name, $customer_id=0) {
         
         //Checking if a user is logged in
         if(!isset($_SESSION['user_id'])) {
@@ -43,6 +63,12 @@ class ReservationController {
         else {
             // echo $check_out_date;
             // die();
+            if($customer_id != 0) {
+                $customer = new Customer();
+                $customerDetails = $customer->getCustomer($customer_id);
+                $data['customer'] = $customerDetails;
+            }
+           
             $value=1;
             $data['discount'] = array("value"=>$value);
             // $data['details'] = array("check_in_date"=>$check_in_date, "check_out_date"=>$check_out_date, "type_name"=>$type_name);
@@ -75,10 +101,8 @@ class ReservationController {
                 }
         }
     }
-
-   
-
-    public function create($discountValue = 0, $check_in_dateSearch = '0000-00-00', $check_outSearch = '0000-00-00', $typenameSearch="None") {
+    
+    public function create($discountValue = 0, $check_inSearch = '0000-00-00', $check_outSearch = '0000-00-00', $typenameSearch="None") {
 
         if(!isset($_SESSION['user_id'])) {
             $dashboard = new DashboardController();
@@ -166,6 +190,27 @@ class ReservationController {
                 if(!$this->is_num($_POST['max_guest'])) {
                     $errors['max_guest'] = 'Number is Invalid';
                 }
+
+                // Number of Guest Validation
+                $dbroom = new RoomDetails();
+                $room = $dbroom->getRoomID($room_number);
+                if(empty($room)) {
+                    $errors['room_number'] = 'Room Number Invalid';
+                    $errors['max_guest'] = 'Max Guest Invalid';
+                }
+                else {
+                    $room_type = $room['type_id'];
+                    $dbroom_type = new RoomType();
+                    $dbroom_type->setRoomTypeId($room_type);
+                    $room_type = $dbroom_type->getRoomType();
+                    $room_max_guest = $room_type['max_guest'];
+                    if($room_max_guest < $no_of_guest) {
+                        $errors['max_guest'] = 'Max Guest '.$room_max_guest;
+                    }
+                }
+                
+
+
 
                 // Age 
                 if(!$this->is_num($_POST['age'])) {
@@ -260,23 +305,32 @@ class ReservationController {
                                     // view::load('dashboard/reservation/create', ["success"=>"Data Created Successfully"]);
                                     // $this->details();
                                     if($discountValue == 0) {
-                                        $this->details();
+                                        $val = 1; // represent main reservation not room search reservation
+                                        $data['create'] = array("value"=>$val);
+                                        $data['customer'] = array("id"=>$customer_id);
+                                        view::load('dashboard/reservation/reservationOption', $data);
                                     }
                                     else {
-                                        $room = new RoomDetails();
-                                        $room->preview($check_inSearch, $check_outSearch, $typenameSearch);
+                                        // This should be more enhanced and after reservation should ask more reservations
+                                        
+                                        // Success the Process
+                                        // Reservation Option Page
+                                        // Customer Details should pass next page
+                                        $data['customer'] = array("id"=>$customer_id);
+                                        view::load('dashboard/reservation/reservationOption', $data);
                                     }
                             }
                             else {
                                 // Process Unsuccessfull
                                 // echo "Create Reservation process unsuccessfull<br>";
+                                // Database error shouldn't happen
                                 if($discountValue == 1) {
                                     $errors['database'] = "Database Error"; 
                                     $data['discount'] = array("value"=>$discountValue);
                                     $data['errors'] = $errors;
-                                    $data['reservation'] = array('first_name' => $first_name, 'last_name' => $last_name, 'location' => $location, 'contact_number' => $contact_num,  'age' => $age, 'email' => $email, 'max_guest' => $no_of_guest, 'room_number' => $room_number, 'check_in_date' => $check_in_date, 'check_out_date' => $check_out_date, 'payment_method' => $payment_method,'typename'=>$typenameSearch);
+                                    $data['reservation'] = array('first_name' => $first_name, 'last_name' => $last_name, 'location' => $location, 'contact_number' => $contact_num,  'age' => $age, 'email' => $email, 'max_guest' => $no_of_guest, 'room_number' => $room_number, 'check_in_date' => $check_in_date, 'check_out_date' => $check_out_date, 'payment_method' => $payment_method,'type_name'=>$typenameSearch);
                                     view::load('dashboard/reservation/create', $data);
-                                    view::load('dashboard/reservation/create', ["newerrord"=>"Data Created Unsuccessfully",'reservation'=>$data['employee'], 'errors'=>$data['errors']]);
+                                    // view::load('dashboard/reservation/create', ["newerrord"=>"Data Created Unsuccessfully",'reservation'=>$data['employee'], 'errors'=>$data['errors']]);
                                     
                                 }
                                 else {
@@ -284,7 +338,7 @@ class ReservationController {
                                     $data['errors'] = $errors;
                                     $data['reservation'] = array('first_name' => $first_name, 'last_name' => $last_name, 'location' => $location, 'contact_number' => $contact_num,  'age' => $age, 'email' => $email, 'max_guest' => $no_of_guest, 'room_number' => $room_number, 'check_in_date' => $check_in_date, 'check_out_date' => $check_out_date, 'payment_method' => $payment_method);
                                     view::load('dashboard/reservation/create', $data);
-                                    view::load('dashboard/reservation/create', ["newerrord"=>"Data Created Unsuccessfully",'reservation'=>$data['employee'], 'errors'=>$data['errors']]);
+                                    // view::load('dashboard/reservation/create', ["newerrord"=>"Data Created Unsuccessfully",'reservation'=>$data['employee'], 'errors'=>$data['errors']]);
                                     
                                 }
 
@@ -296,7 +350,7 @@ class ReservationController {
                                 $errors['max_guest'] = "No Of Guest not Valid";
                                 $data['discount'] = array("value"=>$discountValue);
                                 $data['errors'] = $errors;
-                                $data['reservation'] = array('first_name' => $first_name, 'last_name' => $last_name, 'location' => $location, 'contact_number' => $contact_num,  'age' => $age, 'email' => $email, 'max_guest' => $no_of_guest, 'room_number' => $room_number, 'check_in_date' => $check_in_date, 'check_out_date' => $check_out_date, 'payment_method' => $payment_method,'typename'=>$typenameSearch);                               
+                                $data['reservation'] = array('first_name' => $first_name, 'last_name' => $last_name, 'location' => $location, 'contact_number' => $contact_num,  'age' => $age, 'email' => $email, 'max_guest' => $no_of_guest, 'room_number' => $room_number, 'check_in_date' => $check_in_date, 'check_out_date' => $check_out_date, 'payment_method' => $payment_method,'type_name'=>$typenameSearch);                               
                                 view::load('dashboard/reservation/create', $data);
 
                             }
@@ -319,7 +373,7 @@ class ReservationController {
                         if($discountValue == 1) {
                             $errors['room_number'] = "Room Number not Valid";
                             $data['errors'] = $errors;
-                            $data['reservation'] = array('first_name' => $first_name, 'last_name' => $last_name, 'location' => $location, 'contact_number' => $contact_num, 'age' => $age, 'email' => $email, 'max_guest' => $no_of_guest, 'room_number' => $room_number, 'check_in_date' => $check_in_date, 'check_out_date' => $check_out_date, 'payment_method' => $payment_method,'typename'=>$typenameSearch); 
+                            $data['reservation'] = array('first_name' => $first_name, 'last_name' => $last_name, 'location' => $location, 'contact_number' => $contact_num, 'age' => $age, 'email' => $email, 'max_guest' => $no_of_guest, 'room_number' => $room_number, 'check_in_date' => $check_in_date, 'check_out_date' => $check_out_date, 'payment_method' => $payment_method,'type_name'=>$typenameSearch); 
                             $data['discount'] = array("value"=>$discountValue);
                             view::load('dashboard/reservation/create', $data);
                         }
@@ -339,7 +393,7 @@ class ReservationController {
                     if($discountValue == 1) {
                         $data['errors'] = $errors;
                         $data['discount'] = array("value"=>$discountValue);
-                        $data['reservation'] = array('first_name' => $first_name, 'last_name' => $last_name, 'location' => $location, 'contact_number' => $contact_num, 'age' => $age, 'email' => $email, 'max_guest' => $no_of_guest, 'room_number' => $room_number, 'check_in_date' => $check_in_date, 'check_out_date' => $check_out_date, 'payment_method' => $payment_method,'typename'=>$typenameSearch);
+                        $data['reservation'] = array('first_name' => $first_name, 'last_name' => $last_name, 'location' => $location, 'contact_number' => $contact_num, 'age' => $age, 'email' => $email, 'max_guest' => $no_of_guest, 'room_number' => $room_number, 'check_in_date' => $check_in_date, 'check_out_date' => $check_out_date, 'payment_method' => $payment_method,'type_name'=>$typenameSearch);
                         
                         view::load('dashboard/reservation/create', $data);
                     }
@@ -488,6 +542,8 @@ class ReservationController {
                 if(!$this->is_date($_POST['check_out_date'])) {
                     $errors['check_out_date'] = 'Check Out date  is Invalid';
                 }
+
+                
     
     
     

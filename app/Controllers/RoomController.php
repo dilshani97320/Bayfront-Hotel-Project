@@ -6,7 +6,7 @@ class RoomController {
     // private $details;
 
     //Done
-    public function index() {
+    public function index($customer_id = 0) {
         date_default_timezone_set("Asia/Colombo");
         $current_date = date('Y-m-d');
         
@@ -17,7 +17,8 @@ class RoomController {
         else {
             $db = new RoomType();
             $typename = $db->getRoomTypes();
-            $data['typename'] = $typename;            
+            $data['typename'] = $typename;
+            $data['customer'] = array("id"=>$customer_id);          
             view::load('dashboard/room/index', $data);
 
         }
@@ -201,7 +202,7 @@ class RoomController {
                     $typename = $db->getRoomTypes();
                     $data['typename'] = $typename; 
                     $data['rooms'] = $rooms;
-                    $data['details'] = array("check_in_date"=>$check_in_date, "check_out_date"=>$check_in_date, "type_name"=>$type_name);
+                    $data['details'] = array("check_in_date"=>$check_in_date, "check_out_date"=>$check_out_date, "type_name"=>$type_name);
                        
                     view::load("dashboard/room/result", $data);
         }
@@ -210,7 +211,7 @@ class RoomController {
     }
 
     //Done
-    public function check() {
+    public function check($customer_id = 0) {
 
         if(!isset($_SESSION['user_id'])) {
             $dashboard = new DashboardController();
@@ -288,6 +289,7 @@ class RoomController {
     
                     if(empty($rooms)) {
                         // echo "1";
+                        $data['customer'] = array("id"=>$customer_id);
                         $data['details'] = array('type_name' =>$type_name, 'check_in_date '=>$check_in_date, 'check_out_date'=>$check_out_date );
                         view::load("dashboard/room/index", ["errors"=>"Data Update Unsuccessfully", 'details'=>$data['details'], 'typename'=>$data['typename']]);
                     }
@@ -296,7 +298,7 @@ class RoomController {
                         $data['rooms'] = $rooms;
                         $data['details'] = array("check_in_date"=>$check_in_date, "check_out_date"=>$check_out_date, "type_name"=>$type_name);
                         // var_dump($this->details);
-                       
+                        $data['customer'] = array("id"=>$customer_id);
                         view::load("dashboard/room/result", $data);
                         //  echo "2";
                     }
@@ -305,6 +307,7 @@ class RoomController {
                     $db = new RoomDetails();
                     $typename = $db->getRoomTypes();
                     $data['typename'] = $typename;
+                    $data['customer'] = array("id"=>$customer_id);
                     $data['details'] = array('type_name' =>$type_name, 'check_in_date '=>$check_in_date, 'check_out_date'=>$check_out_date );
                     view::load("dashboard/room/index", ["errors"=>"Data Update Unsuccessfully", 'details'=>$data['details'], 'typename'=>$data['typename']]);
                     // echo "3";

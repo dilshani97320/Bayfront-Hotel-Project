@@ -190,7 +190,7 @@ class RoomDetails extends RoomType {
                     ((($roomAvailableGet->reservation_table.check_in_date != '{$current_date}' AND $roomAvailableGet->reservation_table.check_in_date > '{$check_in_date}' AND $roomAvailableGet->reservation_table.check_in_date > '{$check_out_date}' AND $roomAvailableGet->reservation_table.is_valid = 1) OR
                     $roomAvailableGet->reservation_table.check_in_date IS NULL) OR 
                     (($roomAvailableGet->reservation_table.check_in_date != '{$current_date}' AND $roomAvailableGet->reservation_table.check_out_date < '{$check_in_date}' AND $roomAvailableGet->reservation_table.check_out_date < '{$check_out_date}' AND $roomAvailableGet->reservation_table.is_valid = 1) OR
-                    $roomAvailableGet->reservation_table.check_in_date IS NULL))
+                    $roomAvailableGet->reservation_table.check_out_date IS NULL))
                     ORDER BY  room_details.room_id";
             
         

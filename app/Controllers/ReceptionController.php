@@ -18,7 +18,8 @@ class ReceptionController {
             if(isset($_POST['search'])) {
                 // Code
                 $search = $_POST['search'];
-                $data['reception'] = $db->getSearchReception($search);
+                $db->setSearchReception($search);
+                $data['reception'] = $db->getSearchReception();
                 view::load('dashboard/employee/reception/index', $data);
             }
             else {
@@ -35,7 +36,8 @@ class ReceptionController {
         }
         else {
             $db = new Reception();
-            $data['reception'] = $db->getDataReception($reception_user_id);
+            $db->setReception($reception_user_id);
+            $data['reception'] = $db->getDataReception();
             view::load('dashboard/employee/reception/edit', $data);
         }
     }
@@ -89,10 +91,15 @@ class ReceptionController {
                     //Code
                     // get all data from reception
                     $db = new Reception();
-                    $reception = $db->getReception($reception_user_id);
+                    $db->setReception($reception_user_id);
+                    $reception = $db->getReception();
                     $emp_id = $reception['emp_id'];
                     $user_level = $reception['user_level'];
-                    $result = $db->getUpdate($reception_user_id, $emp_id, $user_level, $username, $password);
+                    $db->setReception($reception_user_id);
+                    $db->setEmployee_id($emp_id);
+                    $db->setDataUpdate($user_level, $username, $password);
+                    // $result = $db->getUpdate($reception_user_id, $emp_id, $user_level, $username, $password);
+                    $result = $db->getUpdate();
 
                     if($result == 1) {
                         view::load("dashboard/employee/reception/edit", ["success"=>"Reception Update Successfully", 'reception'=>$data['reception']]);
@@ -116,7 +123,8 @@ class ReceptionController {
         else {
             // Get reception's $emp_id and $username
             $db = new Reception;
-            $reception = $db->getReception($reception_user_id);
+            $db->setReception($reception_user_id);
+            $reception = $db->getReception();
             $data['reception'] = $reception;
             view::load("dashboard/employee/reception/deleteOption", $data);
         }
@@ -128,9 +136,9 @@ class ReceptionController {
             $dashboard->index();
         }
         else {
-            // get employee details
-            $db = new Employee();
-            $employee = $db->getDataEmployee($emp_id);
+            $db = new Reception();
+            $db->setEmployee_id($emp_id);
+            $employee = $db->getDataEmployee();
             $data['employee'] = $employee;
             $data['reception'] = array("reception_user_id"=>$reception_user_id);
             view::load("dashboard/employee/reception/editPost", $data);
@@ -177,8 +185,11 @@ class ReceptionController {
                 }
     
                 // Check Owner is valid
-                $db = new Employee();
-                $result = $db->getOwner($owner_user_id);
+                // $db = new Employee();
+                // $result = $db->getOwner($owner_user_id);
+                $db = new Reception();
+                $db->setOwnerId($owner_user_id);
+                $result = $db->checkOwner();
     
                 if($result == 0) {
                     $errors[] = 'Owner ID isn\'t valid';
@@ -192,18 +203,23 @@ class ReceptionController {
                 $errors = array_filter( $errors ); 
                 
                 if(count( $errors ) == 0) {
-                    $data1 = array($emp_id, $owner_user_id, $first_name, $last_name, $email, $salary, $location, $contact_num, $post);
-                    $result = $db->getUpdate($data1);
+                    $data1 = array($emp_id, $first_name, $last_name, $email, $salary, $location, $contact_num, $post);
+                    $db->setUpdateEmployee($data1);
+                    $db->setOwnerId($owner_user_id);
+                    $result = $db->getUpdateEmployee();
                     
                     if($result == 1) {
                         // Check This employee already receptionist
-                        $db1 = new Reception();
-                        $result = $db1->checkReception($emp_id);
+                        // $db1 = new Reception();
+                        // $result = $db1->checkReception($emp_id);
+                        $db->setEmployee_id($emp_id);
+                        $result = $db->checkReception();
                         
                         if($result == 1) {
                             // Previous Reception but now not
                             if($post != "Reception") {
-                                $result =$db1->removeReception($emp_id);
+                                $db->setEmployee_id($emp_id);
+                                $result =$db->removeReception();
                                 //Query should run then not check it
                                 
                             }
@@ -216,13 +232,16 @@ class ReceptionController {
                             if($post == "Reception") {
                                 // check previous have and is_deleted =1
                                 // have is_deleted =0
-                                $result1 = $db1->getCheckDeleteReception($emp_id);
+                                $db->setEmployee_id($emp_id);
+                                $result1 = $db->getCheckDeleteReception();
                                 if($result1 == 1) {
                                     // Exist the reception and is_deleted = 1
-                                    $db1->getUpdateReception($emp_id);
+                                    $db->setEmployee_id($emp_id);
+                                    $db->getUpdateReception();
                                 }
                                 else {
-                                    $result = $db1->getCreate($emp_id);
+                                    $db->setEmployee_id($emp_id);
+                                    $result = $db->getCreateReception();
                                 }    
                             }
                             view::load("dashboard/employee/reception/editPost", ["success"=>"Employee Update Successfully", 'employee'=>$data['employee'], 'reception'=>$data['reception']]);
@@ -253,8 +272,9 @@ class ReceptionController {
             $dashboard->index();  
         }
         else {
-            $db = new Employee();
-            $result = $db->remove($emp_id);
+            $db = new Reception();
+            $db->setEmployee_id($emp_id);
+            $result = $db->removeEmployee();
 
             if($result == 1) {
                 $this->index();

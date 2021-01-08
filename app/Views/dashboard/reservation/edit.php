@@ -395,7 +395,7 @@
                         
                         <div class="row">
                             <div class="button">
-                                <button class="save" name="submit">Save</button>
+                                <button class="save" name="submit">Update</button>
                             </div>
                         </div>
                     </div>

@@ -274,9 +274,9 @@
 			case '11':
 	?>
 		<div class="slidecontainer">
-			<img class="image" src="img/post1.jpg" alt="beach side city view">
+			<img class="image" src="<?php echo BURL.'assets/img/activity/post1.jpg'; ?>" alt="beach side city view">
 		 	<div class="bottom-left">
-		 		<h1>Visits to Historic Sites and points of interest</h1>
+		 		<h1>Relaxing Beaches Perfect for Summer</h1>
 		 	</div>
 		</div>
 		<div class="headImg">

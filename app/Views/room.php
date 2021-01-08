@@ -22,8 +22,7 @@
 	
 	
 	<div class="container">
-
-	<?php $count =0; ?>
+<?php $count =0; ?>
 	<?php  foreach ($room_details as $key=>$value): //var_dump($value); ?>
 		<?php  if($value['is_delete']== 0): ?>
 		<div class="room">
@@ -102,7 +101,7 @@
 					
 					<div class="bttn">
 						<a class="btn" href="<?php url('RoomSuite/ViewRoom/'.$value['room_number'] ); ?> ">VIEW MORE <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-						<a class="btn" href="<?php url('Room/ViewSubPage/11' ); ?> ">BOOK NOW <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+						<a class="btn" href="<?php url('Booking/' ); ?> ">BOOK NOW <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
 					</div>
 				</div>
 				<div class="room-img">

@@ -32,7 +32,7 @@ class mypdf extends FPDF
 		$this->Ln();
 		$this->Ln(30);
 		$this->setfont('arial', 'B', 20);
-		$this->cell(276,10,'BAYFRONT-EMPLOYEES',0,0,'L');
+		$this->cell(276,10,'BAYFRONT-ROOM DETAILS',0,0,'L');
 		$this->Ln(20);
 	}
 	function footer()

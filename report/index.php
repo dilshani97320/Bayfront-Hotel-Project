@@ -128,9 +128,9 @@ $pdf->output();
  	
  </section>
  <section class="repo-btn">
- 	<a href="invoice.php">Employees</a>
+ 	<a href="employee.php">Employees</a>
  	<a href="rooms-report.php">Rooms</a>
-    <a href="#">Customers</a>
+    <a href="customer.php">Customers</a>
     <a href="reservation.php">Reservation</a>
     <a href="payment.php">Payment</a>
     <a href="#">Surf-Packages</a>

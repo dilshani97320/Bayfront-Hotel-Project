@@ -79,14 +79,34 @@ class Employee extends Owner  {
                   WHERE is_deleted=0 ORDER BY emp_id";
         $users = mysqli_query($this->connection, $query);
         if($users) {
-            mysqli_fetch_all($users,MYSQLI_ASSOC);
+           mysqli_fetch_all($users,MYSQLI_ASSOC);
         }
         else {
             echo "Database Query Failed";
         }    
-
+//var_dump($users);
+//exit;
     return $users;    
     }
+
+
+
+    public function getAllEmployeePdf() {
+
+        $query = "SELECT * FROM  $this->employee_table
+                  WHERE is_deleted=0 ORDER BY emp_id";
+        $users = mysqli_query($this->connection, $query);
+        if($users) {
+            $users=mysqli_fetch_all($users,MYSQLI_ASSOC);
+        }
+        else {
+            echo "Database Query Failed";
+        }    
+//var_dump($users);
+//exit;
+    return $users;    
+    }
+
 
     //Done
     public function getSearchEmployee() {

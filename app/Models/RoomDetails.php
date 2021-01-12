@@ -64,6 +64,28 @@ class RoomDetails {
         }    
     }
 
+
+//get room tetails pdf
+    public function getAllRoomPdf() {
+
+        $query = "SELECT * FROM  $this->table1";
+                  
+        $users = mysqli_query($this->connection, $query);
+        if($users) {
+            $users=mysqli_fetch_all($users,MYSQLI_ASSOC);
+        }
+        else {
+            echo "Database Query Failed";
+        }    
+//var_dump($users);
+//exit;
+    return $users;    
+    }
+
+
+
+
+
     public function getRoomTypes() {
         $user = array();
         $query = "SELECT type_name FROM $this->table2";

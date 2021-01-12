@@ -33,6 +33,12 @@ class SignInUp {
 
     }
 
+
+
+    
+
+
+
     public function getEmail($email) {
         // $user = array();
         $email = mysqli_real_escape_string($this->connection, $email);

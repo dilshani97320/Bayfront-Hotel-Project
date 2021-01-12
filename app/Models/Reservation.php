@@ -150,6 +150,76 @@ class Reservation {
     }
 
 
+
+    public function getAllCustomerPdf() {
+
+        $query = "SELECT first_name,last_name,location,contact_number,age,email FROM $this->table1";
+
+
+
+
+        $users = mysqli_query($this->connection, $query);
+        if($users) {
+            $users=mysqli_fetch_all($users,MYSQLI_ASSOC);
+        }
+        else {
+            echo "Database Query Failed";
+        }    
+//var_dump($users);
+//exit;
+    return $users;    
+    }
+
+
+
+
+    public function getAllReservationPdf() {
+
+        $query = "SELECT first_name,last_name,contact_number,age,email,check_in_date,check_out_date,no_of_guest,payment_method
+        FROM $this->table1
+        INNER JOIN $this->table3
+        ON $this->table1.customer_id = $this->table3.customer_id";
+
+
+
+
+        $users = mysqli_query($this->connection, $query);
+        if($users) {
+            $users=mysqli_fetch_all($users,MYSQLI_ASSOC);
+        }
+        else {
+            echo "Database Query Failed";
+        }    
+//var_dump($users);
+//exit;
+    return $users;    
+    }
+
+
+
+    public function getAllPaymentPdf() {
+
+        $query = "SELECT first_name,last_name,contact_number,email,credit_card_number,expire_month,expire_year,cvv 
+        FROM $this->table1 
+        INNER JOIN $this->table4 ON $this->table1.customer_id = $this->table4.customer_id";
+
+
+        $users = mysqli_query($this->connection, $query);
+        if($users) {
+            $users=mysqli_fetch_all($users,MYSQLI_ASSOC);
+        }
+        else {
+            echo "Database Query Failed";
+        }    
+//var_dump($users);
+//exit;
+    return $users;    
+    }
+
+
+
+
+
     public function getCustomerID($email) {
 
         $email = mysqli_real_escape_string($this->connection, $email);

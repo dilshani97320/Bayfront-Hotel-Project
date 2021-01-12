@@ -69,7 +69,7 @@ class ReservationController {
             $data['reservation'] = array("id"=>$reservation_id);
             // echo $customer['id'];
             // $data['reservation'] = array('room_number' => $room_number, 'max_guest' => $max_guest);
-            view::load('dashboard/reservation/paymentOption',$data);
+            view::load('dashboard/reservation/reservationThanks');
             
         }
     }
@@ -363,7 +363,7 @@ class ReservationController {
                                                 $data['reservation'] = array("id"=>$reservation_id);
                                                 $data['customer'] = array("id"=>$customer_id);
                                             // check already have payment details in the payment details
-                                                view::load('dashboard/reservation/paymentOption', $data);
+                                                view::load('dashboard/reservation/reservationThanks');
                                             }
                                             else {
                                                 //retrive payment details
@@ -373,7 +373,7 @@ class ReservationController {
                                                 $data['reservation'] = array("id"=>$reservation_id);
                                                 $data['customer'] = array("id"=>$customer_id);
                                             // check already have payment details in the payment details
-                                                view::load('dashboard/reservation/paymentOption', $data);
+                                                view::load('dashboard/reservation/reservationThanks');
                                             }
                                             
                                         }
@@ -755,8 +755,22 @@ class ReservationController {
             $dashboard->index();    
         }
         else {
-            echo $customer_id;
-            echo $reservation_id;
+            $dbcustomer = new Customer();
+            $customer = $dbcustomer->getCustomer($customer_id);
+            
+            $dbreservation = new Reservation();
+            $reservation = $dbreservation->reservationDetails($reservation_id);
+            $room_id = $reservation['room_id'];
+            $dbroom = new RoomDetails();
+            $room = $dbroom->getRoomDetails($room_id);
+            $data['customer'] = $customer;
+            $data['reservation'] = $reservation;
+            $data['room'] = $room;
+            // echo $customer_id;
+            // echo $reservation_id;
+
+            view::load('dashboard/reservation/payment',$data);
+
         }
     }
 

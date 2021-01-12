@@ -9,7 +9,7 @@ class Reservation extends Connection {
     // private $table5 = "reception";
     // private $table6 = "room_type";
 
-    protected $reservation_id;
+    public $reservation_id;
     // private $customer_id;
     private $reservation_reception_user_id;
     // private $room_id; Foreign Key

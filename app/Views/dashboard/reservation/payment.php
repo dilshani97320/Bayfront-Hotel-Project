@@ -33,17 +33,17 @@
                     
                     <div class="section1">
 
-                    <form action="./charge.php" method="post" id="payment-form">
+                    <form action="<?php url("payment/payonline"); ?>" method="post" id="payment-form">
 
-                        <input type="text" name="customer_id" value ="<?php echo $customer['id']; ?>" hidden  >
-                        <input type="text" name="reservation_id" value ="<?php echo $reservation['id']; ?>" hidden  >
+                        <input type="text" name="customer_id" value ="<?php echo $customer['customer_id']; ?>" hidden  >
+                        <input type="text" name="reservation_id" value ="<?php echo $reservation['reservation_id']; ?>" hidden  >
                        
                         <div class="row">
                             <label for="#"><i class="material-icons">assignment_ind</i>Customer Name:</label>
                                 <div class="animate-form">
                                     <input type="text"  autocomplete="off" name="first_name" class="inputField"
                                     <?php 
-                                        if(isset($customer['id'])){
+                                        if(isset($customer['first_name'])){
                                             echo 'value="' . $customer['first_name'] . '"';
                                         }
                                         
@@ -66,10 +66,10 @@
                         <div class="row">
                             <label for="#"><i class="material-icons">email</i>Customer Email:</label>
                                 <div class="animate-form">
-                                    <input type="text"  autocomplete="off" name="first_name" class="inputField"
+                                    <input type="text"  autocomplete="off" name="email" class="inputField"
                                     <?php 
-                                        if(isset($customer['id'])){
-                                            echo 'value="' . $customer['first_name'] . '"';
+                                        if(isset($customer['email'])){
+                                            echo 'value="' . $customer['email'] . '"';
                                         }
                                         
                                     
@@ -79,7 +79,7 @@
                                     >
                                     
                                     <label for="name" class="label-name">
-                                        <?php if($customer['first_name'] == ""){ ?>
+                                        <?php if($customer['email'] == ""){ ?>
                                             <span class="content-success"><i class="material-icons">privacy_tip</i></span>
                                         <?php } else {?>
                                             <span class="content-success"><i class="material-icons">verified_user</i></span>
@@ -92,10 +92,10 @@
                         <div class="row">
                             <label for="#"><i class="material-icons">hotel</i>Room Name:</label>
                                 <div class="animate-form">
-                                    <input type="text"  autocomplete="off" name="check_out_date" class="inputField"
+                                    <input type="text"  autocomplete="off" name="room_name" class="inputField"
                                     <?php 
-                                        if(isset($reservation['check_out_date'])){
-                                            echo 'value="' . $reservation['check_out_date'] . '"';
+                                        if(isset($room['room_name'])){
+                                            echo 'value="' . $room['room_name'] . '"';
                                         }
                                         
                                     
@@ -105,7 +105,7 @@
                                     >
                                     
                                     <label for="name" class="label-name">
-                                        <?php if($reservation['reservation_id'] == ""){ ?>
+                                        <?php if($room['room_name'] == ""){ ?>
                                             <span class="content-success"><i class="material-icons">privacy_tip</i></span>
                                         <?php } else {?>
                                             <span class="content-success"><i class="material-icons">verified_user</i></span>
@@ -117,10 +117,10 @@
                         <div class="row">
                             <label for="#"><i class="material-icons">deck</i>Room View:</label>
                                 <div class="animate-form">
-                                    <input type="text"  autocomplete="off" name="check_out_date" class="inputField"
+                                    <input type="text"  autocomplete="off" name="room_view" class="inputField"
                                     <?php 
-                                        if(isset($reservation['check_out_date'])){
-                                            echo 'value="' . $reservation['check_out_date'] . '"';
+                                        if(isset($room['room_view'])){
+                                            echo 'value="' . $room['room_view'] . '"';
                                         }
                                         
                                     
@@ -130,7 +130,7 @@
                                     >
                                     
                                     <label for="name" class="label-name">
-                                        <?php if($reservation['reservation_id'] == ""){ ?>
+                                        <?php if($room['room_view'] == ""){ ?>
                                             <span class="content-success"><i class="material-icons">privacy_tip</i></span>
                                         <?php } else {?>
                                             <span class="content-success"><i class="material-icons">verified_user</i></span>
@@ -142,10 +142,10 @@
                         <div class="row">
                             <label for="#"><i class="material-icons">local_offer</i>Room Price:</label>
                                 <div class="animate-form">
-                                    <input type="text"  autocomplete="off" name="check_out_date" class="inputField"
+                                    <input type="text"  autocomplete="off" name="room_price" class="inputField"
                                     <?php 
-                                        if(isset($reservation['check_out_date'])){
-                                            echo 'value="' . $reservation['check_out_date'] . '"';
+                                        if(isset($room['price'])){
+                                            echo 'value="' . $room['price'] . '"';
                                         }
                                         
                                     
@@ -155,7 +155,7 @@
                                     >
                                     
                                     <label for="name" class="label-name">
-                                        <?php if($reservation['reservation_id'] == ""){ ?>
+                                        <?php if($room['price'] == ""){ ?>
                                             <span class="content-success"><i class="material-icons">privacy_tip</i></span>
                                         <?php } else {?>
                                             <span class="content-success"><i class="material-icons">verified_user</i></span>
@@ -167,12 +167,17 @@
                         <div class="row">
                             <label for="#"><i class="material-icons">request_quote</i>Payment :</label>
                                 <div class="animate-form">
-                                    <select name="payment_method" class="inputField">
+                                    <select name="payment_way" class="inputField">
                                          <option value="ONLINEPAY">-Select Payment PART-</option>
                                          <option value="ONLINEHALF" style="border: none">HALF PAYMENT</option>      
                                          <option value="ONLINEFULL" style="border: none">FULL PAYMENT</option>      
                                     </select>    
                                 </div>     
+                        </div>
+
+                        <div class="row">
+                            <label for="#"><i class="material-icons">credit_card</i>Credit Card Details:</label>
+                                    
                         </div>
 
 
@@ -182,10 +187,10 @@
                        </div>
 
                       <!-- Used to display form errors. -->
-                      <div id="card-errors" role="alert"></div>
-                    </div>
+                        <div id="card-errors" role="alert"></div>
+                        </div>
 
-                    <button>Pay</button>
+                        <button>Pay</button>
                     </form>
                     </div>
 

@@ -164,3 +164,5 @@ INFO: Unsupported notification method: $/setTraceNotification
 2021.01.12 12:16:34 INFO  time: initialize in 1.7s
 2021.01.12 12:16:36 WARN  Build server is not auto-connectable.
 2021.01.12 12:16:36 WARN  no build tool detected in workspace 'C:\xampp\htdocs\MVC'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+Jan 12, 2021 5:17:07 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTraceNotification

@@ -1,6 +1,6 @@
 <?php 
    // Header
-   $title = "Add-Payment Detail page";
+   $title = "Reservation Thanks page";
    include(VIEWS.'dashboard/inc/header.php');
 ?> 
 
@@ -22,7 +22,7 @@
 
                 <div class="cardheader">
                     <div class="options">
-                        <h4>Payment Details 
+                        <h4>Reservation Thanks
                         </h4>  
                     </div>
 

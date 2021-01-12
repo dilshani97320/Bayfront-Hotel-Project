@@ -5,11 +5,12 @@ class Payment extends Connection {
     public $payment_id;  
     // private $room_type_id;   Foriegn key
     //have to create
-    private $payment_name_of_card;
-    private $payment_credit_card_number;
-    private $payment_expire_month;
-    private $payment_expire_year;
-    private $payment_cvv;
+    private $payment_stripe_id;
+    private $payment_customer_id;
+    private $payment_roomdesc;
+    private $payment_amount;
+    private $payment_currency;
+    private $payment_status;
     public $payment_table = "payment";
 
     public function __construct() {        
@@ -40,6 +41,38 @@ class Payment extends Connection {
         }
 
         return $customer;
+    }
+
+    public function addTransaction($data) {
+
+        $customer = new Customer();
+        $reservation = new Reservation();
+        $reservation->reservation_id = mysqli_real_escape_string($this->connection, $data['reservation_id']);
+        $this->payment_stripe_id = mysqli_real_escape_string($this->connection, $data['stripe_id']);
+        $this->payment_customerstripe_id = mysqli_real_escape_string($this->connection, $data['customerstripe_id']);
+        $customer->customer_id = mysqli_real_escape_string($this->connection, $data['customer_id']);
+        $this->payment_roomdesc = mysqli_real_escape_string($this->connection, $data['roomdesc']);
+        $this->payment_amount = mysqli_real_escape_string($this->connection, $data['amount']);
+        $this->payment_currency = mysqli_real_escape_string($this->connection, $data['currency']);
+        $this->payment_status = mysqli_real_escape_string($this->connection, $data['status']);
+
+        $query = "INSERT INTO $this->payment_table (
+                reservation_id, stripe_id, customerstripe_id, customer_id, roomdesc, amount, currency, status) 
+                VALUES (
+                '{$reservation->reservation_id}', '{$this->payment_stripe_id}', '{$this->payment_customerstripe_id}', '{$customer->customer_id}', '{$this->payment_roomdesc}', '{$this->payment_amount}', '{$this->payment_currency}', '{$this->payment_status}'
+                )";
+
+        $result = mysqli_query($this->connection, $query);
+        // echo "Query Level2";
+        if($result) {
+            // query successful..
+            // echo "Query Successfull";
+            $value = 1;
+            return $value;
+        }
+        else {
+            echo "Query failedXXX";
+        }
     }
 
     

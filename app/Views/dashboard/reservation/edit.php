@@ -379,17 +379,16 @@
                                     
                                     ?>
                                     
-                                    required
+                                    readonly
                                     >
                                     
                                         <label for="name" class="label-name">
-                                            <?php if((isset($errors['payment_method'])) && (isset($reservation['payment_method']))): ?>
-                                                <span class="content-name"><i class="material-icons">info</i><?php echo $errors['payment_method']; ?></span>
-                                            <?php endif; ?>
-                                            <?php if(isset($success)): ?>
-                                                <span class="content-success"><i class="material-icons">verified_user</i>Updated Success</span>
-                                            <?php endif; ?>
-                                        </label>    
+                                            <?php if($reservation['payment_method'] == ""){ ?>
+                                                <span class="content-success"><i class="material-icons">privacy_tip</i></span>
+                                            <?php } else {?>
+                                                <span class="content-success"><i class="material-icons">verified_user</i></span>
+                                            <?php } ?>
+                                        </label>   
                                 </div>     
                         </div>
                         

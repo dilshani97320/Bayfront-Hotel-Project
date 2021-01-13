@@ -368,5 +368,26 @@ class RoomDetails extends RoomType {
         return $room;
     }
 
+    public function getRoomDetails($room_id) {
+
+        $this->room_id = mysqli_real_escape_string($this->connection, $room_id);
+        $room = array();
+        $query = "SELECT * FROM $this->room_table
+                  WHERE room_id = '{$room_id}'
+                  LIMIT 1";
+
+        $rooms = mysqli_query($this->connection, $query);
+        if($rooms){
+            if(mysqli_num_rows($rooms) == 1) {
+                $room = mysqli_fetch_assoc($rooms);
+            }
+        }
+        else {
+            echo "Query Error";
+        }
+
+        return $room;
+    }
+
 
 }

@@ -12,8 +12,8 @@
             $search = 0;
             $search_by = '#';
        
-            include(VIEWS.'dashboard/inc/sidebar.php'); //Sidebar
-            include(VIEWS.'dashboard/inc/navbar.php'); //Navbar
+            // include(VIEWS.'dashboard/inc/sidebar.php'); //Sidebar
+            // include(VIEWS.'dashboard/inc/navbar.php'); //Navbar
     ?>
     
     <!-- Table design -->
@@ -23,7 +23,7 @@
 
                 <div class="cardheader">
                     <div class="options">
-                        <h4>New Reservation 
+                        <h4>New Online Reservation 
                         <span>
                         <?php if(isset($discount['value'])){ ?>
                             <!-- <a href="<?php url("room/preview/".$details['check_in_date'].'/'.$details['check_out_date'].'/'.$details['type_name']) ?>" class="addnew"><i class="material-icons">reply_all</i></a>   -->
@@ -40,6 +40,7 @@
 
                 <div class="cardbody">  
                 <?php if(isset($discount['value'])){ ?>
+                    //This is use for room serach and goto check now page
                     <form action="<?php url("reservation/create/".$discount['value'].'/'.$reservation['check_in_date'].'/'.$reservation['check_out_date'].'/'.$reservation['type_name']); ?>" method="post" class="addnewform">
                 <?php } else { ?>
                     <form action="<?php url("reservation/create"); ?>" method="post" class="addnewform">
@@ -221,7 +222,7 @@
                                             echo 'value="' . $reservation['room_number'] . '"';
                                         }
                                         else {
-                                            echo 'placeholder="A001"';
+                                            echo 'placeholder="A001//Real Scenario this is not required testing purpose"';
                                         } 
                                     
                                     ?>
@@ -326,10 +327,10 @@
                         <div class="row">
                             <label for="#"><i class="material-icons">request_quote</i>Payment Type:</label>
                                 <div class="animate-form">
-                                    <select name="type_name" class="inputField">
-                                         <option value="">-Select Payment Type-</option>
-                                         <option value="ONLINE" style="border: none">ONLINE</option>      
-                                         <option value="CASH" style="border: none">CASH</option>      
+                                    <select name="payment_method" class="inputField">
+                                         <option value="ONLINE">-Select Payment Type-</option>
+                                         <option value="ONLINEONLINE" style="border: none">ONLINE</option>      
+                                         <option value="CASHONLINE" style="border: none">CASH</option>      
                                     </select>    
                                 </div>     
                         </div>

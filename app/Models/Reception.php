@@ -2,20 +2,34 @@
 
 class Reception extends Employee{
 
-    private $reception_user_id;
+    public $reception_user_id;
     // private $emp_id ==> Foreign Key
     private $reception_user_level;
     private $reception_username;
     private $reception_password;
     private $reception_is_deleted;
-    private $reception_table = "reception";
+    public $reception_table = "reception";
     // private $table1 = "reception";
     // private $table2 = "employee";
     // private $connection;
 
     public function __construct() {
         Employee::__construct();
+    }
 
+    public function setReception($reception_user_id) {
+        $this->reception_user_id = mysqli_real_escape_string($this->connection, $reception_user_id);
+    }
+
+    public function setSearchReception($search) {
+        $this->reception_username = mysqli_real_escape_string($this->connection, $search);
+    }
+
+    public function setDataUpdate($user_level, $username, $password) {
+        $this->reception_user_level = mysqli_real_escape_string($this->connection, $user_level);
+        $this->reception_username = mysqli_real_escape_string($this->connection, $username);
+        $password = sha1($password);
+        $this->reception_password = mysqli_real_escape_string($this->connection, $password);
     }
 
     public function getAllReception() {
@@ -37,15 +51,13 @@ class Reception extends Employee{
         return $users;
     }
 
-    public function getSearchReception($search) {
-
-        $username = mysqli_real_escape_string($this->connection, $search);
+    public function getSearchReception() {
 
         $query = "SELECT $this->reception_table.reception_user_id, $this->reception_table.username, $this->employee_table.email, $this->employee_table.contact_num, $this->employee_table.first_name, $this->employee_table.last_name  , $this->employee_table.location
                   FROM  $this->reception_table
                   INNER JOIN $this->employee_table
                   ON $this->reception_table.emp_id = $this->employee_table.emp_id
-                  WHERE $this->employee_table.is_deleted=0 AND $this->reception_table.is_deleted=0 AND $this->reception_table.username = '{$username}' 
+                  WHERE $this->employee_table.is_deleted=0 AND $this->reception_table.is_deleted=0 AND $this->reception_table.username = '{$this->reception_username}' 
                   ORDER BY $this->reception_table.reception_user_id";
         
         $users = mysqli_query($this->connection, $query);
@@ -61,18 +73,17 @@ class Reception extends Employee{
 
     }
 
-    public function getDataReception($reception_user_id) {
-
-        $reception_user_id = mysqli_real_escape_string($this->connection, $reception_user_id);
-        
-        $query = "SELECT $this->table1.reception_user_id, $this->table1.username, $this->table2.email, $this->table2.contact_num, $this->table2.first_name, $this->table2.last_name  , $this->table2.location
-                  FROM  $this->table1
-                  INNER JOIN $this->table2
-                  ON $this->table1.emp_id = $this->table2.emp_id
-                  WHERE $this->table2.is_deleted=0 AND $this->table1.is_deleted=0 AND $this->table1.reception_user_id = '{$reception_user_id}' 
+    public function getDataReception() {
+       
+        $query = "SELECT $this->reception_table.reception_user_id, $this->reception_table.username, $this->employee_table.email, $this->employee_table.contact_num, $this->employee_table.first_name, $this->employee_table.last_name  , $this->employee_table.location
+                  FROM  $this->reception_table
+                  INNER JOIN $this->employee_table
+                  ON $this->reception_table.emp_id = $this->employee_table.emp_id
+                  WHERE $this->employee_table.is_deleted=0 AND $this->reception_table.is_deleted=0 AND $this->reception_table.reception_user_id = '{$this->reception_user_id}' 
                   LIMIT 1";
         
         $reception = mysqli_query($this->connection, $query);
+
         if($reception) {
             if(mysqli_num_rows($reception) == 1) {
                 $reception = mysqli_fetch_assoc($reception);
@@ -84,15 +95,15 @@ class Reception extends Employee{
         return $reception;
 
     }
-    public function getReception($reception_user_id) {
+    public function getReception() {
         $reception = array();
-        $reception_user_id = mysqli_real_escape_string($this->connection, $reception_user_id);
-
-        $query = "SELECT * FROM $this->table1 
-                  WHERE reception_user_id = '{$reception_user_id}' AND is_deleted=0
+        
+        $query = "SELECT * FROM $this->reception_table 
+                  WHERE reception_user_id = '{$this->reception_user_id}' AND is_deleted=0
                   LIMIT 1";
 
         $result = 0;
+
         $result_set = mysqli_query($this->connection, $query);
         if($result_set){
             if(mysqli_num_rows($result_set) == 1) {
@@ -129,22 +140,16 @@ class Reception extends Employee{
         return $value;
     }
 
-    public function getUpdate($reception_user_id, $emp_id, $user_level, $username, $password) {
-        $reception_user_id = mysqli_real_escape_string($this->connection, $reception_user_id);
-        $emp_id = mysqli_real_escape_string($this->connection, $emp_id);
-        $user_level = mysqli_real_escape_string($this->connection, $user_level);
-        $username = mysqli_real_escape_string($this->connection, $username);
-        $password = mysqli_real_escape_string($this->connection, $password);
-
-        $password = sha1($password);
+    public function getUpdate() {
+              
         $value = 0;
-        $query = "UPDATE $this->table1 SET
-                reception_user_id = '{$reception_user_id}',
-                emp_id = '{$emp_id}',
-                user_level = '{$user_level}',
-                username = '{$username}',
-                password = '{$password}'
-                WHERE reception_user_id = {$reception_user_id} LIMIT 1";
+        $query = "UPDATE $this->reception_table SET
+                reception_user_id = '{$this->reception_user_id}',
+                emp_id = '{$this->emp_id}',
+                user_level = '{$this->reception_user_level}',
+                username = '{$this->reception_username}',
+                password = '{$this->reception_password}'
+                WHERE reception_user_id = {$this->reception_user_id} LIMIT 1";
         
         $result = mysqli_query($this->connection, $query);
         if($result) {
@@ -185,7 +190,7 @@ class Reception extends Employee{
     public function removeReception() {
 
         $query = "UPDATE $this->reception_table SET is_deleted =1 WHERE emp_id = {$this->emp_id} LIMIT 1";
-
+        $value  = 0;
         $result = mysqli_query($this->connection, $query);
         if($result) {
             $value = 1;
@@ -219,5 +224,26 @@ class Reception extends Employee{
         }
         
         return $value;
+    }
+
+    public function getReceptionDetail($reception_user_id) {
+
+        $this->reception_user_id = mysqli_real_escape_string($this->connection, $reception_user_id);
+
+        $query = "SELECT * FROM $this->reception_table
+                  WHERE reception_user_id = '{$this->reception_user_id}'
+                  LIMIT 1";
+        $receptions = mysqli_query($this->connection, $query);
+        if($receptions){
+            if(mysqli_num_rows($receptions) == 1) {
+                $reception = mysqli_fetch_assoc($receptions);
+                // echo "Sucess";
+            }
+        }
+        else {
+            echo "Query Error";
+        }
+
+        return $reception;
     }
 }

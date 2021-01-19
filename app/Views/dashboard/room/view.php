@@ -23,14 +23,16 @@
 
                 <div class="cardheader">
                     <div class="options">
-                        <h4>Room View
+                        <h4>Room View 
                         <span>
                             <?php if(isset($discount['value'])){ ?>
-                                <a href="<?php url("room/preview/".$details['check_in_date'].'/'.$details['check_out_date'].'/'.$details['type_name']); ?>" class="addnew"><i class="material-icons">arrow_back</i>Back To Result Table</a>  
+                                <a href="<?php url("room/preview/".$details['check_in_date'].'/'.$details['check_out_date'].'/'.$details['type_name']); ?>" class="addnew"><i class="material-icons">reply_all</i></a> 
+                                <a href="<?php url("room/details1/".$room['room_number'].'/'.$details['check_in_date'].'/'.$details['check_out_date'].'/'.$details['type_name']); ?>" class="refresh"><i class="material-icons">loop</i></a>  
                             <?php } else { ?>
                                 <a href="<?php url("reservation/details"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>
+                                <a href="<?php url("room/details/".$room['room_number']); ?>" class="refresh"><i class="material-icons">loop</i></a> 
                             <?php } ?>
-                            <a href="<?php url("room/details/".$room['room_number']); ?>" class="refresh"><i class="material-icons">loop</i></a> 
+                            
                         </span>
                         </h4>  
                     </div>

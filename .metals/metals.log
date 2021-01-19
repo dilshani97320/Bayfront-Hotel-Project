@@ -84,3 +84,85 @@ INFO: Unsupported notification method: $/setTraceNotification
 2020.12.06 20:46:19 WARN  Build server is not auto-connectable.
 2020.12.06 20:46:19 WARN  no build tool detected in workspace 'C:\xampp\htdocs\MVC'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
 2020.12.06 20:46:56 INFO  shutting down Metals
+2020.12.25 16:02:46 INFO  Started: Metals version 0.9.8 in workspace 'C:\xampp\htdocs\MVC' for client vscode.
+2020.12.25 16:02:51 INFO  time: initialize in 5.14s
+2020.12.25 16:02:54 WARN  Build server is not auto-connectable.
+2020.12.25 16:02:54 WARN  no build tool detected in workspace 'C:\xampp\htdocs\MVC'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+Dec 25, 2020 7:03:36 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTraceNotification
+Dec 25, 2020 7:03:54 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTraceNotification
+Dec 25, 2020 7:04:07 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTraceNotification
+2020.12.28 21:33:05 INFO  Started: Metals version 0.9.8 in workspace 'C:\xampp\htdocs\MVC' for client vscode.
+2020.12.28 21:33:07 INFO  time: initialize in 2.1s
+2020.12.28 21:33:14 WARN  Build server is not auto-connectable.
+2020.12.28 21:33:14 WARN  no build tool detected in workspace 'C:\xampp\htdocs\MVC'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2020.12.29 02:07:00 INFO  shutting down Metals
+2021.01.04 19:34:29 INFO  Started: Metals version 0.9.8 in workspace 'C:\xampp\htdocs\MVC' for client vscode.
+2021.01.04 19:34:31 INFO  time: initialize in 2.51s
+2021.01.04 19:34:34 WARN  Build server is not auto-connectable.
+2021.01.04 19:34:34 WARN  no build tool detected in workspace 'C:\xampp\htdocs\MVC'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+Jan 04, 2021 9:30:00 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTraceNotification
+Jan 05, 2021 12:54:57 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTraceNotification
+Jan 05, 2021 12:55:15 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTraceNotification
+Jan 05, 2021 12:55:22 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTraceNotification
+Jan 05, 2021 12:56:02 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTraceNotification
+2021.01.05 00:56:52 INFO  shutting down Metals
+2021.01.05 13:57:22 INFO  Started: Metals version 0.9.8 in workspace 'C:\xampp\htdocs\MVC' for client vscode.
+2021.01.05 13:57:27 INFO  time: initialize in 4.93s
+2021.01.05 13:57:29 WARN  Build server is not auto-connectable.
+2021.01.05 13:57:29 WARN  no build tool detected in workspace 'C:\xampp\htdocs\MVC'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+Jan 05, 2021 5:50:20 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTraceNotification
+2021.01.05 22:31:40 INFO  shutting down Metals
+2021.01.08 10:25:36 INFO  Started: Metals version 0.9.8 in workspace 'C:\xampp\htdocs\MVC' for client vscode.
+2021.01.08 10:25:38 INFO  time: initialize in 2.35s
+2021.01.08 10:25:44 WARN  Build server is not auto-connectable.
+2021.01.08 10:25:44 WARN  no build tool detected in workspace 'C:\xampp\htdocs\MVC'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+Jan 08, 2021 10:36:20 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTraceNotification
+Jan 08, 2021 10:37:46 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTraceNotification
+Jan 08, 2021 10:39:07 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTraceNotification
+2021.01.08 11:38:54 INFO  shutting down Metals
+2021.01.08 11:40:40 INFO  Started: Metals version 0.9.8 in workspace 'C:\xampp\htdocs\MVC' for client vscode.
+2021.01.08 11:40:43 INFO  time: initialize in 2.25s
+2021.01.08 11:40:44 WARN  Build server is not auto-connectable.
+2021.01.08 11:40:44 WARN  no build tool detected in workspace 'C:\xampp\htdocs\MVC'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+Jan 08, 2021 11:42:49 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTraceNotification
+Jan 08, 2021 11:44:36 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTraceNotification
+2021.01.08 12:54:33 INFO  shutting down Metals
+2021.01.08 18:22:51 INFO  Started: Metals version 0.9.8 in workspace 'C:\xampp\htdocs\MVC' for client vscode.
+2021.01.08 18:22:54 INFO  time: initialize in 3.5s
+2021.01.08 18:22:57 WARN  Build server is not auto-connectable.
+2021.01.08 18:22:57 WARN  no build tool detected in workspace 'C:\xampp\htdocs\MVC'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+Jan 08, 2021 6:32:26 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTraceNotification
+2021.01.08 18:39:21 INFO  shutting down Metals
+2021.01.10 18:57:50 INFO  Started: Metals version 0.9.8 in workspace 'C:\xampp\htdocs\MVC' for client vscode.
+2021.01.10 18:57:54 INFO  time: initialize in 3.76s
+2021.01.10 18:57:58 WARN  Build server is not auto-connectable.
+2021.01.10 18:57:58 WARN  no build tool detected in workspace 'C:\xampp\htdocs\MVC'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+Jan 10, 2021 7:14:33 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTraceNotification
+2021.01.11 00:54:54 INFO  shutting down Metals
+2021.01.11 21:32:48 INFO  Started: Metals version 0.9.8 in workspace 'C:\xampp\htdocs\MVC' for client vscode.
+2021.01.11 21:32:52 INFO  time: initialize in 4.1s
+2021.01.11 21:32:58 WARN  Build server is not auto-connectable.
+2021.01.11 21:32:58 WARN  no build tool detected in workspace 'C:\xampp\htdocs\MVC'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2021.01.11 22:24:01 INFO  shutting down Metals
+2021.01.12 12:16:32 INFO  Started: Metals version 0.9.8 in workspace 'C:\xampp\htdocs\MVC' for client vscode.
+2021.01.12 12:16:34 INFO  time: initialize in 1.7s
+2021.01.12 12:16:36 WARN  Build server is not auto-connectable.
+2021.01.12 12:16:36 WARN  no build tool detected in workspace 'C:\xampp\htdocs\MVC'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+Jan 12, 2021 5:17:07 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTraceNotification

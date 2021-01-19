@@ -49,16 +49,16 @@
         
         <li class="nav1-item">
 
-            <a href="<?php url('report/index'); ?>" class="nav1-link">
-                <p class="nav-p"><i class="material-icons">build</i>Report-generator</p>         
+            <a href="<?php url('notification/option'); ?>" class="nav1-link">
+                <p class="nav-p"><i class="material-icons">notification_important</i>Notifications</p>         
 
             </a>
         </li> 
         
 
         <li class="nav1-item">
-            <a href="#" class="nav1-link">
-                <p class="nav-p"><i class="material-icons"></i>None</p>         
+            <a href="<?php url('reservation/indexOnline'); ?>" class="nav1-link">
+                <p class="nav-p"><i class="material-icons"></i>Online Reservation Test</p>         
             </a>
         </li>
 

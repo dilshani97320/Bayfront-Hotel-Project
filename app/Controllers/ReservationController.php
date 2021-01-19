@@ -3,7 +3,7 @@ session_start();
 
 class ReservationController {
 
-    public function index() {
+    public function index($customer_id = 0) {
         
         //Checking if a user is logged in
         if(!isset($_SESSION['user_id'])) {
@@ -11,10 +11,33 @@ class ReservationController {
             $dashboard->index();   
         }
         else {
-            view::load('dashboard/reservation/create');
+            if($customer_id != 0) {
+                $customer = new Customer();
+                $customerDetails = $customer->getCustomer($customer_id);
+                $data['customer'] = $customerDetails;
+                view::load('dashboard/reservation/create',$data);
+            }
+            else {
+                view::load('dashboard/reservation/create');
+            }
+            
             
         }
            
+    }
+
+    public function indexOnline() {
+        // Checking if a user is logged in
+        if(!isset($_SESSION['user_id'])) {
+            $dashboard = new DashboardController();
+            $dashboard->index();
+        }
+        else {
+            // When login the customer should have details about
+            // And should retrieve that
+            // that should fix
+            view::load('dashboard/reservation/onlineCreate');
+        }
     }
 
     public function view($room_number,$max_guest) {
@@ -33,7 +56,25 @@ class ReservationController {
            
     }
 
-    public function view1($room_number,$max_guest, $check_in_date, $check_out_date, $type_name) {
+    // Use for testing purpose
+    public function paymentview() {
+        if(!isset($_SESSION['user_id'])) {
+            $dashboard = new DashboardController();
+            $dashboard->index();   
+        }
+        else {
+            $customer_id = 1;
+            $reservation_id = 1;
+            $data['customer'] = array("id"=>$customer_id);
+            $data['reservation'] = array("id"=>$reservation_id);
+            // echo $customer['id'];
+            // $data['reservation'] = array('room_number' => $room_number, 'max_guest' => $max_guest);
+            view::load('dashboard/reservation/reservationThanks');
+            
+        }
+    }
+
+    public function view1($room_number,$max_guest, $check_in_date, $check_out_date, $type_name, $customer_id=0) {
         
         //Checking if a user is logged in
         if(!isset($_SESSION['user_id'])) {
@@ -41,16 +82,26 @@ class ReservationController {
             $dashboard->index();   
         }
         else {
+            // echo $check_out_date;
+            // die();
+            if($customer_id != 0) {
+                $customer = new Customer();
+                $customerDetails = $customer->getCustomer($customer_id);
+                $data['customer'] = $customerDetails;
+            }
+           
             $value=1;
             $data['discount'] = array("value"=>$value);
-            $data['details'] = array("check_in_date"=>$check_in_date, "check_out_date"=>$check_in_date, "type_name"=>$type_name);
-            $data['reservation'] = array('room_number' => $room_number, 'max_guest' => $max_guest);
+            // $data['details'] = array("check_in_date"=>$check_in_date, "check_out_date"=>$check_out_date, "type_name"=>$type_name);
+            // $data['reservation'] = array('room_number' => $room_number, 'max_guest' => $max_guest);
+            $data['reservation'] = array("check_in_date"=>$check_in_date, "check_out_date"=>$check_out_date, "type_name"=>$type_name, 'room_number' => $room_number, 'max_guest' => $max_guest);
             view::load('dashboard/reservation/create', $data);
             
         }
            
     }
 
+    //Done
     public function details() {
         if(!isset($_SESSION['user_id'])) {
             $dashboard = new DashboardController();
@@ -71,10 +122,8 @@ class ReservationController {
                 }
         }
     }
-
-   
-
-    public function create() {
+    
+    public function create($discountValue = 0, $check_inSearch = '0000-00-00', $check_outSearch = '0000-00-00', $typenameSearch="None") {
 
         if(!isset($_SESSION['user_id'])) {
             $dashboard = new DashboardController();
@@ -110,6 +159,7 @@ class ReservationController {
                 $payment_method = strtoupper($payment_method);
                 
                 
+                
     
                 // Check input is empty
                 $errors[] = array();
@@ -117,11 +167,11 @@ class ReservationController {
                 $errors = array_merge($errors, $this->check_req_fields($req_fields));
                 
     
-                $max_len_fields = array('first_name' => 20, 'last_name' => 20, 'location' => 30, 'contact_number' => 10, 'age' => 3, 'email' => 30, 'max_guest' => 2, 'room_number' => 4, 'check_in_date' => 10, 'check_out_date' => 10, 'payment_method' => 6);
+                $max_len_fields = array('first_name' => 20, 'last_name' => 20, 'location' => 30, 'contact_number' => 10, 'age' => 3, 'email' => 30, 'max_guest' => 2, 'room_number' => 4, 'check_in_date' => 10, 'check_out_date' => 10, 'payment_method' => 13);
                 $errors = array_merge($errors, $this->check_max_len($max_len_fields));
     
                 
-    
+                
                 // Check Email is valid
                 if(!$this->is_valid($_POST['first_name'])) {
                     $errors['first_name'] = 'First Name is Invalid';
@@ -163,6 +213,27 @@ class ReservationController {
                     $errors['max_guest'] = 'Number is Invalid';
                 }
 
+                // Number of Guest Validation
+                $dbroom = new RoomDetails();
+                $room = $dbroom->getRoomID($room_number);
+                if(empty($room)) {
+                    $errors['room_number'] = 'Room Number Invalid';
+                    $errors['max_guest'] = 'Max Guest Invalid';
+                }
+                else {
+                    $room_type = $room['type_id'];
+                    $dbroom_type = new RoomType();
+                    $dbroom_type->setRoomTypeId($room_type);
+                    $room_type = $dbroom_type->getRoomType();
+                    $room_max_guest = $room_type['max_guest'];
+                    if($room_max_guest < $no_of_guest) {
+                        $errors['max_guest'] = 'Max Guest '.$room_max_guest;
+                    }
+                }
+                
+
+
+
                 // Age 
                 if(!$this->is_num($_POST['age'])) {
                     $errors['age'] = 'Age is Invalid';
@@ -181,30 +252,33 @@ class ReservationController {
                 }
                 else {
                     // Reservation Checking Validate or not
-                    $db = new Reservation();
-                    $result = $db->getAvalabilityhRoom($room_number, $check_in_date, $check_out_date);
+                    $dbreservation = new Reservation();
+                    $result = $dbreservation->getAvalabilityhRoom($room_number, $check_in_date, $check_out_date);
                     if($result == 1) {
                         $errors['room_number'] = 'Room already reserved Sorry';
                         
                     }
                 }
-    
+                
                 
                 $errors = array_filter( $errors ); 
+                // print_r($errors);
+                // echo "Success";
+                // die();
                 
                 if(count( $errors ) == 0) {
                    
                     
     
                     // Check customer already user
-                    $db = new Reservation();
-                    $result = $db->getEmail($email);
+                    $dbcustomer = new Customer();
+                    $result = $dbcustomer->getEmail($email);
                     
                     if($result == 0) {
                         // Customer already not user
     
                         $data = array($first_name, $last_name, $location, $contact_num, $age, $email);
-                        $result = $db->getCreateCustomer($data);
+                        $result = $dbcustomer->getCreateCustomer($data);
     
                         if($result == 0) {
                             $errors[] = "Data Created Unsuccessful";
@@ -216,57 +290,175 @@ class ReservationController {
                     // Make Reservation
                     
                     // Get Customer Id
-                    $customer= $db->getCustomerID($email);
+                    $customer= $dbcustomer->getCustomerID($email);
                     $customer_id = $customer['customer_id'];
     
                     
     
                     // Get Room Id
-                    $room = $db->getRoomID($room_number);
+                    $dbroom = new RoomDetails();
+                    $room = $dbroom->getRoomID($room_number);
+                    
+
                     if(!empty($room)) {
                         $room_id = $room['room_id'];
-                        $type = $db->getRoomType($room_id);
+                        $room_type_id = $room['type_id'];
+                        $dbroom_type = new RoomType();
+                        $dbroom_type->setRoomTypeId($room_type_id);
+                        $type = $dbroom_type->getRoomType();
 
                         if($no_of_guest <= $type['max_guest'] ) {
-                            // Date Strings convert to Date data types 
+                            // Date Strings convert to Date data types
+                            
                             $time1 = strtotime($check_in_date);
                             $time2 = strtotime($check_out_date);
                             $check_in_date = date('Y-m-d',$time1);
                             $check_out_date = date('Y-m-d',$time2);
-                            $reception_user_id = $_SESSION['user_id'];
                             $customer_id = (int)$customer_id;
-                            $reception_user_id = (int)$reception_user_id;
+                            
                             $room_id = (int)$room_id;
                             $no_of_guest = (int)$no_of_guest;
+
+                            if($payment_method === "ONLINEONLINE") {
+                                $reception_user_id = 1; // Online Reception bot not visible as Reception
+                            }
+                            else {
+                                $reception_user_id = $_SESSION['user_id'];
+                                $reception_user_id = (int)$reception_user_id;
+                            }
             
-            
-            
-                            $data = array($customer_id, $reception_user_id, $room_id, $check_in_date, $check_out_date, $no_of_guest, $payment_method);
-                            $result = $db->getCreateReservation($data);
+                            // echo $payment_method;
+                            //Request or not should check
+                            if($payment_method == "CASHONLINE" || $payment_method == "ONLINEONLINE") {
+                                // Reception should accept this process
+                                
+                                $request = 1;
+                            }
+                            else {
+                                // Reception should not accept this process
+                                $request = 0;
+                            }
+                            // echo $payment_method;
+                            // echo "success";
+                            // echo $payment_method;
+                            // die();
+                            $data = array($customer_id, $reception_user_id, $room_id, $check_in_date, $check_out_date, $no_of_guest, $payment_method, $request);
+                            $dbreservation = new Reservation();
+                            $result = $dbreservation->getCreateReservation($data);
+                            
             
                             
                             if($result == 1) {
                                     // Success Process
                                     // view::load('dashboard/reservation/create', ["success"=>"Data Created Successfully"]);
-                                    $this->details();
+                                    // $this->details();
+                                    if($discountValue == 0) {
+                                        if($payment_method === "ONLINEONLINE") {
+                                            //reservation id should find
+                                            $reservation = $dbreservation->getReservationID($customer_id, $check_in_date, $check_out_date);
+                                            $reservation_id = $reservation['reservation_id'];
+                                            $dbpayment = new Payment();
+                                            $customer_pay_details = $dbpayment->checkCustomerPayment($customer_id);
+                                            if(empty($customer_pay_details)) {     
+                                                $data['reservation'] = array("id"=>$reservation_id);
+                                                $data['customer'] = array("id"=>$customer_id);
+                                            // check already have payment details in the payment details
+                                                view::load('dashboard/reservation/reservationThanks');
+                                            }
+                                            else {
+                                                //retrive payment details
+                                                // This has error about we can't generate values for that
+                                                // It should has to fix
+                                                $data['payment'] = $customer_pay_details;
+                                                $data['reservation'] = array("id"=>$reservation_id);
+                                                $data['customer'] = array("id"=>$customer_id);
+                                            // check already have payment details in the payment details
+                                                view::load('dashboard/reservation/reservationThanks');
+                                            }
+                                            
+                                        }
+                                        else {
+                                            $val = 1; // represent main reservation not room search reservation
+                                            $data['create'] = array("value"=>$val);
+                                            $data['customer'] = array("id"=>$customer_id);
+                                            view::load('dashboard/reservation/reservationOption', $data);
+                                        }
+                                        
+                                    }
+                                    else {
+                                        // This should be more enhanced and after reservation should ask more reservations
+                                        
+                                        // Success the Process
+                                        // Reservation Option Page
+                                        // Customer Details should pass next page
+                                        $data['customer'] = array("id"=>$customer_id);
+                                        view::load('dashboard/reservation/reservationOption', $data);
+                                    }
                             }
                             else {
                                 // Process Unsuccessfull
                                 // echo "Create Reservation process unsuccessfull<br>";
-                                $errors['database'] = "Database Error"; 
-                                $data['errors'] = $errors;
-                                $data['reservation'] = array('first_name' => $first_name, 'last_name' => $last_name, 'location' => $location, 'contact_number' => $contact_num, 'date_of_birth' => $date_of_birth, 'age' => $age, 'email' => $email, 'max_guest' => $no_of_guest, 'room_number' => $room_number, 'check_in_date' => $check_in_date, 'check_out_date' => $check_out_date, 'payment_method' => $payment_method);
-                                view::load('dashboard/reservation/create', $data);
-                                view::load('dashboard/reservation/create', ["newerrord"=>"Data Created Unsuccessfully",'reservation'=>$data['employee'], 'errors'=>$data['errors']]);
-                                        
+                                // Database error shouldn't happen
+                                if($discountValue == 1) {
+                                    $errors['database'] = "Database Error"; 
+                                    $data['discount'] = array("value"=>$discountValue);
+                                    $data['errors'] = $errors;
+                                    $data['reservation'] = array('first_name' => $first_name, 'last_name' => $last_name, 'location' => $location, 'contact_number' => $contact_num,  'age' => $age, 'email' => $email, 'max_guest' => $no_of_guest, 'room_number' => $room_number, 'check_in_date' => $check_in_date, 'check_out_date' => $check_out_date, 'payment_method' => $payment_method,'type_name'=>$typenameSearch);
+                                    
+                                    if($payment_method = "CASHONLINE" || $payment_method = "ONLINEONLIE" || $payment_method = "ONLINE") {
+                                        view::load('dashboard/reservation/onlineCreate', $data);
+                                    }
+                                    else {
+                                        view::load('dashboard/reservation/create', $data);
+                                    }
+                                    // view::load('dashboard/reservation/create', ["newerrord"=>"Data Created Unsuccessfully",'reservation'=>$data['employee'], 'errors'=>$data['errors']]);
+                                    
+                                }
+                                else {
+                                    $errors['database'] = "Database Error"; 
+                                    $data['errors'] = $errors;
+                                    $data['reservation'] = array('first_name' => $first_name, 'last_name' => $last_name, 'location' => $location, 'contact_number' => $contact_num,  'age' => $age, 'email' => $email, 'max_guest' => $no_of_guest, 'room_number' => $room_number, 'check_in_date' => $check_in_date, 'check_out_date' => $check_out_date, 'payment_method' => $payment_method);
+                                    if($payment_method = "CASHONLINE" || $payment_method = "ONLINEONLIE" || $payment_method = "ONLINE") {
+                                        view::load('dashboard/reservation/onlineCreate', $data);
+                                    }
+                                    else {
+                                        view::load('dashboard/reservation/create', $data);
+                                    }
+                                    // view::load('dashboard/reservation/create', ["newerrord"=>"Data Created Unsuccessfully",'reservation'=>$data['employee'], 'errors'=>$data['errors']]);
+                                    
+                                }
+
+                                       
                             }
                         }
                         else {
-                            $errors['max_guest'] = "No Of Guest not Valid";
-                            $data['errors'] = $errors;
-                            $data['reservation'] = array('first_name' => $first_name, 'last_name' => $last_name, 'location' => $location, 'contact_number' => $contact_num, 'date_of_birth' => $date_of_birth, 'age' => $age, 'email' => $email, 'max_guest' => $no_of_guest, 'room_number' => $room_number, 'check_in_date' => $check_in_date, 'check_out_date' => $check_out_date, 'payment_method' => $payment_method);
+                            if($discountValue == 1) {
+                                $errors['max_guest'] = "No Of Guest not Valid";
+                                $data['discount'] = array("value"=>$discountValue);
+                                $data['errors'] = $errors;
+                                $data['reservation'] = array('first_name' => $first_name, 'last_name' => $last_name, 'location' => $location, 'contact_number' => $contact_num,  'age' => $age, 'email' => $email, 'max_guest' => $no_of_guest, 'room_number' => $room_number, 'check_in_date' => $check_in_date, 'check_out_date' => $check_out_date, 'payment_method' => $payment_method,'type_name'=>$typenameSearch);                               
+                                if($payment_method = "CASHONLINE" || $payment_method = "ONLINEONLIE" || $payment_method = "ONLINE") {
+                                    view::load('dashboard/reservation/onlineCreate', $data);
+                                }
+                                else {
+                                    view::load('dashboard/reservation/create', $data);
+                                }
+
+                            }
+                            else {
+                                $errors['max_guest'] = "No Of Guest not Valid";
+                                $data['errors'] = $errors;
+                                $data['reservation'] = array('first_name' => $first_name, 'last_name' => $last_name, 'location' => $location, 'contact_number' => $contact_num,  'age' => $age, 'email' => $email, 'max_guest' => $no_of_guest, 'room_number' => $room_number, 'check_in_date' => $check_in_date, 'check_out_date' => $check_out_date, 'payment_method' => $payment_method);
+                                
+                                if($payment_method = "CASHONLINE" || $payment_method = "ONLINEONLIE" || $payment_method = "ONLINE") {
+                                    view::load('dashboard/reservation/onlineCreate', $data);
+                                }
+                                else {
+                                    view::load('dashboard/reservation/create', $data);
+                                }
+                            }
+
                             
-                            view::load('dashboard/reservation/create', $data);
                         }
     
                         
@@ -274,22 +466,60 @@ class ReservationController {
                         
                     }
                     else {
-                        $errors['room_number'] = "Room Number not Valid";
-                        $data['errors'] = $errors;
-                        $data['reservation'] = array('first_name' => $first_name, 'last_name' => $last_name, 'location' => $location, 'contact_number' => $contact_num,'age' => $age, 'email' => $email, 'max_guest' => $no_of_guest, 'room_number' => $room_number, 'check_in_date' => $check_in_date, 'check_out_date' => $check_out_date, 'payment_method' => $payment_method);
-                        
-                        view::load('dashboard/reservation/create', $data);
+                        if($discountValue == 1) {
+                            $errors['room_number'] = "Room Number not Valid";
+                            $data['errors'] = $errors;
+                            $data['reservation'] = array('first_name' => $first_name, 'last_name' => $last_name, 'location' => $location, 'contact_number' => $contact_num, 'age' => $age, 'email' => $email, 'max_guest' => $no_of_guest, 'room_number' => $room_number, 'check_in_date' => $check_in_date, 'check_out_date' => $check_out_date, 'payment_method' => $payment_method,'type_name'=>$typenameSearch); 
+                            $data['discount'] = array("value"=>$discountValue);
+                            if($payment_method = "CASHONLINE" || $payment_method = "ONLINEONLIE" || $payment_method = "ONLINE") {
+                                view::load('dashboard/reservation/onlineCreate', $data);
+                            }
+                            else {
+                                view::load('dashboard/reservation/create', $data);
+                            }
                         }
+                        else {
+                            $errors['room_number'] = "Room Number not Valid";
+                            $data['errors'] = $errors;
+                            $data['reservation'] = array('first_name' => $first_name, 'last_name' => $last_name, 'location' => $location, 'contact_number' => $contact_num,'age' => $age, 'email' => $email, 'max_guest' => $no_of_guest, 'room_number' => $room_number, 'check_in_date' => $check_in_date, 'check_out_date' => $check_out_date, 'payment_method' => $payment_method);
+                            
+                            if($payment_method = "CASHONLINE" || $payment_method = "ONLINEONLIE" || $payment_method = "ONLINE") {
+                                view::load('dashboard/reservation/onlineCreate', $data);
+                            }
+                            else {
+                                view::load('dashboard/reservation/create', $data);
+                            }
+                        }
+                    }
                     
     
                 }
                 else {
                     // break process
+                    if($discountValue == 1) {
+                        $data['errors'] = $errors;
+                        $data['discount'] = array("value"=>$discountValue);
+                        $data['reservation'] = array('first_name' => $first_name, 'last_name' => $last_name, 'location' => $location, 'contact_number' => $contact_num, 'age' => $age, 'email' => $email, 'max_guest' => $no_of_guest, 'room_number' => $room_number, 'check_in_date' => $check_in_date, 'check_out_date' => $check_out_date, 'payment_method' => $payment_method,'type_name'=>$typenameSearch);
+                        
+                        if($payment_method = "CASHONLINE" || $payment_method = "ONLINEONLIE" || $payment_method = "ONLINE") {
+                            view::load('dashboard/reservation/onlineCreate', $data);
+                        }
+                        else {
+                            view::load('dashboard/reservation/create', $data);
+                        }
+                    }
+                    else {
+                        $data['errors'] = $errors;
+                        $data['reservation'] = array('first_name' => $first_name, 'last_name' => $last_name, 'location' => $location, 'contact_number' => $contact_num, 'age' => $age, 'email' => $email, 'max_guest' => $no_of_guest, 'room_number' => $room_number, 'check_in_date' => $check_in_date, 'check_out_date' => $check_out_date, 'payment_method' => $payment_method);
+                        
+                        if($payment_method = "CASHONLINE" || $payment_method = "ONLINEONLIE" || $payment_method = "ONLINE") {
+                            view::load('dashboard/reservation/onlineCreate', $data);
+                        }
+                        else {
+                            view::load('dashboard/reservation/create', $data);
+                        }
+                    }
                     
-                    $data['errors'] = $errors;
-                    $data['reservation'] = array('first_name' => $first_name, 'last_name' => $last_name, 'location' => $location, 'contact_number' => $contact_num, 'age' => $age, 'email' => $email, 'max_guest' => $no_of_guest, 'room_number' => $room_number, 'check_in_date' => $check_in_date, 'check_out_date' => $check_out_date, 'payment_method' => $payment_method);
-                    
-                    view::load('dashboard/reservation/create', $data);
                     
                     
                 }
@@ -299,6 +529,7 @@ class ReservationController {
          }
     }
     
+    //Done
     public function edit($room_number, $check_in_date, $check_out_date) {
         
 
@@ -307,29 +538,34 @@ class ReservationController {
             $dashboard->index();   
         }
         else {
-            $db = new Reservation();
-            
-            
 
-            $room = $db->getRoomID($room_number);
+            // $db = new Reservation();
+            
+            
+            $dbroom = new RoomDetails();
+            $room = $dbroom->getRoomID($room_number);
             $room_id = $room['room_id'];
             
             // get that reservation
-            $reservation = $db->getReservationDetails($room_id, $check_in_date, $check_out_date);
+            $dbreservation = new Reservation();
+            $reservation = $dbreservation->getReservationDetails($room_id, $check_in_date, $check_out_date);
             
             // get that customer details
             $customer_id = $reservation['customer_id'];
-            $customer = $db->getCustomer($customer_id);
+            $dbcustomer = new Customer();
+            $customer = $dbcustomer->getCustomer($customer_id);
 
             //get that reception details
             $reception_user_id = $reservation['reception_user_id'];
-            $reception = $db->getReception($reception_user_id);
+            $dbreception = new Reception();
+            $reception = $dbreception->getReceptionDetail($reception_user_id);
             $reception_name = $reception['emp_id'];
             // echo $reception_name;
 
             //get room types for room number
             $room_type_id = $room['type_id'];
-            $type = $db->getRoomType($room_type_id);
+            $dbroom_type = new RoomType();
+            $type = $dbroom_type->getRoomTypeDetail($room_type_id);
             // echo $reservation_id;
 
             $data['reception'] = $reception;
@@ -344,7 +580,7 @@ class ReservationController {
         } 
     }
     
-
+    //Done
     public function update($old_check_in_date) {
 
         if(!isset($_SESSION['user_id'])) {
@@ -422,6 +658,8 @@ class ReservationController {
                 if(!$this->is_date($_POST['check_out_date'])) {
                     $errors['check_out_date'] = 'Check Out date  is Invalid';
                 }
+
+                
     
     
     
@@ -488,25 +726,52 @@ class ReservationController {
         
     }
 
+    //Done
     public function delete($room_number, $check_in_date, $check_out_date) {
         if(!isset($_SESSION['user_id'])) {
             $dashboard = new DashboardController();
             $dashboard->index();    
         }
         else {
-            $db = new Reservation();
-        
-            $room = $db->getRoomID($room_number);
+            // $db = new Reservation();
+            $dbroom = new RoomDetails();
+            $room = $dbroom->getRoomID($room_number);
             $room_id = $room['room_id'];
             
             // get that reservation
-            $result = $db->getReservationDelete($room_id, $check_in_date, $check_out_date);
+            $dbreservation = new Reservation();
+            $result = $dbreservation->getReservationDelete($room_id, $check_in_date, $check_out_date);
 
             if($result == 1) {
                 $this->details();
             }
             
         } 
+    }
+
+    public function paymentOnline($customer_id, $reservation_id) {
+        if(!isset($_SESSION['user_id'])) {
+            $dashboard = new DashboardController();
+            $dashboard->index();    
+        }
+        else {
+            $dbcustomer = new Customer();
+            $customer = $dbcustomer->getCustomer($customer_id);
+            
+            $dbreservation = new Reservation();
+            $reservation = $dbreservation->reservationDetails($reservation_id);
+            $room_id = $reservation['room_id'];
+            $dbroom = new RoomDetails();
+            $room = $dbroom->getRoomDetails($room_id);
+            $data['customer'] = $customer;
+            $data['reservation'] = $reservation;
+            $data['room'] = $room;
+            // echo $customer_id;
+            // echo $reservation_id;
+
+            view::load('dashboard/reservation/payment',$data);
+
+        }
     }
 
     

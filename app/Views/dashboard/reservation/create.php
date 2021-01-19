@@ -26,7 +26,8 @@
                         <h4>New Reservation 
                         <span>
                         <?php if(isset($discount['value'])){ ?>
-                            <a href="<?php url("room/preview/".$details['check_in_date'].'/'.$details['check_out_date'].'/'.$details['type_name']) ?>" class="addnew"><i class="material-icons">arrow_back</i>Back To ALL Result Table</a>  
+                            <!-- <a href="<?php //url("room/preview/".$details['check_in_date'].'/'.$details['check_out_date'].'/'.$details['type_name']) ?>" class="addnew"><i class="material-icons">reply_all</i></a>   -->
+                            <a href="<?php url("room/preview/".$reservation['check_in_date'].'/'.$reservation['check_out_date'].'/'.$reservation['type_name']) ?>" class="addnew"><i class="material-icons">reply_all</i></a>
                         <?php } else { ?>
                             <a href="<?php url("reservation/details"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>
                         <?php } ?>
@@ -38,8 +39,11 @@
                 </div>
 
                 <div class="cardbody">  
+                <?php if(isset($discount['value'])){ ?>
+                    <form action="<?php url("reservation/create/".$discount['value'].'/'.$reservation['check_in_date'].'/'.$reservation['check_out_date'].'/'.$reservation['type_name']); ?>" method="post" class="addnewform">
+                <?php } else { ?>
                     <form action="<?php url("reservation/create"); ?>" method="post" class="addnewform">
-
+                <?php } ?>    
                     <div class="section1">
 
                         <!-- Customer Part -->
@@ -54,6 +58,9 @@
                                     <?php 
                                         if(isset($reservation['first_name'])){
                                             echo 'value="' . $reservation['first_name'] . '"';
+                                        }
+                                        if(isset($customer['first_name'])) {
+                                            echo 'value="' . $customer['first_name'] . '"';
                                         }
                                         else {
                                             echo 'placeholder="Tharindu"';
@@ -81,6 +88,9 @@
                                         if(isset($reservation['last_name'])){
                                             echo 'value="' . $reservation['last_name'] . '"';
                                         }
+                                        if(isset($customer['last_name'])) {
+                                            echo 'value="' . $customer['last_name'] . '"';
+                                        }
                                         else {
                                             echo 'placeholder="Gihan"';
                                         } 
@@ -107,6 +117,9 @@
                                         if(isset($reservation['age'])){
                                             echo 'value="' . $reservation['age'] . '"';
                                         }
+                                        if(isset($customer['age'])) {
+                                            echo 'value="' . $customer['age'] . '"';
+                                        }
                                         else {
                                             echo 'placeholder="22"';
                                         } 
@@ -131,6 +144,9 @@
                                     <?php 
                                         if(isset($reservation['location'])){
                                             echo 'value="' . $reservation['location'] . '"';
+                                        }
+                                        if(isset($customer['location'])) {
+                                            echo 'value="' . $customer['location'] . '"';
                                         }
                                         else {
                                             echo 'placeholder="Sri Lanka Galle"';
@@ -157,6 +173,9 @@
                                     <?php 
                                         if(isset($reservation['contact_number'])){
                                             echo 'value="' . $reservation['contact_number'] . '"';
+                                        }
+                                        if(isset($customer['contact_number'])) {
+                                            echo 'value="' . $customer['contact_number'] . '"';
                                         }
                                         else {
                                             echo 'placeholder="0778522736"';
@@ -186,6 +205,9 @@
                                     <?php 
                                         if(isset($reservation['email'])){
                                             echo 'value="' . $reservation['email'] . '"';
+                                        }
+                                        if(isset($customer['email'])) {
+                                            echo 'value="' . $customer['email'] . '"';
                                         }
                                         else {
                                             echo 'placeholder="wtgihan@gmail.com"';

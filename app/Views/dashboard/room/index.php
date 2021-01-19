@@ -31,7 +31,7 @@
 
                 <div class="cardbody">  
 
-                    <form action="<?php url("room/check"); ?>" method="post" class="addnewform">
+                    <form action="<?php url("room/check/".$customer['id']); ?>" method="post" class="addnewform">
 
                     <div class="section1">
 

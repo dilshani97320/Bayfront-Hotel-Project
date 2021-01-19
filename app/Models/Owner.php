@@ -14,8 +14,7 @@ class Owner extends Connection{
     }
 
     public function setOwnerId($owner_user_id) {
-        $this->owner_user_id = mysqli_real_escape_string($this->connection, $owner_user_id);
-        
+        $this->owner_user_id = mysqli_real_escape_string($this->connection, $owner_user_id);     
     }
 
     public function checkOwner() {

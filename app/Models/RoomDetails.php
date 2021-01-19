@@ -69,8 +69,54 @@ class RoomDetails extends RoomType {
         }
         else {
             echo "Database Query Failed";
+        }  
+    }
+
+
+//get room tetails pdf
+    public function getAllRoomPdf() {
+
+        $query = "SELECT * FROM  $this->table1";
+                  
+        $users = mysqli_query($this->connection, $query);
+        if($users) {
+            $users=mysqli_fetch_all($users,MYSQLI_ASSOC);
+        }
+        else {
+            echo "Database Query Failed";
         }    
+//var_dump($users);
+//exit;
+    return $users;    
+    }
+
+
+
+
+
+    public function getRoomTypes() {
+        $user = array();
+        $query = "SELECT type_name FROM $this->table2";
+
+
+        $result = 0;
+
+        $room_types = mysqli_query($this->connection, $query);
+
+        if($room_types) {
+            mysqli_fetch_all($room_types,MYSQLI_ASSOC);
+            return $room_types;
+        }
+        else {
+            echo "Database Query Failed";
+        }
+        
+    }
+
+    public function getTypeID($type_name) {
+
     }    
+
 
     // public function getTypeID($type_name) {
     //     // private $table2 = "room_type";

@@ -54,6 +54,14 @@
 
             </a>
         </li> 
+
+        <li class="nav1-item">
+
+            <a href="<?php url('report/index'); ?>" class="nav1-link">
+                <p class="nav-p"><i class="material-icons">report</i>Report Generate</p>         
+
+            </a>
+        </li> 
         
 
         <li class="nav1-item">

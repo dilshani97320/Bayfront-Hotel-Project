@@ -65,7 +65,7 @@
                             <div class="text">
                                 Customers
                             </div>
-                            <a href="<?php url('report/customerdetails');?>"></a>
+                            <a href="<?php url('report/customerWebdetails');?>"></a>
                             </div>
                    
                     <div class="horBadge">

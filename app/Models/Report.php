@@ -168,5 +168,61 @@ class Report {
     return $users; 
    }
 
+   
+
+   public function getcustomerreport()
+   {
+    
+    // echo $d1;
+    // exit;
+
+    $query="SELECT DISTINCT first_name,last_name,location,contact_number,age,email,check_in_date,check_out_date 
+    FROM customer INNER JOIN reservation ON customer.customer_id=reservation.customer_id";
+    // echo $query;
+    // exit;
+    $users = mysqli_query($this->connection, $query);
+        if($users) {
+            $users=mysqli_fetch_all($users,MYSQLI_ASSOC);
+        }
+        else {
+            echo "Database Query Failed";
+        }    
+//var_dump($users);
+//exit;
+    return $users; 
+   }
+
+
+  public function creport($d1, $d2)
+  {
+   
+   // echo $d1;
+   // exit;
+
+   $query="SELECT DISTINCT first_name,last_name,location,contact_number,age,email,check_in_date,check_out_date 
+   FROM customer INNER JOIN reservation ON customer.customer_id=reservation.customer_id
+    WHERE check_in_date BETWEEN '{$d1}' and '{$d2}' order BY check_in_date";
+   
+   
+   
+   
+   // echo $query;
+   // exit;
+   $users = mysqli_query($this->connection, $query);
+       if($users) {
+           $users=mysqli_fetch_all($users,MYSQLI_ASSOC);
+       }
+       else {
+           echo "Database Query Failed";
+       }    
+//var_dump($users);
+//exit;
+   return $users; 
+  }
+
+
+
+
+
  
 }

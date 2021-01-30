@@ -168,6 +168,7 @@ class RoomController {
     }
 
     //Done
+    // Room Search according to given tables and about parameters
     public function preview($check_in_date, $check_out_date, $type_name) {
         if(!isset($_SESSION['user_id'])) {
             $dashboard = new DashboardController();
@@ -211,6 +212,7 @@ class RoomController {
     }
 
     //Done
+    // Room Search by room
     public function check($customer_id = 0) {
 
         if(!isset($_SESSION['user_id'])) {
@@ -325,6 +327,12 @@ class RoomController {
         
 
     }
+
+    public customerCheck() {
+        
+    }
+
+
 
 
     private function is_date($date) {

@@ -2,12 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title></title>
-        <style>
-        .form_submit:hover {
-                background-color: #fffffff;
-        }
-        </style>
+	<link rel="stylesheet" href="<?php echo BURL.'assets/css/style.css'; ?>">
 </head>
 
 <body>

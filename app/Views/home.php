@@ -17,23 +17,6 @@
       
       <?php include(VIEWS.'inc/room-slider.php'); ?>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       
       <a id="button"></a>
       <div class="activityContainer">
@@ -233,24 +216,24 @@
     <?php include(VIEWS.'inc/footer.php'); ?>
 
     <script>
-      $(".hover").mouseleave(function () {
-        $(this).removeClass("hover");
-      });
+//       $(".hover").mouseleave(function () {
+//         $(this).removeClass("hover");
+//       });
 
-      var btn = $('#button');
+//       var btn = $('#button');
 
-$(window).scroll(function() {
-  if ($(window).scrollTop() > 300) {
-    btn.addClass('show');
-  } else {
-    btn.removeClass('show');
-  }
-});
+// $(window).scroll(function() {
+//   if ($(window).scrollTop() > 300) {
+//     btn.addClass('show');
+//   } else {
+//     btn.removeClass('show');
+//   }
+// });
 
-btn.on('click', function(e) {
-  e.preventDefault();
-  $('html, body').animate({scrollTop:0}, '300');
-});
+// btn.on('click', function(e) {
+//   e.preventDefault();
+//   $('html, body').animate({scrollTop:0}, '300');
+// });
 
     </script>
     <?php 

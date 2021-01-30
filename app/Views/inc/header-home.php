@@ -125,5 +125,6 @@
 	var imageSlideshowInterval = setInterval(slideshow, 10000);
 
 </script>
+
 </body>
 </html>

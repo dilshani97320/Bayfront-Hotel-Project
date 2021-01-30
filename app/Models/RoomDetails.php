@@ -52,7 +52,8 @@ class RoomDetails extends RoomType {
     }
 
     public function getOneRoomView($room_number)
-    {
+    {   
+        $rooms[] = array();
          $query = "SELECT * FROM $this->room_table
                   INNER JOIN $this->room_type_table ON $this->room_table.type_id = $this->room_type_table.room_type_id WHERE $this->room_table.room_number= '$room_number' ";
         // echo $query;  
@@ -64,6 +65,7 @@ class RoomDetails extends RoomType {
             $rooms = mysqli_fetch_all($result,MYSQLI_ASSOC);
         
             // var_dump($rooms);
+            // echo $rooms[0]['room_number'];
             // exit();
             return $rooms;
         }

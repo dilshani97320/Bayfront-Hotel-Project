@@ -260,6 +260,7 @@ class RoomController {
                     $rooms = $db->getRoomAllID($room_type_id);
                     // var_dump($rooms);
                     // echo "<br>";
+                    // die();
                     $update = $db->getRoomsUpdate();
                     // var_dump($rooms);
                     if($update == 1) {
@@ -328,11 +329,471 @@ class RoomController {
 
     }
 
-    public customerCheck() {
-        
+    public function checkRoomCustomer() {
+        // if(isset($_POST['submit'])) {
+
+        //     $type_name = $_POST['type_name']; 
+        //     $errors[] = array();
+        //     $check_in_date = $_POST['check_in_date'];
+        //     $check_out_date = $_POST['check_out_date'];
+        if(isset($_POST['submit'])) {
+            $errors[] = array();
+            $check_in_date = $_POST['check_in_date'];
+            $check_out_date = $_POST['check_out_date'];
+            $no_of_rooms = $_POST['no_of_rooms'];
+            $no_of_guests = $_POST['no_of_guests'];
+
+            // echo $check_in_date;
+            //check in date is valid
+            if(!$this->is_date($_POST['check_in_date'])) {
+                $errors['check_in_date'] = 'Date is Invalid';
+            }
+
+            //check out date is valid
+            if(!$this->is_date($_POST['check_out_date'])) {
+                $errors['check_out_date'] = 'Date is Invalid';
+            }
+
+            if($check_in_date > $check_out_date) {
+                $errors['chek_out_date'] = "Date is Invalid";
+            }
+
+            if($no_of_rooms == NULL) {
+                $errors['no_of_rooms'] = "No of Rooms is Invalid";
+                // $errors['no_of_rooms'] = "Room Type is Invalid";
+            }
+
+            if($no_of_guests == NULL) {
+                $errors['no_of_guests'] = "No of Guests is Invalid";
+                // $errors['no_of_rooms'] = "Room Type is Invalid";
+            }
+            $errors = array_filter( $errors ); 
+            // var_dump($errors);
+            // check_in_date, check_out_date, no_of_guest, no_of_rooms
+            if(count( $errors ) == 0) {
+                $result[] = array();
+
+                if($no_of_rooms == 1 && $no_of_guests == 1) {
+                    // room type_id = 1 max_guest = 1
+                    $rooms[] = array();
+                    $limit = 1;
+                    $room_type_id = 1;
+                    $rooms = $this->availableRoomFind1($room_type_id, $check_in_date, $check_out_date, $limit);
+                    if($rooms['msg'] == "Rooms Available") {
+                        $result = $rooms['data'];
+                    }
+                    // echo "</br>";
+                    $result = array_filter( $result );
+                    // var_dump($result);
+
+                }
+                if($no_of_rooms == 1 && $no_of_guests == 2) {
+                    // room type_id = 2 max_guest = 2
+                    $rooms1[] = array();
+                    $limit = 1;
+                    $room_type_id = 2;
+                    $rooms1 = $this->availableRoomFind1($room_type_id, $check_in_date, $check_out_date, $limit);
+                    var_dump($rooms1);
+
+                    // room type_id = 3 max_guest = 2
+                    $rooms2[] = array();
+                    $limit = 1;
+                    $room_type_id = 3;
+                    $rooms2 = $this->availableRoomFind1($room_type_id, $check_in_date, $check_out_date, $limit);
+                    var_dump($rooms2);
+
+                    // room type_id = 6 max_guest = 2
+                    $rooms3[] = array();
+                    $limit = 1;
+                    $room_type_id = 6;
+                    $rooms3 = $this->availableRoomFind1($room_type_id, $check_in_date, $check_out_date, $limit);
+                    var_dump($rooms3);
+
+                    // all rooms array should concatinates
+                    $rooms[] = array();
+                    $rooms=array_merge($rooms1, $rooms2, $rooms3);
+                }
+                if($no_of_rooms == 1 && $no_of_guests == 3) {
+                    // room type_id = 4 max_guest = 3
+                    $rooms[] = array();
+                    $limit = 1;
+                    $room_type_id = 4;
+                    $rooms = $this->availableRoomFind1($room_type_id, $check_in_date, $check_out_date, $limit);
+                    var_dump($rooms);
+                }
+
+                if($no_of_rooms == 1 && $no_of_guests == 4) {
+                    // room type_id = 5 max_guest = 4
+                    $rooms1[] = array();
+                    $limit = 1;
+                    $room_type_id = 5;
+                    $rooms1 = $this->availableRoomFind1($room_type_id, $check_in_date, $check_out_date, $limit);
+                    var_dump($rooms1);
+
+                    // room type_id = 7 max_guest = 4
+                    $rooms2[] = array();
+                    $limit = 1;
+                    $room_type_id = 7;
+                    $rooms2 = $this->availableRoomFind1($room_type_id, $check_in_date, $check_out_date, $limit);
+                    var_dump($rooms2);
+
+                    // all rooms array should concatinates
+                    $rooms[] = array();
+                    $rooms=array_merge($rooms1, $rooms2);
+                }
+
+                if($no_of_rooms == 2 && $no_of_guests == 2) {
+                    // room type_id = 1 max_guest = 1 no_of_rooms = 2
+                    $rooms[] = array();
+                    $limit = 1;
+                    $room_type_id = 1;
+                    $rooms = $this->availableRoomFind1($room_type_id, $check_in_date, $check_out_date, $limit);
+                    var_dump($rooms);
+                }
+
+                if($no_of_rooms == 2 && $no_of_guests == 3) {
+                    // room type_id = 2 max_guest = 2 no_of_rooms = 2
+                    // one single room and one double room
+                    // room_type_id = 1 && room_type_id = 2
+                    $rooms[] = array();
+                    $rooms1[] = array();
+                    $room_type_id1 = 1;
+                    $room_type_id2 = 2;
+                    $rooms1 = $this->availableRoomFind2($room_type_id1, $room_type_id2, $check_in_date, $check_out_date);
+                    
+
+                    // room_type_id = 1 && room_type_id = 3
+                    $rooms2[] = array();
+                    $room_type_id1 = 1;
+                    $room_type_id2 = 3;
+                    $rooms2 = $this->availableRoomFind2($room_type_id1, $room_type_id2, $check_in_date, $check_out_date);
+                    
+
+                    // room_type_id = 1 && room_type_id = 6
+                    $rooms3[] = array();
+                    $room_type_id1 = 1;
+                    $room_type_id2 = 6;
+                    $rooms3 = $this->availableRoomFind2($room_type_id1, $room_type_id2, $check_in_date, $check_out_date);
+                    $rooms = array_merge($rooms1, $rooms2, $rooms3);
+                }
+
+                if($no_of_rooms == 2 && $no_of_guests == 4) {
+                    $rooms[] = array();
+                    // 1(Single room = id(1)) + 3(Triple rooms = id(4))
+                    $rooms1[] = array();
+                    $room_type_id1 = 1;
+                    $room_type_id2 = 4;
+                    $rooms1 = $this->availableRoomFind2($room_type_id1, $room_type_id2, $check_in_date, $check_out_date);
+                    var_dump($rooms2);
+
+
+                    // 2(Double room = id(2)) + 2(Double room = id(2))
+                    $rooms2[] = array();
+                    $limit = 2;
+                    $room_type_id = 2;
+                    $rooms2 = $this->availableRoomFind1($room_type_id, $check_in_date, $check_out_date, $limit);
+                    var_dump($rooms2);
+
+
+                    // 2(Double room = id(2)) + 2(Double room = id(3))
+                    $rooms3[] = array();
+                    $room_type_id1 = 2;
+                    $room_type_id2 = 3;
+                    $rooms3 = $this->availableRoomFind2($room_type_id1, $room_type_id2, $check_in_date, $check_out_date);
+                    var_dump($rooms3);
+
+                    // 2(Double room = id(2)) + 2(Double room = id(6))
+                    $rooms4[] = array();
+                    $room_type_id1 = 2;
+                    $room_type_id2 = 6;
+                    $rooms4 = $this->availableRoomFind2($room_type_id1, $room_type_id2, $check_in_date, $check_out_date);
+                    var_dump($rooms4);
+
+                    // 2(Double room = id(3)) + 2(Double room = id(3))
+                    $rooms5[] = array();
+                    $limit = 2;
+                    $room_type_id = 3;
+                    $rooms5 = $this->availableRoomFind1($room_type_id, $check_in_date, $check_out_date, $limit);
+                    var_dump($rooms5);
+
+                    // 2(Double room = id(3)) + 2(Double room = id(6))
+                    $rooms6[] = array();
+                    $room_type_id1 = 3;
+                    $room_type_id2 = 6;
+                    $rooms6 = $this->availableRoomFind2($room_type_id1, $room_type_id2, $check_in_date, $check_out_date);
+                    var_dump($rooms6);
+
+
+                    // 2(Double room = id(6)) + 2(Double room = id(6))
+                    $rooms7[] = array();
+                    $limit = 2;
+                    $room_type_id = 6;
+                    $rooms7 = $this->availableRoomFind1($room_type_id, $check_in_date, $check_out_date, $limit);
+                    var_dump($rooms7);
+
+                    $rooms=array_merge($rooms1, $rooms2, $rooms3, $rooms4, $rooms5, $rooms6, $rooms7);
+                    var_dump($rooms);
+                
+
+                }
+
+                if($no_of_rooms == 2 && $no_of_guests == 5) {
+                    $rooms[] = array();
+                    // 1(Single room = id(1)) + 4(Fourth room = id(5))
+                    $rooms1[] = array();
+                    $room_type_id1 = 1;
+                    $room_type_id2 = 5;
+                    $rooms1 = $this->availableRoomFind2($room_type_id1, $room_type_id2, $check_in_date, $check_out_date);
+                    var_dump($rooms1);
+
+                    // 1(Single room = id(1)) + 4(Fourth room = id(7))
+                    $rooms2[] = array();
+                    $room_type_id1 = 1;
+                    $room_type_id2 = 7;
+                    $rooms2 = $this->availableRoomFind2($room_type_id1, $room_type_id2, $check_in_date, $check_out_date);
+                    var_dump($rooms2);
+
+                    // 2(Double room = id(2)) + 3(Triple room = id(4))
+                    $rooms3[] = array();
+                    $room_type_id1 = 2;
+                    $room_type_id2 = 4;
+                    $rooms3 = $this->availableRoomFind2($room_type_id1, $room_type_id2, $check_in_date, $check_out_date);
+                    var_dump($rooms3);
+
+                    // 2(Double room = id(3)) + 3(Triple room = id(4))
+                    $rooms4[] = array();
+                    $room_type_id1 = 3;
+                    $room_type_id2 = 4;
+                    $rooms4 = $this->availableRoomFind2($room_type_id1, $room_type_id2, $check_in_date, $check_out_date);
+                    var_dump($rooms4);
+
+                    // 2(Double room = id(6)) + 3(Triple room = id(4))
+                    $rooms5[] = array();
+                    $room_type_id1 = 6;
+                    $room_type_id2 = 4;
+                    $rooms5 = $this->availableRoomFind2($room_type_id1, $room_type_id2, $check_in_date, $check_out_date);
+                    var_dump($rooms5);
+
+                    $rooms=array_merge($rooms1, $rooms2, $rooms3, $rooms4, $rooms5);
+                    var_dump($rooms);
+
+
+                }
+                if($no_of_rooms == 2 && $no_of_guests == 6) {
+                    $rooms[] = array();
+                    // 3(Triple room = id(4)) + 3(Triple room = id(4))
+                    $rooms1[] = array();
+                    $limit = 2;
+                    $room_type_id = 4;
+                    $rooms1 = $this->availableRoomFind1($room_type_id, $check_in_date, $check_out_date, $limit);
+                    var_dump($rooms1);
+                    
+                    // 2(Double room = id(2)) + 4(Fourth room = id(5))
+                    $rooms2[] = array();
+                    $room_type_id1 = 2;
+                    $room_type_id2 = 5;
+                    $rooms2 = $this->availableRoomFind2($room_type_id1, $room_type_id2, $check_in_date, $check_out_date);
+                    var_dump($rooms2);
+
+                    // 2(Double room = id(2)) + 4(Fourth room = id(7))
+                    $rooms3[] = array();
+                    $room_type_id1 = 2;
+                    $room_type_id2 = 7;
+                    $rooms3 = $this->availableRoomFind2($room_type_id1, $room_type_id2, $check_in_date, $check_out_date);
+                    var_dump($rooms3);
+
+                    // 2(Double room = id(3)) + 4(Fourth room = id(5))
+                    $rooms4[] = array();
+                    $room_type_id1 = 3;
+                    $room_type_id2 = 5;
+                    $rooms4 = $this->availableRoomFind2($room_type_id1, $room_type_id2, $check_in_date, $check_out_date);
+                    var_dump($rooms4);
+
+                    // 2(Double room = id(3)) + 4(Fourth room = id(7))
+                    $rooms5[] = array();
+                    $room_type_id1 = 3;
+                    $room_type_id2 = 7;
+                    $rooms5 = $this->availableRoomFind2($room_type_id1, $room_type_id2, $check_in_date, $check_out_date);
+                    var_dump($rooms5);
+
+                    // 2(Double room = id(6)) + 4(Fourth room = id(5))
+                    $rooms6[] = array();
+                    $room_type_id1 = 6;
+                    $room_type_id2 = 5;
+                    $rooms6 = $this->availableRoomFind2($room_type_id1, $room_type_id2, $check_in_date, $check_out_date);
+                    var_dump($rooms6);
+
+                    // 2(Double room = id(6)) + 4(Fourth room = id(7))
+                    $rooms7[] = array();
+                    $room_type_id1 = 6;
+                    $room_type_id2 = 7;
+                    $rooms7 = $this->availableRoomFind2($room_type_id1, $room_type_id2, $check_in_date, $check_out_date);
+                    var_dump($rooms7);
+
+                    $rooms=array_merge($rooms1, $rooms2, $rooms3, $rooms4, $rooms5, $rooms6, $rooms7);
+                    var_dump($rooms);
+                }
+                if($no_of_rooms == 2 && $no_of_guests == 7) {
+                    $rooms[] = array();
+                    // 3(Triple room = id(4)) + 4(Fourth room = id(5))
+                    $rooms1[] = array();
+                    $room_type_id1 = 4;
+                    $room_type_id2 = 5;
+                    $rooms1 = $this->availableRoomFind2($room_type_id1, $room_type_id2, $check_in_date, $check_out_date);
+                    var_dump($rooms1);
+
+                    // 3(Triple room = id(4)) + 4(Fourth room = id(6))
+                    $rooms2[] = array();
+                    $room_type_id1 = 4;
+                    $room_type_id2 = 6;
+                    $rooms2 = $this->availableRoomFind2($room_type_id1, $room_type_id2, $check_in_date, $check_out_date);
+                    var_dump($rooms2);
+
+                    $rooms=array_merge($rooms1, $rooms2);
+                    var_dump($rooms);
+                }
+                if($no_of_rooms == 2 && $no_of_guests == 8) {
+                    $rooms[] = array();
+                    // 4(Foruth room = id(5)) + 4(Fourth room = id(5))
+                    $rooms1[] = array();
+                    $limit = 2;
+                    $room_type_id = 5;
+                    $rooms1 = $this->availableRoomFind1($room_type_id, $check_in_date, $check_out_date, $limit);
+                    var_dump($rooms1);
+
+                    // 4(Foruth room = id(7)) + 4(Fourth room = id(7))
+                    $rooms2[] = array();
+                    $limit = 2;
+                    $room_type_id = 7;
+                    $rooms2 = $this->availableRoomFind1($room_type_id, $check_in_date, $check_out_date, $limit);
+                    var_dump($rooms2);
+
+                    // 4(Foruth room = id(5)) + 4(Fourth room = id(7))
+                    $rooms3[] = array();
+                    $room_type_id1 = 5;
+                    $room_type_id2 = 7;
+                    $rooms3 = $this->availableRoomFind2($room_type_id1, $room_type_id2, $check_in_date, $check_out_date);
+                    var_dump($rooms3);
+                }
+
+            }
+
+
+
+        }
     }
 
+    private function availableRoomFind1($room_type_id, $check_in_date, $check_out_date, $limit) {
+        // echo $room_type_id;
+        // echo "</br>";
+        // echo $check_in_date;
+        // echo "</br>";
+        // echo $check_out_date;
+        // echo "</br>";
+        // echo $limit;
+        // echo "</br>";
+        $rooms[] = array();
+        $details[] = array();
+        $rooms = $this->availableRooms($room_type_id, $check_in_date, $check_out_date);
+        // var_dump($rooms);
+        // die();
+        if(count($rooms) >= $limit) {
+            $datails['data'] = $rooms;
+            $datails['msg'] = "Rooms Available";
+            // echo "Rooms Available";
+            
+        }
+        else {
+            $datails['msg'] = "Rooms Available";
+            // echo "No Rooms Available";
+        }
+        return $datails;
+    }
 
+    private function availableRoomFind2($room_type_id1, $room_type_id2, $check_in_date, $check_out_date) {
+        $details[] = array();
+        $rooms[] = array();
+        $rooms1[] = array();
+        $rooms2[] = array();
+        $rooms1 = $this->availableRooms($room_type_id1, $check_in_date, $check_out_date);
+        $rooms2 = $this->availableRooms($room_type_id2, $check_in_date, $check_out_date);
+        if(count($rooms1) >= 1 && count($rooms2) >= 1) {
+            // var_dump($rooms1);
+            // var_dump($rooms2);
+            $rooms=array_merge($rooms1, $rooms2);
+            $datails['data'] = $rooms;
+            $datails['msg'] = "Rooms Available";
+            // echo "Rooms Available";
+        }
+        else {
+            $datails['msg'] = "Rooms Available";
+            // echo "No Rooms Available";
+        }
+        return $datails;
+    }
+
+    private function availableRooms($room_type_id, $check_in_date, $check_out_date) {
+        // echo $room_type_id;
+        // echo "</br>";
+        // echo $check_in_date;
+        // echo "</br>";
+        // echo $check_out_date;
+        // echo "</br>";
+        $db = new RoomDetails();
+        // echo "Level 1";
+        // echo "</br>";
+        // $type_id = $db->getTypeID($type_name);
+        // $room_type_id = $type_id['room_type_id'];
+        $db->setRoomTypeId($room_type_id);
+        // echo "Level 2";
+        // echo "</br>";
+        
+        // $rooms = $db->getRoomAllID($room_type_id);
+        $rooms = $db->getRoomAllID($room_type_id);
+        // echo "Level 3";
+        // echo "</br>";
+        // var_dump($rooms);
+        // echo "<br>";
+        $update = $db->getRoomsUpdate();
+        // var_dump($rooms);
+        if($update == 1) {
+            foreach($rooms as $room) {
+                // var_dump($result);
+                // echo $room['room_id'];
+                // echo "<br>";
+                $result = $db->roomAvalability($room['room_id'],$check_in_date,$check_out_date);
+                // var_dump($result);
+                // echo $result;
+                // echo "<br>";
+                if($result == 1) {
+                    
+                    $result = $db->roomTodayBookedUpdate($room['room_id']);
+                    
+                }
+
+            }
+        }
+    
+        $db->setRoomTypeId($room_type_id);
+        // $rooms = $db->getAvailableRooms($room_type_id, $check_in_date, $check_out_date);
+        $rooms = $db->getAvailableRooms($check_in_date, $check_out_date);
+        // echo "sucess1";
+        // var_dump($rooms);
+        // die();
+        $num_of_rooms[] = array();
+        $room_number = "000";
+        foreach($rooms as $room) {
+            
+            if($room_number !== $room['room_number']) {
+                // echo $room['room_number'];
+                $room_number = $room['room_number'];
+                array_push($num_of_rooms,$room_number);
+            }
+            
+
+        }
+        return $num_of_rooms;
+    }
 
 
     private function is_date($date) {

@@ -16,10 +16,28 @@
 	}
 </style>
 <body>
-		 <?php include(VIEWS.'inc/header-room.php');  ?>
+		 <!-- <?php //include(VIEWS.'inc/header-room.php');  ?> -->
+	<?php  
+		foreach ($room_details as $key => $value) {
+			// $arr[3] will be updated with each value from $arr...
+			// echo "{$key} => {$value} ";
+			// $value['']
+			echo $value['is_delete'];
+			// print_r($room_details);
+		}
+		print_r($room_details);
+		echo "</br>";
+		print_r($room_all);
+	die();
+	
+	
+	; ?>
+		 
+	
+	
 	<div class="container">
 <?php $count =0; ?>
-	<?php  foreach ($room_details as $key=>$value): //var_dump($value); ?>
+	<?php  foreach ($room_details as $value): //var_dump($value); ?>
 		<?php  if($value['is_delete']== 0): ?>
 		<div class="room">
 			<div class="room-slider">
@@ -118,7 +136,7 @@
 	<?php endforeach; ?>  
 	</div>             
 		
-	<?php include(VIEWS.'inc/footer.php'	); ?>
+	<!-- <?php //include(VIEWS.'inc/footer.php'	); ?> -->
 </body>
 </html>
 

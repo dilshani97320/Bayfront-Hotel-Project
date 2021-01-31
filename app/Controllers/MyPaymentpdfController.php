@@ -49,36 +49,51 @@ class MyPaymentpdfController extends FPDF
         $this->cell(40,10,'Last Name',1,0,'C');
         $this->cell(40,10,'contact No',1,0,'C');
         
-        $this->cell(70,10,'E mail',1,0,'C');
-        $this->cell(50,10,'Credit Card No',1,0,'C');
-        $this->cell(50,10,'Expire month',1,0,'C');
-        $this->cell(45,10,'expire year',1,0,'C');
-         $this->cell(45,10,'CVV',1,0,'C');
+        $this->cell(80,10,'Room Description',1,0,'C');
+        
+        $this->cell(40,10,'Amount',1,0,'C');
+        $this->cell(20,10,'Currency',1,0,'C');
+		 $this->cell(50,10,'Created Date and Time',1,0,'C');
+		 
+		 $this->cell(45,10,'check in date',1,0,'C');
+		 $this->cell(45,10,'check out date',1,0,'C');
         $this->Ln();
 
    }
 
-	function viewTable($payment)
+	function viewTable($pdfDate, $id=2)
 	{
-       $this->setfont('Times','',12);
+      /* $this->setfont('Times','',12);
        //$stmt=$db->query('select * from employee');
 
 
       // while ($data =$stmt->fetch(PDO :: FETCH_OBJ)) {
           foreach($payment as $data) {
 
-			  $this->setfont('Times', '', 14);
-			  
+			  $this->setfont('Times', '', 14);*/
+			  if ($id ==2) {
+				$this->setfont('Times','',12);
+				   //$stmt=$db->query('select * from employee');
+	
+				// while ($data =$stmt->fetch(PDO :: FETCH_OBJ)) {
+					foreach($pdfDate as $data) {
+	
+						$this->setfont('Times', '', 14);
+
+
+
+						
        	   
        	   $this->cell(40,10,$data['first_name'],1,0,'C');
          $this->cell(40,10,$data['last_name'],1,0,'C');
          $this->cell(40,10,$data['contact_number'],1,0,'C');
-         
-         $this->cell(70,10,$data['email'],1,0,'C');
-         $this->cell(50,10,$data['credit_card_number'],1,0,'C');
-         $this->cell(50,10,$data['expire_month'],1,0,'C');
-         $this->cell(45,10,$data['expire_year'],1,0,'C');
-         $this->cell(45,10,$data['cvv'],1,0,'C');
+         $this->cell(80,10,$data['roomdesc'],1,0,'C');
+         $this->cell(40,10,$data['amount'],1,0,'C');
+         $this->cell(20,10,$data['currency'],1,0,'C');
+		 $this->cell(50,10,$data['created_at'],1,0,'C');
+		 
+		 $this->cell(45,10,$data['check_in_date'],1,0,'C');
+		 $this->cell(45,10,$data['check_out_date'],1,0,'C');
          //$this->cell(50,10,'Salary',1,0,'C');
          $this->Ln();
        }
@@ -87,7 +102,7 @@ class MyPaymentpdfController extends FPDF
 	
 }
 
-
+}
 
 
 ?>

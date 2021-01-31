@@ -32,42 +32,42 @@
                </div>
                
                     <div class="badgeSec">
-                    <div class="horBadge">
+                        <div class="horBadge">
+                            
+                            <div class="icon1">
+                                <i class="fas fa-user-tag"></i>
+                            </div>
+                            <div class="text">
+                                Employees
+                            </div>
+                            <a href="<?php url('report/empdetails');?>"></a>
+                        </div>
+
+                
+                        <div class="horBadge">
                         
-                        <div class="icon1">
-                            <i class="fas fa-user-tag"></i>
+                            <div class="icon1">
+                
+                                <i class="fas fa-door-open"></i>
+                            </div>
+                            <div class="text">
+                                Rooms
+                            </div>
+                            <a href="<?php url('report/roomdetails');?>"></a>
                         </div>
-                        <div class="text">
-                             Employees
-                        </div>
-                        <a href="<?php url('report/empdetails');?>"></a>
-                    </div>
+      
 
-
-                    <div class="horBadge">
+                        <div class="horBadge">
                     
-                    <div class="icon1">
-          
-                        <i class="fas fa-door-open"></i>
-                    </div>
-                    <div class="text">
-                         Rooms
-                    </div>
-                    <a href="<?php url('report/roomdetails');?>"></a>
-                </div>
-
-
-                <div class="horBadge">
-                    
-                        <div class="icon1">
-                        <i class="fas fa-users"></i>
-                        </div>
-                        <div class="text">
-                             Customers
-                        </div>
-                        <a href="<?php url('report/customerdetails');?>"></a>
-                    </div>
-                  
+                            <div class="icon1">
+                            <i class="fas fa-users"></i>
+                            </div>
+                            <div class="text">
+                                Customers
+                            </div>
+                            <a href="<?php url('report/customerWebdetails');?>"></a>
+                            </div>
+                   
                     <div class="horBadge">
                     
                         <div class="icon1">
@@ -76,9 +76,11 @@
                         <div class="text">
                              Reservations
                         </div>
-                        <a href="<?php url('report/reservationdetails');?>"></a>
+                        <a href="<?php url('report/reservationWebdetails');?>"></a>
+                    </div>
                     </div>
 
+                    <div class="badgeSec">
 
                     <div class="horBadge">
                     
@@ -88,9 +90,9 @@
                         <div class="text">
                              Payments
                         </div>
-                        <a href="<?php url('report/paymentdetails');?>"></a>
+                        <a href="<?php url('report/paymentWebdetails');?>"></a>
                     </div>
-
+               
 
                     <div class="horBadge">
                         <div class="icon2">
@@ -103,24 +105,49 @@
                     </div>
                 
 
-
+                   
                     </div>
 
 
                     <section class="repo-main">
 
-<h3>Enter the date to get Report</h2>
-  <form method="get" action="daily.php">
-    <select name='check_in_date'>
-      <?php
-            $query=mysqli_query($connection,"select * from reservation");
-            while ($date =mysqli_fetch_array($query)) {
-              echo "<option value='".$date['check_in_date']."'>".$date['check_in_date']."</option>";
-            }
-      ?>
-    </select>
-<input type="submit" name="submit1" class="sub-btn" value="Generate">
 
+
+                   
+
+  <!--<div class="data">
+    
+
+
+    <h3>Enter the duration to get Report</h2>
+        <form method="post" action="<?php url('report/reservation_details');?>">
+    
+            <input type="date" name="start_date">
+            <input type="date" name="end_date">
+            <button type="submit" name="generate" class="submit" value="Generate the report">Generate</button>
+
+ 
+            
+            <h3>Enter the month to get Report</h3>
+
+            <input type="text" name="month">
+            <button type="submit" name="generate1" class="submit" value="Generate the report">Generate</button>
+
+            <h3>Enter the year to get Report</h3>
+
+            <input type="text" name="year">
+            <button type="submit" name="generate2" class="submit" value="Generate the report">Generate</button>
+    
+    
+      </form>
+    
+      </div>-->
+    
+
+      
+    
+    
+    </div>
 <!--<h3>Enter Time Duration to get Report</h2>
 <form method="get">
 <label>Start date</label>

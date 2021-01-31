@@ -51,19 +51,22 @@ class MyEmppdfController extends FPDF
          $this->cell(70,10,'Eamil',1,0,'C');
          $this->cell(40,10,'Salary',1,0,'C');
          $this->cell(80,10,'Location',1,0,'C');
-         $this->cell(55,10,'Contact No',1,0,'C');
+		 $this->cell(55,10,'Contact No',1,0,'C');
+		 $this->cell(55,10,'Registered Date',1,0,'C');
+		 
          $this->Ln();
 
 	}
-	function viewTable($employee)
+	function viewTable($pdfDate, $id=3)
 	{
-       $this->setfont('Times','',12);
-       //$stmt=$db->query('select * from employee');
+		if ($id ==3) {
+			$this->setfont('Times','',12);
+			   //$stmt=$db->query('select * from employee');
 
+			// while ($data =$stmt->fetch(PDO :: FETCH_OBJ)) {
+				foreach($pdfDate as $data) {
 
-      // while ($data =$stmt->fetch(PDO :: FETCH_OBJ)) {
-          foreach($employee as $data) {
-
+					
 			  $this->setfont('Times', '', 14);
 			  
        	   $this->cell(30,10,$data['emp_id'],1,0,'C');
@@ -77,6 +80,7 @@ class MyEmppdfController extends FPDF
          $this->Ln();
        }
 	}
+}
 	
 	
 }

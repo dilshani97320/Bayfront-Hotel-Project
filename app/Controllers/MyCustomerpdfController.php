@@ -48,31 +48,36 @@ class MyCustomerpdfController extends FPDF
        
         $this->cell(60,10,'Fisrt Name',1,0,'C');
         $this->cell(60,10,'Last Name',1,0,'C');
-        $this->cell(70,10,'Location',1,0,'C');
+        $this->cell(60,10,'Location',1,0,'C');
         $this->cell(50,10,'Contact No',1,0,'C');
-        $this->cell(50,10,'Age',1,0,'C');
-        $this->cell(90,10,'Email',1,0,'C');
+        $this->cell(20,10,'Age',1,0,'C');
+		$this->cell(70,10,'Email',1,0,'C');
+		$this->cell(40,10,'check in date',1,0,'C');
+		$this->cell(40,10,'check out date',1,0,'C');
         $this->Ln();
 
    }
 
-	function viewTable($customer)
+	function viewTable($pdfDate , $id=4)
 	{
-       $this->setfont('Times','',12);
-       //$stmt=$db->query('select * from employee');
+       // die();
+		if ($id ==4) {
+			$this->setfont('Times','',12);
+       		//$stmt=$db->query('select * from employee');
 
+			// while ($data =$stmt->fetch(PDO :: FETCH_OBJ)) {
+				foreach($pdfDate as $data) {
 
-      // while ($data =$stmt->fetch(PDO :: FETCH_OBJ)) {
-          foreach($customer as $data) {
-
-			  $this->setfont('Times', '', 14);
+					$this->setfont('Times', '', 14);
 			  
        	   $this->cell(60,10,$data['first_name'],1,0,'C');
          $this->cell(60,10,$data['last_name'],1,0,'C');
-         $this->cell(70,10,$data['location'],1,0,'C');
+         $this->cell(60,10,$data['location'],1,0,'C');
          $this->cell(50,10,$data['contact_number'],1,0,'C');
-         $this->cell(50,10,$data['age'],1,0,'C');
-         $this->cell(90,10,$data['email'],1,0,'C');
+         $this->cell(20,10,$data['age'],1,0,'C');
+		 $this->cell(70,10,$data['email'],1,0,'C');
+		 $this->cell(40,10,$data['check_in_date'],1,0,'C');
+		 $this->cell(40,10,$data['check_out_date'],1,0,'C');
          //$this->cell(50,10,'Salary',1,0,'C');
          $this->Ln();
        }
@@ -81,7 +86,7 @@ class MyCustomerpdfController extends FPDF
 	
 }
 
-
+}
 
 
 ?>

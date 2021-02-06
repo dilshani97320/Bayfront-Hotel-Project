@@ -64,7 +64,7 @@
                                 </div>
 
                                 <div class="block search">
-                                        <input type='submit' id='bookingSubmit' name='submit' class='form__submit' value='Search rooms' onclick=alert("hello");>
+                                        <input type='submit' id='bookingSubmit' name='submit' class='form__submit' value='Search rooms'>
                                 </div>
                         
                 </div>

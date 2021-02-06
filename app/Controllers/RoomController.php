@@ -329,14 +329,16 @@ class RoomController {
 
     }
 
-    public function checkRoomCustomer() {
+    public function checkRoomCustomer($check_in_date = '0000-00-00', $check_out_date= '0000-00-00', $no_of_rooms=0, $no_of_guests=0,$customer_id = 0) {
         // if(isset($_POST['submit'])) {
 
         //     $type_name = $_POST['type_name']; 
         //     $errors[] = array();
         //     $check_in_date = $_POST['check_in_date'];
         //     $check_out_date = $_POST['check_out_date'];
+        // echo "success1";
         if(isset($_POST['submit'])) {
+            // echo "success2";
             $errors[] = array();
             $check_in_date = $_POST['check_in_date'];
             $check_out_date = $_POST['check_out_date'];
@@ -370,7 +372,151 @@ class RoomController {
             $errors = array_filter( $errors ); 
             // var_dump($errors);
             // check_in_date, check_out_date, no_of_guest, no_of_rooms
+            // echo "success3";
+            // echo "<br>";
+            // var_dump($errors);
+            
             if(count( $errors ) == 0) {
+                $this->room_search_process($check_in_date, $check_out_date, $no_of_rooms, $no_of_guests);
+            }
+            else {
+                // echo "HEllo";
+                $data['errors'] = $errors;
+                $db = new RoomDetails();
+                $data['room_details'] = $db->getRoomView(); 
+    
+                $db = new Image();
+                $imageRoom =$db->viewRoom();
+                // var_dump($imageRoom);
+                $data['img_details'] = $imageRoom;
+        
+                View::load('room', $data);
+            }
+
+
+
+        }
+        else {
+            $this->room_search_process($check_in_date, $check_out_date, $no_of_rooms, $no_of_guests,$customer_id);
+        }
+    }
+
+    private function availableRoomFind1($room_type_id, $check_in_date, $check_out_date, $limit) {
+
+        $rooms[] = array();
+        $details[] = array();
+        $rooms = $this->availableRooms($room_type_id, $check_in_date, $check_out_date);
+        // var_dump($rooms);
+        // echo "</br>";
+        // die();
+        // $rooms = array_filter( $rooms );
+        if(count($rooms) >= $limit) {
+            $datails['data'] = $rooms;
+            $datails['msg'] = "Rooms Available";
+            // echo "Rooms Available";
+            
+        }
+        else {
+            $datails['msg'] = "No Rooms Available";
+            // echo "No Rooms Available";
+        }
+        return $datails;
+    }
+
+    private function availableRoomFind2($room_type_id1, $room_type_id2, $check_in_date, $check_out_date) {
+        $details[] = array();
+        $rooms[] = array();
+        $rooms1[] = array();
+        $rooms2[] = array();
+        $rooms1 = $this->availableRooms($room_type_id1, $check_in_date, $check_out_date);
+        $rooms2 = $this->availableRooms($room_type_id2, $check_in_date, $check_out_date);
+        if(count($rooms1) >= 1 && count($rooms2) >= 1) {
+            // var_dump($rooms1);
+            // var_dump($rooms2);
+            $rooms=array_merge($rooms1, $rooms2);
+            $datails['data'] = $rooms;
+            $datails['msg'] = "Rooms Available";
+            // echo "Rooms Available";
+        }
+        else {
+            $datails['msg'] = "Rooms Not Available";
+            // echo "No Rooms Available";
+        }
+        return $datails;
+    }
+
+    private function availableRooms($room_type_id, $check_in_date, $check_out_date) {
+        // echo $room_type_id;
+        // echo "</br>";
+        // echo $check_in_date;
+        // echo "</br>";
+        // echo $check_out_date;
+        // echo "</br>";
+        $db = new RoomDetails();
+        // echo "Level 1";
+        // echo "</br>";
+        // $type_id = $db->getTypeID($type_name);
+        // $room_type_id = $type_id['room_type_id'];
+        $db->setRoomTypeId($room_type_id);
+        // echo "Level 2";
+        // echo "</br>";
+        
+        // $rooms = $db->getRoomAllID($room_type_id);
+        $rooms = $db->getRoomAllID($room_type_id);
+        // echo "Level 3";
+        // echo "</br>";
+        // var_dump($rooms);
+        // echo "<br>";
+        $update = $db->getRoomsUpdate();
+        // var_dump($rooms);
+        if($update == 1) {
+            foreach($rooms as $room) {
+                // var_dump($result);
+                // echo $room['room_id'];
+                // echo "<br>";
+                $result = $db->roomAvalability($room['room_id'],$check_in_date,$check_out_date);
+                // var_dump($result);
+                // echo $result;
+                // echo "<br>";
+                if($result == 1) {
+                    
+                    $result = $db->roomTodayBookedUpdate($room['room_id']);
+                    
+                }
+
+            }
+        }
+    
+        $db->setRoomTypeId($room_type_id);
+        // $rooms = $db->getAvailableRooms($room_type_id, $check_in_date, $check_out_date);
+        $rooms = $db->getAvailableRooms($check_in_date, $check_out_date);
+        // echo "sucess1";
+        // var_dump($rooms);
+        // die();
+        $num_of_rooms[] = array();
+        $room_number = "000";
+        foreach($rooms as $room) {
+            
+            if($room_number !== $room['room_number']) {
+                // echo $room['room_number'];
+                $room_number = $room['room_number'];
+                array_push($num_of_rooms,$room_number);
+            }
+            
+
+        }
+        return $num_of_rooms;
+    }
+
+    private function room_search_process($check_in_date, $check_out_date, $no_of_rooms, $no_of_guests,$customer_id=0) {
+        if($customer_id != 0) {
+            $data['customer'] = array("id"=>$customer_id);
+        }
+
+        $inputdata = array("check_in_date"=>$check_in_date, "check_out_date"=>$check_out_date, "no_of_rooms"=>$no_of_rooms, "no_of_guests"=>$no_of_guests);
+
+                // echo "success4";
+                // echo "<br>";
                 $result[] = array();
 
                 if($no_of_rooms == 1 && $no_of_guests == 1) {
@@ -851,155 +997,72 @@ class RoomController {
                     $result=array_merge($result1, $result2, $result3);
 
                 }
+                // else {
+                //     // echo "Tharindu";
+                //     $data['msg1']= "Invalid data enter for search";
+                // }
             
-            // var_dump($result);
-            // redirect room page
-            $dbroom = new RoomDetails();
-            $dbimg = new Image();
-            $roomresult[] = array();
-            $imgresult[] = array();
-            // $room_number1 = "";
-            $roomresult1 = $dbroom->getRoomView();
-            // die();
-            $result = array_unique($result);
-            foreach($result as $room_number) {
-                
-                $room = $dbroom->getOneRoomView($room_number);
-                if(empty($roomresult)) {
-                    $roomresult = $room;
-                }
-                else {
-                    $roomresult = array_merge($roomresult, $room);
-                }
-                $img = $dbimg->view($room_number);
-                if(empty($imgresult)) {
-                    $imgresult = $img;
-                }
-                else {
-                    $imgresult = array_merge($imgresult, $img);
-                }
-                // array_push($imgresult ,$img);
-            }
-            $roomresult = array_filter( $roomresult );
-            $imgresult = array_filter( $imgresult );
-            // var_dump($roomresult);
-            $data['room_details']= $roomresult;
-
-            $data['img_details'] = $imgresult;
-            
-            View::load('room', $data);
-            }
-
-
-
-        }
-    }
-
-    private function availableRoomFind1($room_type_id, $check_in_date, $check_out_date, $limit) {
-
-        $rooms[] = array();
-        $details[] = array();
-        $rooms = $this->availableRooms($room_type_id, $check_in_date, $check_out_date);
-        // var_dump($rooms);
-        // echo "</br>";
-        // die();
-        // $rooms = array_filter( $rooms );
-        if(count($rooms) >= $limit) {
-            $datails['data'] = $rooms;
-            $datails['msg'] = "Rooms Available";
-            // echo "Rooms Available";
-            
-        }
-        else {
-            $datails['msg'] = "No Rooms Available";
-            // echo "No Rooms Available";
-        }
-        return $datails;
-    }
-
-    private function availableRoomFind2($room_type_id1, $room_type_id2, $check_in_date, $check_out_date) {
-        $details[] = array();
-        $rooms[] = array();
-        $rooms1[] = array();
-        $rooms2[] = array();
-        $rooms1 = $this->availableRooms($room_type_id1, $check_in_date, $check_out_date);
-        $rooms2 = $this->availableRooms($room_type_id2, $check_in_date, $check_out_date);
-        if(count($rooms1) >= 1 && count($rooms2) >= 1) {
-            // var_dump($rooms1);
-            // var_dump($rooms2);
-            $rooms=array_merge($rooms1, $rooms2);
-            $datails['data'] = $rooms;
-            $datails['msg'] = "Rooms Available";
-            // echo "Rooms Available";
-        }
-        else {
-            $datails['msg'] = "Rooms Available";
-            // echo "No Rooms Available";
-        }
-        return $datails;
-    }
-
-    private function availableRooms($room_type_id, $check_in_date, $check_out_date) {
-        // echo $room_type_id;
-        // echo "</br>";
-        // echo $check_in_date;
-        // echo "</br>";
-        // echo $check_out_date;
-        // echo "</br>";
-        $db = new RoomDetails();
-        // echo "Level 1";
-        // echo "</br>";
-        // $type_id = $db->getTypeID($type_name);
-        // $room_type_id = $type_id['room_type_id'];
-        $db->setRoomTypeId($room_type_id);
-        // echo "Level 2";
-        // echo "</br>";
-        
-        // $rooms = $db->getRoomAllID($room_type_id);
-        $rooms = $db->getRoomAllID($room_type_id);
-        // echo "Level 3";
-        // echo "</br>";
-        // var_dump($rooms);
-        // echo "<br>";
-        $update = $db->getRoomsUpdate();
-        // var_dump($rooms);
-        if($update == 1) {
-            foreach($rooms as $room) {
                 // var_dump($result);
-                // echo $room['room_id'];
-                // echo "<br>";
-                $result = $db->roomAvalability($room['room_id'],$check_in_date,$check_out_date);
-                // var_dump($result);
+                // redirect room page
+                $dbroom = new RoomDetails();
+                $dbimg = new Image();
+                $roomresult[] = array();
+                $imgresult[] = array();
+                // $room_number1 = "";
+                // $roomresult1 = $dbroom->getRoomView();
+                // die();
+                $result = array_unique($result);
+                $result = array_filter( $result);
                 // echo $result;
-                // echo "<br>";
-                if($result == 1) {
-                    
-                    $result = $db->roomTodayBookedUpdate($room['room_id']);
-                    
+                // var_dump($result);
+                // die();
+                
+                if(empty($result)) {
+                    // echo "tharindu";
+                    // die();
+                    $data['msg2']= "No Result Found";
+                    $db = new RoomDetails();
+                    $data['room_details'] = $db->getRoomView(); 
+        
+                    $db = new Image();
+                    $imageRoom =$db->viewRoom();
+                    // var_dump($imageRoom);
+                    $data['img_details'] = $imageRoom;
+            
+                    View::load('room', $data);
                 }
-
-            }
-        }
-    
-        $db->setRoomTypeId($room_type_id);
-        // $rooms = $db->getAvailableRooms($room_type_id, $check_in_date, $check_out_date);
-        $rooms = $db->getAvailableRooms($check_in_date, $check_out_date);
-        // echo "sucess1";
-        // var_dump($rooms);
-        // die();
-        $num_of_rooms[] = array();
-        $room_number = "000";
-        foreach($rooms as $room) {
-            
-            if($room_number !== $room['room_number']) {
-                // echo $room['room_number'];
-                $room_number = $room['room_number'];
-                array_push($num_of_rooms,$room_number);
-            }
-            
-
-        }
-        return $num_of_rooms;
+                else {
+                    foreach($result as $room_number) {
+                    
+                        $room = $dbroom->getOneRoomView($room_number);
+                        if(empty($roomresult)) {
+                            $roomresult = $room;
+                        }
+                        else {
+                            $roomresult = array_merge($roomresult, $room);
+                        }
+                        $img = $dbimg->view($room_number);
+                        if(empty($imgresult)) {
+                            $imgresult = $img;
+                        }
+                        else {
+                            $imgresult = array_merge($imgresult, $img);
+                        }
+                        // array_push($imgresult ,$img);
+                    }
+        
+                    $roomresult = array_filter( $roomresult );
+                    $imgresult = array_filter( $imgresult );
+                    $inputdata = array_filter( $inputdata );
+                    // var_dump($roomresult);
+                    $data['room_details']= $roomresult;
+        
+                    $data['img_details'] = $imgresult;
+                    $data['input_data'] = $inputdata;
+                    // var_dump($inputdata);
+                    // die();
+                    View::load('room', $data);
+                }
     }
 
 

@@ -1,22 +1,49 @@
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	
-	<meta charset="UTF-8">	
+  <head>
+
+    <meta charset="UTF-8" />
 	<link rel="icon" type="image/png" href="<?php echo BURL.'assets/img/basic/favicon.png'; ?>" />
-	<title>BAYFRONT ROOM</title>
+    <title>BAYFRONT HOTEL</title>
 
 </head>
 <style>
+	
+
 	.servbadge .meta2 svg{
 		fill: #008009;
 	}
 	.value-meta{
 		font-weight: 500;
 	}
+
+	
+	
+
+
+
+	
+
 </style>
 <body>
-		 <?php include(VIEWS.'inc/header-room.php');  ?>
+    
+	<?php 
+	// echo $msg1;
+	// echo $msg2;
+	// die();
+		if(isset($errors) && !empty($errors)) {
+			echo '<script>alert("Enter Data is invalid")</script>';
+		}
+		else {
+			if(isset($msg2)) {
+				echo '<script>alert("'.$msg2.'")</script>';
+			}
+		}
+				
+	?>
+
+	<?php include(VIEWS.'inc/header-room.php');  ?>
 	<div class="container">
 <?php $count =0; ?>
 	<?php  foreach ($room_details as $key=>$value): //var_dump($value); ?>
@@ -97,8 +124,19 @@
 					
 					<div class="bttn">
 						<a class="btn" href="<?php url('RoomSuite/ViewRoom/'.$value['room_number'] ); ?> ">VIEW MORE <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-						<a class="btn" href="<?php url('Booking/' ); ?> ">BOOK NOW <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+						
+						<!-- Check if user give check-out-date and check-in-date -->
+						<?php if(isset($input_data) && (isset($customer) && $customer['id'] != 0)) { ?>
+								
+								<a class="btn" href="<?php url('Reservation/indexOnline/'.$value['room_number'].'/'.$value['max_guest'].'/'.$input_data['check_in_date'].'/'.$input_data['check_out_date'].'/'.$input_data['no_of_rooms'].'/'.$input_data['no_of_guests'].'/'.$customer['id']); ?>">BOOK NOW1<i class="fa fa-chevron-right" aria-hidden="true"></i></a>	
+						<?php }if(isset($input_data) && (!isset($customer))) { ?>
+								<a class="btn" href="<?php url('Reservation/indexOnline/'.$value['room_number'].'/'.$value['max_guest'].'/'.$input_data['check_in_date'].'/'.$input_data['check_out_date'].'/'.$input_data['no_of_rooms'].'/'.$input_data['no_of_guests'] ); ?>">BOOK NOW2<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+						<?php }else { ?>
+							<a class="btn" href="<?php url('RoomSuite/ViewRoom/'.$value['room_number'] ); ?> ">BOOK NOW <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+						<?php } ?>
+						
 					</div>
+					
 				</div>
 				<div class="room-img">
 					<?php  foreach ($img_details as $key=>$valueImg): //var_dump($value); ?>
@@ -113,12 +151,14 @@
 				</div>
 			</div>
 		</div>
+		<?php //include(VIEWS.'dashboard/reservation/onlineCreate.php'); ?>
 			 
 	<?php endif; ?> 
 	<?php endforeach; ?>  
 	</div>             
 		
 	<?php include(VIEWS.'inc/footer.php'	); ?>
+	
 </body>
 </html>
 

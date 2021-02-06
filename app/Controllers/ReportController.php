@@ -55,7 +55,7 @@ class ReportController {
         }
         else {
             //get employee details
-            $room=new RoomDetails();//create a object from employee class(model/roomdetails)
+            $room=new Report();//create a object from employee class(model/roomdetails)
             $room_details=$room->getAllRoomPdf();//get data from emplyee class /getallEmployee thamai data okkom arn emp varible akt demma
             // var_dump($emp);
             // die();

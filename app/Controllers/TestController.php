@@ -1,16 +1,16 @@
 <?php 
 session_start();
 
-class ReservationController {
+class TestController {
 
     public function index() {
-        
-        //Checking if a user is logged in
-        if(!isset($_SESSION['user_id'])) {
-            view::load('dashboard/dashboard');    
-        }
-        else {
-            view::load('dashboard/reservation/create');
+        view::load('dashboard/inc/formtest');
+        // //Checking if a user is logged in
+        // if(!isset($_SESSION['user_id'])) {
+        //     view::load('dashboard/dashboard');    
+        // }
+        // else {
+        //     view::load('dashboard/reservation/create');
             // $data = array();
             // $db = new Employee;
             // if(isset($_POST['search'])) {
@@ -26,7 +26,7 @@ class ReservationController {
             // }
             
             
-        }
+        // }
            
     }
 

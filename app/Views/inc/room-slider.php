@@ -261,13 +261,7 @@ $('.dot').on('click', function(){
 //slideshow
 });
 
-/*
-JQUERY SLIDER BY JohnRostislavovich - https://codepen.io/JohnRostislavovich
-ALL YOU HAVE TO DO:
--copy the whole code html, css & js
--include jquery lib
--change the images
-*/
+
 
 </script>
 

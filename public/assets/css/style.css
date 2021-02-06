@@ -1650,6 +1650,8 @@ figure.imgBlockSurf.hover .title:after {
     height: 100px;
     margin-top: -100px;
     margin-bottom: 40px;
+    position: relative;
+    z-index: 2;
 }
 .block{
   flex-basis: 200px;
@@ -1715,6 +1717,13 @@ figure.imgBlockSurf.hover .title:after {
   cursor: pointer;
 }
 
+/* .form_submit:hover {
+  background-color: #0b2e4f;
+}
+
+#bookingSubmit:hover {
+  background-color: #0b2e4f;
+} */
 
 /*Service Block==============================================================================================================*/
 .information-container {

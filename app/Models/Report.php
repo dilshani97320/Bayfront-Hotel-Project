@@ -29,7 +29,9 @@ class Report {
      // echo $d1;
      // exit;
  
+
      $query="SELECT DISTINCT first_name,last_name,contact_number,room_number,room_name,room_view,no_of_guest,payment_method,check_in_date,check_out_date
+
       FROM reservation INNER JOIN customer on reservation.customer_id=customer.customer_id
       INNER JOIN room_details on room_details.room_id=reservation.room_id order BY check_in_date";
      // echo $query;
@@ -53,7 +55,9 @@ class Report {
     // echo $d1;
     // exit;
 
+
     $query="SELECT DISTINCT first_name,last_name,contact_number,room_number,room_name,room_view,no_of_guest,payment_method,check_in_date,check_out_date
+
      FROM reservation INNER JOIN customer on reservation.customer_id=customer.customer_id
      INNER JOIN room_details on room_details.room_id=reservation.room_id WHERE check_in_date BETWEEN '{$d1}' and '{$d2}' order BY check_in_date";
     
@@ -81,7 +85,9 @@ class Report {
      // echo $d1;
      // exit;
  
+
      $query="SELECT DISTINCT first_name,last_name,contact_number,roomdesc,amount,currency,created_at,check_in_date,check_out_date
+
      FROM reservation INNER JOIN customer on reservation.customer_id=customer.customer_id INNER JOIN payment on reservation.reservation_id=payment.reservation_id 
      order BY check_in_date";
      // echo $query;
@@ -105,7 +111,9 @@ class Report {
     // echo $d1;
     // exit;
 
+
      $query="SELECT DISTINCT first_name,last_name,contact_number,roomdesc,amount,currency,created_at,check_in_date,check_out_date
+
       FROM reservation INNER JOIN customer on reservation.customer_id=customer.customer_id INNER JOIN payment on reservation.reservation_id=payment.reservation_id 
      WHERE check_in_date BETWEEN '{$d1}' and '{$d2}' order BY check_in_date";
     // echo $query;
@@ -129,7 +137,9 @@ class Report {
     // echo $d1;
     // exit;
 
+
     $query="SELECT DISTINCT emp_id,first_name,last_name,email,salary,location,contact_num,post from employee";
+
     // echo $query;
     // exit;
     $users = mysqli_query($this->connection, $query);
@@ -152,7 +162,9 @@ class Report {
     // echo $d1;
     // exit;
 
+
      $query="SELECT DISTINCT emp_id,first_name,last_name,email,salary,location,contact_num,post from employee
+
      WHERE registered_date BETWEEN '{$d1}' and '{$d2}' order BY registered_date";
     // echo $query;
     // exit;
@@ -237,6 +249,7 @@ class Report {
 //exit;
 return $users;    
 }
+
 
 
  

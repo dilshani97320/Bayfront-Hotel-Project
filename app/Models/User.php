@@ -15,7 +15,7 @@ class User extends Connection{
     }
 
     public function getUserEmail($id) {
-        $this->user_id = mysqli_real_escape_string($this->connection, $user_id); 
+        $this->user_id = mysqli_real_escape_string($this->connection, $id); 
 
         $user = array();
         $query = "SELECT email FROM $this->user_table 

@@ -30,27 +30,41 @@ class ReservationController {
         // echo("sucess");
         // die();
         // Checking if a user is logged in
+            // this check online customer id this must be change(remind)
             if(isset($_SESSION['user_id'])) {
                 //get data from user
                 $user = new User();
                 $user_email = $user->getUserEmail($_SESSION['user_id']);
-                $customer = new Customer();
-                $customer_details = $customer->getEmailData($email);
-                $customer_details = array_filter( $customer_details );
-                if(!empty($customer_details)) {
-                    $reservation = array('first_name'=>$customer_details['first_name'], 'last_name'=>$customer_details['last_name'],'age'=>$customer_details['age'],'location'=>$customer_details['location'],'contact_number'=>$customer_details['contact_number'],'email'=>$customer_details['email'],'room_number'=>$room_number,'max_guest'=>$max_guest,'check_in_date'=>$check_in_date, 'check_out_date'=>$check_out_date);
-                }
-                else {
+                if(empty($user_email)) {
                     if($customer_id != 0) {
                         $customer = new Customer();
                         $customer_details = $customer->getCustomer($customer_id);
                         $reservation = array('first_name'=>$customer_details['first_name'], 'last_name'=>$customer_details['last_name'],'age'=>$customer_details['age'],'location'=>$customer_details['location'],'contact_number'=>$customer_details['contact_number'],'email'=>$customer_details['email'],'room_number'=>$room_number,'max_guest'=>$max_guest,'check_in_date'=>$check_in_date, 'check_out_date'=>$check_out_date);
                     }
                     else {
-                        $reservation = array('email'=>$customer_details['email'],'room_number'=>$room_number,'max_guest'=>$max_guest,'check_in_date'=>$check_in_date, 'check_out_date'=>$check_out_date);
+                        $reservation = array('room_number'=>$room_number,'max_guest'=>$max_guest,'check_in_date'=>$check_in_date, 'check_out_date'=>$check_out_date);
                     }
-                    
                 }
+                else {
+                    $customer = new Customer();
+                    $customer_details = $customer->getEmailData($email);
+                    $customer_details = array_filter( $customer_details );
+                    if(!empty($customer_details)) {
+                        $reservation = array('first_name'=>$customer_details['first_name'], 'last_name'=>$customer_details['last_name'],'age'=>$customer_details['age'],'location'=>$customer_details['location'],'contact_number'=>$customer_details['contact_number'],'email'=>$customer_details['email'],'room_number'=>$room_number,'max_guest'=>$max_guest,'check_in_date'=>$check_in_date, 'check_out_date'=>$check_out_date);
+                    }
+                    else {
+                        if($customer_id != 0) {
+                            $customer = new Customer();
+                            $customer_details = $customer->getCustomer($customer_id);
+                            $reservation = array('first_name'=>$customer_details['first_name'], 'last_name'=>$customer_details['last_name'],'age'=>$customer_details['age'],'location'=>$customer_details['location'],'contact_number'=>$customer_details['contact_number'],'email'=>$customer_details['email'],'room_number'=>$room_number,'max_guest'=>$max_guest,'check_in_date'=>$check_in_date, 'check_out_date'=>$check_out_date);
+                        }
+                        else {
+                            $reservation = array('email'=>$customer_details['email'],'room_number'=>$room_number,'max_guest'=>$max_guest,'check_in_date'=>$check_in_date, 'check_out_date'=>$check_out_date);
+                        }
+                        
+                    }
+                }
+                
             }
             else {
                 if($customer_id != 0) {
@@ -160,8 +174,18 @@ class ReservationController {
     }
     
     public function create($discountValue = 0, $check_inSearch = '0000-00-00', $check_outSearch = '0000-00-00', $typenameSearch="None",$no_of_rooms=0,$guest=0) {
-        echo $discountValue;
-        die();
+        // echo $discountValue;
+        // echo "</br>";
+        // echo $check_inSearch;
+        // echo "</br>";
+        // echo $check_outSearch;
+        // echo "</br>";
+        // echo $typenameSearch;
+        // echo "</br>";
+        // echo $no_of_rooms;
+        // echo "</br>";
+        // echo $guest;
+        // die();
         if(!isset($_SESSION['user_id'])) {
             $dashboard = new DashboardController();
             $dashboard->index();    
@@ -389,11 +413,11 @@ class ReservationController {
                                             $reservation = $dbreservation->getReservationID($customer_id, $check_in_date, $check_out_date);
                                             $reservation_id = $reservation['reservation_id'];
                                             // check customer want more rooms
-                                            if($no_of_rooms > 1) {
-                                                $no_of_rooms = $no_of_rooms - 1;
-                                                $guest = $guest-$no_of_guest;
+                                            if($no_of_rooms == 1) {
+                                                // $no_of_rooms = $no_of_rooms - 1;
+                                                // $guest = $guest-$no_of_guest;
                                                 $room_search_again = new RoomController();
-                                                $room_search_again->checkRoomCustomer($check_in_date, $check_out_date, $no_of_rooms, $guest,$customer_id);
+                                                $room_search_again->checkRoomCustomerFromReservation($check_in_date, $check_out_date, $no_of_rooms, $guest ,$customer_id);
                                             }
                                             else {
                                                 $dbpayment = new Payment();

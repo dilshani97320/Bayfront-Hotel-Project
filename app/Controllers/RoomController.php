@@ -1,5 +1,8 @@
 <?php 
-session_start();
+// session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 class RoomController {
 
@@ -329,7 +332,7 @@ class RoomController {
 
     }
 
-    public function checkRoomCustomer($check_in_date = '0000-00-00', $check_out_date= '0000-00-00', $no_of_rooms=0, $no_of_guests=0,$customer_id = 0) {
+    public function checkRoomCustomer() {
         // if(isset($_POST['submit'])) {
 
         //     $type_name = $_POST['type_name']; 
@@ -396,9 +399,11 @@ class RoomController {
 
 
         }
-        else {
+        
+    }
+
+    public function checkRoomCustomerFromReservation($check_in_date, $check_out_date, $no_of_rooms, $no_of_guests,$customer_id) {
             $this->room_search_process($check_in_date, $check_out_date, $no_of_rooms, $no_of_guests,$customer_id);
-        }
     }
 
     private function availableRoomFind1($room_type_id, $check_in_date, $check_out_date, $limit) {
@@ -1011,13 +1016,24 @@ class RoomController {
                 // $room_number1 = "";
                 // $roomresult1 = $dbroom->getRoomView();
                 // die();
-                $result = array_unique($result);
-                $result = array_filter( $result);
+                $uniqueResult[] = array();
+                $filterResult[] = array();
+                
+                
+                $filterResult = array_filter( $result);
+                $uniqueResult = array_unique($filterResult);
+                
+                // if($customer_id != 0) {
+                //     var_dump($uniqueResult);
+                //     die();
+                // }
+                // var_dump($filterResult);
+                // die();
                 // echo $result;
                 // var_dump($result);
                 // die();
                 
-                if(empty($result)) {
+                if(empty($uniqueResult)) {
                     // echo "tharindu";
                     // die();
                     $data['msg2']= "No Result Found";
@@ -1032,7 +1048,7 @@ class RoomController {
                     View::load('room', $data);
                 }
                 else {
-                    foreach($result as $room_number) {
+                    foreach($uniqueResult as $room_number) {
                     
                         $room = $dbroom->getOneRoomView($room_number);
                         if(empty($roomresult)) {

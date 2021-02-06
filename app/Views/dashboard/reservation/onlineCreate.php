@@ -23,10 +23,16 @@
                         
                 
 
-                <div class="cardbody" id="popupcardbody">  
+                <div class="cardbody" id="popupcardbody">
+                <?php 
+                // this is not require but use for basic purpose
+                    $roomSearchValue = 0;
+                    $typeName = "None";
+                
+                ?>
                 <?php if(isset($searchdata)){ ?>
-                    //This is use for room serach and goto check now page
-                    <form action="<?php url("reservation/create/".$searchdata['no_of_rooms'].'/'.$searchdata['no_of_guest'].'/'.$reservation['check_in_date'].'/'.$reservation['check_out_date'].'/'.$reservation['type_name']); ?>" method="post" class="addnewform">
+                    <!-- //This is use for room serach and goto check now page -->
+                    <form action="<?php url("reservation/create/". $roomSearchValue.'/'.$reservation['check_in_date'].'/'.$reservation['check_out_date'].'/'.$typeName.'/'.$searchdata['no_of_rooms'].'/'.$searchdata['no_of_guest']); ?>" method="post" class="addnewform">
                 <?php } else { ?>
                     <form action="<?php url("reservation/create"); ?>" method="post" class="addnewform">
                 <?php } ?>    

@@ -49,7 +49,7 @@
 							<div class="title">
 								<i class="fas fa-user-tie"></i>Guest
 							</div>
-							<div class="value-meta"><?php echo $value['max_guest']; ?>2</div>
+							<div class="value-meta"><?php echo $value['max_guest']; ?></div>
 
 						</div>
 						<div class="meta">
@@ -79,7 +79,10 @@
 				</div>
 				<div class="bttn">
 					<a class="btn" href="<?php url('RoomSuite/ViewRoom/'.$value['room_number'] ); ?>">VIEW MORE <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-					<a class="btn" href="#">BOOK NOW <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+					<?php 
+						$checkavailability = 1;
+					?>
+					<a class="btn" href="<?php url('RoomSuite/ViewRoom/'.$value['room_number'].'/'.$checkavailability); ?>">BOOK NOW1<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
 				</div>
 			</div>
 			<div class="room-img">
@@ -117,7 +120,7 @@
 							<div class="title">
 								<i class="fas fa-user-tie"></i>Guest
 							</div>
-							<div class="value-meta"><?php echo $value['max_guest']; ?>2</div>
+							<div class="value-meta"><?php echo $value['max_guest']; ?></div>
 
 						</div>
 						<div class="meta">
@@ -147,7 +150,10 @@
 				</div>
 				<div class="bttn">
 					<a class="btn" href="<?php url('RoomSuite/ViewRoom/'.$value['room_number'] ); ?>">VIEW MORE <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-					<a class="btn" href="#">BOOK NOW <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+					<?php 
+						$checkavailability = 1;
+					?>
+					<a class="btn" href="<?php url('RoomSuite/ViewRoom/'.$value['room_number'].'/'.$checkavailability); ?>">BOOK NOW1<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
 				</div>
 			</div>
 			<div class="room-img">

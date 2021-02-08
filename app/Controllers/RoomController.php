@@ -331,6 +331,108 @@ class RoomController {
         
 
     }
+    // $room_number, $room_type_id
+    public function checkRoomCustomerRoom($room_number, $room_type_id) {
+        // echo "Tharindu";
+        // echo $room_number;
+        if(isset($_POST['submit'])) {
+            $errors[] = array();
+            // echo "Tharindu1";
+            $check_in_date = $_POST['check_in_date'];
+            $check_out_date = $_POST['check_out_date'];
+            $no_of_rooms = $_POST['no_of_rooms'];
+            $no_of_guests = $_POST['no_of_guests'];
+            // echo $check_in_date;
+
+            if(!$this->is_date($_POST['check_in_date'])) {
+                $errors['check_in_date'] = 'Date is Invalid';
+            }
+
+            //check out date is valid
+            if(!$this->is_date($_POST['check_out_date'])) {
+                $errors['check_out_date'] = 'Date is Invalid';
+            }
+
+            if($check_in_date > $check_out_date) {
+                $errors['chek_out_date'] = "Date is Invalid";
+            }
+
+            if($no_of_rooms == NULL) {
+                $errors['no_of_rooms'] = "No of Rooms is Invalid";
+                // $errors['no_of_rooms'] = "Room Type is Invalid";
+            }
+
+            if($no_of_guests == NULL) {
+                $errors['no_of_guests'] = "No of Guests is Invalid";
+                // $errors['no_of_rooms'] = "Room Type is Invalid";
+            }
+            // echo $check_in_date;
+            // echo $check_out_date;
+            $errors = array_filter( $errors ); 
+            if(count( $errors ) == 0) {
+                $inputdata = array("check_in_date"=>$check_in_date, "check_out_date"=>$check_out_date, "no_of_rooms"=>$no_of_rooms, "no_of_guests"=>$no_of_guests);
+                // echo "Tharindu";
+                $db = new RoomDetails();
+                $db->setRoomTypeId($room_type_id);
+
+                $rooms = $db->getRoomAllID($room_type_id);
+                $update = $db->getRoomsUpdate();
+                if($update == 1) {
+                    foreach($rooms as $room) {
+                        $result = $db->roomAvalability($room['room_id'],$check_in_date,$check_out_date);
+                        if($result == 1) {
+                            $result = $db->roomTodayBookedUpdate($room['room_id']); 
+                        }
+                    }
+                }
+            
+                $db->setRoomTypeId($room_type_id);
+                $rooms = $db->getAvailableRooms($check_in_date, $check_out_date);
+                $num_of_rooms[] = array();
+                // $room_number = "000";
+                $availability = 0;
+                foreach($rooms as $room) {
+                    
+                    if($room_number == $room['room_number']) {
+                        // echo $room['room_number'];
+                        // $room_number = $room['room_number'];
+                        // array_push($num_of_rooms,$room_number);
+
+                        $availability = 1;
+                        break;
+                    }
+                    
+                }
+                $roomAvailable = array("availability" => $availability);
+                // var_dump()
+                $data['roomAvailable']  = $roomAvailable;
+                $db = new RoomDetails();
+                $data['room_details'] = $db->getOneRoomView($room_number); 
+
+                $db = new Image();
+                $imageRoom =$db->view($room_number);
+                // var_dump($imageRoom);
+                $data['input_data'] = $inputdata;
+                $data['img_details'] = $imageRoom;
+                View::load('view-room', $data);
+                
+                
+            }
+            else {
+                // echo "HEllo";
+                // show one room view
+                $data['errors'] = $errors;
+                $db = new RoomDetails();
+                $data['room_details'] = $db->getOneRoomView($room_number); 
+
+                $db = new Image();
+                $imageRoom =$db->view($room_number);
+                // var_dump($imageRoom);
+                $data['img_details'] = $imageRoom;
+                View::load('view-room', $data);
+            }
+        }
+    }
 
     public function checkRoomCustomer() {
         // if(isset($_POST['submit'])) {
@@ -508,7 +610,6 @@ class RoomController {
                 array_push($num_of_rooms,$room_number);
             }
             
-
         }
         return $num_of_rooms;
     }

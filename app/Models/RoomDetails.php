@@ -215,13 +215,56 @@ class RoomDetails extends RoomType {
         else {
             echo "Database Query Failed getAvailableRooms";
         }
-
-        
-
-
-
     }
 
+    // public function getAvailableRoomsID($room_id,$check_in_date, $check_out_date) {
+    //         date_default_timezone_set("Asia/Colombo");
+    //         $current_date = date('Y-m-d');
+    //         $this->room_id = mysqli_real_escape_string($this->connection, $room_id);
+    //         // $check_in_date = mysqli_real_escape_string($this->connection, $check_in_date);
+    //         // $check_out_date = mysqli_real_escape_string($this->connection, $check_out_date);
+
+    //         $roomAvailableGet = new Reservation();
+    //         $roomAvailableGet->setCheckInOutDate($check_in_date, $check_out_date);
+    
+
+
+    //         $query = "SELECT $this->room_table.room_number,  $this->room_table.room_name, $this->room_table.price, 
+    //                     $this->room_type_table.max_guest,
+    //                     $roomAvailableGet->reservation_table.check_in_date, $roomAvailableGet->reservation_table.check_out_date
+    //                     FROM $this->room_table
+    //                     INNER JOIN $this->room_type_table
+    //                     ON  $this->room_table.type_id = $this->room_type_table.room_type_id
+    //                     LEFT OUTER JOIN $roomAvailableGet->reservation_table
+    //                     ON  $this->room_table.room_id = $roomAvailableGet->reservation_table.room_id 
+    //                     WHERE $this->room_table.today_booked = 0 AND $this->room_table.room_id = '{$this->room_id}' AND $this->room_table.is_delete =0 AND
+    //                     ((($roomAvailableGet->reservation_table.check_in_date != '{$current_date}' AND $roomAvailableGet->reservation_table.check_in_date > '{$check_in_date}' AND $roomAvailableGet->reservation_table.check_in_date > '{$check_out_date}' AND $roomAvailableGet->reservation_table.is_valid = 1) OR
+    //                     $roomAvailableGet->reservation_table.check_in_date IS NULL) OR 
+    //                     (($roomAvailableGet->reservation_table.check_in_date != '{$current_date}' AND $roomAvailableGet->reservation_table.check_out_date < '{$check_in_date}' AND $roomAvailableGet->reservation_table.check_out_date < '{$check_out_date}' AND $roomAvailableGet->reservation_table.is_valid = 1) OR
+    //                     $roomAvailableGet->reservation_table.check_out_date IS NULL))
+    //                     ORDER BY  room_details.room_id";
+        
+    
+    //         $rooms= mysqli_query($this->connection, $query);
+    //         // var_dump($rooms);
+    //         // echo "<br>";
+    //         if($rooms) {
+    //             if(mysqli_num_rows($rooms) != 0) {
+    //                 mysqli_fetch_all($rooms,MYSQLI_ASSOC);
+    //                 // $value = 1;
+    //                 // echo "have a data";
+    //                 return $rooms;
+    //             }
+    //             else {
+    //                 $rooms = array();
+    //                 $value = 0;
+    //                 return $rooms;
+    //             }
+    //         }
+    //         else {
+    //             echo "Database Query Failed getAvailableRooms";
+    //             }
+    // }
     public function getRoomAllID() {
 
         // $room_type_id = mysqli_real_escape_string($this->connection, $room_type_id);

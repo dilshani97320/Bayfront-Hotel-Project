@@ -180,3 +180,7 @@ INFO: Unsupported notification method: $/setTraceNotification
 [0m2021.02.02 00:17:37 WARN  Build server is not auto-connectable.[0m
 [0m2021.02.02 00:17:37 WARN  no build tool detected in workspace 'C:\xampp\htdocs\MVC'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
 [0m2021.02.02 02:54:54 INFO  shutting down Metals[0m
+[0m2021.02.08 10:35:26 INFO  Started: Metals version 0.9.10 in workspace 'C:\xampp\htdocs\MVC' for client vscode 1.53.0.[0m
+[0m2021.02.08 10:35:28 INFO  time: initialize in 2.1s[0m
+[0m2021.02.08 10:35:31 WARN  Build server is not auto-connectable.[0m
+[0m2021.02.08 10:35:31 WARN  no build tool detected in workspace 'C:\xampp\htdocs\MVC'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m

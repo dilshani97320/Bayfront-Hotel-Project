@@ -26,18 +26,68 @@ class ReservationController {
            
     }
 
-    public function indexOnline() {
+    public function indexOnline($room_number,$max_guest,$check_in_date,$check_out_date,$no_of_rooms, $no_of_guest, $customer_id=0) {
+        // echo("sucess");
+        // die();
         // Checking if a user is logged in
-        if(!isset($_SESSION['user_id'])) {
-            $dashboard = new DashboardController();
-            $dashboard->index();
-        }
-        else {
+            // this check online customer id this must be change(remind)
+            if(isset($_SESSION['user_id'])) {
+                //get data from user
+                $user = new User();
+                $user_email = $user->getUserEmail($_SESSION['user_id']);
+                if(empty($user_email)) {
+                    if($customer_id != 0) {
+                        $customer = new Customer();
+                        $customer_details = $customer->getCustomer($customer_id);
+                        $reservation = array('first_name'=>$customer_details['first_name'], 'last_name'=>$customer_details['last_name'],'age'=>$customer_details['age'],'location'=>$customer_details['location'],'contact_number'=>$customer_details['contact_number'],'email'=>$customer_details['email'],'room_number'=>$room_number,'max_guest'=>$max_guest,'check_in_date'=>$check_in_date, 'check_out_date'=>$check_out_date);
+                    }
+                    else {
+                        $reservation = array('room_number'=>$room_number,'max_guest'=>$max_guest,'check_in_date'=>$check_in_date, 'check_out_date'=>$check_out_date);
+                    }
+                }
+                else {
+                    $customer = new Customer();
+                    $customer_details = $customer->getEmailData($email);
+                    $customer_details = array_filter( $customer_details );
+                    if(!empty($customer_details)) {
+                        $reservation = array('first_name'=>$customer_details['first_name'], 'last_name'=>$customer_details['last_name'],'age'=>$customer_details['age'],'location'=>$customer_details['location'],'contact_number'=>$customer_details['contact_number'],'email'=>$customer_details['email'],'room_number'=>$room_number,'max_guest'=>$max_guest,'check_in_date'=>$check_in_date, 'check_out_date'=>$check_out_date);
+                    }
+                    else {
+                        if($customer_id != 0) {
+                            $customer = new Customer();
+                            $customer_details = $customer->getCustomer($customer_id);
+                            $reservation = array('first_name'=>$customer_details['first_name'], 'last_name'=>$customer_details['last_name'],'age'=>$customer_details['age'],'location'=>$customer_details['location'],'contact_number'=>$customer_details['contact_number'],'email'=>$customer_details['email'],'room_number'=>$room_number,'max_guest'=>$max_guest,'check_in_date'=>$check_in_date, 'check_out_date'=>$check_out_date);
+                        }
+                        else {
+                            $reservation = array('email'=>$customer_details['email'],'room_number'=>$room_number,'max_guest'=>$max_guest,'check_in_date'=>$check_in_date, 'check_out_date'=>$check_out_date);
+                        }
+                        
+                    }
+                }
+                
+            }
+            else {
+                if($customer_id != 0) {
+                    $customer = new Customer();
+                    $customer_details = $customer->getCustomer($customer_id);
+                    $reservation = array('first_name'=>$customer_details['first_name'], 'last_name'=>$customer_details['last_name'],'age'=>$customer_details['age'],'location'=>$customer_details['location'],'contact_number'=>$customer_details['contact_number'],'email'=>$customer_details['email'],'room_number'=>$room_number,'max_guest'=>$max_guest,'check_in_date'=>$check_in_date, 'check_out_date'=>$check_out_date);
+                }
+                else {
+                    $reservation = array('room_number'=>$room_number,'max_guest'=>$max_guest,'check_in_date'=>$check_in_date, 'check_out_date'=>$check_out_date);
+                }
+                
+            }
+            $no_of_rooms = $no_of_rooms - 1;
+            $no_of_guest = $no_of_guest- $max_guest;
+            
+            $inputreservationdata=array('no_of_rooms'=>$no_of_rooms, 'no_of_guest'=>$no_of_guest);
+            $data['reservation'] = $reservation;
+            $data['searchdata'] = $inputreservationdata;
             // When login the customer should have details about
             // And should retrieve that
             // that should fix
-            view::load('dashboard/reservation/onlineCreate');
-        }
+            view::load('dashboard/reservation/onlineCreate',$data);
+
     }
 
     public function view($room_number,$max_guest) {
@@ -89,7 +139,7 @@ class ReservationController {
                 $customerDetails = $customer->getCustomer($customer_id);
                 $data['customer'] = $customerDetails;
             }
-           
+            // think room search result will be indicate here
             $value=1;
             $data['discount'] = array("value"=>$value);
             // $data['details'] = array("check_in_date"=>$check_in_date, "check_out_date"=>$check_out_date, "type_name"=>$type_name);
@@ -123,8 +173,19 @@ class ReservationController {
         }
     }
     
-    public function create($discountValue = 0, $check_inSearch = '0000-00-00', $check_outSearch = '0000-00-00', $typenameSearch="None") {
-
+    public function create($discountValue = 0, $check_inSearch = '0000-00-00', $check_outSearch = '0000-00-00', $typenameSearch="None",$no_of_rooms=0,$guest=0) {
+        // echo $discountValue;
+        // echo "</br>";
+        // echo $check_inSearch;
+        // echo "</br>";
+        // echo $check_outSearch;
+        // echo "</br>";
+        // echo $typenameSearch;
+        // echo "</br>";
+        // echo $no_of_rooms;
+        // echo "</br>";
+        // echo $guest;
+        // die();
         if(!isset($_SESSION['user_id'])) {
             $dashboard = new DashboardController();
             $dashboard->index();    
@@ -133,10 +194,6 @@ class ReservationController {
             if(isset($_POST['submit'])) {
 
                 // Validation
-               
-                
-                
-    
                 $first_name = $_POST['first_name'];
                 $first_name = ucwords($first_name);
                 $last_name = $_POST['last_name'];
@@ -349,32 +406,40 @@ class ReservationController {
             
                             
                             if($result == 1) {
-                                    // Success Process
-                                    // view::load('dashboard/reservation/create', ["success"=>"Data Created Successfully"]);
-                                    // $this->details();
                                     if($discountValue == 0) {
+                                        // only payment is online create payment details(idea)
                                         if($payment_method === "ONLINEONLINE") {
                                             //reservation id should find
                                             $reservation = $dbreservation->getReservationID($customer_id, $check_in_date, $check_out_date);
                                             $reservation_id = $reservation['reservation_id'];
-                                            $dbpayment = new Payment();
-                                            $customer_pay_details = $dbpayment->checkCustomerPayment($customer_id);
-                                            if(empty($customer_pay_details)) {     
-                                                $data['reservation'] = array("id"=>$reservation_id);
-                                                $data['customer'] = array("id"=>$customer_id);
-                                            // check already have payment details in the payment details
-                                                view::load('dashboard/reservation/reservationThanks');
+                                            // check customer want more rooms
+                                            if($no_of_rooms == 1) {
+                                                // $no_of_rooms = $no_of_rooms - 1;
+                                                // $guest = $guest-$no_of_guest;
+                                                $room_search_again = new RoomController();
+                                                $room_search_again->checkRoomCustomerFromReservation($check_in_date, $check_out_date, $no_of_rooms, $guest ,$customer_id);
                                             }
                                             else {
-                                                //retrive payment details
-                                                // This has error about we can't generate values for that
-                                                // It should has to fix
-                                                $data['payment'] = $customer_pay_details;
-                                                $data['reservation'] = array("id"=>$reservation_id);
-                                                $data['customer'] = array("id"=>$customer_id);
-                                            // check already have payment details in the payment details
-                                                view::load('dashboard/reservation/reservationThanks');
+                                                $dbpayment = new Payment();
+                                                $customer_pay_details = $dbpayment->checkCustomerPayment($customer_id);
+                                                if(empty($customer_pay_details)) {     
+                                                    $data['reservation'] = array("id"=>$reservation_id);
+                                                    $data['customer'] = array("id"=>$customer_id);
+                                                // check already have payment details in the payment details
+                                                    view::load('dashboard/reservation/reservationThanks');
+                                                }
+                                                else {
+                                                    //retrive payment details
+                                                    // This has error about we can't generate values for that
+                                                    // It should has to fix
+                                                    $data['payment'] = $customer_pay_details;
+                                                    $data['reservation'] = array("id"=>$reservation_id);
+                                                    $data['customer'] = array("id"=>$customer_id);
+                                                // check already have payment details in the payment details
+                                                    view::load('dashboard/reservation/reservationThanks');
+                                                }
                                             }
+                                            
                                             
                                         }
                                         else {

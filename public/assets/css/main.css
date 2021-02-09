@@ -396,6 +396,36 @@ input[type="search"]::-webkit-search-results-decoration {
   display: block;
 }
 
+#popup {
+  justify-content: center;
+  align-items: center;
+  width: 780px;
+  display: block;
+  margin: auto;
+  /* visibility: hidden; */
+  top: -100%;
+  left: 50%;
+}
+#popup.active {
+  /* visibility: visible; */
+  top: 50%;
+}
+
+#popupcardbody {
+  width: 700px;
+}
+
+.closeonline {
+  position: absolute;
+  top: 46px;
+  right: 375px;
+  cursor: pointer;
+}
+
+.closeonline img {
+  max-width: 23px;
+}
+
 .tablecard {
   display: flex;
 }

@@ -140,6 +140,22 @@
 }
 </style>
 <body>
+  <?php 
+
+    if(isset($check_availability['avilability']) && $check_availability['avilability'] == 1) {
+      echo '<script>alert("Check Room Availability")</script>';
+    }
+    if(isset($errors)) {
+      echo '<script>alert("Invalid Data")</script>';
+    }
+    if(isset($roomAvailable['availability']) && $roomAvailable['availability'] == 0 ) {
+      echo '<script>alert("Room isn\'t Available")</script>';
+    }
+    if(isset($roomAvailable['availability']) && $roomAvailable['availability'] == 1 ) {
+      echo '<script>alert("Room is Available")</script>';
+    }
+  
+  ?>
 	<?php include(VIEWS.'inc/header_navbar.php'); ?>
 
   

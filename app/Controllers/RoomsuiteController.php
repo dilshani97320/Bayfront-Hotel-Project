@@ -18,8 +18,11 @@ if(!isset($_SESSION))
             View::load('room', $data);
         }
 
-        public function ViewRoom($room_number)
-        {
+        public function ViewRoom($room_number,$checkAvailability = 0)
+        {   
+            if($checkAvailability != 0) {
+                $data['check_availability'] = array("avilability" => $checkAvailability);
+            }
             $db = new RoomDetails();
             $data['room_details'] = $db->getOneRoomView($room_number); 
 

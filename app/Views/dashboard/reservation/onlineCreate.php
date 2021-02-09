@@ -1,57 +1,42 @@
 <?php 
    // Header
-   $title = "Add-Reservation page";
-   include(VIEWS.'dashboard/inc/header.php');
+    $title = "Add-Reservation page";
+    include(VIEWS.'dashboard/inc/header.php');
 ?> 
 
 
-<div class="wrapper">
 
-    <?php 
-            $navbar_title = "Reservation Page";
-            $search = 0;
-            $search_by = '#';
-       
-            // include(VIEWS.'dashboard/inc/sidebar.php'); //Sidebar
-            // include(VIEWS.'dashboard/inc/navbar.php'); //Navbar
-    ?>
-    
+
+<body>
+
     <!-- Table design -->
-    <div class="content">
+    <div id="popup">
         <div class="tablecard">
             <div class="card">
-
-                <div class="cardheader">
-                    <div class="options">
-                        <h4>New Online Reservation 
-                        <span>
+          
                         <?php if(isset($discount['value'])){ ?>
                             <!-- <a href="<?php url("room/preview/".$details['check_in_date'].'/'.$details['check_out_date'].'/'.$details['type_name']) ?>" class="addnew"><i class="material-icons">reply_all</i></a>   -->
-                            <a href="<?php url("room/preview/".$reservation['check_in_date'].'/'.$reservation['check_out_date'].'/'.$reservation['type_name']) ?>" class="addnew"><i class="material-icons">reply_all</i></a>
+                            <!-- <a href="<?php url("room/preview/".$reservation['check_in_date'].'/'.$reservation['check_out_date'].'/'.$reservation['type_name']) ?>" class="addnew"><i class="material-icons">reply_all</i></a> -->
                         <?php } else { ?>
-                            <a href="<?php url("reservation/details"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>
+                            <!-- <a href="<?php url("reservation/details"); ?>" class="addnew"><i class="material-icons">reply_all</i></a> -->
                         <?php } ?>
-                        </span>
-                        </h4>  
-                    </div>
+                        
+                
 
-                    <p class="textfortabel">Complete Following Details</p>
-                </div>
-
-                <div class="cardbody">  
-                <?php if(isset($discount['value'])){ ?>
-                    //This is use for room serach and goto check now page
-                    <form action="<?php url("reservation/create/".$discount['value'].'/'.$reservation['check_in_date'].'/'.$reservation['check_out_date'].'/'.$reservation['type_name']); ?>" method="post" class="addnewform">
+                <div class="cardbody" id="popupcardbody">
+                <?php 
+                // this is not require but use for basic purpose
+                    $roomSearchValue = 0;
+                    $typeName = "None";
+                
+                ?>
+                <?php if(isset($searchdata)){ ?>
+                    <!-- //This is use for room serach and goto check now page -->
+                    <form action="<?php url("reservation/create/". $roomSearchValue.'/'.$reservation['check_in_date'].'/'.$reservation['check_out_date'].'/'.$typeName.'/'.$searchdata['no_of_rooms'].'/'.$searchdata['no_of_guest']); ?>" method="post" class="addnewform">
                 <?php } else { ?>
                     <form action="<?php url("reservation/create"); ?>" method="post" class="addnewform">
                 <?php } ?>    
                     <div class="section1">
-
-                        <!-- Customer Part -->
-                        <?php
-                        //  $reservation= array('first_name' => "Tharindu", 'credit_card_number'=>"1234-4567-2589-5634"); 
-                        //  $errors= array('first_name' => "less than 100 characters", 'credit_card_number'=>"Must be required"); 
-                        ?>
                         <div class="row">
                             <label for="#"><i class="material-icons">account_box</i>First Name:</label>
                                 <div class="animate-form">
@@ -345,22 +330,21 @@
                         </div>
                     </div>
 
-                    <div class="section2">
-                        
-
-                    </div>
-
                     </form>
                 </div>  <!--End Card Body -->
             </div>  <!--End Card -->
 
             
         </div>
+        <!-- have to create redirect link -->
+        <a class="closeonline"><img src="<?php echo BURL.'assets/img/cancel.png'; ?>" alt=""></a>
     </div>   <!-- End Table design -->
     
-</div>
+<!-- </div> -->
+
     
-<?php include(VIEWS.'dashboard/inc/footer.php'); ?>
+</body>
+</html>
 
 
 

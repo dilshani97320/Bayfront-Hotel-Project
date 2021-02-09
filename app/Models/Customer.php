@@ -59,6 +59,27 @@ class Customer extends Connection {
         return $result;
     }
 
+    public function getEmailData($email) {
+        $customer = array();
+        $this->customer_email = mysqli_real_escape_string($this->connection, $email);
+
+        $query = "SELECT * FROM $this->customer_table
+                  WHERE email = '{$this->customer_email}'
+                  LIMIT 1";
+
+        $result = 0;
+        $result_set = mysqli_query($this->connection, $query);
+        if($result_set){
+            if(mysqli_num_rows($result_set) == 1) {
+                $customer = mysqli_fetch_assoc($result_set);
+            }
+        }
+        else {
+            echo "Query Error";
+        }
+        return $customer;
+    }
+
     public function getCreateCustomer($data) {
 
         $value = 0;

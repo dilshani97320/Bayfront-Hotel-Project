@@ -128,9 +128,9 @@
 						<!-- Check if user give check-out-date and check-in-date -->
 						<?php if(isset($input_data) && (isset($customer) && $customer['id'] != 0)) { ?>
 								
-								<a class="btn" href="<?php url('Reservation/indexOnline/'.$value['room_number'].'/'.$value['max_guest'].'/'.$input_data['check_in_date'].'/'.$input_data['check_out_date'].'/'.$input_data['no_of_rooms'].'/'.$input_data['no_of_guests'].'/'.$customer['id']); ?>">BOOK NOW1<i class="fa fa-chevron-right" aria-hidden="true"></i></a>	
+								<a class="btn" href="<?php url('Reservation/indexOnline/'.$value['room_number'].'/'.$value['max_guest'].'/'.$input_data['check_in_date'].'/'.$input_data['check_out_date'].'/'.$input_data['no_of_rooms'].'/'.$input_data['no_of_guests'].'/'.$customer['id']); ?>">BOOK NOW<i class="fa fa-chevron-right" aria-hidden="true"></i></a>	
 						<?php }else if(isset($input_data) && (!isset($customer))) { ?>
-								<a class="btn" href="<?php url('Reservation/indexOnline/'.$value['room_number'].'/'.$value['max_guest'].'/'.$input_data['check_in_date'].'/'.$input_data['check_out_date'].'/'.$input_data['no_of_rooms'].'/'.$input_data['no_of_guests'] ); ?>">BOOK NOW2<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+								<a class="btn" href="<?php url('Reservation/indexOnline/'.$value['room_number'].'/'.$value['max_guest'].'/'.$input_data['check_in_date'].'/'.$input_data['check_out_date'].'/'.$input_data['no_of_rooms'].'/'.$input_data['no_of_guests'] ); ?>">BOOK NOW<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
 						<?php }else { ?>
 							<?php 
 								$checkavailability = 1;

@@ -82,18 +82,109 @@ class ReservationController {
             }
             else {
                 // when user is not log in redirect to signup page
-                if($customer_id != 0) {
-                    $customer = new Customer();
-                    $customer_details = $customer->getCustomer($customer_id);
-                    $reservation = array('first_name'=>$customer_details['first_name'], 'last_name'=>$customer_details['last_name'],'age'=>$customer_details['age'],'location'=>$customer_details['location'],'contact_number'=>$customer_details['contact_number'],'email'=>$customer_details['email'],'room_number'=>$room_number,'max_guest'=>$max_guest,'check_in_date'=>$check_in_date, 'check_out_date'=>$check_out_date);
-                }
-                else {
-                    $reservation = array('room_number'=>$room_number,'max_guest'=>$max_guest,'check_in_date'=>$check_in_date, 'check_out_date'=>$check_out_date);
-                }
+                $db = new RoomDetails();
+                $data['room_details'] = $db->getRoomView(); 
+
+                $db = new Image();
+                $imageRoom =$db->viewRoom();
+            // var_dump($imageRoom);
+                $data['img_details'] = $imageRoom;
+                $data['msg2'] = "Plaese login then Reserve Room";
+                View::load('room', $data);
+                // if($customer_id != 0) {
+                //     $customer = new Customer();
+                //     $customer_details = $customer->getCustomer($customer_id);
+                //     $reservation = array('first_name'=>$customer_details['first_name'], 'last_name'=>$customer_details['last_name'],'age'=>$customer_details['age'],'location'=>$customer_details['location'],'contact_number'=>$customer_details['contact_number'],'email'=>$customer_details['email'],'room_number'=>$room_number,'max_guest'=>$max_guest,'check_in_date'=>$check_in_date, 'check_out_date'=>$check_out_date);
+                // }
+                // else {
+                //     $reservation = array('room_number'=>$room_number,'max_guest'=>$max_guest,'check_in_date'=>$check_in_date, 'check_out_date'=>$check_out_date);
+                // }
                 
             }
             
 
+    }
+
+    public function indexOnlineOneRoom($room_number,$max_guest,$check_in_date,$check_out_date) {
+       
+        if(isset($_SESSION['id'])) {
+            // echo 
+            if(isset($_POST['submitbooknow'])) {
+                // $check_in_date = $_POST['check_in_date'];
+                // $check_out_date = $_POST['check_out_date'];
+                $no_of_rooms = $_POST['no_of_rooms'];
+                $no_of_guest = $_POST['no_of_guests'];
+                //get data from user
+                $user = new User();
+                $new_user = $user->getUserEmail($_SESSION['id']);
+                $user_email = $new_user['email'];
+            // var_dump($user_email);
+            // die();
+                $room = new RoomDetails();
+                $room_details = $room->getOneRoomView($room_number);
+                // var_dump($room_details);
+                $price =  $room_details[0]['price'];
+                // die();
+                
+                // $room_details = array_filter( $room_details );
+                // echo $room_details['price'];
+                // exit;
+                $customer = new Customer();
+                // echo $user_email;
+                // die();
+                $customer_details = $customer->getEmailData($user_email);
+                $customer_details = array_filter( $customer_details );
+                if(!empty($customer_details)) {
+                    $reservation = array('first_name'=>$customer_details['first_name'], 'last_name'=>$customer_details['last_name'],'age'=>$customer_details['age'],'location'=>$customer_details['location'],'contact_number'=>$customer_details['contact_number'],'email'=>$customer_details['email'],'room_number'=>$room_number,'max_guest'=>$max_guest,'check_in_date'=>$check_in_date, 'check_out_date'=>$check_out_date,'price'=>$price );
+                }
+                else {
+                    // above thing do again doesnot matter
+                    if($customer_id != 0) {
+                        $customer = new Customer();
+                        $customer_details = $customer->getCustomer($customer_id);
+                        $reservation = array('first_name'=>$customer_details['first_name'], 'last_name'=>$customer_details['last_name'],'age'=>$customer_details['age'],'location'=>$customer_details['location'],'contact_number'=>$customer_details['contact_number'],'email'=>$customer_details['email'],'room_number'=>$room_number,'max_guest'=>$max_guest,'check_in_date'=>$check_in_date, 'check_out_date'=>$check_out_date, 'price'=>$price );
+                    }
+                    else {
+                        $reservation = array('email'=>$user_email,'room_number'=>$room_number,'max_guest'=>$max_guest,'check_in_date'=>$check_in_date, 'check_out_date'=>$check_out_date, 'price'=>$price );
+                    }
+                    
+                // }
+            }
+                $no_of_rooms = $no_of_rooms - 1;
+                $no_of_guest = $no_of_guest- $max_guest;
+            
+                $inputreservationdata=array('no_of_rooms'=>$no_of_rooms, 'no_of_guest'=>$no_of_guest);
+                // echo $reservation['price'];
+                $data['reservation'] = $reservation;
+                $data['searchdata'] = $inputreservationdata;
+                // When login the customer should have details about
+                // And should retrieve that
+                // that should fix
+                view::load('dashboard/reservation/onlineCreate',$data);
+            }
+            
+        }
+        else {
+            // when user is not log in redirect to signup page
+            $db = new RoomDetails();
+            $data['room_details'] = $db->getRoomView(); 
+
+            $db = new Image();
+            $imageRoom =$db->viewRoom();
+        // var_dump($imageRoom);
+            $data['img_details'] = $imageRoom;
+            $data['msg2'] = "Plaese login then Reserve Room";
+            View::load('room', $data);
+            // if($customer_id != 0) {
+            //     $customer = new Customer();
+            //     $customer_details = $customer->getCustomer($customer_id);
+            //     $reservation = array('first_name'=>$customer_details['first_name'], 'last_name'=>$customer_details['last_name'],'age'=>$customer_details['age'],'location'=>$customer_details['location'],'contact_number'=>$customer_details['contact_number'],'email'=>$customer_details['email'],'room_number'=>$room_number,'max_guest'=>$max_guest,'check_in_date'=>$check_in_date, 'check_out_date'=>$check_out_date);
+            // }
+            // else {
+            //     $reservation = array('room_number'=>$room_number,'max_guest'=>$max_guest,'check_in_date'=>$check_in_date, 'check_out_date'=>$check_out_date);
+            // }
+            
+        }
     }
 
     public function view($room_number,$max_guest) {

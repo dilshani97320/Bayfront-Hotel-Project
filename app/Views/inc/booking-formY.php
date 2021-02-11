@@ -4,10 +4,29 @@
 	<meta charset="UTF-8">
 	<title></title>
 </head>
+<style>
+.form_submitBook {
+    width: 100%;
+    margin-top: 30px;
+    height: 45px;
+    border: 1px solid transparent;
+    font-size: 15px;
+    background-color: #000;
+    color: white;
+    text-transform: uppercase;
+    box-shadow: 0px 1px 1px 0 darkgrey;
+    border-radius: 5px;
+    cursor: pointer; 
+}
+</style>
 <body>  
 <!-- .'/'.$room_details[0]['room_number'].'/'.$room_details[0]['room_type_id'] -->
-        <form action="<?php url("room/checkRoomCustomerRoom".'/'.$room_details[0]['room_number'].'/'.$room_details[0]['room_type_id']); ?>" method="post" id="form" >
-
+<!-- $room_number,$max_guest,$check_in_date,$check_out_date -->
+        <?php if(isset($roomAvailable) && $roomAvailable['availability'] == 1){ ?>
+                <form action="<?php url("reservation/indexOnlineOneRoom".'/'.$room_details[0]['room_number'].'/'.$input_data['no_of_guests'].'/'.$input_data['check_in_date'].'/'.$input_data['check_out_date']); ?>" method="post" id="form" >     
+        <?php } else {?>
+                <form action="<?php url("room/checkRoomCustomerRoom".'/'.$room_details[0]['room_number'].'/'.$room_details[0]['room_type_id']); ?>" method="post" id="form" >
+        <?php } ?>
                 <!-- <input type="hidden" name="room_number" value="$room_details[0]['room_number']">
                 <input type="hidden" name="room_type_id" value="$room_details[0]['room_type_id']"> -->
        
@@ -67,7 +86,8 @@
                 <!-- when avilable room then book now display -->
                 <?php if(isset($roomAvailable) && $roomAvailable['availability'] == 1){ ?>
                         <div class="blockY search">
-                                <input type="submit" id='bookingSubmit' class='form__submitY' name='submit' value='Book Now'>
+                                <!-- <a  class="form_submitBook" href="<?php url('Reservation/indexOnline/'.$input_data['room_number'].'/'.$input_data['no_of_guests'].'/'.$input_data['check_in_date'].'/'.$input_data['check_out_date'].'/'.$input_data['no_of_rooms'].'/'.$input_data['no_of_guests'] ); ?>"><?php echo $input_data['room_number']; ?></a> -->
+                                <input type="submit" id='bookingSubmit' class='form__submitY' name='submitbooknow' value='Book Now'>
                         </div>
                 <?php } ?>
 	</div>

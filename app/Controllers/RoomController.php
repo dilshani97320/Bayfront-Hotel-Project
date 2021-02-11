@@ -373,6 +373,9 @@ class RoomController {
             if(count( $errors ) == 0) {
                 $inputdata = array("check_in_date"=>$check_in_date, "check_out_date"=>$check_out_date, "no_of_rooms"=>$no_of_rooms, "no_of_guests"=>$no_of_guests);
                 // echo "Tharindu";
+                // var_dump($input_data);
+                // exit;
+                $data['$input_data'] = $inputdata;
                 $db = new RoomDetails();
                 $db->setRoomTypeId($room_type_id);
 

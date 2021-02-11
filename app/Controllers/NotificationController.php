@@ -193,11 +193,11 @@ class NotificationController {
             $customer_id = $reservation['customer_id'];
             $dbcustomer = new Customer();
             $customer = $dbcustomer->getCustomer($customer_id);
-            // $userEmail = $customer['email'];
-            // $userName = $customer['first_name']." ".$customer['last_name'];
+            $userEmail = $customer['email'];
+            $userName = $customer['first_name']." ".$customer['last_name'];
 
-            $userEmail = 'wtgihan@gmail.com';
-            $userName = 'Online Customer';
+            // $userEmail = 'wtgihan@gmail.com';
+            // $userName = 'Online Customer';
 
             
             $transport = (new Swift_SmtpTransport('smtp.gmail.com', 587,'tls'))

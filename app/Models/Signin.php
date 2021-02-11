@@ -33,9 +33,8 @@ class Signin {
         $result= $stmt->get_result();
         // var_dump($result);
 		$user = $result->fetch_assoc();
-            // var_dump($user);
-            // exit;
-
+        
+        // exit;
         if (password_verify($password, $user['password'])) {
         
             return $user;

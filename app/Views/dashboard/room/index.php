@@ -30,8 +30,12 @@
                 </div>
 
                 <div class="cardbody">  
-
-                    <form action="<?php url("room/check"); ?>" method="post" class="addnewform">
+                    <?php 
+                        if(!isset($customer['id'])) { 
+                            $customer['id'] = 0;
+                        }
+                    ?>
+                    <form action="<?php url("room/check/".$customer['id']); ?>" method="post" class="addnewform">
 
                     <div class="section1">
 

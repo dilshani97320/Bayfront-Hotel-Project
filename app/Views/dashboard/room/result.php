@@ -52,65 +52,40 @@
                                     </thead>
                                     <?php 
                                     // $data = array();
-                                    // $data['values']= $rooms; ?>
+                                    // $data['values']= $rooms; 
+                                    $roomnumber = "000";
+                                    ?>
+
                                     <?php foreach($rooms as $row): ?>
-                                    <tbody>
                                         
-                                        <td><?php echo $row['room_number'];?></td>
-                                        <td><?php echo $row['room_name'];?></td>
-                                        <td><?php echo $row['price'];?></td>
-                                        <td><?php echo $row['max_guest'];?></td>
-                                        <td>
-                                        <?php 
-                                            // session_start();
-                                            
-                                            date_default_timezone_set("Asia/Colombo");
-                                            $current_date = date("Y-m-d"); 
-                                            
-                                                if($row['check_in_date'] == NULL || $row['check_out_date'] < $current_date && $_SESSION['user_level'] == "Reception"){ ?>
-                                                <div class="outofdate">
-                                                    <?php echo "Out of Date";?>
-                                                </div> 
-                                            <?php } else { ?>  
-                                                <?php if($current_date > $row['check_out_date']) { ?>
-                                                    <div class="outofdate">
-                                                        <?php  echo $row['check_in_date'];?>
-                                                    </div>
-                                                <?php } else { ?>
-                                                    <div class="in">
-                                                        <?php  echo $row['check_in_date'];?>
-                                                    </div>
-                                                <?php } ?>
-                                            <?php } 
-                                            
-                                            
-                                            ?>
-                                        </td>
-
-                                        <td>
-                                            <?php if($row['check_out_date'] == NULL || $row['check_out_date'] < $current_date && $_SESSION['user_level'] == "Reception") {?>
-                                            <div class="outofdate">
-                                                <?php echo "Out of Date";?>
-                                            </div> 
-                                            <?php } else { ?> 
-                                                <?php if($current_date > $row['check_out_date']) { ?>
-                                                    <div class="outofdate">
-                                                        <?php  echo $row['check_out_date'];?>
-                                                    </div>    
-                                                <?php } else { ?>
-                                                    <div class="out">
-                                                        <?php  echo $row['check_out_date'];?>
-                                                    </div>
-                                                <?php } ?>
-                                            <?php } ?>
-                                        </td>
-
-                                        <td><a href="<?php url('room/details1/'.$row['room_number'].'/'.$details['check_in_date'].'/'.$details['check_out_date'].'/'.$details['type_name']);?>" class="edit"><i class="material-icons">preview</i></a></td>
+                                        <?php if($row['room_number'] != $roomnumber ) { ?>
+                                            <?php $roomnumber = $row['room_number']; ?>
+                                            <tbody>
                                         
-                                        <?php if($_SESSION['user_level'] == "Reception"): ?>
-                                            <td><a href="<?php url('reservation/view1/'.$row['room_number'].'/'.$row['max_guest'].'/'.$details['check_in_date'].'/'.$details['check_out_date'].'/'.$details['type_name'].'/'.$customer['id']);?>" onclick="return confirm('Are you sure?');" class="edit"><i class="material-icons">book_online</i></a></td>
-                                        <?php endif; ?>
-                                    </tbody>
+                                                <td><?php echo $row['room_number'];?></td>
+                                                <td><?php echo $row['room_name'];?></td>
+                                                <td><?php echo $row['price'];?></td>
+                                                <td><?php echo $row['max_guest'];?></td>
+                                                <td> 
+                                                    <div class="outofdate">
+                                                            <?php echo $details['check_in_date'];?>
+                                                    </div> 
+                                                </td>
+
+                                                <td>
+                                                    <div class="outofdate">
+                                                            <?php echo $details['check_out_date'];?>
+                                                    </div> 
+                                                </td>
+
+                                                <td><a href="<?php url('room/details1/'.$row['room_number'].'/'.$details['check_in_date'].'/'.$details['check_out_date'].'/'.$details['type_name']);?>" class="edit"><i class="material-icons">preview</i></a></td>
+                                                
+                                                <?php if($_SESSION['user_level'] == "Reception"): ?>
+                                                    <td><a href="<?php url('reservation/view1/'.$row['room_number'].'/'.$row['max_guest'].'/'.$details['check_in_date'].'/'.$details['check_out_date'].'/'.$details['type_name'].'/'.$customer['id']);?>" onclick="return confirm('Are you sure?');" class="edit"><i class="material-icons">book_online</i></a></td>
+                                                <?php endif; ?>
+                                            </tbody>
+                                        <?php } ?>
+                                    
                                 <?php endforeach ?> 
                                 </table>
                            

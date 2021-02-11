@@ -31,10 +31,10 @@ class ReservationController {
         // die();
         // Checking if a user is logged in
             // this check online customer id this must be change(remind)
-            if(isset($_SESSION['user_id'])) {
+            if(isset($_SESSION['id'])) {
                 //get data from user
                 $user = new User();
-                $user_email = $user->getUserEmail($_SESSION['user_id']);
+                $user_email = $user->getUserEmail($_SESSION['id']);
                 if(empty($user_email)) {
                     if($customer_id != 0) {
                         $customer = new Customer();
@@ -174,18 +174,7 @@ class ReservationController {
     }
     
     public function create($discountValue = 0, $check_inSearch = '0000-00-00', $check_outSearch = '0000-00-00', $typenameSearch="None",$no_of_rooms=0,$guest=0) {
-        // echo $discountValue;
-        // echo "</br>";
-        // echo $check_inSearch;
-        // echo "</br>";
-        // echo $check_outSearch;
-        // echo "</br>";
-        // echo $typenameSearch;
-        // echo "</br>";
-        // echo $no_of_rooms;
-        // echo "</br>";
-        // echo $guest;
-        // die();
+
         if(!isset($_SESSION['user_id'])) {
             $dashboard = new DashboardController();
             $dashboard->index();    
@@ -376,7 +365,7 @@ class ReservationController {
                             $room_id = (int)$room_id;
                             $no_of_guest = (int)$no_of_guest;
 
-                            if($payment_method === "ONLINEONLINE") {
+                            if($payment_method == "CASHONLINE" || $payment_method == "ONLINEONLINE") {
                                 $reception_user_id = 1; // Online Reception bot not visible as Reception
                             }
                             else {
@@ -815,11 +804,12 @@ class ReservationController {
     }
 
     public function paymentOnline($customer_id, $reservation_id) {
-        if(!isset($_SESSION['user_id'])) {
-            $dashboard = new DashboardController();
-            $dashboard->index();    
-        }
-        else {
+        // if(!isset($_SESSION['user_id'])) {
+        //     // redirect should be home page
+        //     // $dashboard = new DashboardController();
+        //     // $dashboard->index();    
+        // }
+        // else {
             $dbcustomer = new Customer();
             $customer = $dbcustomer->getCustomer($customer_id);
             
@@ -836,7 +826,7 @@ class ReservationController {
 
             view::load('dashboard/reservation/payment',$data);
 
-        }
+        // }
     }
 
     

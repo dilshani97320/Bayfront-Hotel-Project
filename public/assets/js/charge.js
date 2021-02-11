@@ -23,7 +23,7 @@ var style = {
 };
 
 // style button with bootstrap
-document.querySelector('#payment-form button').classList= 'save';
+document.querySelector('#payment-form button').classList= 'buttonnow';
 
 // Create an instance of the card Element.
 var card = elements.create('card', {style: style});

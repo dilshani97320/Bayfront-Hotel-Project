@@ -99,8 +99,8 @@ class NotificationController {
             
                     // Create the Mailer using your created Transport
                     $mailer = new Swift_Mailer($transport);
-                    
-                    $body = ' <!DOCTYPE html>
+                    if($reservation['payment_method'] === "ONLINEONLINE") {
+                        $body = ' <!DOCTYPE html>
                             <html lang="en">
                             <head>
                                 <meta charset="UTF-8">
@@ -122,12 +122,40 @@ class NotificationController {
                                     <h3 class="top">You recently requested to reset your reservation for your BAYFRONT hotel Use the button below to get Payment it. <strong>Thank you very much for select our hotel for reservation</strong></h3> 
                                     <button style="background: #2EE59D; border: none; border-radius: 5px; padding: 10px; "><a style="color: #fff; text-decoration: none; font-size: 20px; " href="http://localhost/MVC/public/reservation/paymentOnline/'.$customer_id.'/'.$reservation_id.'">Payment</a></button>
                                     <p>If not Pay now decline it</p>
-                                    <h4>Welcom</h4>
+                                    <h4>Welcome</h4>
+                                </div> 
+                            </body>
+                            </html>'; 
+                    }
+                    else {
+                        $body = ' <!DOCTYPE html>
+                            <html lang="en">
+                            <head>
+                                <meta charset="UTF-8">
+                                <title>Verify Email</title>
+                            </head>
+                            <body>
+                                <div class="wrapper" style=" border-radius: 2px;
+                                height: auto;
+                                background-color: black;
+                                color: white;
+                                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.3);
+                                border: 2px solid black;
+                                padding: 40px;
+                                margin: 10px auto;
+                                text-align: center;
+                                position: relative;
+                                width: 800px;">
+                                    <h1>Hi <strong> '. $userName .'</strong></h1>
+                                    <h3 class="top">You recently requested to reset your reservation for your BAYFRONT hotel Use the button below to get Payment it. <strong>Thank you very much for select our hotel for reservation</strong></h3> 
+                                    <h4>Welcome</h4>
                                     
                                     
                                 </div> 
                             </body>
                             </html>'; 
+                    }
+                    
 
                         // Create a message
                     $message = (new Swift_Message('Reservation Accepted'))

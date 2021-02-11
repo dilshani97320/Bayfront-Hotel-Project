@@ -110,8 +110,7 @@ class ReservationController {
         if(isset($_SESSION['id'])) {
             // echo 
             if(isset($_POST['submitbooknow'])) {
-                // $check_in_date = $_POST['check_in_date'];
-                // $check_out_date = $_POST['check_out_date'];
+                
                 $no_of_rooms = $_POST['no_of_rooms'];
                 $no_of_guest = $_POST['no_of_guests'];
                 //get data from user
@@ -921,6 +920,10 @@ class ReservationController {
             $room_id = $reservation['room_id'];
             $dbroom = new RoomDetails();
             $room = $dbroom->getRoomDetails($room_id);
+            $type_id = $room['type_id'];
+            $room_type_details = new RoomType();
+            $room_type = $room_type_details->getRoomTypeDetail($type_id);
+            $data['room_type'] = $room_type;
             $data['customer'] = $customer;
             $data['reservation'] = $reservation;
             $data['room'] = $room;

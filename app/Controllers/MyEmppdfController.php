@@ -11,18 +11,18 @@ $db = new PDO('mysql:host=localhost;dbname=bayfront_hotel','root','');
 /**
  * 
  */
-class MypdfController extends FPDF
+class MyEmppdfController extends FPDF
 {
 	
 	function header()
 	{
-		$this->Image(BURL.'assets/img/basic/logo.png',195,20,-300);
+		$this->Image(BURL.'assets/img/basic/logo.png',5,5,-300);
 		
-		$this->setfont('arial', 'B', 50);
+		$this->setfont('arial', 'B', 25);
 		$this->cell(400,5,'Bay Front',0,0,'C');
 		$this->Ln();
 		
-		$this->setfont('Times', '', 14);
+		$this->setfont('Times', '', 15);
 		$this->cell(400,10,'Weligama,Srilanka',0,0,'C');
 		$this->Ln();
 		$this->Ln();
@@ -51,19 +51,22 @@ class MypdfController extends FPDF
          $this->cell(70,10,'Eamil',1,0,'C');
          $this->cell(40,10,'Salary',1,0,'C');
          $this->cell(80,10,'Location',1,0,'C');
-         $this->cell(55,10,'Contact No',1,0,'C');
+		 $this->cell(55,10,'Contact No',1,0,'C');
+		 $this->cell(55,10,'Registered Date',1,0,'C');
+		 
          $this->Ln();
 
 	}
-	function viewTable($employee)
+	function viewTable($pdfDate, $id=3)
 	{
-       $this->setfont('Times','',12);
-       //$stmt=$db->query('select * from employee');
+		if ($id ==3) {
+			$this->setfont('Times','',12);
+			   //$stmt=$db->query('select * from employee');
 
+			// while ($data =$stmt->fetch(PDO :: FETCH_OBJ)) {
+				foreach($pdfDate as $data) {
 
-      // while ($data =$stmt->fetch(PDO :: FETCH_OBJ)) {
-          foreach($employee as $data) {
-
+					
 			  $this->setfont('Times', '', 14);
 			  
        	   $this->cell(30,10,$data['emp_id'],1,0,'C');
@@ -77,6 +80,7 @@ class MypdfController extends FPDF
          $this->Ln();
        }
 	}
+}
 	
 	
 }

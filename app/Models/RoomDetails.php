@@ -24,6 +24,7 @@ class RoomDetails extends RoomType {
     private $room_today_booked;
     private $room_is_delete;
     public $room_table = "room_details";
+    public $reservation_table = "reservation";
 
     public function __construct() {        
         RoomType::__construct();
@@ -71,8 +72,76 @@ class RoomDetails extends RoomType {
         }
         else {
             echo "Database Query Failed";
+        }  
+    }
+
+    public function getReview($room_id)
+    {   
+         $query = "SELECT customer_id, 	guest_review, 	rating,reply FROM $this->reservation_table
+                   WHERE $this->reservation_table.room_id= '$room_id' AND  $this->reservation_table.is_feedback= 1";
+        // echo $query;  
+        // exit();  
+        $result= mysqli_query($this->connection, $query);
+        // var_dump($result);
+        // exit();
+        if($result) {
+            $rooms = mysqli_fetch_all($result,MYSQLI_ASSOC);
+        
+            // var_dump($rooms);
+            // echo $rooms[0]['room_number'];
+            // exit();
+            return $rooms;
+        }
+        else {
+            echo "Database Query Failed";
+        }  
+    }
+
+
+//get room tetails pdf
+    public function getAllRoomPdf() {
+
+        $query = "SELECT * FROM  $this->table1";
+                  
+        $users = mysqli_query($this->connection, $query);
+        if($users) {
+            $users=mysqli_fetch_all($users,MYSQLI_ASSOC);
+        }
+        else {
+            echo "Database Query Failed";
         }    
+//var_dump($users);
+//exit;
+    return $users;    
+    }
+
+
+
+
+
+    public function getRoomTypes() {
+        $user = array();
+        $query = "SELECT type_name FROM $this->table2";
+
+
+        $result = 0;
+
+        $room_types = mysqli_query($this->connection, $query);
+
+        if($room_types) {
+            mysqli_fetch_all($room_types,MYSQLI_ASSOC);
+            return $room_types;
+        }
+        else {
+            echo "Database Query Failed";
+        }
+        
+    }
+
+    public function getTypeID($type_name) {
+
     }    
+
 
     // public function getTypeID($type_name) {
     //     // private $table2 = "room_type";

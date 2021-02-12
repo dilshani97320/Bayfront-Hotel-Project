@@ -1,82 +1,10 @@
-
-<style type="text/css">
-  *{
-  margin: 0;
-  padding:0;
-}
-.wrapper{
-  margin: 15px auto;
-    max-width: 1100px;
-    position: relative;
-    background: #8ba8c2;
-    
-
-}
-.header{
-  padding: 20px;
-}
-.header h1{
-letter-spacing: 2px;
-  font-weight: 600;
-  margin-left: 15px;
-  margin-bottom: 20px;
-  text-align: center;
-
-}
-.repo-btn{
-  padding: 20px;
-  align-content: center;
-
-}
-.repo-btn a{
-  margin: 10px;
-  cursor: pointer;
-    display: inline-block;
-    zoom: 1;
-    background: #0f2a42;
-    color: #fff;
-    border: 1px solid #0b1c2a;
-    border-radius: 4px;
-    padding: 25px 40px;
-    text-decoration: none;
-
-
-}
-.repo-main{
-  padding: 20px;
-  margin-top: 20px;
-
-}
-.repo-main h3{
-  font-size: 20px;
-  margin-bottom: 30px;
-}
-.repo-main label{
-display: inline-block;
-margin-bottom: 10px;
-}
-.repo-main input{
-display: inline-block;
-padding: 5px 10px;
-border-radius: 5px;
-border-style: none;
-}
-.sub-btn{
-  padding: 10px;
-  background: #0f2a42;
-  color:#fff; 
-     margin:10px;
-
-}
-
-
+<style>
 
 </style>
-
 <?php 
 
 // Header
-   $title = "Report page";
+   $title = "Report Genarate  page";
    include(VIEWS.'dashboard/inc/header.php'); 
 ?>
 
@@ -84,88 +12,162 @@ border-style: none;
       
    <?php 
    
-       $navbar_title = "Report Generator ";
+       $navbar_title = "Report Generate Page";
        $search = 0;
-       $search_by = 'Room Number';
-       //$url = "reservation/details";
+       $search_by = 'name';
+      // $url = "employee/index";
        
        include(VIEWS.'dashboard/inc/sidebar.php'); //Sidebar
        include(VIEWS.'dashboard/inc/navbar.php'); //Navbar
    ?>
-       
-    <!-- Table design -->
-   <div class="content">
+
+<div class="content">
        <div class="tablecard">
            <div class="card">
                <div class="cardheader">
                    <div class="options">
-                       <h4>All Room Reservations Page  
-                       <span>
-                            <?php if($_SESSION['user_level'] != "Owner"): ?>
-                                <a href="<?php url("reservation/index"); ?>" class="addnew"><i class="material-icons">add_circle</i></a> 
-                            <?php endif; ?>
-                            <a href="<?php url("reservation/details"); ?>" class="refresh"><i class="material-icons">loop</i></a> 
-                       </span> 
-                        
-                       </h4>
+                       <h4>All Report Generation Page</h4>
                    </div>
-                   <p class="textfortabel">Rooms Reservations View Following Table</p>
+                   <p class="textfortabel">Select Report Choice</p>
                </div>
-               <div class="cardbody">
                
-<div class="wrapper">
- <section class="header">
-  <h1>WELCOME BAY FRONT</h1>
+                    <div class="badgeSec">
+                        <div class="horBadge">
+                            
+                            <div class="icon1">
+                                <i class="fas fa-user-tag"></i>
+                            </div>
+                            <div class="text">
+                                Employees
+                            </div>
+                            <a href="<?php url('report/empdetails');?>"></a>
+                        </div>
 
-  
- </section>
- <section class="repo-btn">
-  <a href="<?php url("report/empdetails"); ?>">Employees</a>
-  <a href="rooms-report.php">Rooms</a>
-    <a href="customer.php">Customers</a>
-    <a href="reservation.php">Reservation</a>
-    <a href="payment.php">Payment</a>
-    <a href="#">Surf-Packages</a>
+                
+                        <div class="horBadge">
+                        
+                            <div class="icon1">
+                
+                                <i class="fas fa-door-open"></i>
+                            </div>
+                            <div class="text">
+                                Rooms
+                            </div>
+                            <a href="<?php url('report/roomdetails');?>"></a>
+                        </div>
+      
 
- </section>
+                        <div class="horBadge">
+                    
+                            <div class="icon1">
+                            <i class="fas fa-users"></i>
+                            </div>
+                            <div class="text">
+                                Customers
+                            </div>
+                            <a href="<?php url('report/customerWebdetails');?>"></a>
+                            </div>
+                   
+                    <div class="horBadge">
+                    
+                        <div class="icon1">
+                        <i class="fas fa-address-book"></i>
+                        </div>
+                        <div class="text">
+                             Reservations
+                        </div>
+                        <a href="<?php url('report/reservationWebdetails');?>"></a>
+                    </div>
+                    </div>
+
+                    <div class="badgeSec">
+
+                    <div class="horBadge">
+                    
+                        <div class="icon1">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        </div>
+                        <div class="text">
+                             Payments
+                        </div>
+                        <a href="<?php url('report/paymentWebdetails');?>"></a>
+                    </div>
+               
+
+                    <div class="horBadge">
+                        <div class="icon2">
+                        <i class="fas fa-skiing"></i>
+                        </div>
+                        <div class="text">
+                            Surf Packages
+                        </div>
+                        <a href="<?php url('report/surfdetails');?>"></a>
+                    </div>
+                
+
+                   
+                    </div>
+
+
+                    <section class="repo-main">
 
 
 
- <section class="repo-main">
+                   
 
-<h3>Enter the date to get Report</h2>
-  <form method="get" action="daily.php">
-    <select name='check_in_date'>
-      <?php
-             $query=mysqli_query($connection,"select * from reservation");
-             while ($date =mysqli_fetch_array($query)) {
-              echo "<option value='".$date['check_in_date']."'>".$date['check_in_date']."</option>";
-             }
-      ?>
-    </select>
-<input type="submit" name="submit1" class="sub-btn" value="Generate">
+  <!--<div class="data">
+    
 
-  <!--<h3>Enter Time Duration to get Report</h2>
-  <form method="get">
-    <label>Start date</label>
-    <input type="date" name="start_date" >
-    <?php echo $start_date_error; ?>
-    <label>End date</label>
-  <input type="date" name="end_date" >
-  <?php echo $end_date_error; ?>
 
-  <input type="submit" name="submit" class="sub-btn">-->
-  </form>
-  
- </section>
- </div>
+    <h3>Enter the duration to get Report</h2>
+        <form method="post" action="<?php url('report/reservation_details');?>">
+    
+            <input type="date" name="start_date">
+            <input type="date" name="end_date">
+            <button type="submit" name="generate" class="submit" value="Generate the report">Generate</button>
 
-                </div>  <!--End Card Body -->
+ 
+            
+            <h3>Enter the month to get Report</h3>
+
+            <input type="text" name="month">
+            <button type="submit" name="generate1" class="submit" value="Generate the report">Generate</button>
+
+            <h3>Enter the year to get Report</h3>
+
+            <input type="text" name="year">
+            <button type="submit" name="generate2" class="submit" value="Generate the report">Generate</button>
+    
+    
+      </form>
+    
+      </div>-->
+    
+
+      
+    
+    
+    </div>
+<!--<h3>Enter Time Duration to get Report</h2>
+<form method="get">
+<label>Start date</label>
+<input type="date" name="start_date" >
+<?php echo $start_date_error; ?>
+<label>End date</label>
+<input type="date" name="end_date" >
+<?php echo $end_date_error; ?>
+
+<input type="submit" name="submit" class="sub-btn">-->
+</form>
+
+</section>
+
+
+
            </div> 
        </div>
    </div>
 
 </div>   
-   
 
 <?php include(VIEWS.'dashboard/inc/footer.php'); ?>

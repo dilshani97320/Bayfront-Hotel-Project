@@ -38,10 +38,16 @@
                 else {
                     $amount = $room_price;
                 }
-
+                // echo $amount;
+                // echo "<br>";
                 //convert to cent dollar
                 //stripe only access integer only
-                $amount = $amount*100;
+                $amount = $amount*1000;
+                // real amount should divide from 1000
+                // echo $room_price;
+                // echo "<br>";
+                // echo $amount;
+                // die();
 
                 // echo $amount;
                 // die();

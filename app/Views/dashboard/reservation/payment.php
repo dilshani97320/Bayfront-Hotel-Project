@@ -1,219 +1,199 @@
-<?php 
-   // Header
-   $title = "Add-Payment Detail page";
-   include(VIEWS.'dashboard/inc/header.php');
-?> 
-
-<div class="wrapper">
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo BURL.'assets/css/bookingform.css'; ?>" />
+    <link rel="icon" type="image/png" href="<?php echo BURL.'assets/img/basic/favicon.png'; ?>" />
+    <title>Pay-Now|Form</title>
+</head>
+<body>
     <?php 
-            $navbar_title = "Reservation Page";
-            $search = 0;
-            $search_by = '#';
-       
-            // include(VIEWS.'dashboard/inc/sidebar.php'); //Sidebar
-            // include(VIEWS.'dashboard/inc/navbar.php'); //Navbar
+                    $date1=date_create($reservation['check_in_date']);
+                    $date2=date_create($reservation['check_out_date']);
+                    $diff=date_diff($date1,$date2);
+                    $days = $diff->format("%a");
+                    $total_price = $days*$room['price'];
+                    $total_price = $total_price + 4.83;
+                
     ?>
-    
-    <!-- Table design -->
-    <div class="content">
-        <div class="tablecard">
-            <div class="card">
-
-                <div class="cardheader">
-                    <div class="options">
-                        <h4>Payment Details 
-                        </h4>  
+    <section class="bookingform">
+        <div class="row">
+            <div class="form">
+                <div class="signredirect">
+                    <div class="logoimg">
+                        <img src="<?php echo BURL.'assets/img/basic/logo.png'; ?>" alt="">
                     </div>
-
-                    <p class="textfortabel">Complete Pay Now Details</p>
+                    <div class="description">
+                        <div class="line1">
+                            <span class="sign1">Welcome from bayfront hotel System!!</span>
+                            <!-- <a href="#" class="sign2">Signin</a> -->
+                        </div>
+                        <span class="sign3">Your Reservation accepted form bayfront hotel mangement and then you can PAY NOW</span>
+                    </div>
                 </div>
-
-                <div class="cardbody">  
-                    
-                    <div class="section1">
-
+                <div class="contactdetails">
+                    <h5>Let us know who you are</h5>
                     <form action="<?php url("payment/payonline"); ?>" method="post" id="payment-form">
-
+                        <!-- This is may reset according to form -->
+                        <!-- $first_name = $POST['first_name'];
+                $email = $POST['email'];
+                $room_name = $POST['room_name'];
+                $room_view = $POST['room_view'];
+                $room_price = $POST['room_price'];
+                $payment_way = $POST['payment_way'];
+                $customer_id = $POST['customer_id'];
+                $reservation_id = $POST['reservation_id'];
+                $token = $POST['stripeToken']; -->
                         <input type="text" name="customer_id" value ="<?php echo $customer['customer_id']; ?>" hidden  >
                         <input type="text" name="reservation_id" value ="<?php echo $reservation['reservation_id']; ?>" hidden  >
-                       
-                        <div class="row">
-                            <label for="#"><i class="material-icons">assignment_ind</i>Customer Name:</label>
-                                <div class="animate-form">
-                                    <input type="text"  autocomplete="off" name="first_name" class="inputField"
-                                    <?php 
+                        <input type="text" name="room_name" value ="<?php echo $room['room_name']; ?>" hidden>
+                        <input type="text" name="room_view" value ="<?php echo $room['room_view']; ?>" hidden>
+                        <input type="text" name="room_price" value ="<?php echo $total_price?>" hidden>
+                        <!-- <input type="text" name="check_in_date">
+                        <input type="text" name="check_out_date"> -->
+                        <div class="rowlong1">
+                            <div class="rowdata1">
+                                <label for="#">First Name
+                                    <?php if($customer['first_name'] == ""){ ?>
+                                        <i class="fa fa-exclamation-circle"></i>
+                                    <?php } else {?>
+                                        <i class="fa fa-check-circle" style="color: rgb(12, 59, 12);"></i>
+                                    <?php } ?>     
+                                </label>
+                                <input type="text" class="inputrow" name="first_name" autocomplete="off"
+                                <?php 
                                         if(isset($customer['first_name'])){
                                             echo 'value="' . $customer['first_name'] . '"';
-                                        }
-                                        
+                                        }       
                                     
-                                    ?>
+                                ?>
+                                
+                                readonly>
+                            </div>
+                            <div class="rowdata1">
+                                <label for="#">Last Name
+                                    <?php if($customer['last_name'] == ""){ ?>
+                                        <i class="fa fa-exclamation-circle"></i>
+                                    <?php } else {?>
+                                        <i class="fa fa-check-circle" style="color: rgb(12, 59, 12);"></i>
+                                    <?php } ?>  
                                     
-                                    readonly
-                                    >
+                                </label>
+                                <input type="text" class="inputrow" name="last_name" autocomplete="off"
+                                <?php 
+                                        if(isset($customer['last_name'])){
+                                            echo 'value="' . $customer['last_name'] . '"';
+                                        }       
                                     
-                                    <label for="name" class="label-name">
-                                        <?php if($customer['first_name'] == ""){ ?>
-                                            <span class="content-success"><i class="material-icons">privacy_tip</i></span>
-                                        <?php } else {?>
-                                            <span class="content-success"><i class="material-icons">verified_user</i></span>
-                                        <?php } ?>
-                                    </label>    
-                                </div>     
+                                ?>
+                                readonly>
+                            </div>
                         </div>
 
-                        <div class="row">
-                            <label for="#"><i class="material-icons">email</i>Customer Email:</label>
-                                <div class="animate-form">
-                                    <input type="text"  autocomplete="off" name="email" class="inputField"
-                                    <?php 
+                        <div class="rowlong">
+                            <label for="#">Email
+                                <?php if($customer['email'] == ""){ ?>
+                                        <i class="fa fa-exclamation-circle"></i>
+                                    <?php } else {?>
+                                        <i class="fa fa-check-circle" style="color: rgb(12, 59, 12);"></i>
+                                    <?php } ?>
+                            </label>
+                            <input type="text" class="inputrow" name="email" autocomplete="off"
+                            <?php 
                                         if(isset($customer['email'])){
                                             echo 'value="' . $customer['email'] . '"';
-                                        }
-                                        
+                                        }       
                                     
-                                    ?>
-                                    
-                                    readonly
-                                    >
-                                    
-                                    <label for="name" class="label-name">
-                                        <?php if($customer['email'] == ""){ ?>
-                                            <span class="content-success"><i class="material-icons">privacy_tip</i></span>
-                                        <?php } else {?>
-                                            <span class="content-success"><i class="material-icons">verified_user</i></span>
-                                        <?php } ?>
-                                    </label>    
-                                </div>     
+                                ?>
+                            readonly>
                         </div>
 
-
-                        <div class="row">
-                            <label for="#"><i class="material-icons">hotel</i>Room Name:</label>
-                                <div class="animate-form">
-                                    <input type="text"  autocomplete="off" name="room_name" class="inputField"
-                                    <?php 
-                                        if(isset($room['room_name'])){
-                                            echo 'value="' . $room['room_name'] . '"';
-                                        }
-                                        
+                        <div class="rowlong1">
+                            <div class="rowdata1">
+                                <label for="#">Contact Number
+                                    <?php if($customer['contact_number'] == ""){ ?>
+                                        <i class="fa fa-exclamation-circle"></i>
+                                    <?php } else {?>
+                                        <i class="fa fa-check-circle" style="color: rgb(12, 59, 12);"></i>
+                                    <?php } ?>
+                                </label>
+                                <input type="text" class="inputrow" autocomplete="off"
+                                <?php 
+                                        if(isset($customer['contact_number'])){
+                                            echo 'value="' . $customer['contact_number'] . '"';
+                                        }       
                                     
-                                    ?>
-                                    
-                                    readonly
-                                    >
-                                    
-                                    <label for="name" class="label-name">
-                                        <?php if($room['room_name'] == ""){ ?>
-                                            <span class="content-success"><i class="material-icons">privacy_tip</i></span>
-                                        <?php } else {?>
-                                            <span class="content-success"><i class="material-icons">verified_user</i></span>
-                                        <?php } ?>
-                                    </label>    
-                                </div>     
-                        </div>
-
-                        <div class="row">
-                            <label for="#"><i class="material-icons">deck</i>Room View:</label>
-                                <div class="animate-form">
-                                    <input type="text"  autocomplete="off" name="room_view" class="inputField"
-                                    <?php 
-                                        if(isset($room['room_view'])){
-                                            echo 'value="' . $room['room_view'] . '"';
-                                        }
-                                        
-                                    
-                                    ?>
-                                    
-                                    readonly
-                                    >
-                                    
-                                    <label for="name" class="label-name">
-                                        <?php if($room['room_view'] == ""){ ?>
-                                            <span class="content-success"><i class="material-icons">privacy_tip</i></span>
-                                        <?php } else {?>
-                                            <span class="content-success"><i class="material-icons">verified_user</i></span>
-                                        <?php } ?>
-                                    </label>   
-                                </div>     
-                        </div>
-
-                        <div class="row">
-                            <label for="#"><i class="material-icons">local_offer</i>Room Price:</label>
-                                <div class="animate-form">
-                                    <input type="text"  autocomplete="off" name="room_price" class="inputField"
-                                    <?php 
-                                        if(isset($room['price'])){
-                                            echo 'value="' . $room['price'] . '"';
-                                        }
-                                        
-                                    
-                                    ?>
-                                    
-                                    readonly
-                                    >
-                                    
-                                    <label for="name" class="label-name">
-                                        <?php if($room['price'] == ""){ ?>
-                                            <span class="content-success"><i class="material-icons">privacy_tip</i></span>
-                                        <?php } else {?>
-                                            <span class="content-success"><i class="material-icons">verified_user</i></span>
-                                        <?php } ?>
-                                    </label>    
-                                </div>     
-                        </div>
-
-                        <div class="row">
-                            <label for="#"><i class="material-icons">request_quote</i>Payment :</label>
-                                <div class="animate-form">
-                                    <select name="payment_way" class="inputField">
+                                ?>
+                                readonly>
+                            </div>
+                            <div class="rowdata1">
+                                <label for="#">Payment Selection</label>
+                                 <select name="payment_way" class="inputrow">
                                          <option value="ONLINEPAY">-Select Payment PART-</option>
                                          <option value="ONLINEHALF" style="border: none">HALF PAYMENT</option>      
                                          <option value="ONLINEFULL" style="border: none">FULL PAYMENT</option>      
-                                    </select>    
-                                </div>     
+                                </select>
+                            </div>
                         </div>
-
-                        <div class="row">
-                            <label for="#"><i class="material-icons">credit_card</i>Credit Card Details:</label>
-                                    
+                        <div class="rowlong">
+                            <label for="#">Credit Card Details
+                                <i class="fa fa-exclamation-circle"></i>
+                                <i class="fa fa-check-circle" style="color: rgb(12, 59, 12);"></i>
+                            </label>
+                           
+                                <div id="card-element" class="paymentcardform inputrow">
+                                    <!-- A Stripe Element will be inserted here. -->
+                                </div>
+    
+                                <!-- Used to display form errors. -->
+                                <div id="card-errors" role="alert"></div>
                         </div>
-
-
-                       <div class="form-row">
-                            <div id="card-element" class="pyamentcardform">
-                                <!-- A Stripe Element will be inserted here. -->
-                       </div>
-
-                      <!-- Used to display form errors. -->
-                        <div id="card-errors" role="alert"></div>
+                        <div class="buttonrow">
+                            <!-- <button type="submit" class="buttonnow">Pay Now</button> -->
+                            <button>Pay Now</button>
                         </div>
-
-                        <button>Pay</button>
-                    </form>
-                    </div>
-
-                    <div class="section2">
                         
-
-                    </div>
-
+                        
                     </form>
-                </div>  <!--End Card Body -->
-            </div>  <!--End Card -->
-
-            
+                    
+                </div>
+            </div>
         </div>
-    </div>   <!-- End Table design -->
+        <aside class="roomdetails">
+            <div class="detailsroom">
+                <div class="dates">
+                    <h4><span><i class="fa fa-calendar"></i>Check In Date</span><?php echo $reservation['check_in_date']; ?></h4>
+                    <h4><span><i class="fa fa-calendar"></i>Check Out Date</span><?php echo $reservation['check_out_date']; ?></h4>
+                    <strong>1 x Room Assigned on Arrival</strong>
+                </div>
+                <div class="roomrow">
+                    <h4><span>Room Number</span><?php echo $room['room_number']; ?></h4>
+                    <h4><span><i class="fa fa-users"></i>Max Guest </span><?php echo $room_type['max_guest']; ?> Adults</h4>
+                </div>
+            </div>
+
+            <div class="detailsroomprice">
+                <div class="priceroom">
+                    <h4><span>Price(1 room x 1 night)</span>$ <?php echo $room['price']; ?></h4>
+                    <h4><span>Booking fees</span><strong class="vital">FREE</strong></h4>
+                    <strong class="vital2">Included in price:
+                        <br>
+                        Hotel tax and service fees $ 4.83
+                    </strong>
+                </div>
+                <div class="roomrow1">
+                    <h4><span>Price<i class="fa fa-info-circle"></i></span>$ <?php echo $total_price; ?></h4>
+                </div>
+            </div>
+
+        </aside>
+    </section>
     
-</div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://js.stripe.com/v3/"></script>
-<script src="<?php echo BURL.'assets/js/charge.js'; ?>"></script>
-    
-<?php include(VIEWS.'dashboard/inc/footer.php'); ?>
-
-
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="<?php echo BURL.'assets/js/charge.js'; ?>"></script>
+</body>
+</html>

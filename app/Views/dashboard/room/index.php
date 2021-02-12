@@ -30,7 +30,11 @@
                 </div>
 
                 <div class="cardbody">  
-
+                    <?php 
+                        if(!isset($customer['id'])) { 
+                            $customer['id'] = 0;
+                        }
+                    ?>
                     <form action="<?php url("room/check/".$customer['id']); ?>" method="post" class="addnewform">
 
                     <div class="section1">
@@ -43,6 +47,9 @@
                                 <div class="animate-form">
                                     <select name="type_name" class="inputField">
                                          <option value="">-Select Room Type-</option>
+                                         <?php if(isset($details['type_name'])) {?>
+                                            <option value="<?php echo $details['type_name']; ?>" selected><?php echo $details['type_name']; ?></option>
+                                         <?php } ?>
                                     <?php foreach($typename as $types): ?>
                                         <option value="<?php echo $types['type_name']; ?>" style="border: none"><?php echo $types['type_name']; ?></option> 
                                     <?php endforeach; ?>     

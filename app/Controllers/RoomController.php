@@ -296,11 +296,12 @@ class RoomController {
                     if(empty($rooms)) {
                         // echo "1";
                         $data['customer'] = array("id"=>$customer_id);
-                        $data['details'] = array('type_name' =>$type_name, 'check_in_date '=>$check_in_date, 'check_out_date'=>$check_out_date );
+                        $data['details'] = array('type_name' =>$type_name, 'check_in_date'=>$check_in_date, 'check_out_date'=>$check_out_date );
                         view::load("dashboard/room/index", ["errors"=>"Data Update Unsuccessfully", 'details'=>$data['details'], 'typename'=>$data['typename']]);
                     }
                     else {
                         // $this->details = $rooms;
+                        // $filterRooms = array_filter( $rooms);
                         $data['rooms'] = $rooms;
                         $data['details'] = array("check_in_date"=>$check_in_date, "check_out_date"=>$check_out_date, "type_name"=>$type_name);
                         // var_dump($this->details);
@@ -314,7 +315,7 @@ class RoomController {
                     $typename = $db->getRoomTypes();
                     $data['typename'] = $typename;
                     $data['customer'] = array("id"=>$customer_id);
-                    $data['details'] = array('type_name' =>$type_name, 'check_in_date '=>$check_in_date, 'check_out_date'=>$check_out_date );
+                    $data['details'] = array('type_name' =>$type_name, 'check_in_date'=>$check_in_date, 'check_out_date'=>$check_out_date );
                     view::load("dashboard/room/index", ["errors"=>"Data Update Unsuccessfully", 'details'=>$data['details'], 'typename'=>$data['typename']]);
                     // echo "3";
                 }
@@ -372,6 +373,9 @@ class RoomController {
             if(count( $errors ) == 0) {
                 $inputdata = array("check_in_date"=>$check_in_date, "check_out_date"=>$check_out_date, "no_of_rooms"=>$no_of_rooms, "no_of_guests"=>$no_of_guests);
                 // echo "Tharindu";
+                // var_dump($input_data);
+                // exit;
+                $data['$input_data'] = $inputdata;
                 $db = new RoomDetails();
                 $db->setRoomTypeId($room_type_id);
 

@@ -22,6 +22,9 @@ class AuthController {
 
 			$email = $_POST['email'];
 			$password = $_POST['password'];
+			// echo $email;
+			// echo $password;
+			// die();
 			
 			$errors = $this->validationSignin();
 		
@@ -32,6 +35,7 @@ class AuthController {
 				$db = new Signin();
 				
 				$user = $db->getUser($email, $password); 
+
 				
 				if(!empty($user)) {
 

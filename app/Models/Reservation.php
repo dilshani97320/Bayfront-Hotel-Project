@@ -363,7 +363,7 @@ class Reservation extends Connection {
     //     $room_type_id = mysqli_real_escape_string($this->connection, $room_type_id);
 
     //     $query = "SELECT * FROM $this->table6
-    //               WHERE room_type_id = '{$room_type_id}'
+    //               WHERE room_type_id = '{$room_type_id}'getCreateReservation
     //               LIMIT 1";
     //     $types = mysqli_query($this->connection, $query);
     //     if($types){

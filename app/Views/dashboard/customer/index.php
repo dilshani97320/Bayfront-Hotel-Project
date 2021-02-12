@@ -55,7 +55,7 @@
                                 <td><?php echo $row['email'];?></td>
                                 <td><?php echo $row['location'];?></td>
                                 <td><?php echo $row['contact_number'];?></td>
-                                <td><a href="<?php url('customer/edit/'.$row['customer_id']);?>" class="edit"><i class="material-icons">preview</i></a></td>    
+                                <td><a href="<?php url('customer/details/'.$row['customer_id']);?>" class="edit"><i class="material-icons">preview</i></a></td>    
                             </tbody>
                             <?php endforeach ?> 
                         </table>

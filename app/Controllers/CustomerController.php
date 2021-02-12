@@ -33,4 +33,25 @@ class CustomerController {
         }
            
     }
+
+    public function details($customer_id) {
+        if(!isset($_SESSION['user_id'])) {
+            $dashboard = new DashboardController();
+            $dashboard->index();   
+        }
+        else {
+            // Get Given Customer details
+            $db = new Customer();
+            $customer = $db->getCustomer($customer_id);
+
+            $reservations = $db->getReservations($customer_id);
+
+            $data['customer'] = $customer;
+            $data['reservations'] = $reservations;
+
+            view::load("dashboard/customer/view", $data);
+         
+            
+        }
+    }
 }

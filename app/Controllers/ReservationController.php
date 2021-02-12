@@ -376,14 +376,14 @@ class ReservationController {
                             $room_id = (int)$room_id;
                             $no_of_guest = (int)$no_of_guest;
 
-                            if($payment_method === "ONLINEONLINE") {
+                            if($payment_method == "CASHONLINE" || $payment_method == "ONLINEONLINE") {
                                 $reception_user_id = 1; // Online Reception bot not visible as Reception
                             }
                             else {
                                 $reception_user_id = $_SESSION['user_id'];
                                 $reception_user_id = (int)$reception_user_id;
                             }
-            
+                            // echo $reception_user_id; exit;
                             // echo $payment_method;
                             //Request or not should check
                             if($payment_method == "CASHONLINE" || $payment_method == "ONLINEONLINE") {

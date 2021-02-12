@@ -14,7 +14,7 @@
 
 <body>
 
-    <?php if (isset($_SESSION['id'])): ?>
+    <?php if (isset($_SESSION['unreg_user_id'])): ?>
         <?php switch ($_SESSION['usertype']): case '0':?>
                 
             <header class="nav">
@@ -160,7 +160,7 @@
 
                     <a href="<?php url('Auth/logout'); ?>" class="btn1 transparent">Logout</a>
 
-                    <a href="#" class="btn1 solid"><i class="far fa-user-circle" ></i><?php echo $_SESSION['nameuser']; ?></a>
+                    <a href="<?php url('Profile/index'); ?>" class="btn1 solid"><i class="far fa-user-circle" ></i><?php echo $_SESSION['unreg_user_name']; ?></a>
                 </div>
             </div>
 

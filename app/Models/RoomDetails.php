@@ -24,6 +24,7 @@ class RoomDetails extends RoomType {
     private $room_today_booked;
     private $room_is_delete;
     public $room_table = "room_details";
+    public $reservation_table = "reservation";
 
     public function __construct() {        
         RoomType::__construct();
@@ -56,6 +57,28 @@ class RoomDetails extends RoomType {
         $rooms[] = array();
          $query = "SELECT * FROM $this->room_table
                   INNER JOIN $this->room_type_table ON $this->room_table.type_id = $this->room_type_table.room_type_id WHERE $this->room_table.room_number= '$room_number' ";
+        // echo $query;  
+        // exit();  
+        $result= mysqli_query($this->connection, $query);
+        // var_dump($result);
+        // exit();
+        if($result) {
+            $rooms = mysqli_fetch_all($result,MYSQLI_ASSOC);
+        
+            // var_dump($rooms);
+            // echo $rooms[0]['room_number'];
+            // exit();
+            return $rooms;
+        }
+        else {
+            echo "Database Query Failed";
+        }  
+    }
+
+    public function getReview($room_id)
+    {   
+         $query = "SELECT customer_id, 	guest_review, 	rating,reply FROM $this->reservation_table
+                   WHERE $this->reservation_table.room_id= '$room_id' AND  $this->reservation_table.is_feedback= 1";
         // echo $query;  
         // exit();  
         $result= mysqli_query($this->connection, $query);

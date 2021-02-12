@@ -161,7 +161,7 @@ class Reservation extends Connection {
         // echo $customer->customer_id;
         // die();
         
-        // var_dump($data);
+        // var_dump($data);exit;
         $query = "INSERT INTO $this->reservation_table (
                  customer_id, reception_user_id, room_id, check_in_date, check_out_date, no_of_guest, payment_method, request, is_valid) 
                  VALUES (

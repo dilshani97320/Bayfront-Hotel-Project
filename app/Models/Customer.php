@@ -17,6 +17,22 @@ class Customer extends Connection {
         Connection::__construct();
     }
 
+    public function getAllCustomer() {
+
+        $query = "SELECT * FROM $this->customer_table";
+
+        $customers = mysqli_query($this->connection, $query);
+
+        if($customers){
+            $customer =mysqli_fetch_all($customers,MYSQLI_ASSOC);
+        }
+        else {
+            echo "Database Query Failed";
+        }    
+
+        return $customer;
+    }
+
     public function getCustomer($customer_id) {
         $this->customer_id = mysqli_real_escape_string($this->connection, $customer_id);
 

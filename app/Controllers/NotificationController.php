@@ -4,8 +4,6 @@ require_once 'Libs/vendor/autoload.php';
 
 class NotificationController {
 
-
-
     public function option() {
         if(!isset($_SESSION['user_id'])) {
             $dashboard = new DashboardController();

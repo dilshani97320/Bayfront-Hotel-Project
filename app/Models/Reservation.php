@@ -19,6 +19,7 @@ class Reservation extends Connection {
     private $reservation_payment_method;
     private $reservation_is_valid;
     private $reservation_request;
+    private $reservation_check_in_status;
     public $reservation_table = "reservation";
 
     // private $connection;
@@ -596,6 +597,93 @@ class Reservation extends Connection {
         }    
 
     return $rooms;
+    }
+
+    public function checkInNotification(){
+
+        date_default_timezone_set("Asia/Colombo");
+        $current_date = date('Y-m-d');
+
+        $room = new RoomDetails();
+        $customer = new Customer();
+        $room->room_table; //table2
+        $customer->customer_table;
+
+
+        $query = "SELECT $room->room_table.room_number,  $room->room_table.room_name, $room->room_table.price,
+                  $customer->customer_table.first_name,  $customer->customer_table.last_name,
+                  $this->reservation_table.check_in_date, $this->reservation_table.check_out_date, $this->reservation_table.reservation_id, $this->reservation_table.check_in_status
+                  FROM $this->reservation_table
+                  LEFT OUTER JOIN $room->room_table
+                  ON $room->room_table.room_id = $this->reservation_table.room_id
+                  INNER JOIN $customer->customer_table
+                  ON $this->reservation_table.customer_id = $customer->customer_table.customer_id
+                  WHERE $this->reservation_table.is_valid = 1 AND $this->reservation_table.request = 0 AND $this->reservation_table.check_in_date = '{$current_date}'
+                  ORDER BY $this->reservation_table.check_in_status";
+        // var_dump($query);
+        // die();
+        $rooms = mysqli_query($this->connection, $query);
+        if($rooms) {
+            mysqli_fetch_all($rooms,MYSQLI_ASSOC);
+        }
+        else {
+            echo "Database Query Failed";
+        }    
+
+        // var_dump($rooms);
+        // die();
+
+    return $rooms;
+    }
+
+    public function checkInSearchNotification($room_number){
+
+        date_default_timezone_set("Asia/Colombo");
+        $current_date = date('Y-m-d');
+
+        $room = new RoomDetails();
+        $customer = new Customer();
+        $room->room_table; //table2
+        $customer->customer_table;
+        $room->room_number = mysqli_real_escape_string($this->connection, $room_number);
+
+        $query ="SELECT $room->room_table.room_number,  $room->room_table.room_name, $room->room_table.price,
+                $customer->customer_table.first_name,  $customer->customer_table.last_name,
+                $this->reservation_table.check_in_date, $this->reservation_table.check_out_date, $this->reservation_table.reservation_id, $this->reservation_table.check_in_status
+                FROM $this->reservation_table
+                LEFT OUTER JOIN $room->room_table
+                ON $room->room_table.room_id = $this->reservation_table.room_id
+                INNER JOIN $customer->customer_table
+                ON $this->reservation_table.customer_id = $customer->customer_table.customer_id
+                WHERE $this->reservation_table.is_valid = 1 AND $this->reservation_table.request = 0 AND $this->reservation_table.check_in_date = '{$current_date}' AND $room->room_table.room_number = '{$room->room_number}'
+                ORDER BY $this->reservation_table.check_in_status";
+
+        $rooms = mysqli_query($this->connection, $query);
+        if($rooms) {
+            mysqli_fetch_all($rooms,MYSQLI_ASSOC);
+        }
+        else {
+            echo "Database Query Failed";
+        }    
+
+    return $rooms;
+    }
+
+    
+
+    public function checkedInUpdate($reservation_id) {
+            $this->reservation_id = mysqli_real_escape_string($this->connection, $reservation_id);
+            $this->reservation_check_in_status = "CHECKED-IN";
+            $query = "UPDATE $this->reservation_table SET $this->reservation_table.check_in_status = '{$this->reservation_check_in_status}' 
+                      WHERE $this->reservation_table.reservation_id = {$this->reservation_id} AND $this->reservation_table.is_valid = 1 LIMIT 1";
+    
+            $result = mysqli_query($this->connection, $query);
+            $value =0;
+            if($result) {
+                $value = 1;
+            }
+            
+            return $value;
     }
 
     public function requestNotificationSearch($room_number) {

@@ -271,12 +271,30 @@ class NotificationController {
                 $search = $_POST['search'];
                                 
                     // $data['rooms'] = $db->getSearchRoomAll($search);
-                    view::load('dashboard/reservation/index', $data);
+                    $data['rooms'] = $dbreservation->checkInSearchNotification($search);
+                    view::load('dashboard/notification/checkInReservation', $data);
             }
             else {
-                $data['rooms'] = $dbreservation->requestNotification();
-                view::load('dashboard/notification/reservationIndex', $data);
+                $data['rooms'] = $dbreservation->checkInNotification();
+                view::load('dashboard/notification/checkInReservation', $data);
             }
+            
+        }
+    }
+
+    public function arrivedCustomer($reservation_id) {
+        if(!isset($_SESSION['user_id'])) {
+            $dashboard = new DashboardController();
+            $dashboard->index();
+        }
+        else {
+            $dbreservation = new Reservation();
+            // update reservation table
+            $dbreservation->checkedInUpdate($reservation_id);
+            $data = array();
+            $data['rooms'] = $dbreservation->checkInNotification();
+            view::load('dashboard/notification/checkInReservation', $data);
+
             
         }
     }

@@ -25,9 +25,13 @@ class NotificationController {
             $data = array();
             if(isset($_POST['search'])) {
                 $search = $_POST['search'];
-                                
+                   // search process should be implemented
                     // $data['rooms'] = $db->getSearchRoomAll($search);
-                    view::load('dashboard/reservation/index', $data);
+                    // view::load('dashboard/reservation/index', $data);
+                $data['rooms'] = $dbreservation->requestNotificationSearch($search);
+                view::load('dashboard/notification/reservationIndex', $data);
+
+                
             }
             else {
                 $data['rooms'] = $dbreservation->requestNotification();
@@ -251,6 +255,30 @@ class NotificationController {
             
             
         } 
+    }
+
+    public function checkInMark() {
+        if(!isset($_SESSION['user_id'])) {
+            $dashboard = new DashboardController();
+            $dashboard->index();
+        }
+        else {
+
+            $dbreservation = new Reservation();
+            
+            $data = array();
+            if(isset($_POST['search'])) {
+                $search = $_POST['search'];
+                                
+                    // $data['rooms'] = $db->getSearchRoomAll($search);
+                    view::load('dashboard/reservation/index', $data);
+            }
+            else {
+                $data['rooms'] = $dbreservation->requestNotification();
+                view::load('dashboard/notification/reservationIndex', $data);
+            }
+            
+        }
     }
 
 }

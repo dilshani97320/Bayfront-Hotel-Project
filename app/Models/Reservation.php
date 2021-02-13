@@ -529,6 +529,40 @@ class Reservation extends Connection {
     return $rooms;
     }
 
+    public function requestNotificationSearch($room_number) {
+        date_default_timezone_set("Asia/Colombo");
+        $current_date = date('Y-m-d');
+
+        $room = new RoomDetails();
+        $room_type = new RoomType();
+        $room->room_table; //table2
+        $room_type->room_type_table;
+
+        $room->room_number = mysqli_real_escape_string($this->connection, $room_number);
+
+        $query = "SELECT $room->room_table.room_number,  $room->room_table.room_name, $room->room_table.price, $room_type->room_type_table.max_guest,
+                  $this->reservation_table.check_in_date, $this->reservation_table.check_out_date, $this->reservation_table.reservation_id
+                  FROM $room->room_table
+                  INNER JOIN $room_type->room_type_table
+                  ON  $room->room_table.type_id = $room_type->room_type_table.room_type_id
+                  LEFT OUTER JOIN $this->reservation_table
+                  ON $room->room_table.room_id = $this->reservation_table.room_id
+                  WHERE $this->reservation_table.is_valid = 1 AND $this->reservation_table.request = 1 AND $this->reservation_table.check_in_date >= $current_date AND $room->room_table.room_number = '{$room->room_number}'
+                  ORDER BY $room->room_table.room_id";
+        // var_dump($query);
+        // die();
+        $rooms = mysqli_query($this->connection, $query);
+        if($rooms) {
+            mysqli_fetch_all($rooms,MYSQLI_ASSOC);
+        }
+        else {
+            echo "Database Query Failed";
+        }    
+    // var_dump($rooms);
+    // die();
+    return $rooms;
+    }
+
     public function resetReservationRequest($reservation_id, $check_in_date, $check_out_date) {
 
         $this->reservation_id = mysqli_real_escape_string($this->connection, $reservation_id);

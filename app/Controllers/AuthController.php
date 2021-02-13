@@ -39,9 +39,9 @@ class AuthController {
 				
 				if(!empty($user)) {
 
-					$_SESSION['id']= $user['id'];
-					$_SESSION['nameuser']= $user['name'];
-					$_SESSION['email']= $user['email'];
+					$_SESSION['unreg_user_id']= $user['id'];
+					$_SESSION['unreg_user_name']= $user['name'];
+					$_SESSION['unreg_user_email']= $user['email'];
 					$_SESSION['verified']= $user['verified'];
 					$_SESSION['usertype']= $user['userType'];
 					$_SESSION['message']= "You are now logged in";
@@ -118,8 +118,8 @@ class AuthController {
 					
 					// $user_id = $conn->insert_id;
 					// $_SESSION['id']= $user_id;
-					$_SESSION['nameuser']= $username;
-					$_SESSION['email']= $email;
+					$_SESSION['unreg_user_name']= $username;
+					$_SESSION['unreg_user_email']= $email;
 					$_SESSION['verified']= $verified;
 
 					$sendMail = new EmailController;
@@ -189,9 +189,9 @@ class AuthController {
 	{
 		
 		
-			unset($_SESSION['id']);
-			unset($_SESSION['nameuser']);
-			unset($_SESSION['email']);
+			unset($_SESSION['unreg_user_id']);
+			unset($_SESSION['unreg_user_name']);
+			unset($_SESSION['unreg_user_email']);
 			unset($_SESSION['verified']);
 			$db = new RoomDetails();
 					$data['room_details'] = $db->getRoomView(); 

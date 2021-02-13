@@ -19,12 +19,14 @@ class Customer extends Connection {
 
     public function getAllCustomer() {
 
+
         $query = "SELECT * FROM  $this->customer_table
                   WHERE is_deleted=0 ORDER BY customer_id";
 
         $users = mysqli_query($this->connection, $query);
         if($users) {
            mysqli_fetch_all($users,MYSQLI_ASSOC);
+
         }
         else {
             echo "Database Query Failed";

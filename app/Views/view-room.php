@@ -138,6 +138,121 @@
 .Sur{
   margin-top: 35px;
 }
+
+.snip1540 {
+  box-shadow: none !important;
+  color: #141414;
+  display: inline-block;
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.4em;
+  margin: 10px;
+  max-width: 315px;
+  min-width: 230px;
+  position: relative;
+  text-align: left;
+  width: 100%;
+}
+
+.snip1540 * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.snip1540 .profile-image img {
+  border-radius: 5px;
+  max-width: 100%;
+  height: 80px;
+  vertical-align: top;
+  float: left;
+}
+
+.snip1540 figcaption {
+  background-color: #333333;
+  border-radius: 5px;
+  color: #fff;
+  display: inline-block;
+  margin-top: 15px;
+  padding: 25px;
+  position: relative;
+  width: 100%;
+}
+
+.snip1540 figcaption:after {
+  border-color: transparent transparent #333333 transparent;
+  border-style: solid;
+  border-width: 0 10px 10px 10px;
+  bottom: 100%;
+  content: '';
+  height: 0;
+  left: 32px;
+  position: absolute;
+  width: 0;
+}
+
+.snip1540 h3,
+.snip1540 h4,
+.snip1540 p {
+  margin: 0 0 5px;
+}
+
+.snip1540 h3 {
+  font-weight: 600;
+  font-size: 1.2em;
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+
+.snip1540 h4 {
+  color: #8c8c8c;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+
+.snip1540 p {
+  font-size: 0.9em;
+  letter-spacing: 1px;
+  opacity: 0.9;
+}
+
+.snip1540 .icons {
+  padding: 20px 90px;
+}
+
+.snip1540 i {
+  color: #ffdf00;
+  display: inline-block;
+  font-size: 18px;
+  font-weight: normal;
+  opacity: 0.75;
+  padding: 10px 2px;
+}
+
+.snip1540 i:hover {
+  opacity: 1;
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+}
+
+
+.ratingY {
+  display: inline-block;
+  position: relative;
+  height: 50px;
+  line-height: 50px;
+  font-size: 35px;
+  text-shadow: 0 0 5px #FFDF00;
+  color: #FFDF00;
+}
+.ratingB {
+  display: inline-block;
+  position: relative;
+  height: 50px;
+  line-height: 50px;
+  font-size: 35px;
+  text-shadow: 0 0 5px #fff;
+  color: #fff;
+}
+
 </style>
 <body>
   <?php 
@@ -347,6 +462,30 @@ Includes 1 King Size Bed, private kitchen, bathroom and some living spaces.</li>
             <ul>
               <li>Weligama General Hospital- 1 Km</li>
             </ul>
+          </div>
+
+          <div class="Sur">
+          <?Php  foreach ($review_details as $key=>$value): //var_dump($review_details); exit;?>
+            <figure class="snip1540">
+              <figcaption>
+              <?Php  foreach ($customer_details as $key1=>$value1):// var_dump($customer_details); exit?>
+              <?Php if($value1['customer_id']== $value['customer_id']): ?>
+                <h4><?php echo $value1['first_name']; ?></h4>
+                <h3><?php echo $value1['location']; ?></h3>
+                <?Php endif; ?>
+                <?Php endforeach; ?>
+                <?php  for ($i=0; $i < $value['rating']; $i++): ?>
+                    <span class="ratingY">★</span>
+                  <?php  endfor; ?>
+
+                  <?php  for ($i=0; $i < 5-$value['rating']; $i++): ?>
+                    <span class="ratingB">★</span>
+                  <?php  endfor; ?>
+
+                <p><?php echo $value['guest_review'] ?></p>
+              </figcaption>
+            </figure>
+            <?Php endforeach; ?>
           </div>
         </div>
 

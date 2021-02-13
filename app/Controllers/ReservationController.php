@@ -470,7 +470,7 @@ class ReservationController {
                                 $reception_user_id = $_SESSION['user_id'];
                                 $reception_user_id = (int)$reception_user_id;
                             }
-            
+                            // echo $reception_user_id; exit;
                             // echo $payment_method;
                             //Request or not should check
                             if($payment_method == "CASHONLINE" || $payment_method == "ONLINEONLINE") {

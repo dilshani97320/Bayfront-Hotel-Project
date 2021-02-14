@@ -2,7 +2,7 @@
 <?php 
 
 // Header
-   $title = "Reservations Check-In Page";
+   $title = "Reservations Check-Out Page";
    include(VIEWS.'dashboard/inc/header.php'); 
 ?>
 
@@ -12,7 +12,7 @@
    
        $navbar_title = "Room Reservations ";
        $search = 1;
-       $search_by = 'Room Number or Contact Number';
+       $search_by = 'Room Number';
        $url = "notification/checkInMark";
        
        include(VIEWS.'dashboard/inc/sidebar.php'); //Sidebar
@@ -48,7 +48,7 @@
                                         <th>Room Number</th>
                                         <th>Room Name</th>
                                         <th>First Name</th>
-                                        <th>Contact Number</th>
+                                        <th>Last Name</th>
                                         <th>Room Price</th>
                                         <th>Check In Date</th>
                                         <th>Check Out Date</th>
@@ -61,7 +61,7 @@
                                         <td><?php echo $row['room_number'];?></td>
                                         <td><?php echo $row['room_name'];?></td>
                                         <td><?php echo $row['first_name'];?></td>
-                                        <td><?php echo $row['contact_number'];?></td>
+                                        <td><?php echo $row['last_name'];?></td>
                                         <td><?php echo $row['price'];?></td>
                                         <td>  
                                             <div class="in">

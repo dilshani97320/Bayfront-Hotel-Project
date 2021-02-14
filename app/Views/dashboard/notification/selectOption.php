@@ -60,7 +60,7 @@
                             <div class="text">
                                 Check-Out
                             </div>
-                            <a href="<?php url('notification/index');?>"></a>
+                            <a href="<?php url('notification/checkOutMark');?>"></a>
                         </div>
 
                         

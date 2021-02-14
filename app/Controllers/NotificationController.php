@@ -299,4 +299,28 @@ class NotificationController {
         }
     }
 
+    public function checkOutMark() {
+        if(!isset($_SESSION['user_id'])) {
+            $dashboard = new DashboardController();
+            $dashboard->index();
+        }
+        else {
+
+            $dbreservation = new Reservation();
+            
+            $data = array();
+            if(isset($_POST['search'])) {
+                $search = $_POST['search'];
+                                
+                    // $data['rooms'] = $db->getSearchRoomAll($search);
+                    $data['rooms'] = $dbreservation->checkOutSearchNotification($search);
+                    view::load('dashboard/notification/checkOutReservation', $data);
+            }
+            else {
+                $data['rooms'] = $dbreservation->checkOutNotification();
+                view::load('dashboard/notification/checkOutReservation', $data);
+            }
+            
+        }
+    }
 }

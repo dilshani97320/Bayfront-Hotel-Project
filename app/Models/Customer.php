@@ -8,7 +8,7 @@ class Customer extends Connection {
     private $customer_first_name;
     private $customer_last_name;
     private $customer_location;
-    private $customer_contact_number;
+    public $customer_contact_number;
     private $customer_age;
     private $customer_email;
     public $customer_table = "customer";

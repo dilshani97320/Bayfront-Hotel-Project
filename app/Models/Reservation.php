@@ -611,7 +611,7 @@ class Reservation extends Connection {
 
 
         $query = "SELECT $room->room_table.room_number,  $room->room_table.room_name, $room->room_table.price,
-                  $customer->customer_table.first_name,  $customer->customer_table.last_name,
+                  $customer->customer_table.first_name,  $customer->customer_table.contact_number,
                   $this->reservation_table.check_in_date, $this->reservation_table.check_out_date, $this->reservation_table.reservation_id, $this->reservation_table.check_in_status
                   FROM $this->reservation_table
                   LEFT OUTER JOIN $room->room_table
@@ -636,7 +636,7 @@ class Reservation extends Connection {
     return $rooms;
     }
 
-    public function checkInSearchNotification($room_number){
+    public function checkOutNotification(){
 
         date_default_timezone_set("Asia/Colombo");
         $current_date = date('Y-m-d');
@@ -645,17 +645,55 @@ class Reservation extends Connection {
         $customer = new Customer();
         $room->room_table; //table2
         $customer->customer_table;
-        $room->room_number = mysqli_real_escape_string($this->connection, $room_number);
+
+
+        $query = "SELECT $room->room_table.room_number,  $room->room_table.room_name, $room->room_table.price,
+                  $customer->customer_table.first_name,  $customer->customer_table.last_name,
+                  $this->reservation_table.check_in_date, $this->reservation_table.check_out_date, $this->reservation_table.reservation_id, $this->reservation_table.check_in_status
+                  FROM $this->reservation_table
+                  LEFT OUTER JOIN $room->room_table
+                  ON $room->room_table.room_id = $this->reservation_table.room_id
+                  INNER JOIN $customer->customer_table
+                  ON $this->reservation_table.customer_id = $customer->customer_table.customer_id
+                  WHERE $this->reservation_table.is_valid = 1 AND $this->reservation_table.request = 0 AND $this->reservation_table.check_out_date = '{$current_date}'
+                  ORDER BY $this->reservation_table.check_out_status";
+        // var_dump($query);
+        // die();
+        $rooms = mysqli_query($this->connection, $query);
+        if($rooms) {
+            mysqli_fetch_all($rooms,MYSQLI_ASSOC);
+        }
+        else {
+            echo "Database Query Failed";
+        }    
+
+        // var_dump($rooms);
+        // die();
+
+    return $rooms;
+    }
+
+    public function checkInSearchNotification($search){
+
+        date_default_timezone_set("Asia/Colombo");
+        $current_date = date('Y-m-d');
+
+        $room = new RoomDetails();
+        $customer = new Customer();
+        $room->room_table; //table2
+        $customer->customer_table;
+        $room->room_number = mysqli_real_escape_string($this->connection, $search);
+        $customer->customer_contact_number = mysqli_real_escape_string($this->connection, $search);
 
         $query ="SELECT $room->room_table.room_number,  $room->room_table.room_name, $room->room_table.price,
-                $customer->customer_table.first_name,  $customer->customer_table.last_name,
+                $customer->customer_table.first_name,  $customer->customer_table.contact_number,
                 $this->reservation_table.check_in_date, $this->reservation_table.check_out_date, $this->reservation_table.reservation_id, $this->reservation_table.check_in_status
                 FROM $this->reservation_table
                 LEFT OUTER JOIN $room->room_table
                 ON $room->room_table.room_id = $this->reservation_table.room_id
                 INNER JOIN $customer->customer_table
                 ON $this->reservation_table.customer_id = $customer->customer_table.customer_id
-                WHERE $this->reservation_table.is_valid = 1 AND $this->reservation_table.request = 0 AND $this->reservation_table.check_in_date = '{$current_date}' AND $room->room_table.room_number = '{$room->room_number}'
+                WHERE $this->reservation_table.is_valid = 1 AND $this->reservation_table.request = 0 AND $this->reservation_table.check_in_date = '{$current_date}' AND $room->room_table.room_number = '{$room->room_number}' OR $customer->customer_table.contact_number = '{$customer->customer_contact_number}'
                 ORDER BY $this->reservation_table.check_in_status";
 
         $rooms = mysqli_query($this->connection, $query);

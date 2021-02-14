@@ -298,6 +298,7 @@ class NotificationController {
             
         }
     }
+    
 
     public function checkOutMark() {
         if(!isset($_SESSION['user_id'])) {
@@ -320,6 +321,23 @@ class NotificationController {
                 $data['rooms'] = $dbreservation->checkOutNotification();
                 view::load('dashboard/notification/checkOutReservation', $data);
             }
+            
+        }
+    }
+
+    public function departuredCustomer($reservation_id) {
+        if(!isset($_SESSION['user_id'])) {
+            $dashboard = new DashboardController();
+            $dashboard->index();
+        }
+        else {
+            $dbreservation = new Reservation();
+            // update reservation table
+            $dbreservation->checkedOutUpdate($reservation_id);
+            $data = array();
+            $data['rooms'] = $dbreservation->checkOutNotification();
+            view::load('dashboard/notification/checkOutReservation', $data);
+
             
         }
     }

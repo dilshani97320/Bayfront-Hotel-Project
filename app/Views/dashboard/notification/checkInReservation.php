@@ -25,7 +25,7 @@
            <div class="card">
                <div class="cardheader">
                    <div class="options">
-                       <h4>All Today Room Reservations Page
+                       <h4>All Today Checked In Reservations Page
                        <span>
                             <a href="<?php url("notification/option"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>
                             <a href="<?php url("notification/checkInMark"); ?>" class="refresh"><i class="material-icons">loop</i></a>  

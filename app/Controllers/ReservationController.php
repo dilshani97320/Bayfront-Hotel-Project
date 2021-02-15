@@ -275,6 +275,7 @@ class ReservationController {
             $dashboard = new DashboardController();
             $dashboard->index();    
         }
+        // create redirect page for homepage
         else {
             if(isset($_POST['submit'])) {
 
@@ -489,9 +490,7 @@ class ReservationController {
                             $data = array($customer_id, $reception_user_id, $room_id, $check_in_date, $check_out_date, $no_of_guest, $payment_method, $request);
                             $dbreservation = new Reservation();
                             $result = $dbreservation->getCreateReservation($data);
-                            
-            
-                            
+
                             if($result == 1) {
                                     if($discountValue == 0) {
                                         // only payment is online create payment details(idea)
@@ -513,6 +512,7 @@ class ReservationController {
                                                     $data['reservation'] = array("id"=>$reservation_id);
                                                     $data['customer'] = array("id"=>$customer_id);
                                                 // check already have payment details in the payment details
+                                                    // redirect page accoring to session id
                                                     view::load('dashboard/reservation/reservationThanks');
                                                 }
                                                 else {

@@ -27,6 +27,7 @@
                    <div class="options">
                        <h4>Customer Page   
                        <span>
+                            <a href="<?php url("customer/selectOption"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>
                             <a href="<?php url("customer/index"); ?>" class="refresh"><i class="material-icons">loop</i></a> 
                        </span> 
                        </h4>

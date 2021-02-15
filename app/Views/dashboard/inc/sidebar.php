@@ -27,7 +27,7 @@
         </li> 
 
         <li class="nav1-item">
-            <a href="<?php url('customer/index'); ?>" class="nav1-link">
+            <a href="<?php url('customer/selectOption'); ?>" class="nav1-link">
                 <p class="nav-p"><i class="material-icons">groups</i>Customer</p>         
             </a>
         </li>

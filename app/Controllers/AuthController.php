@@ -38,7 +38,7 @@ class AuthController {
 
 				
 				if(!empty($user)) {
-
+					$_SESSION['id']= $user['id'];
 					$_SESSION['unreg_user_id']= $user['id'];
 					$_SESSION['unreg_user_name']= $user['name'];
 					$_SESSION['unreg_user_email']= $user['email'];

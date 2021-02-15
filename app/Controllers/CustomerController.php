@@ -2,6 +2,17 @@
 session_start();
 
 class CustomerController {
+
+    public function selectOption() {
+        if(!isset($_SESSION['user_id'])) {
+            $dashboard = new DashboardController();
+            $dashboard->index();
+        }
+        else {
+            view::load("dashboard/customer/selectOption");
+        }
+    }
+
     public function index() {
         
         //Checking if a user is logged in

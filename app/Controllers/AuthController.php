@@ -228,9 +228,14 @@ class AuthController {
 			unset($_SESSION['unreg_user_name']);
 			unset($_SESSION['unreg_user_email']);
 			unset($_SESSION['verified']);
+			// For room search process
 			unset($_SESSION['id']);
 			unset($_SESSION['reservation_data']);
 			unset($_SESSION['input_room_search_data']);
+			unset($_SESSION['unreg_check_in_date']);
+			unset($_SESSION['unreg_check_out_date']);
+			unset($_SESSION['unreg_no_of_rooms']);
+			unset($_SESSION['unreg_no_of_guest']);
 			$db = new RoomDetails();
 					$data['room_details'] = $db->getRoomView(); 
 

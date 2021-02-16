@@ -1,5 +1,7 @@
 <?php 
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 class ReservationController {
 
@@ -26,7 +28,7 @@ class ReservationController {
            
     }
 
-    public function indexOnline($room_number,$max_guest,$check_in_date,$check_out_date,$no_of_rooms, $no_of_guest, $customer_id=0) {
+    public function indexOnline($room_number,$max_guest,$check_in_date,$check_out_date,$rooms, $guest, $customer_id=0) {
         // echo("sucess");
         // die();
         // Checking if a user is logged in
@@ -68,10 +70,10 @@ class ReservationController {
                         
                     // }
                 }
-                $no_of_rooms = $no_of_rooms - 1;
-                $no_of_guest = $no_of_guest- $max_guest;
+                $rooms = $rooms - 1;
+                $guest = $guest- $max_guest;
                 
-                $inputreservationdata=array('no_of_rooms'=>$no_of_rooms, 'no_of_guest'=>$no_of_guest);
+                $inputreservationdata=array('no_of_rooms'=>$rooms, 'no_of_guest'=>$guest);
                 // echo $reservation['price'];
                 $data['reservation'] = $reservation;
                 $data['searchdata'] = $inputreservationdata;
@@ -271,12 +273,17 @@ class ReservationController {
     
     public function create($discountValue = 0, $check_inSearch = '0000-00-00', $check_outSearch = '0000-00-00', $typenameSearch="None",$no_of_rooms=0,$guest=0, $price = 0) {
 
-        if(!isset($_SESSION['user_id'])) {
-            $dashboard = new DashboardController();
-            $dashboard->index();    
-        }
-        // create redirect page for homepage
-        else {
+        // if(!isset($_SESSION['user_id'])) {
+        //     $dashboard = new DashboardController();
+        //     $dashboard->index();    
+        // }
+        // else if(!isset($_SESSION['id'])) {
+        //     $home = new HomeController();
+        //     $home->index();    
+        // }
+
+        // // create redirect page for homepage
+        // else {
             if(isset($_POST['submit'])) {
 
                 // Validation
@@ -686,7 +693,7 @@ class ReservationController {
     
             }
         
-         }
+        //  }
     }
     
     //Done

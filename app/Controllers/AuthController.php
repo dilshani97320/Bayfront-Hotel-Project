@@ -1,9 +1,8 @@
 <?php
 
-if(!isset($_SESSION)) 
-    { 
-        session_start(); 
-    } 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 // session_start();
 
 
@@ -48,15 +47,51 @@ class AuthController {
 					$_SESSION['alert-class']= "alert-succes";
 
 					$data['errors'] = $errors;
+					// if (ini_get('register_globals'))
+					// {
+					// 	print_r($_SESSION);
+					// 	die();
+					// }
+					// print_r($_SESSION);
+					// 	die();
+					
 					// setcookie('email', $user['email'], time()+60*60*7 );
-					$db = new RoomDetails();
-					$data['room_details'] = $db->getRoomView(); 
+					if(isset($_SESSION['unreg_check_in_date']) && isset($_SESSION['unreg_check_out_date'])&& isset($_SESSION['unreg_no_of_rooms']) && isset($_SESSION['unreg_no_of_guest'])) {
+						$room_number = $_SESSION['unreg_room_number'];
+						$max_guest = $_SESSION['unreg_max_guest'];
+						$check_in_date = $_SESSION['unreg_check_in_date']; 
+						$check_out_date = $_SESSION['unreg_check_out_date']; 
+						$rooms= $_SESSION['unreg_no_of_rooms'];
+						$guest= $_SESSION['unreg_no_of_guest']; 
 
-					$db = new Image();
-					$imageRoom =$db->viewRoom();
-					$data['img_details'] = $imageRoom;
-					view::load('home', $data);
-					exit();
+						unset($_SESSION['unreg_check_in_date']);
+						unset($_SESSION['unreg_check_out_date']);
+						unset($_SESSION['unreg_no_of_rooms']);
+						unset($_SESSION['unreg_no_of_guest']);
+
+						$reservation = new ReservationController();
+						$reservation->indexOnline($room_number,$max_guest,$check_in_date,$check_out_date,$rooms, $guest);
+						// var_dump($_SESSION['reservation_data']);
+						// var_dump($_SESSION['input_room_search_data']);
+						// $no_of_rooms = $_SESSION['no_of_rooms'];
+						// echo $no_of_rooms;
+						// print_r($_SESSION);
+						// die();
+						
+						
+						// unset($_SESSION['input_room_search_data']);
+					}
+					else {
+						$db = new RoomDetails();
+						$data['room_details'] = $db->getRoomView(); 
+
+						$db = new Image();
+						$imageRoom =$db->viewRoom();
+						$data['img_details'] = $imageRoom;
+						view::load('home', $data);
+						exit();
+					}
+					
 
 				}else{
 					$errors['login_fail']= "You have entered an invalid username or password";
@@ -193,6 +228,9 @@ class AuthController {
 			unset($_SESSION['unreg_user_name']);
 			unset($_SESSION['unreg_user_email']);
 			unset($_SESSION['verified']);
+			unset($_SESSION['id']);
+			unset($_SESSION['reservation_data']);
+			unset($_SESSION['input_room_search_data']);
 			$db = new RoomDetails();
 					$data['room_details'] = $db->getRoomView(); 
 

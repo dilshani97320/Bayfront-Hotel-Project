@@ -586,8 +586,8 @@ class Reservation extends Connection {
                   ON  $room->room_table.type_id = $room_type->room_type_table.room_type_id
                   LEFT OUTER JOIN $this->reservation_table
                   ON $room->room_table.room_id = $this->reservation_table.room_id
-                  WHERE $this->reservation_table.is_valid = 1 AND $this->reservation_table.request = 1 AND $this->reservation_table.check_in_date >= $current_date
-                  ORDER BY $room->room_table.room_id";
+                  WHERE $this->reservation_table.is_valid = 1 AND $this->reservation_table.request = 1 AND $this->reservation_table.check_in_date >= '{$current_date}'
+                  ORDER BY $this->reservation_table.check_in_date";
 
         $rooms = mysqli_query($this->connection, $query);
         if($rooms) {
@@ -792,8 +792,8 @@ class Reservation extends Connection {
                   ON  $room->room_table.type_id = $room_type->room_type_table.room_type_id
                   LEFT OUTER JOIN $this->reservation_table
                   ON $room->room_table.room_id = $this->reservation_table.room_id
-                  WHERE $this->reservation_table.is_valid = 1 AND $this->reservation_table.request = 1 AND $this->reservation_table.check_in_date >= $current_date AND $room->room_table.room_number = '{$room->room_number}'
-                  ORDER BY $room->room_table.room_id";
+                  WHERE $this->reservation_table.is_valid = 1 AND $this->reservation_table.request = 1 AND $this->reservation_table.check_in_date >= '{$current_date}' AND $room->room_table.room_number = '{$room->room_number}'
+                  ORDER BY $this->reservation_table.check_in_date";
         // var_dump($query);
         // die();
         $rooms = mysqli_query($this->connection, $query);

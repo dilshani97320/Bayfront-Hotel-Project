@@ -50,7 +50,7 @@
                             <div class="text">
                                 Blacklist Customers
                             </div>
-                            <a href="<?php url('notification/checkInMark');?>"></a>
+                            <a href="<?php url('customer/blacklist');?>"></a>
                         </div>
 
 

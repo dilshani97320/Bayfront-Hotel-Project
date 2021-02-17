@@ -198,4 +198,112 @@ class Customer extends Connection {
         return $customer;
     }
 
+    public function getAllBlacklistCustomer() {
+        // $this->customer_id = mysqli_real_escape_string($this->connection, $customer_id);
+        date_default_timezone_set("Asia/Colombo");
+        $current_date = date('Y-m-d');
+        $reservationReservation = new Reservation();
+        // $room = new RoomDetails();
+
+        // $receptionReservation->reception_table; //Table6
+        // $room->room_table; //Table5
+        $reservationReservation->reservation_table; //Table4
+
+
+
+        $query = "SELECT  DISTINCT $this->customer_table.customer_id , $this->customer_table.first_name, $this->customer_table.last_name, $this->customer_table.location, $this->customer_table.contact_number, $this->customer_table.age, $this->customer_table.email
+                FROM $reservationReservation->reservation_table
+                INNER JOIN $this->customer_table  ON  $reservationReservation->reservation_table.customer_id = $this->customer_table.customer_id
+                WHERE   $reservationReservation->reservation_table.check_in_date < '{$current_date}' AND $reservationReservation->reservation_table.check_in_date <= $reservationReservation->reservation_table.check_in_status is NULL AND $reservationReservation->reservation_table.check_out_status is NULL AND $reservationReservation->reservation_table.is_valid = 1 AND $reservationReservation->reservation_table.request = 0 AND $this->customer_table.is_deleted = 0
+                ORDER BY $this->customer_table.customer_id";
+
+        $result = 0;
+        // var_dump($query);
+        // die();
+        $customers= mysqli_query($this->connection, $query);
+
+        if($customers) {
+            mysqli_fetch_all($customers,MYSQLI_ASSOC);
+        }
+        else {
+            echo "Database Query Failed1";
+        }
+        // die();
+        return $customers;
+    }
+
+    public function getBlacklistCustomerSeach($search) {
+        // $this->customer_id = mysqli_real_escape_string($this->connection, $customer_id);
+        date_default_timezone_set("Asia/Colombo");
+        $current_date = date('Y-m-d');
+        $search = mysqli_real_escape_string($this->connection, $search);
+        $this->customer_first_name = $search;
+        $this->customer_last_name =$search;
+        $this->customer_email = $search;
+        $reservationReservation = new Reservation();
+        // $room = new RoomDetails();
+
+        // $receptionReservation->reception_table; //Table6
+        // $room->room_table; //Table5
+        $reservationReservation->reservation_table; //Table4
+
+
+
+        $query = "SELECT  DISTINCT $this->customer_table.customer_id , $this->customer_table.first_name, $this->customer_table.last_name, $this->customer_table.location, $this->customer_table.contact_number, $this->customer_table.age, $this->customer_table.email
+                FROM $reservationReservation->reservation_table
+                INNER JOIN $this->customer_table  ON  $reservationReservation->reservation_table.customer_id = $this->customer_table.customer_id
+                WHERE   (first_name LIKE '%{$this->customer_first_name}%' OR last_name LIKE '%{$this->customer_last_name}%' OR email LIKE '%{$this->customer_email}%') AND
+                $reservationReservation->reservation_table.check_in_date < '{$current_date}' AND $reservationReservation->reservation_table.check_in_status is NULL AND $reservationReservation->reservation_table.check_out_status is NULL AND $reservationReservation->reservation_table.is_valid = 1 AND $reservationReservation->reservation_table.request = 0 AND $this->customer_table.is_deleted = 0
+                ORDER BY $this->customer_table.customer_id";
+
+        $result = 0;
+        // var_dump($query);
+        // die();
+        $customers= mysqli_query($this->connection, $query);
+
+        if($customers) {
+            mysqli_fetch_all($customers,MYSQLI_ASSOC);
+        }
+        else {
+            echo "Database Query Failed1";
+        }
+        // die();
+        return $customers;
+    }
+
+    public function getReservationsBlacklist($customer_id) {
+
+        date_default_timezone_set("Asia/Colombo");
+        $current_date = date('Y-m-d');
+
+        $this->customer_id = mysqli_real_escape_string($this->connection, $customer_id);
+        $reservationReservation = new Reservation();
+        $room = new RoomDetails();
+
+        // $receptionReservation->reception_table; //Table6
+        $room->room_table; //Table5
+        $reservationReservation->reservation_table; //Table4
+
+
+
+        $query = "SELECT  $room->room_table.room_number,$room->room_table.price, $this->customer_table.first_name,
+                $reservationReservation->reservation_table.check_in_date, $reservationReservation->reservation_table.check_out_date, $reservationReservation->reservation_table.payment_method, $reservationReservation->reservation_table.check_in_status, $reservationReservation->reservation_table.check_out_status 
+                FROM reservation INNER JOIN $room->room_table  ON  $reservationReservation->reservation_table.room_id = $room->room_table.room_id
+                                 INNER JOIN $this->customer_table  ON  $reservationReservation->reservation_table.customer_id = $this->customer_table.customer_id
+                WHERE  $reservationReservation->reservation_table.check_in_date < '{$current_date}' AND $reservationReservation->reservation_table.customer_id = '{$this->customer_id}' AND $reservationReservation->reservation_table.is_valid = 1 AND $reservationReservation->reservation_table.request = 0
+                ORDER BY $reservationReservation->reservation_table.room_id";
+
+        $result = 0;
+        // var_dump($query);
+        $reservations= mysqli_query($this->connection, $query);
+
+        if($reservations) {
+            mysqli_fetch_all($reservations,MYSQLI_ASSOC);
+        }
+        else {
+            echo "Database Query Failed1";
+        }
+        // die();
+        return $reservations;
+    }
 }

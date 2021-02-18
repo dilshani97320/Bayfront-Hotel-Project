@@ -108,4 +108,43 @@
                 
             }
         }
+
+        public function option() {
+            if(!isset($_SESSION['user_id'])) {
+                $dashboard = new DashboardController();
+                $dashboard->index();
+            }
+            else {
+                view::load('dashboard/payment/selectOption');
+            }
+        }
+
+        public function cashIndex() {
+            if(!isset($_SESSION['user_id'])) {
+                $dashboard = new DashboardController();
+                $dashboard->index();
+            }
+            else {
+                $data = array();
+                // $db = new Employee;
+                if(isset($_POST['search'])) {
+                    $search = $_POST['search'];
+                    $db = new Customer();
+                    // $db->setSearchCustomer($search);
+                    $data['customer'] = $db->getAllCustomerPaymentDetailsTodaySearch($search);
+                    //echo 'Error1';
+                    view::load('dashboard/payment/cashIndex', $data);
+                }
+                else {
+                    $db = new Customer();
+                    $data['customer'] = $db->getAllCustomerPaymentDetailsToday();
+                    // var_dump($data['customer']);
+                    // die();
+                    //echo 'Error2';
+                    view::load('dashboard/payment/cashIndex', $data);
+                }
+                
+                
+            }
+        }
     }

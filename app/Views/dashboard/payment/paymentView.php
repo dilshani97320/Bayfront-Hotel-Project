@@ -8,7 +8,7 @@
 <div class="wrapper">
 
     <?php 
-            $navbar_title = "Employee Page";
+            $navbar_title = "Payment View Page";
             $search = 0;
             $search_by = '#';
        
@@ -25,22 +25,18 @@
                     <div class="options">
                         <h4>Payment View 
                         <span>
-                            <a href="<?php url("employee/index"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>  
+                            <a href="<?php url("payment/cashIndex"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>  
                         </span>
                         </h4>  
                     </div>
 
-                    <p class="textfortabel">Complete Payment Following Details</p>
+                    <p class="textfortabel">Complete Payment Following Details and Payment $4.83 include tax</p>
                 </div>
 
                 <div class="cardbody">  
                     <form action="<?php url("employee/create"); ?>" method="post" class="addnewform">
 
                     <div class="section1">
-
-                        <input type="text" name="owner_user_id" value ="<?php echo $_SESSION['user_id']; ?>" hidden  >
-                        
-
                         <div class="row">
                             <label for="#"><i class="material-icons">account_box</i>First Name:</label>
                                 <div class="animate-form">
@@ -219,19 +215,18 @@
                                     <input type="text"  autocomplete="off" name="amount" class="inputField"
                                     <?php 
                                         $paymentValue = 0;
+                                        $paymentValuePaid = 0;
                                         if(isset($payment['amount'])){
-                                            echo 'value="' . $payment['amount'] . '"';
+                                            $paymentValuePaid=  $payment['amount']/1000;
                                         }
-                                        
-                                        else {
-                                            echo 'value="' . $paymentValue . '"';
-                                        }
+                                        $paymentValue = $details['total_price'] - $paymentValuePaid;
+                                        echo 'value="' . $paymentValue . '"';
                                     ?>
                                     readonly
                                     >
-                                    
+
                                     <label for="name" class="label-name">
-                                            <?php if(isset($payment['amount']) && ($payment['amount'] != "")){ ?>
+                                            <?php if($paymentValue == 0){?>
                                                 <span class="content-success"><i class="material-icons">privacy_tip</i></span>
                                             <?php } else {?>
                                                 <span class="content-success"><i class="material-icons">verified_user</i></span>
@@ -242,7 +237,7 @@
                         
                         <div class="row">
                             <div class="button">
-                                <button class="save" name="submit">Save</button>
+                                <button class="save" name="submit">Pay Now</button>
                             </div>
                         </div>
                     </div>

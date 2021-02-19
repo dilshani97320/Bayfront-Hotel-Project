@@ -32,7 +32,7 @@
                        </span> 
                        </h4>
                    </div>
-                   <p class="textfortabel">Customer View Following Table</p>
+                   <p class="textfortabel">Customer View Following Table and Payment $4.83 include tax</p>
                </div>
                <div class="cardbody">
                     <div class="tablebody">
@@ -83,10 +83,9 @@
                                 </td>
                                     <td>
                                         <div class="outofdate">
-                                            <a href="<?php url('notification/arrivedCustomer/'.$row['reservation_id']);?>" class="edit" style="color:#ffff;">Check</a>
+                                            <a href="<?php url('payment/detailsView/'.$row['reservation_id'].'/'.$row['customer_id'].'/'.$total_price.'/'.$row['price'].'/'.$row['room_name']);?>" class="edit" style="color:#ffff;">Check</a>
                                         </div>
                                     </td>
-                                <!-- <td><a href="<?php url('customer/details/'.$row['customer_id']);?>" class="edit"><i class="material-icons">preview</i></a></td>     -->
                             </tbody>
                             <?php endforeach ?> 
                         </table>

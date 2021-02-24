@@ -37,7 +37,7 @@
                         </h4>  
                     </div>
 
-                    <p class="textfortabel">Complete Following Details</p>
+                    <p class="textfortabel">Include Following Details</p>
                 </div>
 
                 <div class="cardbody">  

@@ -108,4 +108,76 @@
                 
             }
         }
+
+        public function option() {
+            if(!isset($_SESSION['user_id'])) {
+                $dashboard = new DashboardController();
+                $dashboard->index();
+            }
+            else {
+                view::load('dashboard/payment/selectOption');
+            }
+        }
+
+        public function cashIndex() {
+            if(!isset($_SESSION['user_id'])) {
+                $dashboard = new DashboardController();
+                $dashboard->index();
+            }
+            else {
+                $data = array();
+                // $db = new Employee;
+                if(isset($_POST['search'])) {
+                    $search = $_POST['search'];
+                    $db = new Customer();
+                    // $db->setSearchCustomer($search);
+                    $data['customer'] = $db->getAllCustomerPaymentDetailsTodaySearch($search);
+                    //echo 'Error1';
+                    view::load('dashboard/payment/cashIndex', $data);
+                }
+                else {
+                    $db = new Customer();
+                    $data['customer'] = $db->getAllCustomerPaymentDetailsToday();
+                    // var_dump($data['customer']);
+                    // die();
+                    //echo 'Error2';
+                    view::load('dashboard/payment/cashIndex', $data);
+                }
+                
+                
+            }
+        }
+
+        public function detailsView($reservation_id, $customer_id, $total_price, $room_price, $room_name) {
+            if(!isset($_SESSION['user_id'])) {
+                $dashboard = new DashboardController();
+                $dashboard->index();
+            }
+            else {
+                $data = array();
+                // $db = new Employee;
+                $dbcustomer = new Customer();
+                $dbreservation = new Reservation();
+                $dbpayment = new Payment();
+                $data['customer'] = $dbcustomer->getCustomer($customer_id);
+                $data['reservation'] = $dbreservation->reservationDetails($reservation_id);
+
+                $payment_details= $dbpayment->paymentDetails($reservation_id, $customer_id);
+                if(!empty($payment_details)) {
+                    $data['payment'] = $payment_details;
+                }
+
+                $payments = array('total_price'=>$total_price, 'room_price'=>$room_price, 'room_name'=>$room_name);
+                $data['details'] = $payments;
+
+                
+                // var_dump($data['customer']);
+                // die();
+                //echo 'Error2';
+                view::load('dashboard/payment/paymentView', $data);                
+                
+            }
+        }
+
+        
     }

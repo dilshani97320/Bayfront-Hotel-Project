@@ -22,9 +22,15 @@
 
         <li class="nav1-item">
             <a href="<?php url('employee/option'); ?>" class="nav1-link">
-                <p class="nav-p"><i class="material-icons">people</i>Employee</p>         
+                <p class="nav-p"><i class="material-icons">people</i>Employees</p>         
             </a>
         </li> 
+
+        <li class="nav1-item">
+            <a href="<?php url('customer/selectOption'); ?>" class="nav1-link">
+                <p class="nav-p"><i class="material-icons">groups</i>Customers</p>         
+            </a>
+        </li>
 
         <li class="nav1-item">
             <a href="<?php url('room/index'); ?>" class="nav1-link">
@@ -33,9 +39,25 @@
         </li>
 
         
-            <li class="nav1-item">
+        <li class="nav1-item">
             <a href="<?php url('reservation/details'); ?>" class="nav1-link">
                 <p class="nav-p"><i class="material-icons">book</i>Reservations</p>         
+            </a>
+        </li> 
+
+        <li class="nav1-item">
+
+            <a href="<?php url('notification/option'); ?>" class="nav1-link">
+                <p class="nav-p"><i class="material-icons">notification_important</i>Notifications</p>         
+
+            </a>
+        </li> 
+
+        <li class="nav1-item">
+
+            <a href="<?php url('payment/option'); ?>" class="nav1-link">
+                <p class="nav-p"><i class="material-icons">paid</i>Payments</p>         
+
             </a>
         </li> 
     
@@ -47,13 +69,7 @@
             </a>
         </li> 
         
-        <li class="nav1-item">
-
-            <a href="<?php url('notification/option'); ?>" class="nav1-link">
-                <p class="nav-p"><i class="material-icons">notification_important</i>Notifications</p>         
-
-            </a>
-        </li> 
+        
 
         <li class="nav1-item">
 

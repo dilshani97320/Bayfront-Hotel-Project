@@ -126,10 +126,21 @@
 						<a class="btn" href="<?php url('RoomSuite/ViewRoom/'.$value['room_number'] ); ?> ">VIEW MORE <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
 						
 						<!-- Check if user give check-out-date and check-in-date -->
-						<?php if(isset($input_data) && (isset($customer) && $customer['id'] != 0)) { ?>
-								
-								<a class="btn" href="<?php url('Reservation/indexOnline/'.$value['room_number'].'/'.$value['max_guest'].'/'.$input_data['check_in_date'].'/'.$input_data['check_out_date'].'/'.$input_data['no_of_rooms'].'/'.$input_data['no_of_guests'].'/'.$customer['id']); ?>">BOOK NOW<i class="fa fa-chevron-right" aria-hidden="true"></i></a>	
+						<?php if(isset($input_data) && (isset($customer) && $customer['id'] != 0)) { ?>		
+								<a class="btn" href="<?php url('Reservation/indexOnline/'.$value['room_number'].'/'.$value['max_guest'].'/'.$input_data['check_in_date'].'/'.$input_data['check_out_date'].'/'.$input_data['no_of_rooms'].'/'.$input_data['no_of_guests'].'/'.$customer['id']); ?>">BOOK NOW<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
 						<?php }else if(isset($input_data) && (!isset($customer))) { ?>
+								<?php 
+								if (session_status() == PHP_SESSION_NONE) {
+								    session_start();
+								}
+								$_SESSION['unreg_room_number'] = $value['room_number'];
+								$_SESSION['unreg_max_guest'] = $value['max_guest'];
+								$_SESSION['unreg_check_in_date'] = $input_data['check_in_date'];
+								$_SESSION['unreg_check_out_date'] = $input_data['check_out_date'];
+								$_SESSION['unreg_no_of_rooms'] = $input_data['no_of_rooms'];
+								$_SESSION['unreg_no_of_guest'] = $input_data['no_of_guests'];	
+									
+								; ?>
 								<a class="btn" href="<?php url('Reservation/indexOnline/'.$value['room_number'].'/'.$value['max_guest'].'/'.$input_data['check_in_date'].'/'.$input_data['check_out_date'].'/'.$input_data['no_of_rooms'].'/'.$input_data['no_of_guests'] ); ?>">BOOK NOW<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
 						<?php }else { ?>
 							<?php 

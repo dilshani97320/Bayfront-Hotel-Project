@@ -45,12 +45,22 @@
 
                         <div class="horBadge">
                             <div class="icon2">
-                                <i class="fas fa-users"></i>
+                                <i class="fas fa-calendar-check"></i>
                             </div>
                             <div class="text">
-                                Others
+                                Check-In
                             </div>
-                            <a href="<?php url('employee/index');?>"></a>
+                            <a href="<?php url('notification/checkInMark');?>"></a>
+                        </div>
+
+                        <div class="horBadge">
+                            <div class="icon2">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <div class="text">
+                                Check-Out
+                            </div>
+                            <a href="<?php url('notification/checkOutMark');?>"></a>
                         </div>
 
                         

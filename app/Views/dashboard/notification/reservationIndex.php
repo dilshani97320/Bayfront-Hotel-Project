@@ -13,7 +13,7 @@
        $navbar_title = "Room Reservations ";
        $search = 1;
        $search_by = 'Room Number';
-       $url = "notification/details";
+       $url = "notification/reservationIndex";
        
        include(VIEWS.'dashboard/inc/sidebar.php'); //Sidebar
        include(VIEWS.'dashboard/inc/navbar.php'); //Navbar

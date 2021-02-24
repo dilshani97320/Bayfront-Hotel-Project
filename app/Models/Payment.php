@@ -6,7 +6,7 @@ class Payment extends Connection {
     // private $room_type_id;   Foriegn key
     //have to create
     private $payment_stripe_id;
-    private $payment_customer_id;
+    // private $payment_customer_id;
     private $payment_roomdesc;
     private $payment_amount;
     private $payment_currency;
@@ -75,6 +75,33 @@ class Payment extends Connection {
         }
     }
 
+    public function paymentDetails($reservation_id, $customer_id) {
+
+        $customer = new Customer();
+        $customer->customer_id = mysqli_real_escape_string($this->connection, $customer_id); 
+        $reservation = new Reservation();
+        $reservation->reservation_id = mysqli_real_escape_string($this->connection, $reservation_id);
+
+        $query = "SELECT * FROM $this->payment_table
+                  WHERE customer_id = '{$customer->customer_id}' AND reservation_id = '{$reservation->reservation_id}'
+                  LIMIT 1";
+
+        $payments = mysqli_query($this->connection, $query);
+
+        if($payments){
+            if(mysqli_num_rows($payments) == 1) {
+                $payment = mysqli_fetch_assoc($payments);
+            }
+            else {
+                $payment = array();
+            }
+        }
+        else {
+            echo "Query Error";
+        }
+
+        return $payment;
+    }
     
 
     

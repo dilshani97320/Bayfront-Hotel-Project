@@ -77,6 +77,7 @@ class RoomDetails extends RoomType {
 
     public function getReview($room_id)
     {   
+        // WTGihan DB must update
          $query = "SELECT customer_id, 	guest_review, 	rating,reply FROM $this->reservation_table
                    WHERE $this->reservation_table.room_id= '$room_id' AND  $this->reservation_table.is_feedback= 1";
         // echo $query;  

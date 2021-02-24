@@ -79,17 +79,31 @@
                                 </div>
                             </div>
 		</div>
-		<div class="blockY search">
-			 <input type="submit" id='bookingSubmit' class='form__submitY' name='submit' value='Check  Availability'>
-			 <!-- <input type="submit" id='bookingSubmit' class='form__submitY' value="<?php echo $room_details[0]['room_number']  ?>">  -->
-		</div>
+		
                 <!-- when avilable room then book now display -->
                 <?php if(isset($roomAvailable) && $roomAvailable['availability'] == 1){ ?>
+                        <?php 
+                        if (session_status() == PHP_SESSION_NONE) {
+                        session_start();
+                        }
+                        $_SESSION['unreg_room_number'] = $room_details[0]['room_number'];
+                        $_SESSION['unreg_max_guest'] = $room_details[0]['max_guest'];
+                        $_SESSION['unreg_check_in_date'] = $input_data['check_in_date'];
+                        $_SESSION['unreg_check_out_date'] = $input_data['check_out_date'];
+                        $_SESSION['unreg_no_of_rooms'] = $input_data['no_of_rooms'];
+                        $_SESSION['unreg_no_of_guest'] = $input_data['no_of_guests'];	
+                                
+                        ; ?>
                         <div class="blockY search">
                                 <!-- <a  class="form_submitBook" href="<?php url('Reservation/indexOnline/'.$input_data['room_number'].'/'.$input_data['no_of_guests'].'/'.$input_data['check_in_date'].'/'.$input_data['check_out_date'].'/'.$input_data['no_of_rooms'].'/'.$input_data['no_of_guests'] ); ?>"><?php echo $input_data['room_number']; ?></a> -->
                                 <input type="submit" id='bookingSubmit' class='form__submitY' name='submitbooknow' value='Book Now'>
                         </div>
-                <?php } ?>
+                <?php }else { ?>
+                        <div class="blockY search">
+			        <input type="submit" id='bookingSubmit' class='form__submitY' name='submit' value='Check  Availability'>
+			 <!-- <input type="submit" id='bookingSubmit' class='form__submitY' value="<?php echo $room_details[0]['room_number']  ?>">  -->
+		        </div>
+                <?php } ?>     
 	</div>
         </form>
 </body>

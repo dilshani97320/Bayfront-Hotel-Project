@@ -1,8 +1,7 @@
 <?php
-if(!isset($_SESSION)) 
-{ 
-    session_start(); 
-} 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
     class RoomsuiteController{
         
         public function index()
@@ -28,6 +27,7 @@ if(!isset($_SESSION))
             $room=$data['room_details'];
 
             $db = new RoomDetails();
+            // #WTGihan my database was differ than him
             $data['review_details'] = $db->getReview($room[0]['room_id']); 
 
             $db = new Customer();

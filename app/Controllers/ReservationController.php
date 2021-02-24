@@ -31,10 +31,10 @@ class ReservationController {
         // die();
         // Checking if a user is logged in
             //only login user can only reserve
-            if(isset($_SESSION['id'])) {
+            if(isset($_SESSION['unreg_user_id'])) {
                 //get data from user
                 $user = new User();
-                $new_user = $user->getUserEmail($_SESSION['id']);
+                $new_user = $user->getUserEmail($_SESSION['unreg_user_id']);
                 $user_email = $new_user['email'];
                 // var_dump($user_email);
                 // die();
@@ -107,7 +107,7 @@ class ReservationController {
 
     public function indexOnlineOneRoom($room_number,$max_guest,$check_in_date,$check_out_date) {
        
-        if(isset($_SESSION['id'])) {
+        if(isset($_SESSION['unreg_user_id'])) {
             // echo 
             if(isset($_POST['submitbooknow'])) {
                 
@@ -115,7 +115,7 @@ class ReservationController {
                 $no_of_guest = $_POST['no_of_guests'];
                 //get data from user
                 $user = new User();
-                $new_user = $user->getUserEmail($_SESSION['id']);
+                $new_user = $user->getUserEmail($_SESSION['unreg_user_id']);
                 $user_email = $new_user['email'];
             // var_dump($user_email);
             // die();

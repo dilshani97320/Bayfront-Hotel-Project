@@ -2,6 +2,7 @@
 
     session_start();
     require_once 'Libs/payment/vendor/autoload.php';
+    require_once 'Libs/vendor/autoload.php';
 
     class PaymentController{
 
@@ -163,6 +164,78 @@
         // }
         }
 
+        public function payEmailNotification() {
+            $POST = filter_var_array($_POST, FILTER_SANITIZE_STRING);
+            $customer_id = $POST['customer_id'];
+            $reservation_id = $POST['reservation_id'];
+            $first_name = $POST['first_name'];
+            $last_name = $POST['last_name'];
+            $email = $POST['email'];
+            $contact_number = $POST['contact_number'];
+            
+            $room_name = $POST['room_name'];
+            // $room_view = $POST['room_view'];
+            $room_price = $POST['room_price'];
+            $total_price = $POST['total_price'];
+            $amount = $POST['amount'];
+            
+            // Set default values for this
+            $userEmail = $email;
+            $userName = $first_name." ".$last_name;
+
+           
+           
+            
+            $transport = (new Swift_SmtpTransport('smtp.gmail.com', 587,'tls'))
+            ->setUsername('bayfrontweli45@gmail.com')
+            ->setPassword('Bayfront@1998')
+            ;
+    
+            // Create the Mailer using your created Transport
+            $mailer = new Swift_Mailer($transport);
+           
+            $body = ' <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Verify Email</title>
+                </head>
+                <body>
+                    <div class="wrapper" style=" border-radius: 2px;
+                    height: auto;
+                    background-color: black;
+                    color: white;
+                    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.3);
+                    border: 2px solid black;
+                    padding: 40px;
+                    margin: 10px auto;
+                    text-align: center;
+                    position: relative;
+                    width: 800px;">
+                        <h1>Hi <strong> '. $userName .'</strong></h1>
+                        <h3 class="top">You Have '.$amount.' Payment Please Settle the Payment<strong>Thank you very much for select our hotel for reservation</strong></h3> 
+                        <button style="background: #2EE59D; border: none; border-radius: 5px; padding: 10px; "><a style="color: #fff; text-decoration: none; font-size: 20px; " href="http://localhost/MVC/public/reservation/paymentOnline/'.$customer_id.'/'.$reservation_id.'">Payment</a></button>
+                        <p>If not Pay now decline it</p>
+                        <h4>Welcome</h4>
+                    </div> 
+                </body>
+                </html>';
+        
+            $message = (new Swift_Message('Reservation Payment Notification'))
+            ->setFrom(['bayfrontweli45@gmail.com'=> 'BAYFRONT'])
+            ->setTo([$userEmail])
+            ->setBody($body, 'text/html');
+            
+                // Send the message
+            $result = $mailer->send($message);
+            $this->onlineIndex();
+
+            
+
+            
+            
+        }
+
         public function option() {
             if(!isset($_SESSION['user_id'])) {
                 $dashboard = new DashboardController();
@@ -233,7 +306,7 @@
             }
         }
 
-        public function detailsView($reservation_id, $customer_id, $total_price, $room_price, $room_name) {
+        public function detailsView($reservation_id, $customer_id, $total_price, $room_price, $room_name,$pay_online=0) {
             if(!isset($_SESSION['user_id'])) {
                 $dashboard = new DashboardController();
                 $dashboard->index();
@@ -259,10 +332,16 @@
                 // var_dump($data['customer']);
                 // die();
                 //echo 'Error2';
+                if($pay_online == 1) {
+                    $data['pay_online'] = $pay_online;
+                }
+
                 view::load('dashboard/payment/paymentView', $data);                
                 
             }
         }
+
+        
 
         
     }

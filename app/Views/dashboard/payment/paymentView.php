@@ -25,7 +25,11 @@
                     <div class="options">
                         <h4>Payment View 
                         <span>
-                            <a href="<?php url("payment/cashIndex"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>  
+                        <?php if(isset($pay_online)) { ?>
+                            <a href="<?php url("payment/onlineIndex"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>
+                        <?php }else { ?>
+                            <a href="<?php url("payment/cashIndex"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>
+                        <?php } ?>     
                         </span>
                         </h4>  
                     </div>
@@ -34,7 +38,12 @@
                 </div>
 
                 <div class="cardbody">  
-                    <form action="<?php url("payment/paycash"); ?>" method="post" class="addnewform">
+                    <?php if(isset($pay_online)) { ?>
+                        <form action="<?php url("payment/payEmailNotification"); ?>" method="post" class="addnewform">
+                    <?php }else { ?>
+                        <form action="<?php url("payment/paycash"); ?>" method="post" class="addnewform">
+                    <?php } ?>
+                    
 
 
                     <input type="text" name="customer_id"  <?php echo 'value="' . $customer['customer_id'] . '"'?> hidden>
@@ -239,14 +248,24 @@
                                     </label>    
                                 </div>     
                         </div>
-                        
-                        <?php if($paymentValue != 0):?>
-                        <div class="row">
-                            <div class="button">
-                                <button class="save" name="submit">Pay Now</button>
+                        <?php if(isset($pay_online)) { ?>
+                            <?php if($paymentValue != 0):?>
+                            <div class="row">
+                                <div class="button">
+                                    <button class="save" name="submit">Send Email</button>
+                                </div>
                             </div>
-                        </div>
-                        <?php endif; ?>
+                            <?php endif; ?>
+                        <?php }else { ?>
+                            <?php if($paymentValue != 0):?>
+                            <div class="row">
+                                <div class="button">
+                                    <button class="save" name="submit">Pay Now</button>
+                                </div>
+                            </div>
+                            <?php endif; ?>
+                        <?php } ?>
+                        
                     </div>
 
                     <div class="section2"> 

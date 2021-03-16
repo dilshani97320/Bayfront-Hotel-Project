@@ -98,8 +98,10 @@
                 // Instantiate Transaction
                 $transaction = new Payment();
 
-                // Add Transaction to DB
+                
+                    // Add Transaction to DB
                 $result = $transaction->addTransaction($transactionData);
+                
                 if($result == 1) {
                     // Redirect to homepage
                     // $dashboard = new DashboardController();
@@ -321,6 +323,8 @@
                 $data['reservation'] = $dbreservation->reservationDetails($reservation_id);
 
                 $payment_details= $dbpayment->paymentDetails($reservation_id, $customer_id);
+                // var_dump($payment_details);
+                // die();
                 if(!empty($payment_details)) {
                     $data['payment'] = $payment_details;
                 }

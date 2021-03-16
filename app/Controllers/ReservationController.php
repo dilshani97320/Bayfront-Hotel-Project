@@ -934,7 +934,16 @@ class ReservationController {
             $type_id = $room['type_id'];
             $room_type_details = new RoomType();
             $room_type = $room_type_details->getRoomTypeDetail($type_id);
+            // Add payment Details
+            $payment = new Payment();
+            $payment_details = $payment->FindTransaction($customer_id,$reservation_id);
+            if(!empty($payment_details)) {
+                $data['payment'] = $payment_details;
+                // echo "succss";
+                // die();
+            }
             $data['room_type'] = $room_type;
+            
             $data['customer'] = $customer;
             $data['reservation'] = $reservation;
             $data['room'] = $room;

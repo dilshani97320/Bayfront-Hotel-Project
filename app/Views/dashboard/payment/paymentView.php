@@ -14,6 +14,8 @@
        
             include(VIEWS.'dashboard/inc/sidebar.php'); //Sidebar
             include(VIEWS.'dashboard/inc/navbar.php'); //Navbar
+
+
     ?>
     
     <!-- Table design -->
@@ -230,9 +232,15 @@
                                     <?php 
                                         $paymentValue = 0;
                                         $paymentValuePaid = 0;
-                                        if(isset($payment['amount'])){
-                                            $paymentValuePaid=  $payment['amount']/1000;
+                                        // $cash = 0;
+                                        if(isset($payment)) {
+                                            foreach($payment as $row){
+                                                $paymentValuePaid = $paymentValuePaid + $row['amount'];
+                                                // $cash = $cash + 1;
+                                            }
+                                            $paymentValuePaid =  $paymentValuePaid/1000;
                                         }
+                                        
                                         $paymentValue = $details['total_price'] - $paymentValuePaid;
                                         echo 'value="' . $paymentValue . '"';
                                     ?>

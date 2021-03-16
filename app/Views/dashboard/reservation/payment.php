@@ -11,12 +11,26 @@
 </head>
 <body>
     <?php 
-                    $date1=date_create($reservation['check_in_date']);
-                    $date2=date_create($reservation['check_out_date']);
-                    $diff=date_diff($date1,$date2);
-                    $days = $diff->format("%a");
-                    $total_price = $days*$room['price'];
-                    $total_price = $total_price + 4.83;
+        $paidAmount = 0;
+        if(isset($payment)) {
+            $paidAmount = $payment['amount']/1000;
+            $date1=date_create($reservation['check_in_date']);
+            $date2=date_create($reservation['check_out_date']);
+            $diff=date_diff($date1,$date2);
+            $days = $diff->format("%a");
+            $total_price = $days*$room['price'];
+            $total_price = $total_price + 4.83;
+            $total_price = $total_price - $paidAmount;
+        }
+        else {
+            $date1=date_create($reservation['check_in_date']);
+            $date2=date_create($reservation['check_out_date']);
+            $diff=date_diff($date1,$date2);
+            $days = $diff->format("%a");
+            $total_price = $days*$room['price'];
+            $total_price = $total_price + 4.83;
+        }
+        
                 
     ?>
     <section class="bookingform">
@@ -37,16 +51,7 @@
                 <div class="contactdetails">
                     <h5>Let us know who you are</h5>
                     <form action="<?php url("payment/payonline"); ?>" method="post" id="payment-form">
-                        <!-- This is may reset according to form -->
-                        <!-- $first_name = $POST['first_name'];
-                $email = $POST['email'];
-                $room_name = $POST['room_name'];
-                $room_view = $POST['room_view'];
-                $room_price = $POST['room_price'];
-                $payment_way = $POST['payment_way'];
-                $customer_id = $POST['customer_id'];
-                $reservation_id = $POST['reservation_id'];
-                $token = $POST['stripeToken']; -->
+                       
                         <input type="text" name="customer_id" value ="<?php echo $customer['customer_id']; ?>" hidden  >
                         <input type="text" name="reservation_id" value ="<?php echo $reservation['reservation_id']; ?>" hidden  >
                         <input type="text" name="room_name" value ="<?php echo $room['room_name']; ?>" hidden>
@@ -131,17 +136,25 @@
                             </div>
                             <div class="rowdata1">
                                 <label for="#">Payment Selection</label>
-                                 <select name="payment_way" class="inputrow">
+                                <?php if($paidAmount != 0){ ?>
+                                    <select name="payment_way" class="inputrow">
+                                         <option value="ONLINEPAY">-Select Payment PART-</option>     
+                                         <option value="ONLINEFULL" style="border: none">FULL PAYMENT</option>      
+                                    </select>
+                                <?php }else{ ?>
+                                    <select name="payment_way" class="inputrow">
                                          <option value="ONLINEPAY">-Select Payment PART-</option>
                                          <option value="ONLINEHALF" style="border: none">HALF PAYMENT</option>      
                                          <option value="ONLINEFULL" style="border: none">FULL PAYMENT</option>      
-                                </select>
+                                    </select>
+                                <?php } ?>
+                                 
                             </div>
                         </div>
                         <div class="rowlong">
                             <label for="#">Credit Card Details
-                                <i class="fa fa-exclamation-circle"></i>
-                                <i class="fa fa-check-circle" style="color: rgb(12, 59, 12);"></i>
+                                <!-- <i class="fa fa-exclamation-circle"></i>
+                                <i class="fa fa-check-circle" style="color: rgb(12, 59, 12);"></i> -->
                             </label>
                            
                                 <div id="card-element" class="paymentcardform inputrow">

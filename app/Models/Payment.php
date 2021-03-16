@@ -84,26 +84,56 @@ class Payment extends Connection {
         $reservation->reservation_id = mysqli_real_escape_string($this->connection, $reservation_id);
 
         $query = "SELECT * FROM $this->payment_table
-                  WHERE customer_id = '{$customer->customer_id}' AND reservation_id = '{$reservation->reservation_id}'
-                  LIMIT 1";
-
+                  WHERE customer_id = '{$customer->customer_id}' AND reservation_id = '{$reservation->reservation_id}'";
+        // var_dump($query);
+        // die();
         $payments = mysqli_query($this->connection, $query);
 
         if($payments){
-            if(mysqli_num_rows($payments) == 1) {
-                $payment = mysqli_fetch_assoc($payments);
+            // if(mysqli_num_rows($payments) == 1) {
+                mysqli_fetch_all($payments,MYSQLI_ASSOC);
+            // }
+            // else {
+            //     $payment = array();
+            // }
+        }
+        else {
+            echo "Query Error";
+        }
+
+        return $payments;
+    }
+    
+    public function FindTransaction($customer_id,$reservation_id) {
+        $customer = new Customer();
+        $customer->customer_id = mysqli_real_escape_string($this->connection, $customer_id); 
+        $reservation = new Reservation();
+        $reservation->reservation_id = mysqli_real_escape_string($this->connection, $reservation_id);
+
+        $query = "SELECT * FROM $this->payment_table
+                  WHERE customer_id = '{$customer->customer_id}' AND reservation_id = '{$reservation->reservation_id}'
+                  LIMIT 1";
+
+        $customers = mysqli_query($this->connection, $query);
+        $findCustomerAndReservation = 0;
+
+        if($customers){
+            if(mysqli_num_rows($customers) == 1) {
+                // Online transaction no more than 2 times
+                $customer = mysqli_fetch_assoc($customers);
+                // var_dump($customer);
+                // die();
             }
             else {
-                $payment = array();
+                $customer = array();
             }
         }
         else {
             echo "Query Error";
         }
 
-        return $payment;
+        return $customer;
     }
-    
 
     
 

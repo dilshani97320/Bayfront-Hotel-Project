@@ -64,6 +64,7 @@ class Payment extends Connection {
 
         $result = mysqli_query($this->connection, $query);
         // echo "Query Level2";
+        // print_r($query);
         if($result) {
             // query successful..
             // echo "Query Successfull";

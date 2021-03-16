@@ -6,11 +6,11 @@
     class PaymentController{
 
         public function payonline() {
-            if(!isset($_SESSION['user_id'])) {
-                $dashboard = new DashboardController();
-                $dashboard->index();
-            }
-            else {
+            // if(!isset($_SESSION['user_id'])) {
+            //     $dashboard = new DashboardController();
+            //     $dashboard->index();
+            // }
+            // else {
             //    echo "success";
                 \Stripe\Stripe::setApiKey('sk_test_51HyZrDHjjnJcmL75t5HSvCcjQyGdy3759Vn6zJNWasJ5EmUJjdUIps5rcys9U7VjqS51v02i90qRqSiKd66qFEOt00YdP2Gu4R');
 
@@ -106,7 +106,61 @@
                     view::load('dashboard/reservation/paymentThanks');
                 }
                 
+            // }
+        }
+
+        public function paycash() {
+            $POST = filter_var_array($_POST, FILTER_SANITIZE_STRING);
+            $customer_id = $POST['customer_id'];
+            $reservation_id = $POST['reservation_id'];
+            $first_name = $POST['first_name'];
+            $last_name = $POST['last_name'];
+            $email = $POST['email'];
+            $contact_number = $POST['contact_number'];
+            
+            $room_name = $POST['room_name'];
+            // $room_view = $POST['room_view'];
+            $room_price = $POST['room_price'];
+            $total_price = $POST['total_price'];
+            $amount = $POST['amount'];
+            // $payment_way = $POST['payment_way'];
+            
+            
+            //convert to cent dollar
+            //stripe only access integer only
+            $amount = $amount*1000;
+            
+
+            
+
+            
+            $stripe_id = "0000";
+            $customerstripe_id = "XXXX";
+            $room_description = $room_name."Room Reservation by".$first_name." ".$last_name.":".$email.":".$contact_number;
+            $currency = "USD";
+            $status = "succeeded";
+            // Transaction Data
+            $transactionData = [
+                'reservation_id' => $reservation_id,
+                'stripe_id'=> $stripe_id,
+                'customerstripe_id'=> $customerstripe_id,
+                'customer_id'=> $customer_id,
+                'roomdesc'=> $room_description,
+                'amount'=> $amount,
+                'currency'=> $currency,
+                'status'=> $status
+            ];
+
+            // Instantiate Transaction
+            $transaction = new Payment();
+
+            // Add Transaction to DB
+            $result = $transaction->addTransaction($transactionData);
+            if($result == 1) {
+                $this->cashIndex();
             }
+            
+        // }
         }
 
         public function option() {

@@ -34,7 +34,11 @@
                 </div>
 
                 <div class="cardbody">  
-                    <form action="<?php url("employee/create"); ?>" method="post" class="addnewform">
+                    <form action="<?php url("payment/paycash"); ?>" method="post" class="addnewform">
+
+
+                    <input type="text" name="customer_id"  <?php echo 'value="' . $customer['customer_id'] . '"'?> hidden>
+                    <input type="text" name="reservation_id"  <?php echo 'value="' . $reservation['reservation_id'] . '"'?> hidden>
 
                     <div class="section1">
                         <div class="row">
@@ -44,6 +48,7 @@
                                     <?php 
                                         if(isset($customer['first_name'])){
                                             echo 'value="' . $customer['first_name'] . '"';
+                                            // echo 'value="' . $reservation['reservation_id'] . '"';
                                         }
                                          
                                     
@@ -235,11 +240,13 @@
                                 </div>     
                         </div>
                         
+                        <?php if($paymentValue != 0):?>
                         <div class="row">
                             <div class="button">
                                 <button class="save" name="submit">Pay Now</button>
                             </div>
                         </div>
+                        <?php endif; ?>
                     </div>
 
                     <div class="section2"> 

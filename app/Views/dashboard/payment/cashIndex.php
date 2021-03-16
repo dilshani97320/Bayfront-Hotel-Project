@@ -27,7 +27,7 @@
                    <div class="options">
                        <h4>Payment CASH Page   
                        <span>
-                            <a href="<?php url("payment/selectOption"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>
+                            <a href="<?php url("payment/option"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>
                             <a href="<?php url("payment/cashIndex"); ?>" class="refresh"><i class="material-icons">loop</i></a> 
                        </span> 
                        </h4>

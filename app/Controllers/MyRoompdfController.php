@@ -44,18 +44,20 @@ class MyRoompdfController extends FPDF
 		$this->cell(0,10,'page' .$this->PageNo().'/{nb}',0,0,'c');
 	}
 	function headerTable(){
+		$this->setFillColor(180,180,255);
+        $this->setDrawColor(50,50,100);
         $this->setfont('Times', 'B', 14);
-        $this->cell(20,10,'Room No',1,0,'C');
-        $this->cell(80,10,'Room Name',1,0,'C');
-        $this->cell(30,10,'Floor Type',1,0,'C');
-        $this->cell(40,10,'Current Price',1,0,'C');
-        $this->cell(30,10,'Size',1,0,'C');
-        $this->cell(36,10,'Air_Condition',1,0,'C');
-        $this->cell(36,10,'View',1,0,'C');
-        $this->cell(45,10,'Breakfast Included',1,0,'C');
-        $this->cell(45,10,'Hot Water',1,0,'C');
+        $this->cell(20,10,'Room No',1,0,'C',true);
+        $this->cell(80,10,'Room Name',1,0,'C',true);
+        $this->cell(30,10,'Floor Type',1,0,'C',true);
+        $this->cell(40,10,'Current Price',1,0,'C',true);
+        $this->cell(30,10,'Size',1,0,'C',true);
+        $this->cell(36,10,'Air_Condition',1,0,'C',true);
+        $this->cell(36,10,'View',1,0,'C',true);
+        $this->cell(45,10,'Breakfast Included',1,0,'C',true);
+        $this->cell(45,10,'Hot Water',1,0,'C',true);
        // $this->cell(45,10,'Free cancelaration',1,0,'C');
-        $this->cell(45,10,'Room desc',1,0,'C');
+        $this->cell(45,10,'Room desc',1,0,'C',true);
 		$this->Ln();
 		
     }

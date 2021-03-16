@@ -60,7 +60,7 @@
                             <div class="text">
                                 Payment Details
                             </div>
-                            <a href="<?php url('notification/checkOutMark');?>"></a>
+                            <a href="<?php url('payment/allIndex');?>"></a>
                         </div>
 
                         

@@ -27,9 +27,11 @@
                     <div class="options">
                         <h4>Payment View 
                         <span>
-                        <?php if(isset($pay_online)) { ?>
+                        <?php if(isset($pay_online) && !isset($pay_all)) { ?>
                             <a href="<?php url("payment/onlineIndex"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>
-                        <?php }else { ?>
+                        <?php }if(isset($pay_all) && !isset($pay_online)) { ?>
+                            <a href="<?php url("payment/allIndex"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>
+                        <?php }if(!isset($pay_all) && !isset($pay_online)) { ?>
                             <a href="<?php url("payment/cashIndex"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>
                         <?php } ?>     
                         </span>
@@ -256,7 +258,8 @@
                                     </label>    
                                 </div>     
                         </div>
-                        <?php if(isset($pay_online)) { ?>
+
+                        <?php if(isset($pay_online) && !isset($pay_all)) { ?>
                             <?php if($paymentValue != 0):?>
                             <div class="row">
                                 <div class="button">
@@ -264,7 +267,7 @@
                                 </div>
                             </div>
                             <?php endif; ?>
-                        <?php }else { ?>
+                        <?php }if(!isset($pay_online) && !isset($pay_all)) { ?>
                             <?php if($paymentValue != 0):?>
                             <div class="row">
                                 <div class="button">

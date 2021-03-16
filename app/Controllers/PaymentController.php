@@ -308,7 +308,38 @@
             }
         }
 
-        public function detailsView($reservation_id, $customer_id, $total_price, $room_price, $room_name,$pay_online=0) {
+        public function allIndex() {
+            if(!isset($_SESSION['user_id'])) {
+                $dashboard = new DashboardController();
+                $dashboard->index();
+            }
+            else {
+                $data = array();
+                // $db = new Employee;
+                if(isset($_POST['search'])) {
+                    $search = $_POST['search'];
+                    $db = new Customer();
+                    // $db->setSearchCustomer($search);
+                    $pay_all = 1;
+                    $data['pay_all'] = $pay_all;
+                    $data['customer'] = $db->getAllCustomerPaymentDetailsSearch($search);
+                    //echo 'Error1';
+                    view::load('dashboard/payment/index', $data);
+                }
+                else {
+                    $db = new Customer();
+                    $pay_all = 1;
+                    $data['pay_all'] = $pay_all;
+                    $data['customer'] = $db->getAllCustomerPaymentDetails();
+                    
+                    view::load('dashboard/payment/index', $data);
+                }
+                
+                
+            }
+        }
+
+        public function detailsView($reservation_id, $customer_id, $total_price, $room_price, $room_name,$pay_online=0,$pay_all=0) {
             if(!isset($_SESSION['user_id'])) {
                 $dashboard = new DashboardController();
                 $dashboard->index();
@@ -338,6 +369,9 @@
                 //echo 'Error2';
                 if($pay_online == 1) {
                     $data['pay_online'] = $pay_online;
+                }
+                if($pay_all == 1) {
+                    $data['pay_all'] = $pay_all;
                 }
 
                 view::load('dashboard/payment/paymentView', $data);                

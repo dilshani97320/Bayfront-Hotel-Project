@@ -13,9 +13,11 @@
        $navbar_title = "Payment Page";
        $search = 1;
        $search_by = 'name';
-       if(isset($pay_online)) {
+       if(isset($pay_online) && !isset($pay_all)) {
             $url = "payment/onlineIndex";
-       }else {
+       }if(isset($pay_all) && !isset($pay_online)) {
+            $url = "payment/allIndex";
+       }if(!isset($pay_all) && !isset($pay_online)) {
             $url = "payment/cashIndex";
        }   
        
@@ -30,14 +32,21 @@
            <div class="card">
                <div class="cardheader">
                    <div class="options">
-                    <?php if(isset($pay_online)) { ?>
+                    <?php if(isset($pay_online) && !isset($pay_all)) { ?>
                         <h4>Payment Online Page   
                        <span>
                             <a href="<?php url("payment/option"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>
                             <a href="<?php url("payment/onlineIndex"); ?>" class="refresh"><i class="material-icons">loop</i></a> 
                        </span> 
                        </h4>
-                    <?php }else { ?>
+                    <?php }if(isset($pay_all) && !isset($pay_online)) { ?>
+                       <h4>All Payments Page   
+                       <span>
+                            <a href="<?php url("payment/option"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>
+                            <a href="<?php url("payment/allIndex"); ?>" class="refresh"><i class="material-icons">loop</i></a> 
+                       </span> 
+                       </h4>
+                    <?php }if(!isset($pay_all) && !isset($pay_online)) { ?>
                        <h4>Payment CASH Page   
                        <span>
                             <a href="<?php url("payment/option"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>
@@ -55,7 +64,9 @@
                             <thead>
                                 <th>Reception</th>
                                 <th>First Name</th>
-                                <th>Last Name</th>
+                                <?php if(!isset($pay_all)) { ?>
+                                    <th>Last Name</th> 
+                                <?php }?>
                                 <th>Email</th>
                                 <th>Room Name</th>
                                 <th>Price</th>
@@ -63,6 +74,11 @@
                                 <th>Check-Out</th>
                                 <th>Amount</th>
                                 <th>Status</th>
+                                <?php if(isset($pay_all)) { ?>
+                                    <?php if($_SESSION['user_level'] == "Owner"): ?>
+                                        <th>Edit</th>
+                                    <?php endif; ?> 
+                                <?php }?>
                             </thead>
                             <?php foreach($customer as $row): ?>
                             <tbody>
@@ -76,7 +92,11 @@
                                     ?>
                                 </td>
                                 <td><?php echo $row['first_name'];?></td>
-                                <td><?php echo $row['last_name'];?></td>
+
+                                <?php if(!isset($pay_all)) { ?>
+                                    <td><?php echo $row['last_name'];?></td>
+                                <?php }?>
+
                                 <td><?php echo $row['email'];?></td>
                                 <td><?php echo $row['room_name'];?></td>
                                 <td><?php echo $row['price'];?></td>
@@ -96,13 +116,34 @@
                                         ?>
                                     </div>
                                 </td>
-                                <?php if(isset($pay_online)) { ?>
+                                <?php if(isset($pay_online) && !isset($pay_all)) { ?>
                                     <td>
                                         <div class="outofdate">
                                             <a href="<?php url('payment/detailsView/'.$row['reservation_id'].'/'.$row['customer_id'].'/'.$total_price.'/'.$row['price'].'/'.$row['room_name'].'/'.$pay_online);?>" class="edit" style="color:#ffff;">Check</a>
                                         </div>
                                     </td>
-                                <?php }else { ?>
+                                <?php }if(isset($pay_all) && !isset($pay_online) ) {  $pay_online = 0; ?>
+                                    <td>
+                                        <div class="outofdate">
+                                            <a href="<?php url('payment/detailsView/'.$row['reservation_id'].'/'.$row['customer_id'].'/'.$total_price.'/'.$row['price'].'/'.$row['room_name'].'/'.$pay_online.'/'.$pay_all);?>" class="edit" style="color:#ffff;">Check</a>
+                                        </div>
+                                    </td>
+                                    <?php unset($pay_online); ?>
+                                    <?php if($row['payment_method'] == "CASH" || $row['payment_method'] == "CASHONLINE" ) { ?>
+                                        <?php 
+                                            date_default_timezone_set("Asia/Colombo");
+                                            $current_date = date('Y-m-d');    
+                                        ?>
+                                        <?php if($row['check_in_date'] < $current_date ) { ?>
+                                            <td><a href="#" onclick="return confirm('Can not Do Out of Date Edit Sorry!!?');" class="edit"><i class="material-icons">create</i></a></td>
+                                        <?php } else { ?>
+                                            <td><a href="<?php url('payment/editCash/'.$row['customer_id'].'/'.$row['reservation_id']);?>" class="edit"><i class="material-icons">create</i></a></td>
+                                        <?php }; ?>
+                                        
+                                    <?php }else { ?>
+                                        <td><a href="#" onclick="return confirm('Can not Do Online Edit Sorry!!?');" class="edit"><i class="material-icons">create</i></a></td>
+                                    <?php } ?>
+                                <?php }if(!isset($pay_all) && !isset($pay_online)) { ?>
                                     <td>
                                         <div class="outofdate">
                                             <a href="<?php url('payment/detailsView/'.$row['reservation_id'].'/'.$row['customer_id'].'/'.$total_price.'/'.$row['price'].'/'.$row['room_name']);?>" class="edit" style="color:#ffff;">Check</a>

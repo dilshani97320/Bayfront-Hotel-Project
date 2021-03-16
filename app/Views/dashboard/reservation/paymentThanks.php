@@ -1,61 +1,137 @@
-<?php 
-   // Header
-   $title = "Payment Thanks page";
-   include(VIEWS.'dashboard/inc/header.php');
-?> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="<?php echo BURL.'assets/img/basic/favicon.png'; ?>" />
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <title>paymentThanks</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600&display=swap');
 
-<div class="wrapper">
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
 
-    <?php 
-            $navbar_title = "Payment Page";
-            $search = 0;
-            $search_by = '#';
-       
-            // include(VIEWS.'dashboard/inc/sidebar.php'); //Sidebar
-            // include(VIEWS.'dashboard/inc/navbar.php'); //Navbar
-    ?>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #f5f5f5;
+    }
+
+    .btn {
+        position: relative;
+        padding: 15px 20px;
+        background: #fff;
+        font-size: 18px;
+        display: inline-block;
+        text-decoration: none;
+        color: #1d2124;
+        cursor: pointer;
+        font-weight: 500;
+        letter-spacing: 2px;
+        transition: 0.5s;
+    }
+
+    .btn:hover {
+        letter-spacing: 4px;
+    }
+
+    #popup {
+        top: 50%;
+        left: 50%;
+        z-index: 1000;
+        background: rgb(255, 255, 255);
+        width: 450px;
+        padding: 80px 50px 50px;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.88);
+        transition: 0.5s;
+    }
+
     
-    <!-- Table design -->
-    <div class="content">
-        <div class="tablecard">
-            <div class="card">
 
-                <div class="cardheader">
-                    <div class="options">
-                        <h4>Payment Thanks Page
-                        </h4>  
-                    </div>
+    #popup .content {
+        position: relative;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
 
-                    <p class="textfortabel">Your Payment is Success Thank you!!</p>
-                </div>
+    #popup .content img {
+        max-width: 200px;
+    }
 
-                <div class="cardbody">  
-                    
-                    <div class="section1">
+    #popup .content h2 {
+        font-size: 24px;
+        font-weight: 500;
+        color: #333333;
+        margin: 20px 0 10px;
+    }
 
-                    <form action="<?php url("reservation/indexOnline"); ?>">
+    #popup .content p {
+        text-align: center;
+        font-size: 16px;
+        color: #333333;
+    }
 
-                        <button class="save">Back</button>
-                    </form>
-                    </div>
+    #popup .content .inputBox {
+        position: relative;
+        width: 100%;
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-                    <div class="section2">
-                        
+    
 
-                    </div>
+    /* mycase for redesign */
+    #popup .content .inputBox a { 
+        max-width: 150px;
+        background: rgb(37, 89, 173);
+        color: #fff;
+        border: none;
+    }
 
-                    </form>
-                </div>  <!--End Card Body -->
-            </div>  <!--End Card -->
+    .close {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        cursor: pointer;
+    }
 
-            
+    .close img {
+        max-width: 26px;
+    }
+</style>
+<body>
+
+    <div id="popup">
+        <div class="content">
+            <img src="<?php echo BURL.'assets/img/thanks/cash.png'; ?>" alt="">
+            <h2>Payment Thanks</h2>
+            <p>Your Payment Is Success Thank You!!</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae libero, magnam velit laudantium veniam cumque!</p>    
+            <div class="inputBox">
+                <a href="<?php url("home/index"); ?>" class="btn">Website</a>
+            </div>
         </div>
-    </div>   <!-- End Table design -->
-    
-</div>
+    </div>
 
-    
-<?php include(VIEWS.'dashboard/inc/footer.php'); ?>
+</body>
+</html>
+
+
+
+
 
 
 

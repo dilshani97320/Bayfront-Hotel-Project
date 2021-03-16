@@ -352,6 +352,49 @@ class Customer extends Connection {
         return $customers;
     }
 
+    public function getAllCustomerPaymentDetailsTodayOnline() {
+        date_default_timezone_set("Asia/Colombo");
+        $current_date = date('Y-m-d');
+        $reservationReservation = new Reservation();
+        $room = new RoomDetails();
+        $reception = new Reception();
+        // $payment = new Payment();
+
+        $reception->reception_table; //Table6
+        $room->room_table; //Table5
+        $reservationReservation->reservation_table; //Table4
+        // $payment->$payment_table;
+
+        $payment_method = "ONLINEONLINE";
+
+        $query = "SELECT  $this->customer_table.first_name, $this->customer_table.last_name, $this->customer_table.email, $this->customer_table.customer_id,
+                $room->room_table.room_name, $room->room_table.price,
+                $reservationReservation->reservation_table.check_in_date, $reservationReservation->reservation_table.check_out_date, $reservationReservation->reservation_table.payment_method, $reservationReservation->reservation_table.reservation_id,
+                $reception->reception_table.username
+                FROM $reservationReservation->reservation_table
+                INNER JOIN $this->customer_table  ON  $reservationReservation->reservation_table.customer_id = $this->customer_table.customer_id
+                INNER JOIN $room->room_table  ON  $reservationReservation->reservation_table.room_id = $room->room_table.room_id
+                INNER JOIN $reception->reception_table ON  $reservationReservation->reservation_table.reception_user_id = $reception->reception_table.reception_user_id
+                WHERE   $reservationReservation->reservation_table.check_in_date >= '{$current_date}' AND
+                        $reservationReservation->reservation_table.is_valid = 1 AND $reservationReservation->reservation_table.request = 0 AND $this->customer_table.is_deleted = 0 AND
+                        $reservationReservation->reservation_table.payment_method = '{$payment_method}'
+                ORDER BY $reservationReservation->reservation_table.check_in_date";
+
+        $result = 0;
+        // var_dump($query);
+        // die();
+        $customers= mysqli_query($this->connection, $query);
+
+        if($customers) {
+            mysqli_fetch_all($customers,MYSQLI_ASSOC);
+        }
+        else {
+            echo "Database Query Failed1";
+        }
+        // die();
+        return $customers;
+    }
+
 
     public function getAllCustomerPaymentDetailsTodaySearch($search) {
         $search = mysqli_real_escape_string($this->connection, $search);
@@ -402,4 +445,55 @@ class Customer extends Connection {
         // die();
         return $customers;
     }
+
+    public function getAllCustomerPaymentDetailsTodayOnlineSearch($search) {
+        $search = mysqli_real_escape_string($this->connection, $search);
+        $this->customer_first_name = $search;
+        $this->customer_last_name =$search;
+        $this->customer_email = $search;
+
+        date_default_timezone_set("Asia/Colombo");
+        $current_date = date('Y-m-d');
+        $reservationReservation = new Reservation();
+        $room = new RoomDetails();
+        $reception = new Reception();
+        // $payment = new Payment();
+
+        $reception->reception_table; //Table6
+        $room->room_table; //Table5
+        $reservationReservation->reservation_table; //Table4
+        // $payment->$payment_table;
+
+        $payment_method = "ONLINEONLINE";
+
+        $query = "SELECT  $this->customer_table.first_name, $this->customer_table.last_name, $this->customer_table.email, $this->customer_table.customer_id,
+                $room->room_table.room_name, $room->room_table.price,
+                $reservationReservation->reservation_table.check_in_date, $reservationReservation->reservation_table.check_out_date, $reservationReservation->reservation_table.payment_method, $reservationReservation->reservation_table.reservation_id,
+                $reception->reception_table.username
+                FROM $reservationReservation->reservation_table
+                INNER JOIN $this->customer_table  ON  $reservationReservation->reservation_table.customer_id = $this->customer_table.customer_id
+                INNER JOIN $room->room_table  ON  $reservationReservation->reservation_table.room_id = $room->room_table.room_id
+                INNER JOIN $reception->reception_table ON  $reservationReservation->reservation_table.reception_user_id = $reception->reception_table.reception_user_id
+                WHERE   $reservationReservation->reservation_table.check_in_date >= '{$current_date}' AND
+                        $reservationReservation->reservation_table.is_valid = 1 AND $reservationReservation->reservation_table.request = 0 AND $this->customer_table.is_deleted = 0 AND
+                        ($this->customer_table.first_name = '{$search}' OR $this->customer_table.last_name = '{$search}' OR $this->customer_table.email = '{$search}') AND
+                        $reservationReservation->reservation_table.payment_method = '{$payment_method}'
+                ORDER BY $reservationReservation->reservation_table.check_in_date";
+
+        $result = 0;
+        // var_dump($query);
+        // die();
+        $customers= mysqli_query($this->connection, $query);
+
+        if($customers) {
+            mysqli_fetch_all($customers,MYSQLI_ASSOC);
+        }
+        else {
+            echo "Database Query Failed1";
+        }
+        // die();
+        return $customers;
+    }
+
+    
 }

@@ -50,7 +50,7 @@
                             <div class="text">
                                 Online Payments
                             </div>
-                            <a href="<?php url('notification/checkInMark');?>"></a>
+                            <a href="<?php url('payment/onlineIndex');?>"></a>
                         </div>
 
                         <div class="horBadge">

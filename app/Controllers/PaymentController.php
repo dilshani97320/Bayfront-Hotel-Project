@@ -187,7 +187,7 @@
                     // $db->setSearchCustomer($search);
                     $data['customer'] = $db->getAllCustomerPaymentDetailsTodaySearch($search);
                     //echo 'Error1';
-                    view::load('dashboard/payment/cashIndex', $data);
+                    view::load('dashboard/payment/index', $data);
                 }
                 else {
                     $db = new Customer();
@@ -195,7 +195,38 @@
                     // var_dump($data['customer']);
                     // die();
                     //echo 'Error2';
-                    view::load('dashboard/payment/cashIndex', $data);
+                    view::load('dashboard/payment/index', $data);
+                }
+                
+                
+            }
+        }
+
+        public function onlineIndex() {
+            if(!isset($_SESSION['user_id'])) {
+                $dashboard = new DashboardController();
+                $dashboard->index();
+            }
+            else {
+                $data = array();
+                // $db = new Employee;
+                if(isset($_POST['search'])) {
+                    $search = $_POST['search'];
+                    $db = new Customer();
+                    // $db->setSearchCustomer($search);
+                    $pay_online = 1;
+                    $data['pay_online'] = $pay_online;
+                    $data['customer'] = $db->getAllCustomerPaymentDetailsTodayOnlineSearch($search);
+                    //echo 'Error1';
+                    view::load('dashboard/payment/index', $data);
+                }
+                else {
+                    $db = new Customer();
+                    $pay_online = 1;
+                    $data['pay_online'] = $pay_online;
+                    $data['customer'] = $db->getAllCustomerPaymentDetailsTodayOnline();
+                    
+                    view::load('dashboard/payment/index', $data);
                 }
                 
                 

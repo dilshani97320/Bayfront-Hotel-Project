@@ -13,24 +13,39 @@
        $navbar_title = "Payment Page";
        $search = 1;
        $search_by = 'name';
-       $url = "payment/cashIndex";
+       if(isset($pay_online)) {
+            $url = "payment/onlineIndex";
+       }else {
+            $url = "payment/cashIndex";
+       }   
+       
        
        include(VIEWS.'dashboard/inc/sidebar.php'); //Sidebar
        include(VIEWS.'dashboard/inc/navbar.php'); //Navbar
    ?>
-       
+      
     <!-- Table design -->
    <div class="content">
        <div class="tablecard">
            <div class="card">
                <div class="cardheader">
                    <div class="options">
+                    <?php if(isset($pay_online)) { ?>
+                        <h4>Payment Online Page   
+                       <span>
+                            <a href="<?php url("payment/option"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>
+                            <a href="<?php url("payment/onlineIndex"); ?>" class="refresh"><i class="material-icons">loop</i></a> 
+                       </span> 
+                       </h4>
+                    <?php }else { ?>
                        <h4>Payment CASH Page   
                        <span>
                             <a href="<?php url("payment/option"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>
                             <a href="<?php url("payment/cashIndex"); ?>" class="refresh"><i class="material-icons">loop</i></a> 
                        </span> 
                        </h4>
+                    <?php } ?>
+                       
                    </div>
                    <p class="textfortabel">Customer View Following Table and Payment $4.83 include tax</p>
                </div>
@@ -81,11 +96,20 @@
                                         ?>
                                     </div>
                                 </td>
+                                <?php if(isset($pay_online)) { ?>
+                                    <td>
+                                        <div class="outofdate">
+                                            <a href="<?php url('payment/detailsView/'.$row['reservation_id'].'/'.$row['customer_id'].'/'.$total_price.'/'.$row['price'].'/'.$row['room_name'].'/'.$pay_online);?>" class="edit" style="color:#ffff;">Check</a>
+                                        </div>
+                                    </td>
+                                <?php }else { ?>
                                     <td>
                                         <div class="outofdate">
                                             <a href="<?php url('payment/detailsView/'.$row['reservation_id'].'/'.$row['customer_id'].'/'.$total_price.'/'.$row['price'].'/'.$row['room_name']);?>" class="edit" style="color:#ffff;">Check</a>
                                         </div>
                                     </td>
+                                <?php } ?>
+                                
                             </tbody>
                             <?php endforeach ?> 
                         </table>

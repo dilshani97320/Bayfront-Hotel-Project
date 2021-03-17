@@ -46,6 +46,7 @@
                             <a href="<?php url("payment/allIndex"); ?>" class="refresh"><i class="material-icons">loop</i></a> 
                        </span> 
                        </h4>
+                       <p class="textfortabel">Cash Payments only can Edit By Owner</p>
                     <?php }if(!isset($pay_all) && !isset($pay_online)) { ?>
                        <h4>Payment CASH Page   
                        <span>
@@ -128,21 +129,29 @@
                                             <a href="<?php url('payment/detailsView/'.$row['reservation_id'].'/'.$row['customer_id'].'/'.$total_price.'/'.$row['price'].'/'.$row['room_name'].'/'.$pay_online.'/'.$pay_all);?>" class="edit" style="color:#ffff;">Check</a>
                                         </div>
                                     </td>
-                                    <?php unset($pay_online); ?>
-                                    <?php if($row['payment_method'] == "CASH" || $row['payment_method'] == "CASHONLINE" ) { ?>
+                                    
+                                    <!-- Check Owner -->
+                                    <?php if($_SESSION['user_level'] == "Owner"): ?> 
+                                        <!--Check Cash Payment  -->
+                                        <?php if($row['payment_method'] == "CASH" || $row['payment_method'] == "CASHONLINE" ) { ?>
                                         <?php 
                                             date_default_timezone_set("Asia/Colombo");
                                             $current_date = date('Y-m-d');    
                                         ?>
+                                        <!-- Check current Date -->
                                         <?php if($row['check_in_date'] < $current_date ) { ?>
                                             <td><a href="#" onclick="return confirm('Can not Do Out of Date Edit Sorry!!?');" class="edit"><i class="material-icons">create</i></a></td>
-                                        <?php } else { ?>
-                                            <td><a href="<?php url('payment/editCash/'.$row['customer_id'].'/'.$row['reservation_id']);?>" class="edit"><i class="material-icons">create</i></a></td>
-                                        <?php }; ?>
+                                        <?php } else { $editView = 1; ?>
+                                            <td><a href="<?php url('payment/detailsView/'.$row['reservation_id'].'/'.$row['customer_id'].'/'.$total_price.'/'.$row['price'].'/'.$row['room_name'].'/'.$pay_online.'/'.$pay_all.'/'.$editView);?>" class="edit"><i class="material-icons">create</i></a></td>
+                                            <?php unset($editView); ?>
+                                        <?php } ?>
                                         
-                                    <?php }else { ?>
-                                        <td><a href="#" onclick="return confirm('Can not Do Online Edit Sorry!!?');" class="edit"><i class="material-icons">create</i></a></td>
-                                    <?php } ?>
+                                        <?php }else { ?>
+                                            <td><a href="#" onclick="return confirm('Can not Do Online Edit Sorry!!?');" class="edit"><i class="material-icons">create</i></a></td>
+                                        <?php } ?>
+                                    <?php endif; ?> 
+
+                                    <?php unset($pay_online); ?>
                                 <?php }if(!isset($pay_all) && !isset($pay_online)) { ?>
                                     <td>
                                         <div class="outofdate">

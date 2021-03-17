@@ -529,7 +529,7 @@ class Reservation extends Connection {
                   LEFT OUTER JOIN $this->reservation_table
                   ON $room->room_table.room_id = $this->reservation_table.room_id
                   WHERE $this->reservation_table.is_valid = 1 AND $this->reservation_table.request = 0
-                  ORDER BY $this->reservation_table.check_in_date";
+                  ORDER BY $this->reservation_table.check_in_date DESC";
 
         $rooms = mysqli_query($this->connection, $query);
         if($rooms) {

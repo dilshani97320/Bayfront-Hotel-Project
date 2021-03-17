@@ -135,6 +135,25 @@ class Payment extends Connection {
         return $customer;
     }
 
+    public function updateTransaction($reservation_id, $customer_id, $new_paid_amount) {
+        $customer = new Customer();
+        $customer->customer_id = mysqli_real_escape_string($this->connection, $customer_id); 
+        $reservation = new Reservation();
+        $reservation->reservation_id = mysqli_real_escape_string($this->connection, $reservation_id);
+        $this->payment_amount = mysqli_real_escape_string($this->connection, $new_paid_amount);
+
+        $query = "UPDATE $this->payment_table SET
+                amount = '{$this->payment_amount}'
+                WHERE reservation_id = {$reservation->reservation_id} AND customer_id = {$customer->customer_id} LIMIT 1";
+        
+        $result = mysqli_query($this->connection, $query);
+        if($result) {
+            // query successful.. redirecting to users page
+            $value = 1;
+        }
+        return $value;
+    }
+
     
 
     

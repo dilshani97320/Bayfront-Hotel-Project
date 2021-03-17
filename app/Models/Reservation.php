@@ -854,7 +854,7 @@ class Reservation extends Connection {
         
         $query = "SELECT COUNT($this->reservation_table.reservation_id) AS count, $this->reservation_table.check_in_date 
                 FROM $this->reservation_table 
-                WHERE check_in_date <= '{$current_date}'
+                WHERE check_in_date <= '{$current_date}' AND $this->reservation_table.is_valid = 1 AND $this->reservation_table.request = 0
                 GROUP BY check_in_date DESC LIMIT 14";
         // var_dump($query);
         // die();

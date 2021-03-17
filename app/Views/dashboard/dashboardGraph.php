@@ -112,100 +112,35 @@ section {
                                 
                             </div>
                             <p class="textfortabel">Reservation View Following Graph</p>
+                            <p class="textfortabel">Reservation Count Start From Past Day To Today</p>
+                            <p class="textfortabel">Daily Target Reservation is TEN(10) and Count 14 Days</p>
                         </div>
                     <div class="cardbody">
                         <div class="tablebody">
                             <section>
                                 <div class="box">
+                                    <?php 
+                                        // print_r($reservationCount);
+                                        // die();
+                                    ?>
+                                    <?php foreach($reservationCount as $row): ?>
+                                        <?php 
+                                            
+                                            $count = $row['count'];
+                                            $date = $row['check_in_date'];
+                                            $date=date_create($date);
+                                            $newDate =  date_format($date,"m/d");
+                                            // Daily target reservation is 10
+                                            // ALways count percent outof 10  
+                                            $percentRate = $count*10;  
+                                        ?>
                                     <div class="skill">
-                                        <div class="graph" style="height: 50%;">
-                                            <div class="percent">50%</div>
+                                        <div class="graph" style="height: <?php echo $percentRate; ?>%;">
+                                            <div class="percent">0<?php echo $count; ?></div>
                                         </div>
-                                        <div class="name">Day01</div>
+                                        <div class="name"><?php echo $newDate; ?></div>
                                     </div>
-                                
-                                    <div class="skill">
-                                        <div class="graph" style="height: 70%;">
-                                            <div class="percent">70%</div>
-                                        </div>
-                                        <div class="name">Day02</div>
-                                    </div>
-                                
-                                    <div class="skill">
-                                        <div class="graph" style="height: 65%;">
-                                            <div class="percent">65%</div>
-                                        </div>
-                                        <div class="name">Day03</div>
-                                    </div>
-                                
-                                    <div class="skill">
-                                        <div class="graph" style="height: 60%;">
-                                            <div class="percent">60%</div>
-                                        </div>
-                                        <div class="name">Day04</div>
-                                    </div>
-                                
-                                    <div class="skill">
-                                        <div class="graph" style="height: 42%;">
-                                            <div class="percent">42%</div>
-                                        </div>
-                                        <div class="name">Day05</div>
-                                    </div>
-                                    <div class="skill">
-                                        <div class="graph" style="height: 45%;">
-                                            <div class="percent">45%</div>
-                                        </div>
-                                        <div class="name">Day06</div>
-                                    </div>
-                                    <div class="skill">
-                                        <div class="graph" style="height: 100%;">
-                                            <div class="percent">100%</div>
-                                        </div>
-                                        <div class="name">Day07</div>
-                                    </div>
-                                    <div class="skill">
-                                        <div class="graph" style="height: 45%;">
-                                            <div class="percent">45%</div>
-                                        </div>
-                                        <div class="name">Day08</div>
-                                    </div>
-                                    <div class="skill">
-                                        <div class="graph" style="height: 95%;">
-                                            <div class="percent">95%</div>
-                                        </div>
-                                        <div class="name">Day09</div>
-                                    </div>
-                                    <div class="skill">
-                                        <div class="graph" style="height: 45%;">
-                                            <div class="percent">45%</div>
-                                        </div>
-                                        <div class="name">Day10</div>
-                                    </div>
-                                    <div class="skill">
-                                        <div class="graph" style="height: 45%;">
-                                            <div class="percent">85%</div>
-                                        </div>
-                                        <div class="name">Day11</div>
-                                    </div>
-                                    <div class="skill">
-                                        <div class="graph" style="height: 25%;">
-                                            <div class="percent">25%</div>
-                                        </div>
-                                        <div class="name">Day12</div>
-                                    </div>
-                                    <div class="skill">
-                                        <div class="graph" style="height: 55%;">
-                                            <div class="percent">55%</div>
-                                        </div>
-                                        <div class="name">Day13</div>
-                                    </div>
-                                    <div class="skill">
-                                        <div class="graph" style="height: 35%;">
-                                            <div class="percent">35%</div>
-                                        </div>
-                                        <div class="name">Today</div>
-                                    </div>
-                                    
+                                    <?php endforeach ?>     
                                 </div>
                             </section>
                         </div>

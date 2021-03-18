@@ -44,19 +44,22 @@ class MyPaymentpdfController extends FPDF
 		$this->cell(0,10,'page' .$this->PageNo().'/{nb}',0,0,'c');
 	}
 	function headerTable(){
+
+		$this->setFillColor(180,180,255);
+        $this->setDrawColor(50,50,100);
         $this->setfont('Times', 'B', 14);
-        $this->cell(40,10,'First Name',1,0,'C');
-        $this->cell(40,10,'Last Name',1,0,'C');
-        $this->cell(40,10,'contact No',1,0,'C');
+        $this->cell(40,10,'First Name',1,0,'C',true);
+        $this->cell(40,10,'Last Name',1,0,'C',true);
+        $this->cell(40,10,'contact No',1,0,'C',true);
         
-        $this->cell(80,10,'Room Description',1,0,'C');
+        $this->cell(80,10,'Room Description',1,0,'C',true);
         
-        $this->cell(40,10,'Amount',1,0,'C');
-        $this->cell(20,10,'Currency',1,0,'C');
-		 $this->cell(50,10,'Created Date and Time',1,0,'C');
+        $this->cell(40,10,'Amount',1,0,'C',true);
+        $this->cell(20,10,'Currency',1,0,'C',true);
+		 $this->cell(50,10,'Created Date and Time',1,0,'C',true);
 		 
-		 $this->cell(45,10,'check in date',1,0,'C');
-		 $this->cell(45,10,'check out date',1,0,'C');
+		 $this->cell(45,10,'check in date',1,0,'C',true);
+		 $this->cell(45,10,'check out date',1,0,'C',true);
         $this->Ln();
 
    }

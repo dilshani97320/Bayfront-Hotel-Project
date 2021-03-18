@@ -44,15 +44,17 @@ class MyEmppdfController extends FPDF
 		$this->cell(0,10,'page' .$this->PageNo().'/{nb}',0,0,'c');
 	}
 	function headerTable(){
+		$this->setFillColor(180,180,255);
+        $this->setDrawColor(50,50,100);
          $this->setfont('Times', 'B', 14);
-         $this->cell(30,10,'ID',1,0,'C');
-         $this->cell(50,10,'fisrt Name',1,0,'C');
-         $this->cell(50,10,'Last Name',1,0,'C');
-         $this->cell(70,10,'Eamil',1,0,'C');
-         $this->cell(40,10,'Salary',1,0,'C');
-         $this->cell(80,10,'Location',1,0,'C');
-		 $this->cell(55,10,'Contact No',1,0,'C');
-		 $this->cell(55,10,'Registered Date',1,0,'C');
+         $this->cell(30,10,'ID',1,0,'C',true);
+         $this->cell(50,10,'fisrt Name',1,0,'C',true);
+         $this->cell(50,10,'Last Name',1,0,'C',true);
+         $this->cell(70,10,'Eamil',1,0,'C',true);
+         $this->cell(40,10,'Salary',1,0,'C',true);
+         $this->cell(80,10,'Location',1,0,'C',true);
+		 $this->cell(55,10,'Contact No',1,0,'C',true);
+		 $this->cell(55,10,'Registered Date',1,0,'C',true);
 		 
          $this->Ln();
 

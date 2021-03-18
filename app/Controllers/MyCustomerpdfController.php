@@ -45,15 +45,17 @@ class MyCustomerpdfController extends FPDF
 	}
 	function headerTable(){
         $this->setfont('Times', 'B', 14);
+       $this->setFillColor(180,180,255);
+        $this->setDrawColor(50,50,100);
        
-        $this->cell(60,10,'Fisrt Name',1,0,'C');
-        $this->cell(60,10,'Last Name',1,0,'C');
-        $this->cell(60,10,'Location',1,0,'C');
-        $this->cell(50,10,'Contact No',1,0,'C');
-        $this->cell(20,10,'Age',1,0,'C');
-		$this->cell(70,10,'Email',1,0,'C');
-		$this->cell(40,10,'check in date',1,0,'C');
-		$this->cell(40,10,'check out date',1,0,'C');
+        $this->cell(60,10,'Fisrt Name',1,0,'C',true);
+        $this->cell(60,10,'Last Name',1,0,'C',true);
+        $this->cell(60,10,'Location',1,0,'C',true);
+        $this->cell(50,10,'Contact No',1,0,'C',true);
+        $this->cell(20,10,'Age',1,0,'C',true);
+		$this->cell(70,10,'Email',1,0,'C',true);
+		$this->cell(40,10,'check in date',1,0,'C',true);
+		$this->cell(40,10,'check out date',1,0,'C',true);
         $this->Ln();
 
    }

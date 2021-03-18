@@ -9,12 +9,15 @@ class DashboardController {
             $data = array();
 
             $db = new Dashboard();
+            $dbreservation = new Reservation();
 
             $resultRoom = $db->getRoomCount();
             $resultReservation = $db->getReservationCount();
             $resultIncome = $db->getReservationIncome();
             $resultEmployee = $db->getEmployeeCount();
+            $countReservation = $dbreservation->getCountReservation();
 
+            $data['reservationCount'] = $countReservation;
             $data['details'] = array("rooms" => $resultRoom['total'], "reservations" => $resultReservation['total'], "income" => $resultIncome['total'], "employees" => $resultEmployee['total']);
             view::load('dashboard/dashboard', $data);
         }
@@ -24,12 +27,15 @@ class DashboardController {
             $data = array();
 
             $db = new Dashboard();
+            $dbreservation = new Reservation();
 
             $resultRoom = $db->getRoomCount();
             $resultReservation = $db->getReservationCount();
             $resultIncome = $db->getReservationIncome();
             $resultEmployee = $db->getEmployeeCount();
+            $countReservation = $dbreservation->getCountReservation();
 
+            $data['reservationCount'] = $countReservation;
             $data['details'] = array("rooms" => $resultRoom['total'], "reservations" => $resultReservation['total'], "income" => $resultIncome['total'], "employees" => $resultEmployee['total']);
             view::load('dashboard/dashboard', $data);
         }

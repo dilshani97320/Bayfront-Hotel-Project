@@ -254,3 +254,21 @@ INFO: Unsupported notification method: $/setTraceNotification
 [0m2021.02.19 21:55:32 INFO  time: initialize in 2.19s[0m
 [0m2021.02.19 21:55:34 WARN  Build server is not auto-connectable.[0m
 [0m2021.02.19 21:55:34 WARN  no build tool detected in workspace 'C:\xampp\htdocs\MVC'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+Feb 20, 2021 12:13:45 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTraceNotification
+[0m2021.02.20 00:15:40 INFO  shutting down Metals[0m
+[0m2021.03.14 19:56:28 INFO  Started: Metals version 0.10.0 in workspace 'C:\xampp\htdocs\MVC' for client vscode 1.54.2.[0m
+[0m2021.03.14 19:56:29 INFO  time: initialize in 1.84s[0m
+[0m2021.03.14 19:56:31 WARN  Build server is not auto-connectable.[0m
+[0m2021.03.14 19:56:31 WARN  no build tool detected in workspace 'C:\xampp\htdocs\MVC'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+[0m2021.03.14 23:47:21 INFO  shutting down Metals[0m
+[0m2021.03.17 10:23:42 INFO  Started: Metals version 0.10.0 in workspace 'C:\xampp\htdocs\MVC' for client vscode 1.54.3.[0m
+[0m2021.03.17 10:23:45 INFO  time: initialize in 2.99s[0m
+[0m2021.03.17 10:23:46 WARN  Build server is not auto-connectable.[0m
+[0m2021.03.17 10:23:46 WARN  no build tool detected in workspace 'C:\xampp\htdocs\MVC'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+[0m2021.03.17 13:40:01 INFO  shutting down Metals[0m
+[0m2021.03.17 21:30:32 INFO  Started: Metals version 0.10.0 in workspace 'C:\xampp\htdocs\MVC' for client vscode 1.54.3.[0m
+[0m2021.03.17 21:30:35 INFO  time: initialize in 2.55s[0m
+[0m2021.03.17 21:30:36 WARN  Build server is not auto-connectable.[0m
+[0m2021.03.17 21:30:36 WARN  no build tool detected in workspace 'C:\xampp\htdocs\MVC'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+[0m2021.03.17 23:31:57 INFO  shutting down Metals[0m

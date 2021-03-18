@@ -6,6 +6,7 @@
     include(VIEWS.'dashboard/inc/header.php'); 
 ?>
 
+
 <div class="wrapper">
 
         
@@ -23,130 +24,13 @@
         <!-- Table design -->
 
     <div class="content1">
-        <div class="container1">
-               <div class="row1">
 
-                <div class="data1">
-                    <div class="card1">
-                        <div class="card-header1">
-                            <div class="card-icon1">
-                                <i class="material-icons">night_shelter</i>
-                            </div>
-                            <p class="card-category">Rooms</p>
-                            <h3 class="card-title">
-                                <?php echo $details['rooms']; ?>
-                                <small class="special">#</small>
-                            </h3>
-                        </div>
-                        <div class="card-footer1">
-                            <div class="status1">
-                                <i class="material-icons" >update</i>
-                                Just Updated
-                            </div>
-                        </div>
+        <?php include(VIEWS.'dashboard/dashboardDisplay1.php'); ?>
+        <?php include(VIEWS.'dashboard/dashboardCalandar.php'); ?>
+        <?php include(VIEWS.'dashboard/dashboardGraph.php'); ?>
+        
 
-    
-                    </div>
-                </div>
-
-                <div class="data1">
-                    <div class="card1">
-                        <div class="card-header1">
-                            <div class="card-icon2">
-                                <i class="material-icons">hotel</i>
-                            </div>
-                            <p class="card-category">Reservations</p>
-                            <h3 class="card-title">
-                                <?php echo $details['reservations']; ?>
-                                <small class="special">#</small>
-                            </h3>
-                        </div>
-                        <div class="card-footer1">
-                            <div class="status1">
-                                <i class="material-icons" >update</i>
-                                Just Updated
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="data1">
-                    <div class="card1">
-                        <div class="card-header1">
-                            <div class="card-icon3">
-                                <i class="material-icons">monetization_on</i>
-                            </div>
-                            <p class="card-category">Income</p>
-                            <h3 class="card-title">
-                                <?php 
-                                $income = (int)$details['income'];
-                                echo $income; ?> 
-                               <small class="special">Lkr</small>
-                            </h3>
-                        </div>
-                        <div class="card-footer1">
-                            <div class="status1">
-                                <i class="material-icons" >update</i>
-                                Just Updated
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="data1">
-                    <div class="card1">
-                        <div class="card-header1">
-                            <div class="card-icon4">
-                                <i class="material-icons">people_alt</i>
-                            </div>
-                            <p class="card-category">Employess</p>
-                            <h3 class="card-title">
-                                <?php echo $details['employees']; ?>
-                                <small class="special">#</small>
-                            </h3>
-                        </div>
-                        <div class="card-footer1">
-                            <div class="status1">
-                                <i class="material-icons" >update</i>
-                                Just Updated
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-           </div>
-
-           <div class="container-calendar">
-            <h3 id="monthAndYear"></h3>
-            <div class="button-container-calendar">
-                <button id="previous" onclick="previous()"><i class="fa fa-arrow-circle-left" style="font-size:23px"></i></button>
-                <button id="next" onclick="next()"><i class="fa fa-arrow-circle-right" style="font-size:23px"></i></button>
-            </div>
-            <table class="table-calendar" id="calendar" data-lang="en">
-                <thead id="thead-month"></thead>
-                <tbody id="calendar-body"></tbody>
-            </table>
-            <div class="footer-container-calendar">
-                <label for="month">Jump To: 
-                    <select id="month" onchange="jump()">
-                        <option value=0>Jan</option>
-                        <option value=1>Feb</option>
-                        <option value=2>Mar</option>
-                        <option value=3>Apr</option>
-                        <option value=4>May</option>
-                        <option value=5>Jun</option>
-                        <option value=6>Jul</option>
-                        <option value=7>Aug</option>
-                        <option value=8>Sep</option>
-                        <option value=9>Oct</option>
-                        <option value=10>Nov</option>
-                        <option value=11>Dec</option>
-                    </select>
-                    <select id="year" onchange="jump()"></select>
-                </label>
-            </div>
-    </div>
+           
     </div>
 
     

@@ -14,6 +14,8 @@
        
             include(VIEWS.'dashboard/inc/sidebar.php'); //Sidebar
             include(VIEWS.'dashboard/inc/navbar.php'); //Navbar
+
+
     ?>
     
     <!-- Table design -->
@@ -25,7 +27,15 @@
                     <div class="options">
                         <h4>Payment View 
                         <span>
-                            <a href="<?php url("payment/cashIndex"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>  
+                        <?php if(isset($pay_online) && !isset($pay_all) && !isset($edit_view)) { ?>
+                            <a href="<?php url("payment/onlineIndex"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>
+                        <?php }if(isset($pay_all) && !isset($pay_online) && !isset($edit_view)) { ?>
+                            <a href="<?php url("payment/allIndex"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>
+                        <?php }if(isset($pay_all) && isset($edit_view) && !isset($pay_online)) { ?>
+                            <a href="<?php url("payment/allIndex"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>
+                        <?php }if(!isset($pay_all) && !isset($pay_online) && !isset($edit_view)) { ?>
+                            <a href="<?php url("payment/cashIndex"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>
+                        <?php } ?>     
                         </span>
                         </h4>  
                     </div>
@@ -34,7 +44,19 @@
                 </div>
 
                 <div class="cardbody">  
-                    <form action="<?php url("employee/create"); ?>" method="post" class="addnewform">
+                <!-- Online Send Mail -->
+                    <?php if(isset($pay_online) && !isset($pay_all) && !isset($edit_view)) { ?> 
+                        <form action="<?php url("payment/payEmailNotification"); ?>" method="post" class="addnewform">
+                <!-- Pay Cash  -->
+                    <?php }if(!isset($pay_online) && !isset($pay_all) && !isset($edit_view)) { ?>
+                        <form action="<?php url("payment/paycash"); ?>" method="post" class="addnewform">
+                <!-- Pay Cash Edit  -->
+                    <?php }if(!isset($pay_online) && isset($pay_all) && isset($edit_view)) { ?>
+                        <form action="<?php url("payment/editPayCash"); ?>" method="post" class="addnewform">
+                    <?php } ?>
+
+                    <input type="text" name="customer_id"  <?php echo 'value="' . $customer['customer_id'] . '"'?> hidden>
+                    <input type="text" name="reservation_id"  <?php echo 'value="' . $reservation['reservation_id'] . '"'?> hidden>
 
                     <div class="section1">
                         <div class="row">
@@ -44,6 +66,7 @@
                                     <?php 
                                         if(isset($customer['first_name'])){
                                             echo 'value="' . $customer['first_name'] . '"';
+                                            // echo 'value="' . $reservation['reservation_id'] . '"';
                                         }
                                          
                                     
@@ -209,16 +232,60 @@
 
                         
 
-                        <div class="row">
-                            <label for="#"><i class="material-icons">contacts</i>Due Price:</label>
+                        
+
+                        <?php if(!isset($pay_online) && isset($pay_all) && isset($edit_view)) { ?>
+                            <div class="row">
+                            <label for="#"><i class="material-icons">contacts</i>Paid Price:</label>
+                                <div class="animate-form">
+                                    <input type="text"  autocomplete="off" name="new_paid_amount" class="inputField"
+                                    <?php 
+                                        $paymentValue = 0;
+                                        $paymentValuePaid = 0;
+                                        // $cash = 0;
+                                        if(isset($payment)) {
+                                            foreach($payment as $row){
+                                                $paymentValuePaid = $paymentValuePaid + $row['amount'];
+                                                // $cash = $cash + 1;
+                                            }
+                                            $paymentValuePaid =  $paymentValuePaid/1000;
+                                        }
+                                        
+                                        // $paymentValue = $details['total_price'] - $paymentValuePaid;
+                                        echo 'value="' . $paymentValuePaid . '"';
+                                    ?>
+                                    <?php if($paymentValuePaid == 0){ ?>
+                                        readonly
+                                    <?php } ?>
+                                    >
+                                    <input type="text" name="paid_amount"  <?php echo 'value="' . $paymentValuePaid . '"'?> hidden>
+                                    <label for="name" class="label-name">
+                                            <?php if(isset($paid_error)): ?>
+                                                <span class="content-name"><i class="material-icons">info</i>Paid Value Must Zero</span>
+                                            <?php endif; ?>
+                                            <?php if(isset($success)): ?>
+                                                <span class="content-success"><i class="material-icons">verified_user</i>Updated Success</span>
+                                            <?php endif; ?>
+                                    </label>    
+                                </div>     
+                            </div>
+                        <?php } else{ ?>
+                            <div class="row">
+                                <label for="#"><i class="material-icons">contacts</i>Due Price:</label>
                                 <div class="animate-form">
                                     <input type="text"  autocomplete="off" name="amount" class="inputField"
                                     <?php 
                                         $paymentValue = 0;
                                         $paymentValuePaid = 0;
-                                        if(isset($payment['amount'])){
-                                            $paymentValuePaid=  $payment['amount']/1000;
+                                        // $cash = 0;
+                                        if(isset($payment)) {
+                                            foreach($payment as $row){
+                                                $paymentValuePaid = $paymentValuePaid + $row['amount'];
+                                                // $cash = $cash + 1;
+                                            }
+                                            $paymentValuePaid =  $paymentValuePaid/1000;
                                         }
+                                        
                                         $paymentValue = $details['total_price'] - $paymentValuePaid;
                                         echo 'value="' . $paymentValue . '"';
                                     ?>
@@ -233,13 +300,34 @@
                                             <?php } ?>
                                     </label>    
                                 </div>     
-                        </div>
-                        
-                        <div class="row">
-                            <div class="button">
-                                <button class="save" name="submit">Pay Now</button>
                             </div>
-                        </div>
+                        <?php } ?>
+                        <?php if(isset($pay_online) && !isset($pay_all) && !isset($edit_view)) { ?>
+                            <?php if($paymentValue != 0):?>
+                            <div class="row">
+                                <div class="button">
+                                    <button class="save" name="submit">Send Email</button>
+                                </div>
+                            </div>
+                            <?php endif; ?>
+                        <?php }if(!isset($pay_online) && !isset($pay_all) && !isset($edit_view)) { ?>
+                            <?php if($paymentValue != 0):?>
+                            <div class="row">
+                                <div class="button">
+                                    <button class="save" name="submit">Pay Now</button>
+                                </div>
+                            </div>
+                            <?php endif; ?>
+                        <?php }if(!isset($pay_online) && isset($pay_all) && isset($edit_view)) { ?>
+                            <?php if($paymentValuePaid != 0):?>
+                            <div class="row">
+                                <div class="button">
+                                    <button class="save" name="submit">Update</button>
+                                </div>
+                            </div>
+                            <?php endif; ?>
+                        <?php } ?>
+                        
                     </div>
 
                     <div class="section2"> 

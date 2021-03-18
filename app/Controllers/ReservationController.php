@@ -140,17 +140,17 @@ class ReservationController {
                 }
                 else {
                     // above thing do again doesnot matter
-                    if($customer_id != 0) {
-                        $customer = new Customer();
-                        $customer_details = $customer->getCustomer($customer_id);
-                        $reservation = array('first_name'=>$customer_details['first_name'], 'last_name'=>$customer_details['last_name'],'age'=>$customer_details['age'],'location'=>$customer_details['location'],'contact_number'=>$customer_details['contact_number'],'email'=>$customer_details['email'],'room_number'=>$room_number,'max_guest'=>$max_guest,'check_in_date'=>$check_in_date, 'check_out_date'=>$check_out_date, 'price'=>$price );
-                    }
-                    else {
+                    // if($customer_id != 0) {
+                    //     $customer = new Customer();
+                    //     $customer_details = $customer->getCustomer($customer_id);
+                    //     $reservation = array('first_name'=>$customer_details['first_name'], 'last_name'=>$customer_details['last_name'],'age'=>$customer_details['age'],'location'=>$customer_details['location'],'contact_number'=>$customer_details['contact_number'],'email'=>$customer_details['email'],'room_number'=>$room_number,'max_guest'=>$max_guest,'check_in_date'=>$check_in_date, 'check_out_date'=>$check_out_date, 'price'=>$price );
+                    // }
+                    // else {
                         $reservation = array('email'=>$user_email,'room_number'=>$room_number,'max_guest'=>$max_guest,'check_in_date'=>$check_in_date, 'check_out_date'=>$check_out_date, 'price'=>$price );
-                    }
+                    // }
                     
                 // }
-            }
+                }
                 $no_of_rooms = $no_of_rooms - 1;
                 $no_of_guest = $no_of_guest- $max_guest;
             
@@ -934,7 +934,16 @@ class ReservationController {
             $type_id = $room['type_id'];
             $room_type_details = new RoomType();
             $room_type = $room_type_details->getRoomTypeDetail($type_id);
+            // Add payment Details
+            $payment = new Payment();
+            $payment_details = $payment->FindTransaction($customer_id,$reservation_id);
+            if(!empty($payment_details)) {
+                $data['payment'] = $payment_details;
+                // echo "succss";
+                // die();
+            }
             $data['room_type'] = $room_type;
+            
             $data['customer'] = $customer;
             $data['reservation'] = $reservation;
             $data['room'] = $room;

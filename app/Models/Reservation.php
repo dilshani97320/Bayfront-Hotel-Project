@@ -529,7 +529,7 @@ class Reservation extends Connection {
                   LEFT OUTER JOIN $this->reservation_table
                   ON $room->room_table.room_id = $this->reservation_table.room_id
                   WHERE $this->reservation_table.is_valid = 1 AND $this->reservation_table.request = 0
-                  ORDER BY $this->reservation_table.check_in_date";
+                  ORDER BY $this->reservation_table.check_in_date DESC";
 
         $rooms = mysqli_query($this->connection, $query);
         if($rooms) {
@@ -845,6 +845,28 @@ class Reservation extends Connection {
         }
 
         return $value;
+    }
+
+
+    public function getCountReservation() {
+        date_default_timezone_set("Asia/Colombo");
+        $current_date = date('Y-m-d');
+        
+        $query = "SELECT COUNT($this->reservation_table.reservation_id) AS count, $this->reservation_table.check_in_date 
+                FROM $this->reservation_table 
+                WHERE check_in_date <= '{$current_date}' AND $this->reservation_table.is_valid = 1 AND $this->reservation_table.request = 0
+                GROUP BY check_in_date DESC LIMIT 14";
+        // var_dump($query);
+        // die();
+        $reservationsCount = mysqli_query($this->connection, $query);
+        if($reservationsCount) {
+            mysqli_fetch_all($reservationsCount,MYSQLI_ASSOC);
+        }
+        else {
+            echo "Database Query Failed";
+        } 
+
+        return $reservationsCount;
     }
 
 

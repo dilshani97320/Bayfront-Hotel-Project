@@ -124,7 +124,7 @@
                                                 <td><a href="#" onclick="return confirm('Can not Edit Sorry!!');" class="edit"><i class="material-icons">edit</i></a></td>
                                             <?php } else { ?>   
                                                 <td><a href="<?php url('reservation/edit/'.$row['room_number'].'/'.$row['check_in_date'].'/'.$row['check_out_date']);?>" class="edit"><i class="material-icons">edit</i></a></td>
-                                            <?php }; ?>    
+                                            <?php } ?>    
                                             <td><a href="<?php url('reservation/delete/'.$row['room_number'].'/'.$row['check_in_date'].'/'.$row['check_out_date']);?>" onclick="return confirm('Are you sure?');" class="delete"><i class="material-icons">delete</i></a></td>
                                         <?php endif; ?>
                                     </tbody>

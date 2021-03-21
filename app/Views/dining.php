@@ -103,10 +103,10 @@
 
 
 
-		
-	<!-- Menu Part -->
-	<div class="pimg1" style="background-image: url('<?php echo BURL.'assets/img/dining/1.jpg'; ?>');">
-		<div class="ptext">
+<!-- parallex image -->
+	
+	<div class="parallexImg" style="background-image: url('<?php echo BURL.'assets/img/dining/1.jpg'; ?>');">
+		<div class="parallexText">
 			<span class="boader">Find Your Favourite</span>
 
 		</div>
@@ -116,6 +116,7 @@
 				<h4>Our Specialties</h4>
 				<hr class="line-style"><br>
 		</div>
+<!-- Menu Part -->
 	<div class="wrapper">
 		
 		<div class="menu">
@@ -175,7 +176,7 @@
 		
 <figure class="drinks a">
   <h3>Iced Tea Lemonade</h3>
-  <div class="image">
+  <div class="drinkImg">
     <img src="<?php echo BURL.'assets/img/dining/tea2.png'; ?>" alt="sq-sample6"/>
   </div>
   <!-- <div class="rating"><i class="ion-ios-star"></i><i class="ion-ios-star"></i><i class="ion-ios-star"></i><i class="ion-ios-star"></i><i class="ion-ios-star-outline"></i></div> -->
@@ -189,7 +190,7 @@
 </figure>
 <figure class="drinks b">
   <h3> Ceylon Tea</h3>
-  <div class="image">
+  <div class="drinkImg">
     <img src="<?php echo BURL.'assets/img/dining/tea1.jpg'; ?>" alt="sq-sample17"/>
   </div>
   <figcaption>
@@ -204,7 +205,7 @@
 </figure>
 <figure class="drinks c">
   <h3> king coconut </h3>
-  <div class="image">
+  <div class="drinkImg">
     <img src="<?php echo BURL.'assets/img/dining/tea3.jpg'; ?>" alt="sq-sample22"/>
   </div>
   <figcaption>

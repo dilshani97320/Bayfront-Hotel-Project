@@ -23,28 +23,28 @@
 
         <div class="activityRow activityOneTwo">
         	<div class="act activityOne">
-          <div class="activity-img">
-            <figure class="imgBlock">
-              <img src="<?php echo BURL.'assets/img/home/yoga1.jpg'; ?>" alt="sample35" />
-              <div class="title">
-                <div>
-                  <h4>Spa</h4>
-                  <!-- <h6>Hikkaduwa</h6> -->
+            <div class="activity-img">
+              <figure class="imgBlock">
+                <img src="<?php echo BURL.'assets/img/home/yoga1.jpg'; ?>" alt="sample35" />
+                <div class="title">
+                  <div>
+                    <h4>Spa</h4>
+                    <!-- <h6>Hikkaduwa</h6> -->
+                  </div>
                 </div>
-              </div>
-            </figure>
-            <figure class="imgBlock">
-              <img src="<?php echo BURL.'assets/img/home/yoga2.png'; ?>" alt="sample35" />
-              <div class="title">
-                <div>
-                  <h4>Yoga</h4>
-                  <!-- <h6>Hikkaduwa</h6> -->
+              </figure>
+              <figure class="imgBlock">
+                <img src="<?php echo BURL.'assets/img/home/yoga2.png'; ?>" alt="sample35" />
+                <div class="title">
+                  <div>
+                    <h4>Yoga</h4>
+                    <!-- <h6>Hikkaduwa</h6> -->
+                  </div>
                 </div>
-              </div>
-            </figure>
+              </figure>
 
-          </div>
-          <br />
+            </div>
+            <br />
           <div>
             <h1>SPA & YOGA</h1>
             
@@ -61,48 +61,48 @@
           </div>
         </div>
 
-        <div class="act activityTwo">
-          <div>
-            <h1>FOOD & BEVERAGE</h1>
-            <hr class="line-style" />
+          <div class="act activityTwo">
+            <div>
+              <h1>FOOD & BEVERAGE</h1>
+              <hr class="line-style" />
+              <br />
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Inventore vero natus, esse dolores id sit beatae repudiandae? Ea
+                molestias quo similique accusamus minima est explicabo commodi,
+                praesentium temporibus dolore cumque. ipsum dolor sit amet,
+                consectetur adipisicing elit. Voluptatum, quas quasi nulla aut
+                blanditiis, minima omnis molestiae! Necessitatibus, adipisci nam
+                id quis natus, adipisci nam id quis natusadipisci nam id quis
+                natus, adipisci nam id quis natus.
+              </p>
+              <a class="btn" href="<?php url('Dining/index'); ?>"
+                >FIND OUT MORE
+                <i class="fa fa-chevron-right" aria-hidden="true"></i
+              ></a>
+            </div>
             <br />
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Inventore vero natus, esse dolores id sit beatae repudiandae? Ea
-              molestias quo similique accusamus minima est explicabo commodi,
-              praesentium temporibus dolore cumque. ipsum dolor sit amet,
-              consectetur adipisicing elit. Voluptatum, quas quasi nulla aut
-              blanditiis, minima omnis molestiae! Necessitatibus, adipisci nam
-              id quis natus, adipisci nam id quis natusadipisci nam id quis
-              natus, adipisci nam id quis natus.
-            </p>
-            <a class="btn" href="<?php url('Dining/index'); ?>"
-              >FIND OUT MORE
-              <i class="fa fa-chevron-right" aria-hidden="true"></i
-            ></a>
-          </div>
-          <br />
-          <div class="activity-img">
-            <figure class="imgBlock">
-              <img src="<?php echo BURL.'assets/img/home/dining1.jpg'; ?>" alt="sample35" />
-              <div class="title">
-                <div>
-                  <h4>Yummy Food</h4>
-                  <!-- <h6>Hikkaduwa</h6>/ -->
+            <div class="activity-img">
+              <figure class="imgBlock">
+                <img src="<?php echo BURL.'assets/img/home/dining1.jpg'; ?>" alt="sample35" />
+                <div class="title">
+                  <div>
+                    <h4>Yummy Food</h4>
+                    <!-- <h6>Hikkaduwa</h6>/ -->
+                  </div>
                 </div>
-              </div>
-            </figure>
-            <figure class="imgBlock">
-              <img src="<?php echo BURL.'assets/img/home/dining2.webp'; ?>" alt="sample35" />
-              <div class="title">
-                <div>
-                  <h4>Tasty Beverages</h4>
-                  <!-- <h6>Hikkaduwa</h6> -->
+              </figure>
+              <figure class="imgBlock">
+                <img src="<?php echo BURL.'assets/img/home/dining2.webp'; ?>" alt="sample35" />
+                <div class="title">
+                  <div>
+                    <h4>Tasty Beverages</h4>
+                    <!-- <h6>Hikkaduwa</h6> -->
+                  </div>
                 </div>
-              </div>
-            </figure>
+              </figure>
+            </div>
           </div>
-        </div>
         </div>
 
         <div class="activityRow activityThree">

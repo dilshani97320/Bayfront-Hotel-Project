@@ -8,28 +8,7 @@
 </head>
 <body>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div id="slideshow">
+<div id="roomSlideshow">
 
 <?php  foreach ($room_details as $key=>$value): //var_dump($value); ?>	
 		<?php  if($value['is_delete']== 0): ?>							
@@ -37,7 +16,7 @@
 		<div class="room-slider">
 			<div class="room-details ">
 				<div class="content-room">
-					<span class="value"> <?php echo $value['price']; ?> $</span>
+					<span class="value"> <?php echo $value['price']; ?> LKR</span>
 					<span class="unit">/Per Night</span>
 					<h1><?php echo $value['room_name']; ?></h1>
 					<span><?php echo $value['type_name']; ?></span>
@@ -86,7 +65,7 @@
 				</div>
 			</div>
 			<div class="room-img">
-			<?php  foreach ($img_details as $key=>$valueImg): //var_dump($value); ?>
+				<?php  foreach ($img_details as $key=>$valueImg): //var_dump($value); ?>
 						
 						<?php if ($valueImg['room_number'] == $value['room_number'] ): ?>
 							<?php if ($valueImg['image_name'] == 'image_01' ): ?>
@@ -94,6 +73,67 @@
 							<?php endif; ?>
 						<?php endif; ?>
 				<?php endforeach; ?> 
+			</div>
+
+			<div class="room-img-mob" >
+				<?php  foreach ($img_details as $key=>$valueImg): //var_dump($value); ?>
+						
+						<?php if ($valueImg['room_number'] == $value['room_number'] ): ?>
+							<?php if ($valueImg['image_name'] == 'image_01' ): ?>
+								<img src="<?php echo BURL.$img_details[$key]['image_path']; ?>" alt="">
+							<?php endif; ?>
+						<?php endif; ?>
+				<?php endforeach; ?> 
+			</div>
+			<div class="room-details-mob">
+				<div class="content-room">
+					<span class="value"> <?php echo $value['price']; ?> LKR</span>
+					<span class="unit">/Per Night</span>
+					<h1><?php echo $value['room_name']; ?></h1>
+					<span><?php echo $value['type_name']; ?></span>
+					<p>Lorem20 ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum, quas quasi nulla aut blanditiis, minima omnis molestiae! Necessitatibus, adipisci nam id quis natus.</p>
+					
+					<div class="single-room-meta">
+						<div class="meta">
+							
+							<div class="title">
+								<i class="fas fa-user-tie"></i>Guest
+							</div>
+							<div class="value-meta"><?php echo $value['max_guest']; ?></div>
+
+						</div>
+						<div class="meta">
+							
+							<div class="title">
+								<i class="fas fa-compress"></i>Acreage
+							</div>
+							<div class="value-meta"><?php echo $value['room_size']; ?> sq.ft</div>
+
+						</div>
+						<div class="meta">
+							
+							<div class="title">
+								<i class="fas fa-bed"></i>Beds
+							</div>
+							<div class="value-meta"><?php echo $value['bed_type']; ?></div>
+						</div>
+						<div class="meta">
+							
+							<div class="title">
+							<i class="fas fa-eye"></i> View
+							</div>
+							<div class="value-meta"><?php echo $value['room_view']; ?></div>
+
+						</div>
+					</div>
+				</div>
+				<div class="bttn">
+					<a class="btn" href="<?php url('RoomSuite/ViewRoom/'.$value['room_number'] ); ?>">VIEW MORE <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+					<?php 
+						$checkavailability = 1;
+					?>
+					<a class="btn" href="<?php url('RoomSuite/ViewRoom/'.$value['room_number'].'/'.$checkavailability); ?>">BOOK NOW1<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -157,7 +197,7 @@
 				</div>
 			</div>
 			<div class="room-img">
-			<?php  foreach ($img_details as $key=>$valueImg): //var_dump($value); ?>
+				<?php  foreach ($img_details as $key=>$valueImg): //var_dump($value); ?>
 						
 						<?php if ($valueImg['room_number'] == $value['room_number'] ): ?>
 							<?php if ($valueImg['image_name'] == 'image_01' ): ?>
@@ -166,6 +206,68 @@
 						<?php endif; ?>
 				<?php endforeach; ?> 
 			</div>
+			
+			<div class="room-img-mob" >
+				<?php  foreach ($img_details as $key=>$valueImg): //var_dump($value); ?>
+						
+						<?php if ($valueImg['room_number'] == $value['room_number'] ): ?>
+							<?php if ($valueImg['image_name'] == 'image_01' ): ?>
+								<img src="<?php echo BURL.$img_details[$key]['image_path']; ?>" alt="">
+							<?php endif; ?>
+						<?php endif; ?>
+				<?php endforeach; ?> 
+			</div>
+			<div class="room-details-mob">
+				<div class="content-room">
+					<span class="value"> <?php echo $value['price']; ?> $</span>
+					<span class="unit">/Per Night</span>
+					<h1><?php echo $value['room_name']; ?></h1>
+					<span><?php echo $value['type_name']; ?></span>
+					<p>Lorem20 ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum, quas quasi nulla aut blanditiis, minima omnis molestiae! Necessitatibus, adipisci nam id quis natus.</p>
+					
+					<div class="single-room-meta">
+						<div class="meta">
+							
+							<div class="title">
+								<i class="fas fa-user-tie"></i>Guest
+							</div>
+							<div class="value-meta"><?php echo $value['max_guest']; ?></div>
+
+						</div>
+						<div class="meta">
+							
+							<div class="title">
+								<i class="fas fa-compress"></i>Acreage
+							</div>
+							<div class="value-meta"><?php echo $value['room_size']; ?> sq.ft</div>
+
+						</div>
+						<div class="meta">
+							
+							<div class="title">
+								<i class="fas fa-bed"></i>Beds
+							</div>
+							<div class="value-meta"><?php echo $value['bed_type']; ?></div>
+						</div>
+						<div class="meta">
+							
+							<div class="title">
+							<i class="fas fa-eye"></i> View
+							</div>
+							<div class="value-meta"><?php echo $value['room_view']; ?></div>
+
+						</div>
+					</div>
+				</div>
+				<div class="bttn">
+					<a class="btn" href="<?php url('RoomSuite/ViewRoom/'.$value['room_number'] ); ?>">VIEW MORE <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+					<?php 
+						$checkavailability = 1;
+					?>
+					<a class="btn" href="<?php url('RoomSuite/ViewRoom/'.$value['room_number'].'/'.$checkavailability); ?>">BOOK NOW1<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+				</div>
+			</div>
+			
 		</div>
 	</div>
 	<?php endif; ?> 
@@ -179,7 +281,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 
-$("#slideshow > div:gt(0)").hide();
+$("#roomSlideshow > div:gt(0)").hide();
 
 var buttons = "<button class=\"slidebtn prev\"><i class=\"fa fa-long-arrow-left\"></i></button><button class=\"slidebtn next\"><i class=\"fa fa-long-arrow-right\"></i></button\>";
 
@@ -190,7 +292,7 @@ for (var i = 1; i < slidesl; i++) {
 }	
 var dots = "<ul class=\"slider-dots\">" + d + "</ul\>";
 
-$("#slideshow").append(dots).append(buttons);
+$("#roomSlideshow").append(dots).append(buttons);
 var interval = setInterval(slide, 10000);
 
 function intslide(func) {
@@ -264,7 +366,7 @@ $('.dot').on('click', function(){
 		sact('dot', index, 400);
 		intslide('start');						
 	});//prev
-//slideshow
+//roomSlideshow
 });
 
 

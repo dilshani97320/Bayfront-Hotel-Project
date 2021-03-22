@@ -28,6 +28,7 @@
         <?php include(VIEWS.'dashboard/dashboardDisplay1.php'); ?>
         <?php include(VIEWS.'dashboard/dashboardCalandar.php'); ?>
         <?php include(VIEWS.'dashboard/dashboardGraph.php'); ?>
+        <?php include(VIEWS.'dashboard/dashboardTest.php'); ?>
         
 
            

@@ -81,8 +81,8 @@
         
 
         <li class="nav1-item">
-            <a href="<?php url('reservation/indexOnline'); ?>" class="nav1-link">
-                <p class="nav-p"><i class="material-icons"></i>Online Reservation Test</p>         
+            <a href="<?php url('room/bookingCalendar'); ?>" class="nav1-link">
+                <p class="nav-p"><i class="material-icons"></i>Booking Calander</p>         
             </a>
         </li>
 

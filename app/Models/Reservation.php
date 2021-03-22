@@ -869,6 +869,24 @@ class Reservation extends Connection {
         return $reservationsCount;
     }
 
+    public function getDayCountReservation() {
+
+        $query = "SELECT COUNT($this->reservation_table.reservation_id) AS count, $this->reservation_table.check_in_date 
+                FROM $this->reservation_table 
+                WHERE $this->reservation_table.is_valid = 1 AND $this->reservation_table.request = 0
+                GROUP BY check_in_date";
+
+        $reservationsCount = mysqli_query($this->connection, $query);
+        if($reservationsCount) {
+            mysqli_fetch_all($reservationsCount,MYSQLI_ASSOC);
+        }
+        else {
+            echo "Database Query Failed";
+        } 
+
+        return $reservationsCount;
+    }
+
 
 
     public function getreportt()
@@ -893,5 +911,8 @@ class Reservation extends Connection {
  //exit;
      return $users; 
     }
+
+
+    
 
 }

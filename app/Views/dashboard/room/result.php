@@ -28,7 +28,7 @@
                        <h4>Room Result Page   
                        <span>
                             <a href="<?php url("room/index"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>  
-                        </span>
+                       </span>
                         
                        </h4>
                    </div>

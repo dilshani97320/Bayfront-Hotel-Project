@@ -504,5 +504,24 @@ class RoomDetails extends RoomType {
         return $room;
     }
 
+    public function getRoomAll() {
+
+        $room = array();
+        $query = "SELECT * FROM $this->room_table
+                WHERE is_delete = 0 ";
+
+        $rooms = mysqli_query($this->connection, $query);
+        if($rooms){
+            $room = mysqli_fetch_all($rooms,MYSQLI_ASSOC);
+
+        }
+        else {
+            echo "Query Error";
+        }
+
+        return $room;
+    }
+
+   
 
 }

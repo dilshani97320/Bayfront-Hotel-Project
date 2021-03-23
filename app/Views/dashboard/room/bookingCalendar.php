@@ -1,8 +1,4 @@
-<?php 
-   // Header
-   $title = "Search Room page";
-   include(VIEWS.'dashboard/inc/header.php');
-?> 
+
 <style>
 
 
@@ -53,7 +49,7 @@ a.btn_seek {
     margin-left: 10px;
     text-decoration: none;
     padding: 9px;
-    background: #163044;
+    background: #030c14;
     color: #fff;
     border-radius: 5px;
 }
@@ -71,6 +67,8 @@ table {
 th.header {
     padding: 18px;
     font-size: 19px;
+    background: #030c14;
+    color: #fff;
     /* border: 1px solid #dee2e6; */
     border-top: 1px solid rgba(0, 0, 0, 0.06);
     border-bottom: 2px solid rgba(0, 0, 0, 0.06);
@@ -140,65 +138,16 @@ a.btn_seek_success {
 }
 
 .today {
-    background: #081f33;
+    background: #030c14;
     color: aliceblue;
     border-radius: 5px;
 }
 </style>
 
-<div class="wrapper">
 
-    <?php 
-            $navbar_title = "Booking Calendar";
-            $search = 0;
-            $search_by = '#';
-       
-            include(VIEWS.'dashboard/inc/sidebar.php'); //Sidebar
-            include(VIEWS.'dashboard/inc/navbar.php'); //Navbar
-    ?>
-    
-    <!-- Table design -->
-    <div class="content">
-        <div class="tablecard">
-            <div class="card">
-
-                <div class="cardheader">
-                    <div class="options">
-                        <h4>Booking Calendar </h4>  
-                    </div>
-
-                    <p class="textfortabel">All Bookings have following Details</p>
-                </div>
-
-                <div class="cardbody">  
-                   
-                    <!-- <div class="section1"> -->
-                    <!-- <div class="container"> -->
-                        <!-- <div class="row"> -->
-                            <?php echo $calendar; ?>
+<?php echo $calendar; ?>
               
-                        <!-- </div> -->
-                    <!-- </div> -->
                        
-                        
-
-                        
-
-                    <!-- </div> -->
-
-                    <!-- <div class="section2">  -->
-
-                    <!-- </div> -->
-                </div>  <!--End Card Body -->
-            </div>  <!--End Card -->
-
-            
-        </div>
-    </div>   <!-- End Table design -->
-    
-</div>
-    
-<?php include(VIEWS.'dashboard/inc/footer.php'); ?>
 
 
 

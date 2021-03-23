@@ -23,7 +23,11 @@
 
                 <div class="cardheader">
                     <div class="options">
-                        <h4>Room Search </h4>  
+                        <h4>Room Search 
+                        <span>
+                            <a href="<?php url("room/selectOption"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>  
+                       </span>
+                        </h4>  
                     </div>
 
                     <p class="textfortabel">Complete Following Details</p>

@@ -80,23 +80,23 @@
         </li> 
         
 
-        <li class="nav1-item">
+        <!-- <li class="nav1-item">
             <a href="<?php url('room/bookingCalendar'); ?>" class="nav1-link">
                 <p class="nav-p"><i class="material-icons"></i>Booking Calander</p>         
             </a>
-        </li>
+        </li> -->
 
-        <li class="nav1-item">
+        <!-- <li class="nav1-item">
             <a href="#" class="nav1-link">
                 <p class="nav-p"><i class="material-icons"></i>None</p>         
             </a>
-        </li> 
+        </li>  -->
 
-        <li class="nav1-item">
+        <!-- <li class="nav1-item">
             <a href="#" class="nav1-link">
                 <p class="nav-p"><i class="material-icons"></i>None</p>         
             </a>
-        </li>
+        </li> -->
 
         <li class="nav1-item">
             <a href="<?php url(''); ?>" class="nav1-link">

@@ -1,7 +1,7 @@
 <?php 
 
 // Header
-   $title = "Employee Select page";
+   $title = "Room Booking Details Page";
    include(VIEWS.'dashboard/inc/header.php'); 
 ?>
 
@@ -29,7 +29,7 @@
                        </span>
                        </h4>
                    </div>
-                   <p class="textfortabel">Following Room Booking have for Room</p>
+                   <p class="textfortabel"><?php echo $room['room_name']; ?> Booking have following bookings</p>
                </div>
                
 

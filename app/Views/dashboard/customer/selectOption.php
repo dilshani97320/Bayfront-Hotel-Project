@@ -51,10 +51,10 @@
                                 Blacklist Customers
                             </div>
                             <a href="<?php url('customer/blacklist');?>"></a>
-                        </div>
-
-
-                        
+                        </div>   
+                    </div>
+                    <div class="cardbody"> 
+                        <?php include(VIEWS.'dashboard/room/bookingCalendar.php'); ?>
                     </div>
            </div> 
        </div>

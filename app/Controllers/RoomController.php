@@ -407,8 +407,12 @@ class RoomController {
                         // $year = $dateComponents['year'];
                         $year = date('Y');
                     }
+
+                    $room = new RoomDetails();
+                    $details = $room->getRoomDetails($room_id);
                     
                     $calendar = $this->bookingCalendarDetails($month, $year, $room_id, $customer_id);
+                    $data['room'] = $details;
                     $data['calendar'] = $calendar;
                     $data['customer'] = array("id"=>$customer_id);
                     view::load("dashboard/room/roomCalendar", $data);
@@ -437,7 +441,9 @@ class RoomController {
                 // $year = $dateComponents['year'];
                 $year = date('Y');
             }
-            
+            $room = new RoomDetails();
+            $details = $room->getRoomDetails($room_id);
+            $data['room'] = $details;
             $calendar = $this->bookingCalendarDetails($month, $year, $room_id, $customer_id);
             $data['calendar'] = $calendar;
             $data['customer'] = array("id"=>$customer_id);
@@ -1430,7 +1436,7 @@ class RoomController {
                 }
                 else {
                     if(in_array($date, $datesArray)) {
-                        $calendar .= "<td class='$today'><h4>$currentDay</h4><button class='btn_seek_danger'>booked</button>";
+                        $calendar .= "<td class='$today'><h4>$currentDay</h4><button class='btn_seek_danger'>Booked</button>";
                     }
                     else {
                         $calendar .= "<td class='$today'><h4>$currentDay</h4><a  href='book.php?date=".$date."'' class='btn_seek_success'>Book</a>";
@@ -1454,16 +1460,14 @@ class RoomController {
                         $val = $total-$booked;
                         // echo $val;
                         // echo gettype($booked);
-                        $calendar .= "<td class='$today'><h4>$currentDay</h4><button class='btn_seek_view'>Booked = ".$booked."
-                                    <br>
-                                    Free = ". $val."
-                                    </button>";
+                        $calendar .= "<td class='$today'><h4>$currentDay</h4><button class='btn_seek_view'>Bookings = ".$booked." </button>";
                     }
                     else {
                         $calendar .= "<td class='$today'><h4>$currentDay</h4><button class='btn_seek_danger'>N/A</button>";
                     }
                     
                 }
+                
                 else {
                     // echo $date;
                     // $booked = $result[$date]['count'];
@@ -1480,16 +1484,10 @@ class RoomController {
                         $total = 6; // Number of Rooms
                         $booked = (int)$booked;
                         $val = $total-$booked;
-                        $calendar .= "<td class='$today'><h4>$currentDay</h4><button class='btn_seek_view'>Booked = ".$booked."
-                                    <br>
-                                    Free = ". $val."
-                                    </button>";
+                        $calendar .= "<td class='$today'><h4>$currentDay</h4><button class='btn_seek_view'>Bookings = ".$booked." </button>";
                     }
                     else {
-                        $calendar .= "<td class='$today'><h4>$currentDay</h4><button class='btn_seek_view'>Booked = 0
-                                    <br>
-                                    Free =  6
-                                    </button>";
+                        $calendar .= "<td class='$today'><h4>$currentDay</h4><button class='btn_seek_view'>Bookings = 0</button>";
                     }
                 
                 }

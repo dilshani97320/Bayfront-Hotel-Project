@@ -530,20 +530,27 @@
                     view::load('dashboard/payment/paymentView', $data);
                 }
 
-                if($pay_all == 1) {
+                else if($pay_all == 1) {
                     // edit view
                     if($editView == 1) {
                         $data['pay_all'] = $pay_all;
                         $data['edit_view'] = $editView;
+                        // echo "tharindu1";
+                        // die();
                         view::load('dashboard/payment/paymentView', $data);
+                        
                     }
                     else {
                         $data['pay_all'] = $pay_all;
+                        // echo "tharindu2";
+                        // die();
                         view::load('dashboard/payment/paymentView', $data);
                     }
                     
                 }
                 else {
+                    // echo "tharindu3";
+                    // die();
                     view::load('dashboard/payment/paymentView', $data);
                 }
 

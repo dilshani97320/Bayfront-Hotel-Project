@@ -11,7 +11,7 @@ class RoomController {
     public function selectOption($month_val=0, $year_val=0) {
         if(!isset($_SESSION['user_id'])) {
             $dashboard = new DashboardController();
-            $dashboard->index();   
+            $dashboard->index();  
         }
         else {
             date_default_timezone_set("Asia/Colombo");
@@ -376,14 +376,14 @@ class RoomController {
 
     }
 
-    public function checkCalendar($customer_id = 0) {
+    public function checkCalendar($customer_id = 0, $month_val=0, $year_val=0) {
         if(!isset($_SESSION['user_id'])) {
             $dashboard = new DashboardController();
             $dashboard->index();   
         }
         else {
             if(isset($_POST['submit'])) {
-                $room_id = $_POST['room_id']; 
+                $room_id = $_POST['room_id'];
                 $errors[] = array();
 
                 if($room_id == NULL) {
@@ -394,9 +394,55 @@ class RoomController {
                 $errors = array_filter( $errors ); 
 
                 if(count( $errors ) == 0) {
+                    date_default_timezone_set("Asia/Colombo");
+                    $dateComponents = getdate();
+            
+                    if($month_val != 0 && $year_val != 0) {
+                        $month = $month_val;
+                        $year = $year_val;
+                    }
+                    else {
+                        // $month = $dateComponents['month'];
+                        $month = date('m');
+                        // $year = $dateComponents['year'];
+                        $year = date('Y');
+                    }
+                    
+                    $calendar = $this->bookingCalendarDetails($month, $year, $room_id, $customer_id);
+                    $data['calendar'] = $calendar;
+                    $data['customer'] = array("id"=>$customer_id);
+                    view::load("dashboard/room/roomCalendar", $data);
 
                 }
             }
+        }
+    }
+
+    public function checkCalendarRetreive($customer_id = 0, $room_id=0, $month_val=0, $year_val=0) {
+        if(!isset($_SESSION['user_id'])) {
+            $dashboard = new DashboardController();
+            $dashboard->index();   
+        }
+        else {
+            date_default_timezone_set("Asia/Colombo");
+            $dateComponents = getdate();
+    
+            if($month_val != 0 && $year_val != 0) {
+                $month = $month_val;
+                $year = $year_val;
+            }
+            else {
+                // $month = $dateComponents['month'];
+                $month = date('m');
+                // $year = $dateComponents['year'];
+                $year = date('Y');
+            }
+            
+            $calendar = $this->bookingCalendarDetails($month, $year, $room_id, $customer_id);
+            $data['calendar'] = $calendar;
+            $data['customer'] = array("id"=>$customer_id);
+            view::load("dashboard/room/roomCalendar", $data);
+
         }
     }
 
@@ -1258,12 +1304,37 @@ class RoomController {
     private function is_date($date) {
         return(preg_match("/\d{4}\-\d{2}-\d{2}/", $date));
     }
+
     
-    private function bookingCalendarDetails($month, $year, $roomBySearch = 0) {
+    private function bookingCalendarDetails($month, $year, $room_id = 0, $customer_id = 0) {
 
         $reservation = new Reservation();
-        if($roomBySearch != 0) {
-            $result = $reservation->getBookingDays();
+        if($room_id != 0) {
+            $result = $reservation->getBookingDays($room_id);
+
+            foreach($result as $d)
+            {
+                    $start= $d['check_in_date'];
+                    $end= $d['check_out_date'];
+                    $format = 'Y-m-d';
+                    // $array = array(); 
+      
+                    // Variable that store the date interval 
+                    // of period 1 day 
+                    $interval = new DateInterval('P1D'); 
+                  
+                    $realEnd = new DateTime($end);
+                    $realEnd->add($interval); 
+                  
+                    $period = new DatePeriod(new DateTime($start), $interval, $realEnd); 
+                  
+                    // Use loop to store date into array 
+                    foreach($period as $date) {                  
+                        $datesArray[] = $date->format($format);  
+                    }
+
+            }
+
         }
         else {
             $result = $reservation->getDayCountReservation();
@@ -1304,12 +1375,22 @@ class RoomController {
         $next_year = date('Y', mktime(0,0,0,$month+1, 1 , $year));
         // $month_name = get_month_name($month_val);
         
-        
         $calendar = "<center><h2>$monthName $year</h2>";
-        $calendar .= "<div class= 'buttonset'><a class='btn_seek' href='http://localhost/MVC/public/room/selectOption/".$prev_month."/".$prev_year."'>Prev Month</a>";
-        $calendar .= "<a class='btn_seek' href='http://localhost/MVC/public/room/selectOption/".date('m')."/".date('Y')."'>Current Month</a>";
-        $calendar .= "<a class='btn_seek' href='http://localhost/MVC/public/room/selectOption/".$next_month."/".$next_year."'>Next Month</a></div></center>";
 
+        if($room_id != 0) {
+            $calendar .= "<div class= 'buttonset'><a class='btn_seek' href='http://localhost/MVC/public/room/checkCalendarRetreive/".$customer_id."/".$room_id."/".$prev_month."/".$prev_year."'>Prev Month</a>";
+            $calendar .= "<a class='btn_seek' href='http://localhost/MVC/public/room/checkCalendarRetreive/".$customer_id."/".$room_id."/".date('m')."/".date('Y')."'>Current Month</a>";
+            $calendar .= "<a class='btn_seek' href='http://localhost/MVC/public/room/checkCalendarRetreive/".$customer_id."/".$room_id."/".$next_month."/".$next_year."'>Next Month</a></div></center>";    
+        }
+        else {
+            $calendar .= "<div class= 'buttonset'><a class='btn_seek' href='http://localhost/MVC/public/room/selectOption/".$prev_month."/".$prev_year."'>Prev Month</a>";
+            $calendar .= "<a class='btn_seek' href='http://localhost/MVC/public/room/selectOption/".date('m')."/".date('Y')."'>Current Month</a>";
+            $calendar .= "<a class='btn_seek' href='http://localhost/MVC/public/room/selectOption/".$next_month."/".$next_year."'>Next Month</a></div></center>";    
+        }
+
+        
+        
+       
         $calendar .= "<br><table class='tableContent'>";
         $calendar .= "<tr>";
 
@@ -1343,60 +1424,77 @@ class RoomController {
             $today = $date==date('Y-m-d')?'today':"";
             // print_r($dayName);
             // echo $today;
-            if($date < date('Y-m-d') ) {
-                if(in_array($date, $datesArray)) {
-                    foreach($result as $d){
-                        // echo $d['check_in_date'];
-                        // $datesArray[]= $d['check_in_date']; 
-                        if($d['check_in_date'] == $date) {
-                            $booked = $d['count'];
-                            break;
-                        }  
-                    }
-                    $total = 6; // Number of Rooms
-                    $booked = (int)$booked;
-                    $val = $total-$booked;
-                    // echo $val;
-                    // echo gettype($booked);
-                    $calendar .= "<td class='$today'><h4>$currentDay</h4><button class='btn_seek_view'>Booked = ".$booked."
-                                <br>
-                                Free = ". $val."
-                                </button>";
-                }
-                else {
+            if($room_id != 0) { 
+                if($date < date('Y-m-d') ) {
                     $calendar .= "<td class='$today'><h4>$currentDay</h4><button class='btn_seek_danger'>N/A</button>";
                 }
-                
+                else {
+                    if(in_array($date, $datesArray)) {
+                        $calendar .= "<td class='$today'><h4>$currentDay</h4><button class='btn_seek_danger'>booked</button>";
+                    }
+                    else {
+                        $calendar .= "<td class='$today'><h4>$currentDay</h4><a  href='book.php?date=".$date."'' class='btn_seek_success'>Book</a>";
+                    }
+                }
+
             }
             else {
-                // echo $date;
-                // $booked = $result[$date]['count'];
-                if(in_array($date, $datesArray)) {
-                    foreach($result as $d){
-                        // echo $d['check_in_date'];
-                        // $datesArray[]= $d['check_in_date']; 
-                        if($d['check_in_date'] == $date) {
-                            $booked = $d['count'];
-                            break;
-                        }  
+                if($date < date('Y-m-d') ) {
+                    if(in_array($date, $datesArray)) {
+                        foreach($result as $d){
+                            // echo $d['check_in_date'];
+                            // $datesArray[]= $d['check_in_date']; 
+                            if($d['check_in_date'] == $date) {
+                                $booked = $d['count'];
+                                break;
+                            }  
+                        }
+                        $total = 6; // Number of Rooms
+                        $booked = (int)$booked;
+                        $val = $total-$booked;
+                        // echo $val;
+                        // echo gettype($booked);
+                        $calendar .= "<td class='$today'><h4>$currentDay</h4><button class='btn_seek_view'>Booked = ".$booked."
+                                    <br>
+                                    Free = ". $val."
+                                    </button>";
                     }
-
-                    $total = 6; // Number of Rooms
-                    $booked = (int)$booked;
-                    $val = $total-$booked;
-                    $calendar .= "<td class='$today'><h4>$currentDay</h4><button class='btn_seek_view'>Booked = ".$booked."
-                                <br>
-                                Free = ". $val."
-                                </button>";
+                    else {
+                        $calendar .= "<td class='$today'><h4>$currentDay</h4><button class='btn_seek_danger'>N/A</button>";
+                    }
+                    
                 }
                 else {
-                    $calendar .= "<td class='$today'><h4>$currentDay</h4><button class='btn_seek_view'>Booked = 0
-                                <br>
-                                Free =  6
-                                </button>";
+                    // echo $date;
+                    // $booked = $result[$date]['count'];
+                    if(in_array($date, $datesArray)) {
+                        foreach($result as $d){
+                            // echo $d['check_in_date'];
+                            // $datesArray[]= $d['check_in_date']; 
+                            if($d['check_in_date'] == $date) {
+                                $booked = $d['count'];
+                                break;
+                            }  
+                        }
+    
+                        $total = 6; // Number of Rooms
+                        $booked = (int)$booked;
+                        $val = $total-$booked;
+                        $calendar .= "<td class='$today'><h4>$currentDay</h4><button class='btn_seek_view'>Booked = ".$booked."
+                                    <br>
+                                    Free = ". $val."
+                                    </button>";
+                    }
+                    else {
+                        $calendar .= "<td class='$today'><h4>$currentDay</h4><button class='btn_seek_view'>Booked = 0
+                                    <br>
+                                    Free =  6
+                                    </button>";
+                    }
+                
                 }
-            
             }
+            
           
             $currentDay++;
             $dayOfWeek++;

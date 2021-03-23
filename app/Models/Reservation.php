@@ -887,6 +887,32 @@ class Reservation extends Connection {
         return $reservationsCount;
     }
 
+    public function getBookingDays($room_id) {
+
+        date_default_timezone_set("Asia/Colombo");
+        $current_date = date('Y-m-d');
+
+        $room = new RoomDetails();
+        $room->room_id = mysqli_real_escape_string($this->connection, $room_id);
+
+        $query = "SELECT check_in_date, check_out_date  
+                FROM $this->reservation_table 
+                WHERE $this->reservation_table.room_id = '{$room->room_id}' AND $this->reservation_table.is_valid = 1 AND $this->reservation_table.request = 0
+                ORDER BY check_in_date";
+
+        $reservationsDays = mysqli_query($this->connection, $query);
+
+        if($reservationsDays) {
+            mysqli_fetch_all($reservationsDays,MYSQLI_ASSOC);
+        }
+        else {
+            echo "Database Query Failed";
+        } 
+
+        return $reservationsDays;
+
+    }
+
 
 
     public function getreportt()

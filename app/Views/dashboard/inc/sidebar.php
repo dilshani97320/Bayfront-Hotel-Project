@@ -33,7 +33,7 @@
         </li>
 
         <li class="nav1-item">
-            <a href="<?php url('room/index'); ?>" class="nav1-link">
+            <a href="<?php url('room/selectOption'); ?>" class="nav1-link">
                 <p class="nav-p"><i class="material-icons">room_preferences</i>Available Rooms</p>         
             </a>
         </li>
@@ -80,23 +80,23 @@
         </li> 
         
 
-        <li class="nav1-item">
-            <a href="<?php url('reservation/indexOnline'); ?>" class="nav1-link">
-                <p class="nav-p"><i class="material-icons"></i>Online Reservation Test</p>         
+        <!-- <li class="nav1-item">
+            <a href="<?php url('room/bookingCalendar'); ?>" class="nav1-link">
+                <p class="nav-p"><i class="material-icons"></i>Booking Calander</p>         
             </a>
-        </li>
+        </li> -->
 
-        <li class="nav1-item">
+        <!-- <li class="nav1-item">
             <a href="#" class="nav1-link">
                 <p class="nav-p"><i class="material-icons"></i>None</p>         
             </a>
-        </li> 
+        </li>  -->
 
-        <li class="nav1-item">
+        <!-- <li class="nav1-item">
             <a href="#" class="nav1-link">
                 <p class="nav-p"><i class="material-icons"></i>None</p>         
             </a>
-        </li>
+        </li> -->
 
         <li class="nav1-item">
             <a href="<?php url(''); ?>" class="nav1-link">

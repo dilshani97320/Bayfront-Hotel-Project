@@ -47,10 +47,17 @@
                     <div class="section1">
 
                         <!-- Customer Part -->
-                        <?php
-                        //  $reservation= array('first_name' => "Tharindu", 'credit_card_number'=>"1234-4567-2589-5634"); 
-                        //  $errors= array('first_name' => "less than 100 characters", 'credit_card_number'=>"Must be required"); 
+                        <?php 
+                        
+                            if(!isset($bookingCalendar)) {
+                                $bookingCalendar = 0;
+                            }
+                        
+                        
                         ?>
+
+                        <input type="text" name="bookingCalendar" value="<?php echo $bookingCalendar; ?>" hidden>
+                        
                         <div class="row">
                             <label for="#"><i class="material-icons">account_box</i>First Name:</label>
                                 <div class="animate-form">

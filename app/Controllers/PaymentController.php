@@ -396,13 +396,31 @@
             
         }
 
-        public function option() {
+        public function option($month_val=0, $year_val=0) {
             if(!isset($_SESSION['user_id'])) {
                 $dashboard = new DashboardController();
                 $dashboard->index();
             }
             else {
-                view::load('dashboard/payment/selectOption');
+                date_default_timezone_set("Asia/Colombo");
+                $dateComponents = getdate();
+        
+                if($month_val != 0 && $year_val != 0) {
+                    $month = $month_val;
+                    $year = $year_val;
+                }
+                else {
+                    // $month = $dateComponents['month'];
+                    $month = date('m');
+                    // $year = $dateComponents['year'];
+                    $year = date('Y');
+                }
+                $class = "payment";
+                $method = "option";
+                $dashboard = new DashboardController();
+                $calendar = $dashboard->bookingCalendarDetails($month, $year, $class, $method);
+                $data['calendar'] = $calendar;
+                view::load('dashboard/payment/selectOption',$data);
             }
         }
 
@@ -530,20 +548,27 @@
                     view::load('dashboard/payment/paymentView', $data);
                 }
 
-                if($pay_all == 1) {
+                else if($pay_all == 1) {
                     // edit view
                     if($editView == 1) {
                         $data['pay_all'] = $pay_all;
                         $data['edit_view'] = $editView;
+                        // echo "tharindu1";
+                        // die();
                         view::load('dashboard/payment/paymentView', $data);
+                        
                     }
                     else {
                         $data['pay_all'] = $pay_all;
+                        // echo "tharindu2";
+                        // die();
                         view::load('dashboard/payment/paymentView', $data);
                     }
                     
                 }
                 else {
+                    // echo "tharindu3";
+                    // die();
                     view::load('dashboard/payment/paymentView', $data);
                 }
 

@@ -65,6 +65,10 @@
 
                         
                     </div>
+
+                    <div class="cardbody"> 
+                        <?php include(VIEWS.'dashboard/room/bookingCalendar.php'); ?>
+                    </div>
            </div> 
        </div>
    </div>

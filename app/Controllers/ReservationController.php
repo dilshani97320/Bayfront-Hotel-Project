@@ -10,7 +10,7 @@ class ReservationController {
         //Checking if a user is logged in
         if(!isset($_SESSION['user_id'])) {
             $dashboard = new DashboardController();
-            $dashboard->index();   
+            $dashboard->index(); 
         }
         else {
             if($customer_id != 0) {
@@ -222,7 +222,7 @@ class ReservationController {
         }
     }
 
-    public function view1($room_number,$max_guest, $check_in_date, $check_out_date, $type_name, $customer_id=0) {
+    public function view1($room_number,$max_guest, $check_in_date, $check_out_date, $type_name,$bookingCalendar, $customer_id=0) {
         
         //Checking if a user is logged in
         if(!isset($_SESSION['user_id'])) {
@@ -240,14 +240,15 @@ class ReservationController {
             // think room search result will be indicate here
             $value=1;
             $data['discount'] = array("value"=>$value);
-            // $data['details'] = array("check_in_date"=>$check_in_date, "check_out_date"=>$check_out_date, "type_name"=>$type_name);
-            // $data['reservation'] = array('room_number' => $room_number, 'max_guest' => $max_guest);
+            $data['bookingCalendar'] = $bookingCalendar; // normal search add should
             $data['reservation'] = array("check_in_date"=>$check_in_date, "check_out_date"=>$check_out_date, "type_name"=>$type_name, 'room_number' => $room_number, 'max_guest' => $max_guest);
             view::load('dashboard/reservation/create', $data);
             
         }
            
     }
+
+
 
     //Done
     public function details() {
@@ -286,6 +287,7 @@ class ReservationController {
         // else {
             if(isset($_POST['submit'])) {
 
+                $bookingCalendar = $_POST['bookingCalendar'];
                 // Validation
                 $first_name = $_POST['first_name'];
                 $first_name = ucwords($first_name);
@@ -540,17 +542,17 @@ class ReservationController {
                                             $val = 1; // represent main reservation not room search reservation
                                             $data['create'] = array("value"=>$val);
                                             $data['customer'] = array("id"=>$customer_id);
+                                            // $data['bookingCalendar'] = $bookingCalendar;
                                             view::load('dashboard/reservation/reservationOption', $data);
                                         }
                                         
                                     }
                                     else {
-                                        // This should be more enhanced and after reservation should ask more reservations
-                                        
                                         // Success the Process
                                         // Reservation Option Page
                                         // Customer Details should pass next page
                                         $data['customer'] = array("id"=>$customer_id);
+                                        $data['bookingCalendar'] = $bookingCalendar;
                                         view::load('dashboard/reservation/reservationOption', $data);
                                     }
                             }
@@ -655,6 +657,8 @@ class ReservationController {
                 }
                 else {
                     // break process
+                    $data['bookingCalendar'] = $bookingCalendar;
+
                     if($discountValue == 1) {
                         $data['errors'] = $errors;
                         $data['discount'] = array("value"=>$discountValue);

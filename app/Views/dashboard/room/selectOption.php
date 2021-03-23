@@ -23,9 +23,9 @@
            <div class="card">
                <div class="cardheader">
                    <div class="options">
-                       <h4>Employee Select Option Page</h4>
+                       <h4>Room Search Select Option Page</h4>
                    </div>
-                   <p class="textfortabel">Select Employee Choice</p>
+                   <p class="textfortabel">Select Room Choice</p>
                </div>
                
                     <div class="badgeSec">
@@ -35,9 +35,9 @@
                                 <i class="fas fa-user-tag"></i>
                             </div>
                             <div class="text">
-                                Reception Employees
+                                Booking Calendar
                             </div>
-                            <a href="<?php url('reception/index');?>"></a>
+                            <a href="<?php url('room/calendarSearch');?>"></a>
                         </div>
 
                         <div class="horBadge">
@@ -45,9 +45,9 @@
                                 <i class="fas fa-users"></i>
                             </div>
                             <div class="text">
-                                All Employees
+                                Room Search
                             </div>
-                            <a href="<?php url('employee/index');?>"></a>
+                            <a href="<?php url('room/index');?>"></a>
                         </div>
                     </div>
 

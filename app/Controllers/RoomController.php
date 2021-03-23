@@ -348,6 +348,8 @@ class RoomController {
                         $data['rooms'] = $rooms;
                         $data['details'] = array("check_in_date"=>$check_in_date, "check_out_date"=>$check_out_date, "type_name"=>$type_name);
                         // var_dump($this->details);
+                        $bookingCalendar = 0;
+                        $data['bookingCalendar'] = $bookingCalendar;
                         $data['customer'] = array("id"=>$customer_id);
                         view::load("dashboard/room/result", $data);
                         //  echo "2";
@@ -1439,7 +1441,26 @@ class RoomController {
                         $calendar .= "<td class='$today'><h4>$currentDay</h4><button class='btn_seek_danger'>Booked</button>";
                     }
                     else {
-                        $calendar .= "<td class='$today'><h4>$currentDay</h4><a  href='book.php?date=".$date."'' class='btn_seek_success'>Book</a>";
+                        if($_SESSION['user_level'] == "Owner") {
+                            $calendar .= "<td class='$today'><h4>$currentDay</h4><a  href='#' class='btn_seek_success'>Book</a>";
+                        }
+                        else {
+                            $room = new RoomDetails();
+                            $details = $room->getRoomDetails($room_id);
+                            $type_id = $details['type_id'];
+                            $roomType = new RoomType();
+                            $roomType->setRoomTypeId($type_id);
+                            $typeDetails = $roomType->getRoomType();
+                            $room_number = $details['room_number'];
+                            $max_guest = $typeDetails['max_guest'];
+                            $check_in_date = $date;
+                            $check_out_date = "0000-00-00";
+                            $type_name = $typeDetails['type_name'];
+                            $bookingCalendar = 1;
+                            // $customer_id =0;
+                            $calendar .= "<td class='$today'><h4>$currentDay</h4><a  href='http://localhost/MVC/public/reservation/view1/".$room_number."/".$max_guest."/".$check_in_date."/".$check_out_date."/".$type_name."/".$bookingCalendar."/".$customer_id."/"."'' class='btn_seek_success'>Book</a>";
+                        }
+                       
                     }
                 }
 

@@ -41,6 +41,8 @@
                             </div>
                             <?php if(isset($create['value']) == 1){ ?>
                                 <a href="<?php url('reservation/index/'.$customer['id']);?>"></a>
+                            <?php }elseif(isset($bookingCalendar) && $bookingCalendar == 1){ ?>
+                                <a href="<?php url('room/calendarSearch/'.$customer['id']);?>"></a>
                             <?php } else { ?>
                                 <a href="<?php url('room/index/'.$customer['id']);?>"></a>
                             <?php } ?>    

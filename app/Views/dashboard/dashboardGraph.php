@@ -12,7 +12,7 @@ body {
 
 .content1-graph {
     width: 100%;
-    /* display: flex; */
+    display: block;
 }
 
 section {
@@ -30,8 +30,6 @@ section {
     width: 100%;
     height: 300px;
     background: transparent;
-    /* border-bottom: 1px solid #000; */
-    /* border-left: 1px solid #000; */
     display: flex;
 }
 
@@ -44,7 +42,8 @@ section {
 .box .skill .graph {
     position: absolute;
     width: 40px;
-    background: rgba(0, 0, 0, 1);
+    /* background: rgba(0, 0, 0, 1); */
+    background: rgb(116, 24, 24);
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
@@ -57,8 +56,7 @@ section {
     left: 2px;
     right: 2px;
     bottom: 0;
-    /* background: linear-gradient(0deg, #003ba5, #009ffe); */
-    background: #030c14;
+    background: rgb(116, 24, 24);
 }
 
 .box .skill .graph:after {
@@ -68,8 +66,8 @@ section {
     left: 0;
     width: 50%;
     height: 100%;
-    /* background: rgba(255,255,255,.1); */
-    background: #030c14;
+    background: rgb(116, 24, 24);
+
 }
 
 .box .skill .graph .percent {
@@ -95,34 +93,28 @@ section {
     padding: 2px 6px;
     border-radius: 2px;
 }
+
+.reservationGraph {
+    display: inline-flex;
+    padding: 10px;
+    background: #030c14;
+    color: #fff;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
 </style>
 
-<div class="content-graph">
-<div class="content1-graph">
+<!-- <div class="content-graph"> -->
+    <div class="content1-graph">
     <!-- <div class="row1"> -->
             <div class="tablecard">
                 <div class="card">
-                        <div class="cardheader">
-                            <div class="options">
-                                <h4>Reservation Graph 
-                                <span>
-                                    
-                                </span>
-                            </h4>  
-                                
-                            </div>
-                            <p class="textfortabel">Reservation View Following Graph</p>
-                            <p class="textfortabel">Reservation Count Start From Past Day To Today</p>
-                            <p class="textfortabel">Daily Target Reservation is TEN(10) and Count 14 Days</p>
-                        </div>
                     <div class="cardbody">
                         <div class="tablebody">
+                            <h4 class="reservationGraph">Reservations of Last 14 Days Since Today</h4>
                             <section>
                                 <div class="box">
-                                    <?php 
-                                        // print_r($reservationCount);
-                                        // die();
-                                    ?>
                                     <?php foreach($reservationCount as $row): ?>
                                         <?php 
                                             
@@ -133,6 +125,7 @@ section {
                                             // Daily target reservation is 10
                                             // ALways count percent outof 10  
                                             $percentRate = $count*10;  
+                                            //$percentRate = 100;  // use for testing purpose
                                         ?>
                                     <div class="skill">
                                         <div class="graph" style="height: <?php echo $percentRate; ?>%;">
@@ -151,5 +144,5 @@ section {
             </div>
         </div>
     </div>
-</div>
+<!-- </div> -->
 

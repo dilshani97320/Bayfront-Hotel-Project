@@ -15,6 +15,29 @@
             include(VIEWS.'dashboard/inc/navbar.php'); //Navbar
     ?>
     
+    <?php 
+        if(isset($errors)) {
+            // print_r($errors);
+            // die();
+            if(isset($errors['check_in_date']) && !isset($errors['check_out_date'])) {
+               $msg = $errors['check_in_date']; 
+            }
+            else if(isset($errors['check_out_date']) && !isset($errors['check_in_date'])) {
+                $msg = $errors['check_out_date'];  
+            }
+            else if(isset($errors['check_in_date']) && isset($errors['check_out_date'])) {
+                $msg = "Check In and Out Dates Invalid";
+            }
+            echo '<script>alert("'.$msg.'")</script>';
+        }
+        elseif(isset($success)) {
+            $msg = "Reservation Updated Successfully";
+            echo '<script>alert("'.$msg.'")</script>'; 
+        }
+
+        
+    
+    ?>
     <!-- Table design -->
     <div class="content">
         <div class="tablecard">
@@ -272,7 +295,7 @@
                                     <input type="text"  autocomplete="off" name="price" class="inputField"
                                     <?php 
                                         if(isset($room['price'])){
-                                            echo 'value="' . $room['price'] . '$"';
+                                            echo 'value="' . $room['price'] . '"';
                                         }
                                         
                                     
@@ -315,10 +338,10 @@
                         </div>
 
 
-                        <div class="row">
+                        <div class="rowdate">
                             <label for="#"><i class="material-icons">today</i>Check In Date:</label>
-                                <div class="animate-form">
-                                    <input type="text"  autocomplete="off" name="check_in_date" class="inputField"
+                                <!-- <div class="animate-form"> -->
+                                    <input type="date"  autocomplete="off" name="check_in_date" class="inputFieldDate"
                                     <?php 
                                         if(isset($reservation['check_in_date'])){
                                             echo 'value="' . $reservation['check_in_date'] . '"';
@@ -329,22 +352,22 @@
                                     
                                     required
                                     >
-                                    
-                                        <label for="name" class="label-name">
-                                            <?php if((isset($errors['check_in_date'])) && (isset($reservation['check_in_date']))): ?>
-                                                <span class="content-name"><i class="material-icons">info</i><?php echo $errors['check_in_date']; ?></span>
-                                            <?php endif; ?>
-                                            <?php if(isset($success)): ?>
-                                                <span class="content-success"><i class="material-icons">verified_user</i>Updated Success</span>
-                                            <?php endif; ?>
-                                        </label>    
-                                </div>     
+                    
+                                    <!-- <label for="name" class="label-name">
+                                        <?php if((isset($errors['check_in_date'])) && (isset($reservation['check_in_date']))): ?>
+                                            <span class="content-name"><i class="material-icons">info</i><?php echo $errors['check_in_date']; ?></span>
+                                        <?php endif; ?>
+                                        <?php if(isset($success)): ?>
+                                            <span class="content-success"><i class="material-icons">verified_user</i>Updated Success</span>
+                                        <?php endif; ?>
+                                    </label>     -->
+                                <!-- </div>      -->
                         </div>
 
-                        <div class="row">
+                        <div class="rowdate">
                             <label for="#"><i class="material-icons">today</i>Check Out Date:</label>
-                                <div class="animate-form">
-                                    <input type="text"  autocomplete="off" name="check_out_date" class="inputField"
+                                <!-- <div class="animate-form"> -->
+                                    <input type="date"  autocomplete="off" name="check_out_date" class="inputFieldDate"
                                     <?php 
                                         if(isset($reservation['check_out_date'])){
                                             echo 'value="' . $reservation['check_out_date'] . '"';
@@ -356,15 +379,15 @@
                                     required
                                     >
                                     
-                                        <label for="name" class="label-name">
-                                            <?php if((isset($errors['check_out_date'])) && (isset($reservation['check_out_date']))): ?>
-                                                <span class="content-name"><i class="material-icons">info</i><?php echo $errors['check_out_date']; ?></span>
-                                            <?php endif; ?>
-                                            <?php if(isset($success)): ?>
-                                                <span class="content-success"><i class="material-icons">verified_user</i>Updated Success</span>
-                                            <?php endif; ?>
-                                        </label>    
-                                </div>     
+                                    <!-- <label for="name" class="label-name">
+                                        <?php if((isset($errors['check_out_date'])) && (isset($reservation['check_out_date']))): ?>
+                                            <span class="content-name"><i class="material-icons">info</i><?php echo $errors['check_out_date']; ?></span>
+                                        <?php endif; ?>
+                                        <?php if(isset($success)): ?>
+                                            <span class="content-success"><i class="material-icons">verified_user</i>Updated Success</span>
+                                        <?php endif; ?>
+                                    </label>     -->
+                                <!-- </div>      -->
                         </div>
 
                         <div class="row">
@@ -372,9 +395,19 @@
                                 <div class="animate-form">
                                     <input type="text"  autocomplete="off" name="payment_method" class="inputField"
                                     <?php 
-                                        if(isset($reservation['payment_method'])){
+                                     
+                                    if(isset($reservation['payment_method'])){
+                                        if($reservation['payment_method'] == "ONLINEONLINE") {
+                                            echo 'value="ONLINE"';
+                                        }
+                                        elseif($reservation['payment_method'] == "CASHONLINE") {
+                                            echo 'value="CASH"';
+                                        }
+                                        else {
                                             echo 'value="' . $reservation['payment_method'] . '"';
                                         }
+                                        
+                                    }
                                         
                                     
                                     ?>

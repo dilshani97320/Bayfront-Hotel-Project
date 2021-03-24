@@ -19,7 +19,7 @@
     <?php 
         if(isset($errors)) {
             echo '<script>alert("No Rooms Available Sorry!!")</script>';
-          }
+        }
     ?>
     
     <!-- Table design -->

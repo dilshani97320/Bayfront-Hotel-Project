@@ -15,7 +15,7 @@
             
             <a href="<?php url('dashboard/index'); ?>" class="nav1-link">
 
-                <p class="nav-p"><i class="material-icons">dashboard</i>Dashboard</p>   
+                <p class="nav-p"><i class="material-icons">space_dashboard</i>Dashboard</p>   
             </a>
             
         </li>

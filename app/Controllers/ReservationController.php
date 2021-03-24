@@ -834,7 +834,7 @@ class ReservationController {
     
     
     
-                $data['errors'] = $errors;
+                // $data['errors'] = $errors;
                 $data['reception'] = array("username"=>$username);
                 $data['room_type'] = array("type_name"=> $type_name);
                 $data['reservation'] =  array("reservation_id"=> $reservation_id, "customer_id"=> $customer_id, "reception_user_id"=> $reception_user_id, "room_id"=> $room_id, "check_in_date"=> $check_in_date, "check_out_date"=> $check_out_date, "payment_method"=> $payment_method);
@@ -845,6 +845,7 @@ class ReservationController {
                 
                 if(count( $errors ) != 0) {
                     //view::load("inc/test", $data);
+                    $data['errors'] = $errors;
                     view::load("dashboard/reservation/edit", $data);
                 }
                 else {
@@ -868,6 +869,8 @@ class ReservationController {
                             
                             if($result == 1) {
                                 $data['errors'] = $errors;
+                                echo "hello";
+                                die();
                                 view::load("dashboard/reservation/edit", $data);
                                 
                                 
@@ -879,6 +882,9 @@ class ReservationController {
                             $result = $db->getUpdateReservation($reservation_id, $check_in_date, $check_out_date);
                             if($result == 1) {
                                 // $this->index();
+                                // echo "hello";
+                                // print_r($data);
+                                // die();
                                  view::load('dashboard/reservation/edit', $data);
                                 
                             }

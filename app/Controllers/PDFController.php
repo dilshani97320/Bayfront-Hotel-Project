@@ -164,6 +164,3 @@ class PDFController extends FPDF
 }
 
 
-
-
-?>

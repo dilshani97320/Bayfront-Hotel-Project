@@ -3,7 +3,7 @@ function validationFirstName(){
 	var text= document.getElementById("msg_first_name");
 	var pattern = /^[A-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
 
-	if(name.match(pattern)){
+	if(name.match(pattern)  && name.length>= 4 && name.length<= 20){
 		text.innerHTML ='<i class="material-icons" style="color:rgb(22, 80, 22)">check_circle</i>First Name is Valid';
         text.style.color= "rgb(22, 80, 22)";
 	}
@@ -21,7 +21,7 @@ function validationLastName(){
 	var text= document.getElementById("msg_last_name");
 	var pattern = /^[A-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
 
-	if(name.match(pattern)){
+	if(name.match(pattern)  && name.length>= 4 && name.length<= 20  ){
 		text.innerHTML ='<i class="material-icons" style="color:rgb(22, 80, 22)">check_circle</i>Last Name is Valid';
         text.style.color= "rgb(22, 80, 22)";
 	}
@@ -40,7 +40,7 @@ function validationEmail(){
 	var text= document.getElementById("msg_email");
 	var pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
 
-	if(name.match(pattern)){
+	if(name.match(pattern)  && name.length>= 12 && name.length<= 30  ){
 		text.innerHTML ='<i class="material-icons" style="color:rgb(22, 80, 22)">check_circle</i>Email is Valid';
         text.style.color= "rgb(22, 80, 22)";
 	}
@@ -58,7 +58,7 @@ function validationSalary(){
 	var text= document.getElementById("msg_salary");
 	var pattern = /^[0-9]+$/;
 
-	if(name.match(pattern)){
+	if(name.match(pattern)  && name.length>= 4 && name.length<= 6  ){
 		text.innerHTML ='<i class="material-icons" style="color:rgb(22, 80, 22)">check_circle</i>Salary is Valid';
         text.style.color= "rgb(22, 80, 22)";
 	}
@@ -77,9 +77,10 @@ function validationLocation(){
 	var text= document.getElementById("msg_location");
 	var pattern = /^([a-zA-Z0-9]+|[a-zA-Z0-9]+\s{1}[a-zA-Z0-9]{1,}|[a-zA-Z0-9]+\s{1}[a-zA-Z0-9]{3,}\s{1}[a-zA-Z0-9]{1,})$/;
 
-	if(name.match(pattern)){
+	if(name.match(pattern) && name.length>= 20 && name.length<= 35  ){
 		text.innerHTML ='<i class="material-icons" style="color:rgb(22, 80, 22)">check_circle</i>Location is Valid';
         text.style.color= "rgb(22, 80, 22)";
+		console.log("hello2");
 	}
 	else{
 		text.innerHTML ='<i class="material-icons" style="color:rgb(116, 24, 24)">info</i>Location is Not Valid';
@@ -88,6 +89,8 @@ function validationLocation(){
 	if(name == ""){
 		text.innerHTML ="";
 	}
+	
+	
 
 }
 function validationContactNumber(){
@@ -95,7 +98,7 @@ function validationContactNumber(){
 	var text= document.getElementById("msg_contact_number");
 	var pattern = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/;
 
-	if(name.match(pattern)){
+	if(name.match(pattern)  && name.length == 10){
 		text.innerHTML ='<i class="material-icons" style="color:rgb(22, 80, 22)">check_circle</i>Contact Number is Valid';
         text.style.color= "rgb(22, 80, 22)";
 	}

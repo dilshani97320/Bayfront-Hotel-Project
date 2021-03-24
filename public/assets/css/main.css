@@ -750,6 +750,48 @@ label {
     color: #000;
     margin-left: 20px;
 } */
+/* input date style css */
+
+.rowdate {
+  display: inline-flex;
+  width: 74%;
+  margin: 10px;
+}
+
+input[type="date"] {
+  font-size: 17px;
+  line-height: 1.4em;
+  font-weight: 400;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  width: 22%;
+  /* border: none; */
+}
+
+input[type="date"]::placeholder {
+  font-size: 17px;
+  line-height: 1.4em;
+  font-weight: 400;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  width: 22%;
+  /* color: #00af87; */
+  /* border: none; */
+}
+
+.inputFieldDate {
+  display: block;
+  margin-left: 0;
+  border: none;
+  width: 40%;
+  /* font-size: .9rem;
+    font-weight: 300;
+    line-height: 1.4em; */
+  border-bottom: 2px solid rgba(0, 0, 0, 0.06);
+  height: 40px;
+  padding-left: 30px;
+  font-size: 1.125rem;
+  line-height: 1.4em;
+  font-weight: 100;
+}
 
 
 input[type="text"]::placeholder,

@@ -72,6 +72,25 @@ function validationSalary(){
 
 }
 
+function validationAge(){
+	var name= document.getElementById("age").value;
+	var text= document.getElementById("msg_age");
+	var pattern = /^\S[1-9]{1,2}$/;
+
+	if(name.match(pattern)  && name.length>= 2 && name.length <= 3 && name > 20  ){
+		text.innerHTML ='<i class="material-icons" style="color:rgb(22, 80, 22)">check_circle</i>Age is Valid';
+        text.style.color= "rgb(22, 80, 22)";
+	}
+	else{
+		text.innerHTML ='<i class="material-icons" style="color:rgb(116, 24, 24)">info</i>Age is Not Valid';
+        text.style.color= "rgb(116, 24, 24)";
+	}
+	if(name == ""){
+		text.innerHTML ="";
+	}
+
+}
+
 function validationLocation(){
 	var name= document.getElementById("location").value;
 	var text= document.getElementById("msg_location");
@@ -111,6 +130,7 @@ function validationContactNumber(){
 	}
 
 }
+
 function validationPassword(){
 	var name= document.getElementById("reception_password").value;
 	var text= document.getElementById("msg_reception_password");
@@ -126,6 +146,33 @@ function validationPassword(){
 	}
 	if(name == ""){
 		text.innerHTML ="";
+	}
+
+}
+function giveNoOfGuest(){
+
+	var roomNumber= document.getElementById("roomNumber").value;
+	// this if condition change according to number of rooms
+	if(roomNumber === "A001"){
+		document.getElementById('no_of_guest').options.remove(document.getElementById('no_of_guest').selectedIndex);
+		var opt = document.createElement('OPTION');
+		opt.text = 'No of Guest:1';
+		opt.value = 1;
+		document.getElementById('no_of_guest').options.add(opt); 
+	}
+	if(roomNumber === "A002" || roomNumber === "B102" || roomNumber === "B103" || roomNumber === "C202"){
+		document.getElementById('no_of_guest').options.remove(document.getElementById('no_of_guest').selectedIndex);
+		var opt = document.createElement('OPTION');
+		opt.text = 'No of Guest:2';
+		opt.value = 2;
+		document.getElementById('no_of_guest').options.add(opt); 
+	}
+	if(roomNumber === "B101"){
+		document.getElementById('no_of_guest').options.remove(document.getElementById('no_of_guest').selectedIndex);
+		var opt = document.createElement('OPTION');
+		opt.text = 'No of Guest:4';
+		opt.value = 4;
+		document.getElementById('no_of_guest').options.add(opt); 
 	}
 
 }

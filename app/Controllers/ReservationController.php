@@ -13,6 +13,10 @@ class ReservationController {
             $dashboard->index(); 
         }
         else {
+            $db = new RoomDetails();
+            $rooms = $db->getRoomAll();
+            $data['rooms'] = $rooms;
+
             if($customer_id != 0) {
                 $customer = new Customer();
                 $customerDetails = $customer->getCustomer($customer_id);
@@ -20,7 +24,7 @@ class ReservationController {
                 view::load('dashboard/reservation/create',$data);
             }
             else {
-                view::load('dashboard/reservation/create');
+                view::load('dashboard/reservation/create',$data);
             }
             
             
@@ -656,6 +660,10 @@ class ReservationController {
     
                 }
                 else {
+                    
+                    $db = new RoomDetails();
+                    $rooms = $db->getRoomAll();
+                    $data['rooms'] = $rooms;
                     // break process
                     $data['bookingCalendar'] = $bookingCalendar;
 
@@ -687,6 +695,8 @@ class ReservationController {
                         }
                         else {
                             // echo "Succes4";
+                            // print_r($data['reservation']);
+                            // die();
                             view::load('dashboard/reservation/create', $data);
                         }
                     }

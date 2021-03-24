@@ -66,7 +66,7 @@
 
                                     <label for="name" class="label-name">
                                         <?php if((isset($errors['first_name'])) && (isset($employee['first_name']))){ ?>
-                                            <span class="content-name"><i class="material-icons">info</i><?php echo $errors['first_name']; ?></span>
+                                            <span class="content-name" id="msg_first_name"><i class="material-icons">info</i><?php echo $errors['first_name']; ?></span>
                                         <?php } else { ?>
                                             <!-- Real time validation -->
                                             <span class="content-name" id="msg_first_name"></span>
@@ -95,7 +95,7 @@
                                     
                                         <label for="name" class="label-name">
                                             <?php if((isset($errors['last_name'])) && (isset($employee['last_name']))){ ?>
-                                                <span class="content-name"><i class="material-icons">info</i><?php echo $errors['last_name']; ?></span>
+                                                <span class="content-name" id="msg_last_name"><i class="material-icons">info</i><?php echo $errors['last_name']; ?></span>
                                             <?php } else { ?>
                                                 <!-- Real time validation -->
                                                 <span class="content-name" id="msg_last_name"></span>
@@ -123,7 +123,7 @@
                                     
                                     <label for="name" class="label-name">
                                         <?php if((isset($errors['email'])) && (isset($employee['email']))){ ?>
-                                            <span class="content-name"><i class="material-icons">info</i><?php echo $errors['email']; ?></span>
+                                            <span class="content-name" id="msg_email"><i class="material-icons">info</i><?php echo $errors['email']; ?></span>
                                         <?php }else { ?>
                                             <!-- Real time validation -->
                                             <span class="content-name" id="msg_email"></span>
@@ -153,7 +153,7 @@
                                     
                                         <label for="name" class="label-name">
                                             <?php if((isset($errors['salary'])) && (isset($employee['salary']))){?>
-                                                <span class="content-name"><i class="material-icons">info</i><?php echo $errors['salary']; ?></span>
+                                                <span class="content-name" id="msg_salary"><i class="material-icons">info</i><?php echo $errors['salary']; ?></span>
                                             <?php }else { ?>
                                             <!-- Real time validation -->
                                                     <span class="content-name" id="msg_salary"></span>
@@ -181,7 +181,7 @@
                                     
                                         <label for="name" class="label-name">
                                             <?php if((isset($errors['location'])) && (isset($employee['location']))){ ?>
-                                                <span class="content-name"><i class="material-icons">info</i><?php echo $errors['location']; ?></span>
+                                                <span class="content-name" id="msg_location"><i class="material-icons">info</i><?php echo $errors['location']; ?></span>
                                             <?php }else { ?>
                                             <!-- Real time validation -->
                                                     <span class="content-name" id="msg_location"></span>
@@ -212,7 +212,7 @@
                                     
                                         <label for="name" class="label-name">
                                             <?php if((isset($errors['contact_num'])) && (isset($employee['contact_num']))){ ?>
-                                                <span class="content-name"><i class="material-icons">info</i><?php echo $errors['contact_num']; ?></span>
+                                                <span class="content-name" id="msg_contact_number"><i class="material-icons">info</i><?php echo $errors['contact_num']; ?></span>
                                             <?php }else { ?>
                                             <!-- Real time validation -->
                                                 <span class="content-name" id="msg_contact_number"></span>

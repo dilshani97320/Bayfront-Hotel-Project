@@ -185,12 +185,12 @@
                                     
                                         <label for="name" class="label-name">
                                             <?php if((isset($errors['username'])) && (isset($reception['username']))){ ?>
-                                                <span class="content-name"><i class="material-icons">info</i><?php echo $errors['username']; ?></span>
+                                                <span class="content-name" id="msg_first_name"><i class="material-icons">info</i><?php echo $errors['username']; ?></span>
                                             <?php }elseif(isset($success)){ ?>
-                                                <span class="content-success"><i class="material-icons">verified_user</i>Updated Success</span>
+                                                <span class="content-success" id="msg_first_name"><i class="material-icons">verified_user</i>Updated Success</span>
                                             <?php }else { ?>
                                             <!-- Real time validation -->
-                                                <span class="content-name" id="msg_contact_number"></span>
+                                                <span class="content-name" id="msg_first_name"></span>
                                             <?php } ?>
                                         </label>    
                                 </div>     
@@ -214,9 +214,9 @@
                                     
                                         <label for="name" class="label-name">
                                             <?php if((isset($errors['password'])) && (isset($reception['password']))){ ?>
-                                                <span class="content-name"><i class="material-icons">info</i><?php echo $errors['password']; ?></span>
+                                                <span class="content-name" id="msg_reception_password"><i class="material-icons">info</i><?php echo $errors['password']; ?></span>
                                             <?php }elseif(isset($success)){ ?>
-                                                <span class="content-success"><i class="material-icons">verified_user</i>Updated Success</span>
+                                                <span class="content-success" id="msg_reception_password"><i class="material-icons">verified_user</i>Updated Success</span>
                                             <?php }else { ?>
                                             <!-- Real time validation -->
                                                 <span class="content-name" id="msg_reception_password"></span>

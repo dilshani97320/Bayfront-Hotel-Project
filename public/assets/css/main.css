@@ -734,7 +734,7 @@ label {
   display: block;
   margin-left: 0;
   border: none;
-  width: 60%;
+  width: 65%;
   /* font-size: .9rem;
     font-weight: 300;
     line-height: 1.4em; */
@@ -763,7 +763,7 @@ input[type="date"] {
   line-height: 1.4em;
   font-weight: 400;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-  width: 22%;
+  width: 23%;
   /* border: none; */
 }
 
@@ -772,7 +772,7 @@ input[type="date"]::placeholder {
   line-height: 1.4em;
   font-weight: 400;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-  width: 22%;
+  width: 23%;
   /* color: #00af87; */
   /* border: none; */
 }

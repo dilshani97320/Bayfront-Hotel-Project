@@ -111,3 +111,21 @@ function validationContactNumber(){
 	}
 
 }
+function validationPassword(){
+	var name= document.getElementById("reception_password").value;
+	var text= document.getElementById("msg_reception_password");
+	var pattern = /^\d{4}$/;
+
+	if(name.match(pattern)  && name.length == 4){
+		text.innerHTML ='<i class="material-icons" style="color:rgb(22, 80, 22)">check_circle</i>Password is Valid';
+        text.style.color= "rgb(22, 80, 22)";
+	}
+	else{
+		text.innerHTML ='<i class="material-icons" style="color:rgb(116, 24, 24)">info</i>Password is Not Valid';
+        text.style.color= "rgb(116, 24, 24)";
+	}
+	if(name == ""){
+		text.innerHTML ="";
+	}
+
+}

@@ -61,7 +61,7 @@ class Reservation extends Connection {
         $query ="SELECT  $room->room_table.room_id, $room->room_table.room_number,
                  $this->reservation_table.check_in_date, $this->reservation_table.check_out_date
                  FROM $room->room_table LEFT OUTER JOIN $this->reservation_table  ON $room->room_table.room_id = $this->reservation_table.room_id
-                 WHERE $room->room_table.room_number = '{$room->room_number}' AND $this->reservation_table.is_valid = 1 AND
+                 WHERE $room->room_table.room_number = '{$room->room_number}' AND $this->reservation_table.is_valid = 1 AND $this->reservation_table.request = 0 AND
                  (($this->reservation_table.check_in_date >= '{$current_date}' AND $this->reservation_table.check_in_date <= '{$this->check_in_date}'  AND  $this->reservation_table.check_out_date > '{$this->check_in_date}') OR 
                  ($this->reservation_table.check_in_date <= '{$this->check_in_date}'  AND  $this->reservation_table.check_out_date >= '{$this->check_in_date}') OR 
                  ($this->reservation_table.check_in_date <= '{$this->check_out_date}'  AND  $this->reservation_table.check_out_date >= '{$this->check_out_date}'))

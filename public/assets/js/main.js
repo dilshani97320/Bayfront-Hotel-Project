@@ -150,24 +150,56 @@ function validationPassword(){
 
 }
 function giveNoOfGuest(){
-
+	// console.log("Hello");
 	var roomNumber= document.getElementById("roomNumber").value;
+	// console.log(roomNumber);
+	var roomType = roomNumber.split('|');
+	// console.log(roomType[0]);
 	// this if condition change according to number of rooms
-	if(roomNumber === "A001"){
+	if(roomType[1] === "1"){
 		document.getElementById('no_of_guest').options.remove(document.getElementById('no_of_guest').selectedIndex);
 		var opt = document.createElement('OPTION');
 		opt.text = 'No of Guest:1';
 		opt.value = 1;
 		document.getElementById('no_of_guest').options.add(opt); 
 	}
-	if(roomNumber === "A002" || roomNumber === "B102" || roomNumber === "B103" || roomNumber === "C202"){
+	if(roomType[1] === "2"){
 		document.getElementById('no_of_guest').options.remove(document.getElementById('no_of_guest').selectedIndex);
 		var opt = document.createElement('OPTION');
 		opt.text = 'No of Guest:2';
 		opt.value = 2;
 		document.getElementById('no_of_guest').options.add(opt); 
 	}
-	if(roomNumber === "B101"){
+	if(roomType[1] === "3"){
+		document.getElementById('no_of_guest').options.remove(document.getElementById('no_of_guest').selectedIndex);
+		var opt = document.createElement('OPTION');
+		opt.text = 'No of Guest:2';
+		opt.value = 2;
+		document.getElementById('no_of_guest').options.add(opt); 
+	}
+	
+	if(roomType[1] === "4"){
+		document.getElementById('no_of_guest').options.remove(document.getElementById('no_of_guest').selectedIndex);
+		var opt = document.createElement('OPTION');
+		opt.text = 'No of Guest:3';
+		opt.value = 3;
+		document.getElementById('no_of_guest').options.add(opt); 
+	}
+	if(roomType[1] === "5"){
+		document.getElementById('no_of_guest').options.remove(document.getElementById('no_of_guest').selectedIndex);
+		var opt = document.createElement('OPTION');
+		opt.text = 'No of Guest:4';
+		opt.value = 4;
+		document.getElementById('no_of_guest').options.add(opt); 
+	}
+	if(roomType[1] === "6"){
+		document.getElementById('no_of_guest').options.remove(document.getElementById('no_of_guest').selectedIndex);
+		var opt = document.createElement('OPTION');
+		opt.text = 'No of Guest:2';
+		opt.value = 2;
+		document.getElementById('no_of_guest').options.add(opt); 
+	}
+	if(roomType[1] === "7"){
 		document.getElementById('no_of_guest').options.remove(document.getElementById('no_of_guest').selectedIndex);
 		var opt = document.createElement('OPTION');
 		opt.text = 'No of Guest:4';

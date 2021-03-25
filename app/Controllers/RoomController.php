@@ -409,10 +409,12 @@ class RoomController {
                         // $year = $dateComponents['year'];
                         $year = date('Y');
                     }
-
+                    // echo $room_id;
+                    // die();
                     $room = new RoomDetails();
                     $details = $room->getRoomDetails($room_id);
-                    
+                    // echo $customer_id;
+                    // die();
                     $calendar = $this->bookingCalendarDetails($month, $year, $room_id, $customer_id);
                     $data['room'] = $details;
                     $data['calendar'] = $calendar;
@@ -424,7 +426,7 @@ class RoomController {
         }
     }
 
-    public function checkCalendarRetreive($customer_id = 0, $room_id=0, $month_val=0, $year_val=0) {
+    public function checkCalendarRetreive($customer_id = 0, $room_id, $month_val=0, $year_val=0) {
         if(!isset($_SESSION['user_id'])) {
             $dashboard = new DashboardController();
             $dashboard->index();   
@@ -1317,11 +1319,16 @@ class RoomController {
     private function bookingCalendarDetails($month, $year, $room_id = 0, $customer_id = 0) {
 
         $reservation = new Reservation();
+        $datesArray[] = array();
         if($room_id != 0) {
             $result = $reservation->getBookingDays($room_id);
-
+            // echo "hello";
+            // echo "<br>";
+            // echo $room_id;
+            // die();
             foreach($result as $d)
-            {
+            {   
+                // echo $result;
                     $start= $d['check_in_date'];
                     $end= $d['check_out_date'];
                     $format = 'Y-m-d';
@@ -1341,7 +1348,11 @@ class RoomController {
                         $datesArray[] = $date->format($format);  
                     }
 
+                    // print_r($datesArray);
+                    // die();
+
             }
+            // die();
 
         }
         else {

@@ -15,6 +15,32 @@
             include(VIEWS.'dashboard/inc/sidebar.php'); //Sidebar
             include(VIEWS.'dashboard/inc/navbar.php'); //Navbar
     ?>
+
+    <?php 
+        if(isset($errors)) {
+            // print_r($errors);
+            // die();
+            if(isset($errors['check_in_date']) && !isset($errors['check_out_date'])) {
+               $msg = $errors['check_in_date']; 
+               echo '<script>alert("'.$msg.'")</script>';
+            }
+            else if(isset($errors['check_out_date']) && !isset($errors['check_in_date'])) {
+                $msg = $errors['check_out_date']; 
+                echo '<script>alert("'.$msg.'")</script>'; 
+            }
+            else if(isset($errors['check_in_date']) && isset($errors['check_out_date'])) {
+                // echo "hello";
+                $msg = "Check In and Out Dates Invalid";
+                echo '<script>alert("'.$msg.'")</script>';
+            }
+            else if(isset($errors['room_number']) && $errors['room_number'] == 1) {
+                // echo "hello";
+                $msg = "Room already reserved Sorry!!";
+                echo '<script>alert("'.$msg.'")</script>';
+            }
+           
+        }
+    ?>
     
     <!-- Table design -->
     <div class="content">
@@ -25,9 +51,17 @@
                     <div class="options">
                         <h4>New Reservation 
                         <span>
-                        <?php if(isset($discount['value'])){ ?>
+                        
+                        <?php 
+                            if(!isset($customer['id'])) { 
+                                $customer['id'] = 0;
+                            }
+                        ?>
+                        <?php if(isset($discount['value']) && isset($bookingCalendar) && $bookingCalendar == 0 ){ ?>
                             <!-- <a href="<?php //url("room/preview/".$details['check_in_date'].'/'.$details['check_out_date'].'/'.$details['type_name']) ?>" class="addnew"><i class="material-icons">reply_all</i></a>   -->
                             <a href="<?php url("room/preview/".$reservation['check_in_date'].'/'.$reservation['check_out_date'].'/'.$reservation['type_name']) ?>" class="addnew"><i class="material-icons">reply_all</i></a>
+                        <?php } elseif(isset($discount['value']) && isset($bookingCalendar) && $bookingCalendar == 1 && isset($room_id) ) { ?>
+                            <a href="<?php url("room/checkCalendarRetreive/".$customer['id']."/".$room_id); ?>" class="addnew"><i class="material-icons">reply_all</i></a>
                         <?php } else { ?>
                             <a href="<?php url("reservation/details"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>
                         <?php } ?>
@@ -152,15 +186,21 @@
                                         </label>    
                                 </div>     
                         </div>
-
+                        
+                        <?php 
+                            // echo $reservation['location'];
+                            // die();
+                        ?>
                         <div class="row">
                             <label for="#"><i class="material-icons">public</i>Country:</label>
                                 <div class="animate-form">
                                     <select name="location" class="inputField" required>
                                          <option value="">-Select Country-</option>
-                                    <?php if(isset($reservation['location'])): ?>
+                                    <?php if(isset($reservation['location'])){ ?>
                                         <option value="<?php echo $reservation['location']; ?>" selected><?php echo $reservation['location']; ?></option>
-                                    <?php endif; ?>
+                                    <?php } elseif(isset($customer['location'])) { ?>
+                                        <option value="<?php echo $customer['location']; ?>" selected><?php echo $customer['location']; ?></option>
+                                    <?php } else { ?>
 
                                     <option value="Afganistan">Afghanistan</option>
                                     <option value="Albania">Albania</option>
@@ -408,6 +448,7 @@
                                     <option value="Zaire">Zaire</option>
                                     <option value="Zambia">Zambia</option>
                                     <option value="Zimbabwe">Zimbabwe</option>
+                                    <?php } ?>
                                     </select>    
                                 </div>     
                         </div>
@@ -484,7 +525,7 @@
                         <!-- Reservation Details -->
 
                        
-                    
+                        
                         <div class="row">
                             <label for="#"><i class="material-icons">room</i>Room Number:</label>
                                 <div class="animate-form">
@@ -492,11 +533,11 @@
                                         <option value="">-Select Room Number-</option>
                                         <?php foreach($rooms as $room): ?>
                                             <?php if(isset($reservation['room_number']) && ($reservation['room_number'] == $room['room_number'])) {?>
-                                                <option value="<?php echo $room['room_number']; ?>" style="border: none" selected><?php echo $room['room_number']; ?>: <?php echo $room['room_name']; ?></option>     
+                                                <option value="<?php echo $room['room_number'].'|'.$room['type_id']; ?>" style="border: none" selected><?php echo $room['room_number']; ?>: <?php echo $room['room_name']; ?></option>     
                                             <?php }if(isset($reservation['room_number']) && ($reservation['room_number'] != $room['room_number'])) { ?>
-                                                <option value="<?php echo $room['room_number']; ?>" style="border: none"><?php echo $room['room_number']; ?>: <?php echo $room['room_name']; ?></option> 
+                                                <option value="<?php echo $room['room_number'].'|'.$room['type_id']; ?>" style="border: none"><?php echo $room['room_number']; ?>: <?php echo $room['room_name']; ?></option> 
                                             <?php }if(!isset($reservation['room_number'])) { ?>
-                                                <option value="<?php echo $room['room_number']; ?>" style="border: none"><?php echo $room['room_number']; ?>: <?php echo $room['room_name']; ?></option> 
+                                                <option value="<?php echo $room['room_number'].'|'.$room['type_id']; ?>" style="border: none"><?php echo $room['room_number']; ?>: <?php echo $room['room_name']; ?></option> 
                                             <?php } ?>
                                         <?php endforeach; ?>       
                                     </select>    

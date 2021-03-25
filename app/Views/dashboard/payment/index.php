@@ -64,15 +64,15 @@
                         <table>
                             <thead>
                                 <th>Reception</th>
-                                <th>First Name</th>
+                                <th>First(C)</th>
                                 <?php if(!isset($pay_all)) { ?>
-                                    <th>Last Name</th> 
+                                    <th>Last(C)</th> 
                                 <?php }?>
-                                <th>Email</th>
+                                <th>Email(C)</th>
                                 <th>Room Name</th>
                                 <th>Price</th>
-                                <th>Check-In</th>
-                                <th>Check-Out</th>
+                                <th>CheckIn</th>
+                                <th>CheckOut</th>
                                 <th>Amount</th>
                                 <th>Status</th>
                                 <?php if(isset($pay_all)) { ?>

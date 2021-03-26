@@ -1,456 +1,296 @@
 <?php 
- session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
-class ReportController {
+require_once 'Libs/TCPDF-main/tcpdf.php';
 
-   public function index() {
-        
-        //Checking if a user is logged in
-        if(!isset($_SESSION['user_id'])) {
-            $dashboard = new DashboardController();
-            $dashboard->index();   
-        }
-        else {
-            view::load('dashboard/report/index');
-            
-        }
-           
-    }
+class ReportController { 
 
-    public function empdetails()
-    {
-        if(!isset($_SESSION['user_id'])) {
-            $dashboard = new DashboardController();
-            $dashboard->index();   
-        }
-        else {
-            //get employee details
-            $employee=new Employee();//create a object from employee class(model/employee)
-            $emp=$employee->getAllEmployeePdf();//get data from emplyee class /getallEmployee thamai data okkom arn emp varible akt demma
-            // var_dump($emp);
-            // die();
-        
-            $pdf = new MyEmppdfController();
-//$pdf->AliasNoPages();
-            $pdf->AddPage('L','A3',0);
-            $pdf->headerTable();
-            $pdf->viewTable($emp);
-            $pdf->Ln();
-            $pdf->output();
-
-            
-            //view::load('dashboard/report/employeepdf');
-            
-        }
-    }
-
-
-
-
-    public function roomdetails()
-    {
-        if(!isset($_SESSION['user_id'])) {
-            $dashboard = new DashboardController();
-            $dashboard->index();   
-        }
-        else {
-            //get employee details
-            $room=new Report();//create a object from employee class(model/roomdetails)
-            $room_details=$room->getAllRoomPdf();//get data from emplyee class /getallEmployee thamai data okkom arn emp varible akt demma
-            // var_dump($emp);
-            // die();
-        
-            $pdf = new MyRoompdfController();
-//$pdf->AliasNoPages();
-            $pdf->AddPage('L','A3',0);
-            $pdf->headerTable();
-            $pdf->viewTable($room_details);
-            $pdf->Ln();
-            $pdf->output();
-
-            
-            //view::load('dashboard/report/employeepdf');
-            
-        }
-    }
-
-
-
-
-    public function customerdetails()
-    {
-        if(!isset($_SESSION['user_id'])) {
-            $dashboard = new DashboardController();
-            $dashboard->index();   
-        }
-        else {
-            //get employee details
-            $customer=new Reservation();//create a object from employee class(model/employee)
-            $cust=$customer->getAllCustomerPdf();//get data from emplyee class /getallEmployee thamai data okkom arn emp varible akt demma
-            // var_dump($emp);
-            // die();
-        
-            $pdf = new MyCustomerpdfController();
-//$pdf->AliasNoPages();
-            $pdf->AddPage('L','A3',0);
-            $pdf->headerTable();
-            $pdf->viewTable($cust);
-            $pdf->Ln();
-            $pdf->output();
-
-            
-            //view::load('dashboard/report/employeepdf');
-            
-        }
-    }
-
-
-    public function paymentdetails()
-    {
-        if(!isset($_SESSION['user_id'])) {
-            $dashboard = new DashboardController();
-            $dashboard->index();   
-        }
-        else {
-            //get employee details
-            $payment=new Reservation();//create a object from employee class(model/employee)
-            $pay=$payment->getAllPaymentPdf();//get data from emplyee class /getallEmployee thamai data okkom arn emp varible akt demma
-            // var_dump($emp);
-            // die();
-        
-            $pdf = new MyPaymentpdfController();
-//$pdf->AliasNoPages();
-            $pdf->AddPage('L','A3',0);
-            $pdf->headerTable();
-            $pdf->viewTable($pay);
-            $pdf->Ln();
-            $pdf->output();
-
-            
-            //view::load('dashboard/report/employeepdf');
-            
-        }
-    }
-
-
-
-
-    public function reservationdetails()
-    {
-        if(!isset($_SESSION['user_id'])) {
-            $dashboard = new DashboardController();
-            $dashboard->index();   
-        }
-        else {
-            //get employee details
-            $reservation=new Reservation();//create a object from employee class(model/employee)
-            $res_details=$reservation->getAllReservationPdf();//get data from emplyee class /getallEmployee thamai data okkom arn emp varible akt demma
-            // var_dump($emp);
-            // die();
-        
-            $pdf = new MyReservationpdfController();
-        //$pdf->AliasNoPages();
-            $pdf->AddPage('L','A3',0);
-            $pdf->headerTable();
-            $pdf->viewTable($res_details);
-            $pdf->Ln();
-            $pdf->output();
-
-            
-            //view::load('dashboard/report/employeepdf');
-            
-        }
-    }
-
-    public function rview()
-    {
-        if(isset($_POST['generate'])) {
-           
-            // var_dump($_POST);
-            // exit;
-            $txtStartDate=$_POST['start_date'];
-            date_default_timezone_set("Asia/Colombo");
-            $txtEndDat = date('Y-m-d');
-            $reser=new Report();//create a object from employee class(model/employee)
-            $data['rooms']=$reser->reportt($txtStartDate, $txtEndDat);//get data from emplyee class /getallEmployee thamai data okkom arn emp varible akt demma
-            $data['date'] = $txtStartDate;
-            // var_dump($res_details);
-            // exit;
-            //  = $db->getSearchRoomAll($search);
-            view::load('dashboard/report/rview', $data);
-            
-        }
-    }
-    public function reservationWebdetails()
-    {
-        if(!isset($_SESSION['user_id'])) {
-            $dashboard = new DashboardController();
-            $dashboard->index();   
-        }
-        else {
-           
-            $data = array();
-            $db = new Report();
-            if(isset($_POST['search'])) {
-                $search = $_POST['search'];
-                                  
-                    $data['rooms'] = $db->getSearchRoomAll($search);
-                    view::load('dashboard/report/reservationView', $data);
-            }
-            else {
-                $data['rooms'] = $db->getreportt();
-                view::load('dashboard/report/reservationView', $data);
-            }
-        }
-    }
-
-
-    public function paymentWebdetails()
-    {
-        if(!isset($_SESSION['user_id'])) {
-            $dashboard = new DashboardController();
-            $dashboard->index();   
-        }
-        else {
-           
-            $data = array();
-            $db = new Report();
-            if(isset($_POST['search'])) {
-                $search = $_POST['search'];
-                                  
-                    $data['rooms'] = $db->getSearchRoomAll($search);
-                    view::load('dashboard/report/paymentView', $data);
-            }
-            else {
-                $data['rooms'] = $db->getpaymentreport();
-                view::load('dashboard/report/paymentView', $data);
-            }
-        }
-    }
-
-
-
-    public function pview()
-    {
-        if(isset($_POST['generate'])) {
-           
-            // var_dump($_POST);
-            // exit;
-            $txtStartDate=$_POST['start_date'];
-            date_default_timezone_set("Asia/Colombo");
-            $txtEndDat = date('Y-m-d');
-            $pay=new Report();//create a object from employee class(model/employee)
-            $data['rooms']=$pay->preport($txtStartDate, $txtEndDat);//get data from emplyee class /getallEmployee thamai data okkom arn emp varible akt demma
-            $data['date'] = $txtStartDate;
-            // var_dump($res_details);
-            // exit;
-            //  = $db->getSearchRoomAll($search);
-            view::load('dashboard/report/pview', $data);
-            
-        }
-    }
-
-
-    public function show_details($start_date,$end_date) {
+    public function generateCustomBill() {
         if(!isset($_SESSION['user_id'])) {
             $dashboard = new DashboardController();
             $dashboard->index();
         }
         else {
-            $db = new Reception();
-            $data['report'] = $db->getAllReservation_durationPdf($start_date,$end_date);
-            view::load('dashboard/report/reservation_details', $data);
-        }
-    }
-
-
-
-
-
-   /* public function employeeWebdetails()
-    {
-        if(!isset($_SESSION['user_id'])) {
-            $dashboard = new DashboardController();
-            $dashboard->index();   
-        }
-        else {
-           
-            $data = array();
-            $db = new Report();
-            if(isset($_POST['search'])) {
-                $search = $_POST['search'];
-                                  
-                    $data['rooms'] = $db->getSearchRoomAll($search);
-                    view::load('dashboard/report/employeeView', $data);
-            }
-            else {
-                $data['rooms'] = $db->getpaymentreport();
-                view::load('dashboard/report/employeeView', $data);
-            }
-        }
-    }*/
-
-
-
-    /*public function eview()
-    {
-        if(isset($_POST['generate'])) {
-           
-            // var_dump($_POST);
-            // exit;
-            $txtStartDate=$_POST['start_date'];
-            date_default_timezone_set("Asia/Colombo");
-            $txtEndDat = date('Y-m-d');
-            $pay=new Report();//create a object from employee class(model/employee)
-            $data['rooms']=$pay->ereport($txtStartDate, $txtEndDat);//get data from emplyee class /getallEmployee thamai data okkom arn emp varible akt demma
-            $data['date'] = $txtStartDate;
-            // var_dump($res_details);
-            // exit;
-            //  = $db->getSearchRoomAll($search);
-            view::load('dashboard/report/eview', $data);
+            $POST = filter_var_array($_POST, FILTER_SANITIZE_STRING);
+            $customer_id = $POST['customer_id'];
+            $first_name = $POST['first_name'];
+            $last_name = $POST['last_name'];
+            $email = $POST['email'];
+            $contact_number = $POST['contact_number'];
             
-        }
-    }*/
+            $total_price = $POST['total_price'];
+            $amount = $POST['amount'];
 
-
-    
-    public function cview()
-    {
-        if(isset($_POST['generate'])) {
-           
-            // var_dump($_POST);
-            // exit;
-            $txtStartDate=$_POST['start_date'];
-            date_default_timezone_set("Asia/Colombo");
-            $txtEndDat = date('Y-m-d');
-            $reser=new Report();//create a object from employee class(model/employee)
-            $data['rooms']=$reser->creport($txtStartDate, $txtEndDat);//get data from emplyee class /getallEmployee thamai data okkom arn emp varible akt demma
-            $data['date'] = $txtStartDate;
-            // var_dump($res_details);
-            // exit;
-            //  = $db->getSearchRoomAll($search);
-            view::load('dashboard/report/cview', $data);
+            $dbcustomer = new Customer();
+            $dbpayment = new Payment();
+            $dbreservation = new Reservation();
             
-        }
-    }
-    public function customerWebdetails()
-    {
-        if(!isset($_SESSION['user_id'])) {
-            $dashboard = new DashboardController();
-            $dashboard->index();   
-        }
-        else {
-           
-            $data = array();
-            $db = new Report();
-            if(isset($_POST['search'])) {
-                $search = $_POST['search'];
-                                  
-                    $data['rooms'] = $db->getSearchRoomAll($search);
-                    view::load('dashboard/report/customerView', $data);
+            $customer = $dbcustomer->getCustomer($customer_id);
+            $reservation = $dbreservation->getReservationsCheckOutDays($customer_id);
+            // get reservation ID
+
+            foreach($reservation as $row) {
+                $reservationIDS[]= $row['reservation_id']; 
             }
-            else {
-                $data['rooms'] = $db->getcustomerreport();
-                view::load('dashboard/report/customerView', $data);
+
+            $totalPaidValue = 0;
+            
+            $length = count($reservationIDS);
+            for($i=0; $i<$length ; $i++) {
+                $paymentValuePaid = 0;
+                $payment_details= $dbpayment->paymentDetails($reservationIDS[$i], $customer_id);
+                if(!empty($payment_details)) {
+                    foreach($payment_details as $row){
+                        $paymentValuePaid = $paymentValuePaid + $row['amount'];
+                    }
+                }
+                else {
+                    $paymentValuePaid = 0;
+                }
+                $paymentValuePaid =  $paymentValuePaid/1000;
+                $totalPaidValue = $totalPaidValue + $paymentValuePaid;
             }
+
+            // $data = array();
+
+            // $data['reservationIDS'] = $reservationIDS;
+            // $data['paidValue'] = $totalPaidValue;
+            // $data['customer'] = $customer;
+            // $data['reservations'] = $reservation;
+
+            // create new PDF document
+            // PDF_PAGE_ORIENTATION mean Portrait or Landscape
+            // PDF_UNIT mean
+            
+            // date define for footer and header
+            $TotalRoomPrice = 0;
+            $totalDiscount = 0;
+            $count = 0;
+            foreach($reservation as $row) { 
+                $count++;
+                $discount = $row['discount_rate'];
+                $totalDiscount = $totalDiscount + $discount;
+
+                $date1=date_create($row['check_in_date']);
+                $date2=date_create($row['check_out_date']);
+                $diff=date_diff($date1,$date2);
+                $days = $diff->format("%a");
+                $total_price = $days*$row['price'];
+
+                $total_price = $total_price;
+                $real_price = $total_price - $total_price*($discount/100);
+
+                $TotalRoomPrice = $TotalRoomPrice + $real_price;
+            }
+            $full_name = $first_name." ".$last_name;
+            $Discount = $totalDiscount/$count;
+
+
+            $pdf = new PDFController('p', 'mm', 'A4', true, 'UTF-8', false);
+            $pdf->setData($full_name, $TotalRoomPrice, $Discount);
+            
+
+            // set document information
+            $pdf->SetCreator(PDF_CREATOR);
+            $pdf->SetAuthor('Bayfront Hotel');
+            $pdf->SetTitle('Customer Bill');
+            $pdf->SetSubject('');
+            $pdf->SetKeywords('');
+
+            // set default header data
+            $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 001', PDF_HEADER_STRING, array(0,64,255), array(0,64,128));
+            $pdf->setFooterData(array(0,64,0), array(0,64,128));
+
+            // set header and footer fonts
+            $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+            $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+
+            // set default monospaced font
+            $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+
+            // set margins
+            $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+            $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+            $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+
+            // set auto page breaks
+            $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+
+            // set image scale factor
+            $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+
+            // set some language-dependent strings (optional)
+            if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
+                require_once(dirname(__FILE__).'/lang/eng.php');
+                $pdf->setLanguageArray($l);
+            }
+
+            // set default font subsetting mode
+            $pdf->setFontSubsetting(true);
+
+            // Set font
+            // dejavusans is a UTF-8 Unicode font, if you only need to
+            // print standard ASCII chars, you can use core fonts like
+            // helvetica or times to reduce file size.
+            $pdf->SetFont('dejavusans', '', 14, '', true);
+
+            // Add a page
+            // This method has several options, check the source code documentation for more information.
+            $pdf->AddPage();
+
+            $pdf->Ln(25);  // height
+
+            date_default_timezone_set("Asia/Colombo");
+            $current_date = date('Y-m-d');
+
+            $pdf->SetFont('times', 'B', 12);
+            $pdf->Cell(189, 3, 'Report as on :- '.$current_date, 0, 1, 'C');
+            $pdf->Ln(5);
+
+            
+            $pdf->SetFont('times', 'B', 12);
+            $pdf->Cell(35, 5, 'Full Name', 0, 0);
+            $pdf->Cell(95, 5, ': '.$full_name.'', 0, 0);
+
+            $pdf->Cell(59, 5, 'Customer ID: '.$customer_id.'', 0, 1);
+
+            $pdf->Ln(1);
+
+                    // 130+59 =  189
+            $pdf->Cell(35, 5, 'Email', 0, 0);
+            $pdf->Cell(95, 5, ': '.$email.'', 0, 0);
+            $pdf->Cell(59, 5, 'Method: CASH/ONLINE ', 0, 1);
+
+            $pdf->Ln(1);
+
+            $pdf->Cell(35, 5, 'Contact Number', 0, 0);
+            $pdf->Cell(95, 5, ': '.$contact_number.'', 0, 0);
+            $pdf->Cell(59, 5, '', 0, 1);
+            $pdf->Ln(1);
+
+            $pdf->Cell(35, 5, 'Country', 0, 0);
+            $pdf->Cell(95, 5, ': '.$customer['location'].'', 0, 0);
+            $pdf->Cell(59, 5, '', 0, 1);
+
+            $pdf->Ln(5);
+            $pdf->SetFont('times', 'B', 15);
+            $pdf->Cell(189, 5, 'Dear Customer You Have Following Reservations', 0, 1, 'C');
+            $pdf->Ln(10); 
+
+            $pdf->SetFont('times', '', 11);
+            $pdf->SetFillColor(224, 235, 255);
+                                                //Fill colour or not
+            $pdf->Cell(20, 7, 'Re No', 0, 0 , 'C', 1);
+            $pdf->Cell(60, 7, 'Room Name', 0, 0 , 'C', 1);
+            $pdf->Cell(25, 7, 'Check-In ', 0, 0 , 'C', 1);
+            $pdf->Cell(25, 7, 'Check-Out ', 0, 0 , 'C', 1);
+            $pdf->Cell(10, 7, 'Days', 0, 0 , 'C', 1);
+            $pdf->Cell(25, 7, 'Room Price', 0, 0 , 'C', 1);
+            $pdf->Cell(25, 7, 'Total Price', 0, 0 , 'C', 1);
+            $pdf->SetFont('times', '', 10);
+            $pdf->Ln(3);
+
+
+            // $select = "SELECT * FROM reservation WHERE reservation.customer_id = '{$clentCode}'";
+
+            // $query1 = mysqli_query($conn, $select);
+
+            $i = 1; // no of page start
+            $max = 6; // when sl no == 6 go to next page
+
+            $TotalRoomPrice = 0;
+                // while($reservation = mysqli_fetch_array($query1)) {
+            foreach($reservation as $row) {
+
+                if (($i%$max) == 0) {
+                    $pdf->AddPage();
+
+                    $pdf->Ln(25);  // height
+
+                    date_default_timezone_set("Asia/Colombo");
+                    $current_date = date('Y-m-d');
+
+                    $pdf->SetFont('times', 'B', 12);
+                    $pdf->Cell(189, 3, 'Report as on :- '.$current_date, 0, 1, 'C');
+                    $pdf->Ln(5);
+
+                    $full_name = $first_name." ".$last_name;
+                    $pdf->SetFont('times', 'B', 12);
+                    $pdf->Cell(35, 5, 'Full Name', 0, 0);
+                    $pdf->Cell(95, 5, ': '.$full_name.'', 0, 0);
+
+                    $pdf->Cell(59, 5, 'Customer ID: '.$customer_id.'', 0, 1);
+
+                    $pdf->Ln(1);
+
+                            // 130+59 =  189
+                    $pdf->Cell(35, 5, 'Email', 0, 0);
+                    $pdf->Cell(95, 5, ': '.$email.'', 0, 0);
+                    $pdf->Cell(59, 5, 'Payment Method: CASH', 0, 1);
+
+                    $pdf->Ln(1);
+
+                    $pdf->Cell(35, 5, 'Contact Number', 0, 0);
+                    $pdf->Cell(95, 5, ': '.$contact_number.'', 0, 0);
+                    $pdf->Cell(59, 5, '', 0, 1);
+                    $pdf->Ln(1);
+
+                    $pdf->Cell(35, 5, 'Country', 0, 0);
+                    $pdf->Cell(95, 5, ': '.$customer['location'].'', 0, 0);
+                    $pdf->Cell(59, 5, '', 0, 1);
+
+                    $pdf->Ln(5);
+                    $pdf->SetFont('times', 'B', 15);
+                    $pdf->Cell(189, 5, 'Dear Customer You Have Following Reservations', 0, 1, 'C');
+                    $pdf->Ln(10); 
+
+                    $pdf->SetFont('times', '', 11);
+                    $pdf->SetFillColor(224, 235, 255);
+                                                        //Fill colour or not
+                    $pdf->Cell(20, 7, 'Re No', 0, 0 , 'C', 1);
+                    $pdf->Cell(60, 7, 'Room Name', 0, 0 , 'C', 1);
+                    $pdf->Cell(25, 7, 'Check-In ', 0, 0 , 'C', 1);
+                    $pdf->Cell(25, 7, 'Check-Out ', 0, 0 , 'C', 1);
+                    $pdf->Cell(10, 7, 'Days', 0, 0 , 'C', 1);
+                    $pdf->Cell(25, 7, 'Room Price', 0, 0 , 'C', 1);
+                    $pdf->Cell(25, 7, 'Total Price', 0, 0 , 'C', 1);
+                    $pdf->SetFont('times', '', 10);
+                    $pdf->Ln(3);
+                    $pdf->SetFont('times', '', 10);
+
+                }
+
+                $discount = $row['discount_rate'];
+                $date1=date_create($row['check_in_date']);
+                $date2=date_create($row['check_out_date']);
+                $diff=date_diff($date1,$date2);
+                $days = $diff->format("%a");
+                $total_price = $days*$row['price'];
+                $total_price = $total_price;
+                $real_price = $total_price - $total_price*($discount/100);
+                $TotalRoomPrice = $TotalRoomPrice + $real_price;
+                            
+                $pdf->Ln(6);
+                $pdf->Cell(20, 4, $i, 0, 0 , 'C');
+                $pdf->Cell(60, 4, ''.$row['room_name'].'', 0, 0 , 'C');
+                $pdf->Cell(25, 4, ''.$row['check_in_date'].'', 0, 0 , 'C');
+                $pdf->Cell(25, 4, ''.$row['check_out_date'].'', 0, 0 , 'C');
+                $pdf->Cell(10, 4, ''.$days.'', 0, 0 , 'C');
+                $pdf->Cell(25, 4, ''.$row['price'].'', 0, 0 , 'C');
+                $pdf->Cell(25, 4, ''.$total_price.'', 0, 0 , 'C');
+                $pdf->SetFont('times', '', 10);
+                
+                $i++;
+
+            }
+            
+            // Close and output PDF document
+            $pdf->Output('custom_bill.pdf', 'I');
+
         }
+
     }
 
-
-
-
-
-
-    public function viewReservation($start_date) {
-        // $txtStartDate=$_POST['start_date'];
-        date_default_timezone_set("Asia/Colombo");
-        $txtEndDat = date('Y-m-d');
-        $reser=new Report();//create a object from employee class(model/employee)
-        $rooms=$reser->reportt($start_date, $txtEndDat);//get data from emplyee class /getallEmployee thamai data okkom arn emp varible akt demma
-        // $data['date'] = $txtStartDate;
-        // echo "Hello";
-        // die();
-        $id=1;
-        $pdf = new PDFController();
-//$pdf->AliasNoPages();
-        // var_dump($rooms);
-        // die();
-        $pdf->AddPage('L','A3',0);
-        $pdf->headerTable();
-        $pdf->viewTable($rooms,$id);
-        $pdf->Ln();
-        $pdf->output();
-    }
-
-    public function viewPayment($start_date) {
-        // $txtStartDate=$_POST['start_date'];
-        date_default_timezone_set("Asia/Colombo");
-        $txtEndDat = date('Y-m-d');
-        $reser=new Report();//create a object from employee class(model/employee)
-        $rooms=$reser->preport($start_date, $txtEndDat);//get data from emplyee class /getallEmployee thamai data okkom arn emp varible akt demma
-        // $data['date'] = $txtStartDate;
-        // echo "Hello";
-        // die();
-        $id = 2;
-        $pdf = new MyPaymentpdfController();
-       // $pdf = new PDFController();
-//$pdf->AliasNoPages();
-        // var_dump($rooms);
-        // die();
-        $pdf->AddPage('L','A3',0);
-        $pdf->headerTable();
-        $pdf->viewTable($rooms,$id);
-        $pdf->Ln();
-        $pdf->output();
-    }
-
-
-
-
-    /*public function viewEmployee($registred_date) {
-        // $txtStartDate=$_POST['start_date'];
-        date_default_timezone_set("Asia/Colombo");
-        $txtEndDat = date('Y-m-d');
-        $reser=new Report();//create a object from employee class(model/employee)
-        $rooms=$reser->ereport($registred_date, $txtEndDat);//get data from emplyee class /getallEmployee thamai data okkom arn emp varible akt demma
-        // $data['date'] = $txtStartDate;
-        // echo "Hello";
-        // die();
-        $id=3;
-        $pdf = new MyEmppdfController();
-//$pdf->AliasNoPages();
-        // var_dump($rooms);
-        // die();
-        $pdf->AddPage('L','A3',0);
-        $pdf->headerTable();
-        $pdf->viewTable($rooms,$id);
-        $pdf->Ln();
-        $pdf->output();
-    }
-*/
-
-    public function viewCustomer($start_date) {
-        // $txtStartDate=$_POST['start_date'];
-        date_default_timezone_set("Asia/Colombo");
-        $txtEndDat = date('Y-m-d');
-        $reser=new Report();//create a object from employee class(model/employee)
-        $rooms=$reser->creport($start_date, $txtEndDat);//get data from emplyee class /getallEmployee thamai data okkom arn emp varible akt demma
-        // $data['date'] = $txtStartDate;
-        // echo "Hello";
-        // die();
-        $id=4;
-        $pdf = new MyCustomerpdfController();
-//$pdf->AliasNoPages();
-        // var_dump($rooms);
-        // die();
-        $pdf->AddPage('L','A3',0);
-        $pdf->headerTable();
-        $pdf->viewTable($rooms,$id);
-        $pdf->Ln();
-        $pdf->output();
-    }
-
-
-}    
-
-?>
+}

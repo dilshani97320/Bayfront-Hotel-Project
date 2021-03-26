@@ -328,7 +328,7 @@
                 ?>
                 <div class="cardbody">  
                     <?php if($TotalPrice == 0) { ?>
-                        <form action="<?php url("report/generateCustomBill"); ?>" method="post" class="addnewform">
+                        <form action="<?php url("report/generateCustomBill"); ?>" method="post" class="addnewform" target="_blank">
                     <?php }else { ?>
                         <form action="<?php url("payment/paycashOnlineReservations"); ?>" method="post" class="addnewform">
                     <?php } ?>

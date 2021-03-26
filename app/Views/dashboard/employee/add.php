@@ -258,9 +258,8 @@
 
                     </form>
                 </div>  <!--End Card Body -->
-            </div>  <!--End Card -->
-
-            
+           
+            </div>  <!--End Card -->    
         </div>
     </div>   <!-- End Table design -->
     

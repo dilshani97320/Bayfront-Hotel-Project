@@ -1,3 +1,4 @@
+<!-- PDFController.php -->
 <?php
 
 require_once (LIBS.'fpdf182/fpdf.php');
@@ -162,5 +163,4 @@ class PDFController extends FPDF
 	
 	
 }
-
 

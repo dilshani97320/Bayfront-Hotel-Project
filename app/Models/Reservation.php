@@ -82,24 +82,6 @@ class Reservation extends Connection {
     return $value;  
     }
 
-    // public function getEmail($email) {
-
-    //     $email = mysqli_real_escape_string($this->connection, $email);
-    //     $query = "SELECT * FROM $this->table1
-    //               WHERE email = '{$email}'
-    //               LIMIT 1";
-    //     $result = 0;
-    //     $result_set = mysqli_query($this->connection, $query);
-    //     if($result_set){
-    //         if(mysqli_num_rows($result_set) == 1) {
-    //             $result = 1;
-    //         }
-    //     }
-    //     else {
-    //         echo "Query Error";
-    //     }
-    //     return $result;
-    // }
 
     public function getCreditCardNumber($credit_card_number) {
 
@@ -649,7 +631,7 @@ class Reservation extends Connection {
 
 
         $query = "SELECT $room->room_table.room_number,  $room->room_table.room_name, $room->room_table.price,
-                  $customer->customer_table.first_name,  $customer->customer_table.contact_number,
+                  $customer->customer_table.first_name,  $customer->customer_table.contact_number, $customer->customer_table.customer_id,
                   $this->reservation_table.check_in_date, $this->reservation_table.check_out_date, $this->reservation_table.reservation_id, $this->reservation_table.check_out_status
                   FROM $this->reservation_table
                   LEFT OUTER JOIN $room->room_table
@@ -721,7 +703,7 @@ class Reservation extends Connection {
         $customer->customer_contact_number = mysqli_real_escape_string($this->connection, $search);
 
         $query ="SELECT $room->room_table.room_number,  $room->room_table.room_name, $room->room_table.price,
-                $customer->customer_table.first_name,  $customer->customer_table.contact_number,
+                $customer->customer_table.first_name,  $customer->customer_table.contact_number, $customer->customer_table.customer_id,
                 $this->reservation_table.check_in_date, $this->reservation_table.check_out_date, $this->reservation_table.reservation_id, $this->reservation_table.check_out_status
                 FROM $this->reservation_table
                 LEFT OUTER JOIN $room->room_table
@@ -910,6 +892,48 @@ class Reservation extends Connection {
         } 
 
         return $reservationsDays;
+
+    }
+
+    public function getReservationsCheckOutDays($customer_id) {
+
+        $room = new RoomDetails();
+        $room_type = new RoomType();
+        $room_discount = new RoomDiscount();
+
+        $room->room_table; //table2
+        // $room_type->room_type_table;
+        $room_discount->room_discount_table;
+        $customer = new Customer();
+        $customer->customer_id = mysqli_real_escape_string($this->connection, $customer_id);
+
+        date_default_timezone_set("Asia/Colombo");
+        $current_date = date('Y-m-d');
+
+        
+        $query = "SELECT $room->room_table.room_name, $room->room_table.price,
+                  $room_discount->room_discount_table.discount_rate, $room_discount->room_discount_table.start_date, $room_discount->room_discount_table.end_date,               
+                  $this->reservation_table.check_in_date, $this->reservation_table.check_out_date, $this->reservation_table.reservation_id, $this->reservation_table.payment_method
+                  FROM $room->room_table
+                  INNER JOIN $room_discount->room_discount_table
+                  ON  $room->room_table.type_id = $room_discount->room_discount_table.room_type_id
+                  INNER JOIN $this->reservation_table
+                  ON $room->room_table.room_id = $this->reservation_table.room_id
+                  WHERE $this->reservation_table.is_valid = 1 AND $this->reservation_table.request = 0 AND $this->reservation_table.check_out_date = '{$current_date}' AND  $this->reservation_table.customer_id = '{$customer->customer_id}'
+                  ORDER BY $this->reservation_table.check_in_date";
+
+        // Have to do query
+        // print_r($query);
+        // die();
+        $reservations = mysqli_query($this->connection, $query);
+        if($reservations) {
+            mysqli_fetch_all($reservations,MYSQLI_ASSOC);
+        }
+        else {
+            echo "Database Query Failed";
+        }    
+        return $reservations;
+
 
     }
 

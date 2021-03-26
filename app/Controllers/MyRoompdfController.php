@@ -84,8 +84,6 @@ class MyRoompdfController extends FPDF
         // $this->cell(45,10,$data['free_cancelaration'],1,0,'C');
          $this->cell(45,10,$data['room_desc'],1,0,'C');
          $this->Ln();
-
-
        }
 	}
 	

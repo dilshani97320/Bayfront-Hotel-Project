@@ -84,8 +84,7 @@
                                     </label>    
                                 </div>     
                         </div>
-
-
+                        
                         <div class="row">
                             <label for="#"><i class="material-icons">account_box</i>Last Name:</label>
                                 <div class="animate-form">

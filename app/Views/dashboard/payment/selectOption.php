@@ -32,17 +32,7 @@
                </div>
                
                     <div class="badgeSec">
-                        <div class="horBadge">
                         
-                            <div class="icon1">
-                                <i class="fas fa-money-check-alt"></i>
-                            </div>
-                            <div class="text">
-                                Cash Payments
-                            </div>
-                            <a href="<?php url('payment/cashIndex');?>"></a>
-                        </div>
-
                         <div class="horBadge">
                             <div class="icon2">
                                 <i class="fas fa-money-check"></i>

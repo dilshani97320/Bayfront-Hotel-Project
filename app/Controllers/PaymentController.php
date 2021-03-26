@@ -112,112 +112,6 @@
             // }
         }
 
-        public function paycash() {
-            $POST = filter_var_array($_POST, FILTER_SANITIZE_STRING);
-            $customer_id = $POST['customer_id'];
-            // $reservation_id = $POST['reservation_id'];
-            $first_name = $POST['first_name'];
-            $last_name = $POST['last_name'];
-            $email = $POST['email'];
-            $contact_number = $POST['contact_number'];
-            
-            // $room_name = $POST['room_name'];
-            // $room_view = $POST['room_view'];
-            // $room_price = $POST['room_price'];
-            $total_price = $POST['total_price'];
-            $amount = $POST['amount'];
-            // $payment_way = $POST['payment_way'];
-            
-            
-            //convert to cent dollar
-            //stripe only access integer only
-            $amount = $amount*1000;
-            $transaction = new Payment();
-            // check already customer have payment row in payment table
-            $payment_details= $transaction->paymentDetails($reservation_id, $customer_id);
-            if(!empty($payment_details)) {
-                $result = $transaction->updateTransaction($reservation_id, $customer_id, $amount);
-            }
-
-            else {
-                $stripe_id = "0000";
-                $customerstripe_id = "XXXX";
-                $room_description = $room_name."Room Reservation by".$first_name." ".$last_name.":".$email.":".$contact_number;
-                $currency = "USD";
-                $status = "succeeded";
-                // Transaction Data
-                $transactionData = [
-                    'reservation_id' => $reservation_id,
-                    'stripe_id'=> $stripe_id,
-                    'customerstripe_id'=> $customerstripe_id,
-                    'customer_id'=> $customer_id,
-                    'roomdesc'=> $room_description,
-                    'amount'=> $amount,
-                    'currency'=> $currency,
-                    'status'=> $status
-                ];
-
-                // Instantiate Transaction
-                
-
-                // Add Transaction to DB
-                $result = $transaction->addTransaction($transactionData);
-            }
-
-            
-            if($result == 1) {
-                
-                // Set default values for this
-                $userEmail = $email;
-                $userName = $first_name." ".$last_name;
-
-                $transport = (new Swift_SmtpTransport('smtp.gmail.com', 587,'tls'))
-                ->setUsername('bayfrontweli45@gmail.com')
-                ->setPassword('Bayfront@1998')
-                ;
-        
-                // Create the Mailer using your created Transport
-                $mailer = new Swift_Mailer($transport);
-            
-                $body = ' <!DOCTYPE html>
-                    <html lang="en">
-                    <head>
-                        <meta charset="UTF-8">
-                        <title>Verify Email</title>
-                    </head>
-                    <body>
-                        <div class="wrapper" style=" border-radius: 2px;
-                        height: auto;
-                        background-color: black;
-                        color: white;
-                        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.3);
-                        border: 2px solid black;
-                        padding: 40px;
-                        margin: 10px auto;
-                        text-align: center;
-                        position: relative;
-                        width: 800px;">
-                            <h1>Hi <strong> '. $userName .'</strong></h1>
-                            <h3 class="top">You paid '.($amount/1000).' Payment Amount!!<strong>Thank you very much for select our hotel for reservation</strong></h3> 
-                            <p>If not Pay now decline it</p>
-                            <h4>Welcome</h4>
-                        </div> 
-                    </body>
-                    </html>';
-            
-                $message = (new Swift_Message('Reservation Payment Notification'))
-                ->setFrom(['bayfrontweli45@gmail.com'=> 'BAYFRONT'])
-                ->setTo([$userEmail])
-                ->setBody($body, 'text/html');
-                
-                    // Send the message
-                $result = $mailer->send($message);
-                $this->cashIndex();
-            }
-            
-        // }
-        }
-
         public function paycashOnlineReservations() {
 
             $POST = filter_var_array($_POST, FILTER_SANITIZE_STRING);
@@ -259,7 +153,7 @@
 
             for($i=0; $i<$length ; $i++) {
                 
-                $payment_details= $transaction->FindTransaction($reservationIDS[$i], $customer_id);
+                $payment_details= $transaction->FindTransaction($customer_id, $reservationIDS[$i]);
                 for($j=0; $j<$length2 ; $j++) {
                     if($roomPriceID[$j]['reservation_id'] == $reservationIDS[$i]) {
                         $roomAmount = $roomPriceID[$j]['roomPriceValueDays'];
@@ -268,7 +162,6 @@
                         break;
                     }
                 }
-                // echo $roomAmount;
                 
                 if(!empty($payment_details)) {
                     $result = $transaction->updateTransaction($reservationIDS[$i], $customer_id, $roomAmount);
@@ -576,34 +469,6 @@
             }
         }
 
-        public function cashIndex() {
-            if(!isset($_SESSION['user_id'])) {
-                $dashboard = new DashboardController();
-                $dashboard->index();
-            }
-            else {
-                $data = array();
-                // $db = new Employee;
-                if(isset($_POST['search'])) {
-                    $search = $_POST['search'];
-                    $db = new Customer();
-                    // $db->setSearchCustomer($search);
-                    $data['customer'] = $db->getAllCustomerPaymentDetailsTodaySearch($search);
-                    //echo 'Error1';
-                    view::load('dashboard/payment/index', $data);
-                }
-                else {
-                    $db = new Customer();
-                    $data['customer'] = $db->getAllCustomerPaymentDetailsToday();
-                    // var_dump($data['customer']);
-                    // die();
-                    //echo 'Error2';
-                    view::load('dashboard/payment/index', $data);
-                }
-                
-                
-            }
-        }
 
         public function onlineIndex() {
             if(!isset($_SESSION['user_id'])) {

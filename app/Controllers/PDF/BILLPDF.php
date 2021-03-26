@@ -3,9 +3,10 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
+
 require_once 'Libs/TCPDF-main/tcpdf.php';
 
-class PDFController extends TCPDF {
+class BILLPDF extends TCPDF {
 
     public function setData($full_name, $TotalRoomPrice, $Discount){
 

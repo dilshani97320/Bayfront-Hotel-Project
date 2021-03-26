@@ -4,6 +4,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 require_once 'Libs/TCPDF-main/tcpdf.php';
+require_once 'PDF/BILLPDF.php';
 
 class ReportController { 
 
@@ -53,13 +54,6 @@ class ReportController {
                 $totalPaidValue = $totalPaidValue + $paymentValuePaid;
             }
 
-            // $data = array();
-
-            // $data['reservationIDS'] = $reservationIDS;
-            // $data['paidValue'] = $totalPaidValue;
-            // $data['customer'] = $customer;
-            // $data['reservations'] = $reservation;
-
             // create new PDF document
             // PDF_PAGE_ORIENTATION mean Portrait or Landscape
             // PDF_UNIT mean
@@ -88,7 +82,7 @@ class ReportController {
             $Discount = $totalDiscount/$count;
 
 
-            $pdf = new PDFController('p', 'mm', 'A4', true, 'UTF-8', false);
+            $pdf = new BILLPDF('p', 'mm', 'A4', true, 'UTF-8', false);
             $pdf->setData($full_name, $TotalRoomPrice, $Discount);
             
 
@@ -192,10 +186,6 @@ class ReportController {
             $pdf->SetFont('times', '', 10);
             $pdf->Ln(3);
 
-
-            // $select = "SELECT * FROM reservation WHERE reservation.customer_id = '{$clentCode}'";
-
-            // $query1 = mysqli_query($conn, $select);
 
             $i = 1; // no of page start
             $max = 6; // when sl no == 6 go to next page

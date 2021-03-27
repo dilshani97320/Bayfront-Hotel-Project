@@ -90,12 +90,13 @@ class Customer extends Connection {
 
 
 
-        $query = "SELECT  $room->room_table.room_number,$room->room_table.price, $this->customer_table.first_name,
-                $reservationReservation->reservation_table.check_in_date, $reservationReservation->reservation_table.check_out_date, $reservationReservation->reservation_table.payment_method
+        $query = "SELECT  $room->room_table.room_number,$room->room_table.price, $this->customer_table.first_name, $room->room_table.room_name,
+                $reservationReservation->reservation_table.check_in_date, $reservationReservation->reservation_table.check_out_date, $reservationReservation->reservation_table.payment_method, $reservationReservation->reservation_table.reservation_id,
+                $reservationReservation->reservation_table.check_out_status
                 FROM reservation INNER JOIN $room->room_table  ON  $reservationReservation->reservation_table.room_id = $room->room_table.room_id
                                  INNER JOIN $this->customer_table  ON  $reservationReservation->reservation_table.customer_id = $this->customer_table.customer_id
                 WHERE  $reservationReservation->reservation_table.customer_id = '{$this->customer_id}' AND $reservationReservation->reservation_table.is_valid = 1 AND $reservationReservation->reservation_table.request = 0
-                ORDER BY $reservationReservation->reservation_table.room_id";
+                ORDER BY $reservationReservation->reservation_table.check_in_date";
 
         $result = 0;
 

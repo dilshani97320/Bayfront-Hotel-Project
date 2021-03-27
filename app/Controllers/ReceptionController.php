@@ -29,6 +29,52 @@ class ReceptionController {
         }
     }
 
+    public function viewAll() {
+        if(!isset($_SESSION['user_id'])) {
+            $dashboard = new DashboardController();
+            $dashboard->index();
+        }
+
+        else {
+            $data = array();
+            $db = new Reception();
+            if(isset($_POST['search'])) {
+                // Code
+                $search = $_POST['search'];
+                $db->setSearchReception($search);
+                $data['reception'] = $db->getSearchReception();
+                view::load('dashboard/reportpdf/receptionView', $data);
+            }
+            else {
+                $data['reception'] = $db->getAllReception();
+                view::load('dashboard/reportpdf/receptionView', $data);
+            }
+        }
+    }
+
+    public function detailsView($reception_user_id) {
+
+        if(!isset($_SESSION['user_id'])) {
+            $dashboard = new DashboardController();
+            $dashboard->index();
+        }
+        else {
+            // Get Given Customer details
+            $dbreception = new Reception();
+            $dbreception->setReception($reception_user_id);
+            $reception = $dbreception->getDataReception();
+
+            // $dbreservation = new Reservation();
+            $reservations = $dbreception->getReservationsReception($reception_user_id);
+
+            $data['reception'] = $reception;
+            $data['reservations'] = $reservations;
+
+            view::load("dashboard/reportpdf/receptionDetails", $data);
+        }
+
+    }
+
     public function edit($reception_user_id) {
         if(!isset($_SESSION['user_id'])) {
             $dashboard = new DashboardController();

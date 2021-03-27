@@ -28,15 +28,6 @@ class Reservation extends Connection {
         Connection::__construct();
     }
 
-    // public function __construct() {
-        
-    //     $dbhost = 'localhost';
-    //     $dbuser = 'root';
-    //     $dbpass = '';
-    //     $dbname = 'bayfront_hotel';
-
-    //     $this->connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
-    // }
     
     public function setCheckInOutDate($check_in_date, $check_out_date) {
         $this->reservation_check_in_date = mysqli_real_escape_string($this->connection, $check_in_date);
@@ -83,49 +74,8 @@ class Reservation extends Connection {
     }
 
 
-    public function getCreditCardNumber($credit_card_number) {
 
-        $credit_card_number = mysqli_real_escape_string($this->connection, $credit_card_number);
-        $query = "SELECT * FROM $this->table4 
-                  WHERE credit_card_number = '{$credit_card_number}'
-                  LIMIT 1";
-
-        $result = 0;
-        $result_set = mysqli_query($this->connection, $query);
-        if($result_set){
-            if(mysqli_num_rows($result_set) == 1) {
-                $result = 1;
-            }
-        }
-        else {
-            echo "Query Error";
-        }
-        return $result;
-    }
-
-
-    // public function getCreateCustomer($data) {
-    //     $value = 0;
-    //     $first_name = mysqli_real_escape_string($this->connection, $data[0]);
-    //     $last_name = mysqli_real_escape_string($this->connection, $data[1]);
-    //     $location = mysqli_real_escape_string($this->connection, $data[2]);
-    //     $contact_num = mysqli_real_escape_string($this->connection, $data[3]);
-    //     $age = mysqli_real_escape_string($this->connection, $data[4]);
-    //     $email = mysqli_real_escape_string($this->connection, $data[5]);
-
-    //     $query = "INSERT INTO $this->table1 (
-    //               first_name, last_name, location, contact_number, age, email) 
-    //               VALUES (
-    //              '{$first_name}', '{$last_name}', '{$location}', '{$contact_num}', '{$age}', '{$email}'
-    //               )";
-        
-    //     $result = mysqli_query($this->connection, $query);
-    //     if($result) {
-    //         // query successful.. redirecting to users page
-    //         $value = 1;
-    //     }
-    //     return $value;
-    // }
+ 
 
     public function getCreateReservation($data) {
         $value = 0;
@@ -168,115 +118,9 @@ class Reservation extends Connection {
     }
 
 
-    public function getAllCustomerPdf() {
-
-        $query = "SELECT first_name,last_name,location,contact_number,age,email FROM $this->table1";
+  
 
 
-
-
-        $users = mysqli_query($this->connection, $query);
-        if($users) {
-            $users=mysqli_fetch_all($users,MYSQLI_ASSOC);
-        }
-        else {
-            echo "Database Query Failed";
-        }    
-//var_dump($users);
-//exit;
-    return $users;    
-    }
-
-
-
-
-    public function getAllReservationPdf() {
-
-        $query = "SELECT first_name,last_name,contact_number,age,email,check_in_date,check_out_date,no_of_guest,payment_method
-        FROM $this->table1
-        INNER JOIN $this->table3
-        ON $this->table1.customer_id = $this->table3.customer_id";
-
-
-
-
-        $users = mysqli_query($this->connection, $query);
-        if($users) {
-            $users=mysqli_fetch_all($users,MYSQLI_ASSOC);
-        }
-        else {
-            echo "Database Query Failed";
-        }    
-//var_dump($users);
-//exit;
-    return $users;    
-    }
-
-
-
-    public function getAllPaymentPdf() {
-
-        $query = "SELECT first_name,last_name,contact_number,email,credit_card_number,expire_month,expire_year,cvv 
-        FROM $this->table1 
-        INNER JOIN $this->table4 ON $this->table1.customer_id = $this->table4.customer_id";
-
-
-        $users = mysqli_query($this->connection, $query);
-        if($users) {
-            $users=mysqli_fetch_all($users,MYSQLI_ASSOC);
-        }
-        else {
-            echo "Database Query Failed";
-        }    
-//var_dump($users);
-//exit;
-    return $users;    
-    }
-
-
-
-
-    // public function getCustomerID($email) {
-
-
-    //     $email = mysqli_real_escape_string($this->connection, $email);
-
-    //     $query = "SELECT * FROM $this->table1
-    //               WHERE email = '{$email}'
-    //               LIMIT 1";
-    //     $customers = mysqli_query($this->connection, $query);
-    //     if($customers){
-    //         if(mysqli_num_rows($customers) == 1) {
-    //             $customer = mysqli_fetch_assoc($customers);
-    //         }
-    //     }
-    //     else {
-    //         echo "Query Error";
-    //     }
-
-    //     return $customer;
-    // }
-
-    // public function getRoomID($room_number) {
-
-    //     $room_number = mysqli_real_escape_string($this->connection, $room_number);
-    //     $room = array();
-    //     $query = "SELECT * FROM $this->table2
-    //               WHERE room_number = '{$room_number}'
-    //               LIMIT 1";
-
-    //     $rooms = mysqli_query($this->connection, $query);
-    //     if($rooms){
-    //         if(mysqli_num_rows($rooms) == 1) {
-    //             $room = mysqli_fetch_assoc($rooms);
-    //         }
-    //     }
-    //     else {
-    //         echo "Query Error";
-    //     }
-
-    //     return $room;
-    // }
 
     public function getReservationDetails($room_id, $check_in_date, $check_out_date) {
 
@@ -304,63 +148,10 @@ class Reservation extends Connection {
         return $reservation;
     }
 
-    // public function getCustomer($customer_id) {
-    //     $customer_id = mysqli_real_escape_string($this->connection, $customer_id);
+ 
 
-    //     $query = "SELECT * FROM $this->table1
-    //               WHERE customer_id = '{$customer_id}'
-    //               LIMIT 1";
-    //     $customers = mysqli_query($this->connection, $query);
-    //     if($customers){
-    //         if(mysqli_num_rows($customers) == 1) {
-    //             $customer = mysqli_fetch_assoc($customers);
-    //         }
-    //     }
-    //     else {
-    //         echo "Query Error";
-    //     }
+  
 
-    //     return $customer;
-    // }
-
-    // public function getReception($reception_user_id) {
-    //     $reception_user_id = mysqli_real_escape_string($this->connection, $reception_user_id);
-
-    //     $query = "SELECT * FROM $this->table5
-    //               WHERE reception_user_id = '{$reception_user_id}'
-    //               LIMIT 1";
-    //     $receptions = mysqli_query($this->connection, $query);
-    //     if($receptions){
-    //         if(mysqli_num_rows($receptions) == 1) {
-    //             $reception = mysqli_fetch_assoc($receptions);
-    //             // echo "Sucess";
-    //         }
-    //     }
-    //     else {
-    //         echo "Query Error";
-    //     }
-
-    //     return $reception;
-    // }
-
-    // public function getRoomType($room_type_id) {
-    //     $room_type_id = mysqli_real_escape_string($this->connection, $room_type_id);
-
-    //     $query = "SELECT * FROM $this->table6
-    //               WHERE room_type_id = '{$room_type_id}'getCreateReservation
-    //               LIMIT 1";
-    //     $types = mysqli_query($this->connection, $query);
-    //     if($types){
-    //         if(mysqli_num_rows($types) == 1) {
-    //             $type = mysqli_fetch_assoc($types);
-    //         }
-    //     }
-    //     else {
-    //         echo "Query Error";
-    //     }
-
-    //     return $type;
-    // }
     
     public function reservationDetails($reservation_id) {
 
@@ -937,30 +728,8 @@ class Reservation extends Connection {
 
     }
 
+    
 
-
-    public function getreportt()
-    {
-     
-     // echo $d1;
-     // exit;
- 
-     $query="SELECT first_name,last_name,contact_number,age,email,location,no_of_guest,payment_method,check_in_date,check_out_date
-      FROM reservation INNER JOIN customer on reservation.customer_id=customer.customer_id
-     order BY check_in_date";
-     // echo $query;
-     // exit;
-     $users = mysqli_query($this->connection, $query);
-         if($users) {
-             $users=mysqli_fetch_all($users,MYSQLI_ASSOC);
-         }
-         else {
-             echo "Database Query Failed";
-         }    
- //var_dump($users);
- //exit;
-     return $users; 
-    }
 
 
     

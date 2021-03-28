@@ -283,4 +283,28 @@ class Reception extends Employee{
 
         
     }
+
+    public function getCountReceptionEmployees() {
+
+        $query = "SELECT COUNT(DISTINCT $this->reception_table.reception_user_id) as count
+                FROM  $this->reception_table
+                INNER JOIN $this->employee_table
+                ON $this->reception_table.emp_id = $this->employee_table.emp_id
+                WHERE $this->employee_table.is_deleted=0 AND $this->reception_table.is_deleted=0 LIMIT 1";
+
+        
+        // var_dump($query);
+        $result = mysqli_query($this->connection, $query);
+        
+        if($result){
+            if(mysqli_num_rows($result) == 1) {
+                $result = mysqli_fetch_assoc($result);
+            }
+        }
+        else {
+            echo "Query Error";
+        }
+
+        return $result;
+    }
 }

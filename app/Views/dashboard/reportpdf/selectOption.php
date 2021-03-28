@@ -48,9 +48,9 @@
                                 <i class="fa fa-money"></i>
                             </div>
                             <div class="text">
-                                Range Income
+                                Range Report
                             </div>
-                            <a href="<?php url('#');?>"></a>
+                            <a href="<?php url('report/formViewRange');?>"></a>
                         </div>
 
                         <div class="horBadge">
@@ -60,7 +60,7 @@
                             <div class="text">
                                 Above Hotel
                             </div>
-                            <a href="<?php url('#');?>"></a>
+                            <a href="<?php url('report/formViewAll');?>"></a>
                         </div>
 
                         

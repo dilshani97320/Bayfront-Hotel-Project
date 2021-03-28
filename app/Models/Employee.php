@@ -12,7 +12,7 @@ class Employee extends Owner  {
     private $employee_contact_num;
     private $employee_post;
     private $employee_is_deleted;
-    protected $employee_table = "employee";
+    public $employee_table = "employee";
     // private $connection;
     
     public function __construct() {
@@ -102,8 +102,6 @@ class Employee extends Owner  {
         else {
             echo "Database Query Failed";
         }    
-//var_dump($users);
-//exit;
     return $users;    
     }
 
@@ -297,6 +295,48 @@ class Employee extends Owner  {
         }
         
         return $value;
+    }
+
+    public function getCountEmployees() {
+
+        $query = "SELECT COUNT(DISTINCT $this->employee_table.emp_id) as count
+                FROM $this->employee_table
+                WHERE $this->employee_table.is_deleted = 0 LIMIT 1";
+        
+        // var_dump($query);
+        $result = mysqli_query($this->connection, $query);
+        
+        if($result){
+            if(mysqli_num_rows($result) == 1) {
+                $result = mysqli_fetch_assoc($result);
+            }
+        }
+        else {
+            echo "Query Error";
+        }
+
+        return $result;
+    }
+
+    public function getCountAllEmployee() {
+
+        $query = "SELECT SUM(DISTINCT $this->employee_table.salary) as sum
+                FROM $this->employee_table
+                WHERE $this->employee_table.is_deleted = 0 LIMIT 1";
+        
+        // var_dump($query);
+        $result = mysqli_query($this->connection, $query);
+        
+        if($result){
+            if(mysqli_num_rows($result) == 1) {
+                $result = mysqli_fetch_assoc($result);
+            }
+        }
+        else {
+            echo "Query Error";
+        }
+
+        return $result;
     }
 
     

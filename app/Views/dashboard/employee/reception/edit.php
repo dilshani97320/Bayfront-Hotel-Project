@@ -169,14 +169,14 @@
                         <div class="row">
                             <label for="#"><i class="material-icons">account_box</i>Username:</label>
                                 <div class="animate-form">
-                                    <input type="text"  autocomplete="off" name="username" class="inputField" 
+                                    <input type="text"  autocomplete="off" name="username" class="inputField" minlength="4" maxlength="20" id="first_name" oninput="validationFirstName()"
                                     <?php 
                                         if(isset($reception['username'])){
                                             echo 'value="' . $reception['username'] . '"';
                                         }
                                         else {
-                                            echo 'placeholder="WTGihan"';
-                                        } 
+                                            echo 'placeholder="Must Start with Capital letter Min length 4 and Max length 20"';
+                                        }
                                     
                                     ?>
                                     
@@ -184,12 +184,14 @@
                                     >
                                     
                                         <label for="name" class="label-name">
-                                            <?php if((isset($errors['username'])) && (isset($reception['username']))): ?>
-                                                <span class="content-name"><i class="material-icons">info</i><?php echo $errors['username']; ?></span>
-                                            <?php endif; ?>
-                                            <?php if(isset($success)): ?>
-                                                <span class="content-success"><i class="material-icons">verified_user</i>Updated Success</span>
-                                            <?php endif; ?>
+                                            <?php if((isset($errors['username'])) && (isset($reception['username']))){ ?>
+                                                <span class="content-name" id="msg_first_name"><i class="material-icons">info</i><?php echo $errors['username']; ?></span>
+                                            <?php }elseif(isset($success)){ ?>
+                                                <span class="content-success" id="msg_first_name"><i class="material-icons">verified_user</i>Updated Success</span>
+                                            <?php }else { ?>
+                                            <!-- Real time validation -->
+                                                <span class="content-name" id="msg_first_name"></span>
+                                            <?php } ?>
                                         </label>    
                                 </div>     
                         </div>
@@ -197,27 +199,28 @@
                         <div class="row">
                             <label for="#"><i class="material-icons">enhanced_encryption</i>New Password:</label>
                                 <div class="animate-form">
-                                    <input type="password"  autocomplete="off" name="password" id="password" class="inputField" 
+                                    <input type="password"  autocomplete="off" name="password" id="reception_password" class="inputField" minlength="4" maxlength="4" id="reception_password" oninput="validationPassword()"
                                     <?php 
                                         if(isset($reception['password'])){
                                             echo 'value="' . $reception['password'] . '"';
                                         }
                                         else {
-                                            echo 'placeholder=""';
+                                            echo 'placeholder="Must contain Numbers Min length and Max length 4"';
                                         } 
                                     
                                     ?>
-                                    
                                     required
                                     >
                                     
                                         <label for="name" class="label-name">
-                                            <?php if((isset($errors['password'])) && (isset($reception['password']))): ?>
-                                                <span class="content-name"><i class="material-icons">info</i><?php echo $errors['password']; ?></span>
-                                            <?php endif; ?>
-                                            <?php if(isset($success)): ?>
-                                                <span class="content-success"><i class="material-icons">verified_user</i>Updated Success</span>
-                                            <?php endif; ?>
+                                            <?php if((isset($errors['password'])) && (isset($reception['password']))){ ?>
+                                                <span class="content-name" id="msg_reception_password"><i class="material-icons">info</i><?php echo $errors['password']; ?></span>
+                                            <?php }elseif(isset($success)){ ?>
+                                                <span class="content-success" id="msg_reception_password"><i class="material-icons">verified_user</i>Updated Success</span>
+                                            <?php }else { ?>
+                                            <!-- Real time validation -->
+                                                <span class="content-name" id="msg_reception_password"></span>
+                                            <?php } ?>
                                         </label>    
                                 </div>     
                         </div>
@@ -257,10 +260,10 @@
             $('#showpassword').click(function() {
                 // Check whether check box is clicked
                 if( $('#showpassword').is(':checked')) {
-                    $('#password').attr('type', 'text');  // Change the input type password to text
+                    $('#reception_password').attr('type', 'text');  // Change the input type password to text
                 }
                 else {
-                    $('#password').attr('type', 'password'); //Change the input type text to password
+                    $('#reception_password').attr('type', 'password'); //Change the input type text to password
                 }
 
             });
@@ -268,6 +271,8 @@
         });
 
 </script>
+
+<script src="<?php echo BURL.'assets/js/main.js'; ?>"></script>
     
 <?php include(VIEWS.'dashboard/inc/footer.php'); ?>
 

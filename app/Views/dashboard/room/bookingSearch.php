@@ -49,14 +49,14 @@
                         <div class="row">
                             <label for="#"><i class="material-icons">room</i>Room Name:</label>
                                 <div class="animate-form">
-                                    <select name="room_id" class="inputField">
-                                         <option value="">-Select Room</option>
+                                    <select name="room_id" class="inputField" required>
+                                         <option value="">-Select Room-</option>
                                          <?php if(isset($room['type_name'])) {?>
                                             <option value="<?php echo $room['type_name']; ?>" selected><?php echo $details['type_name']; ?></option>
                                          <?php } ?>
                                     <?php foreach($rooms as $room): ?>
                                         <option value="<?php echo $room['room_id']; ?>" style="border: none"><?php echo $room['room_number']; ?>: <?php echo $room['room_name']; ?></option> 
-                                    <?php endforeach; ?>     
+                                    <?php endforeach; ?> 
                                     </select>    
                                 </div>     
                         </div>

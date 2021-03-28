@@ -130,7 +130,10 @@ class EmployeeController {
                 // Checking max length
                 $max_len_fields = array('first_name' => 50, 'last_name' => 100, 'email' => 100, 'salary' => 10, 'location' => 50, 'contact_num' => 10);
                 $errors = array_merge($errors, $this->check_max_len($max_len_fields));
-    
+                
+                if($post == "") {
+                    $errors['post'] = 'Select the Post!!';
+                }
                 // check First Name is valid
                 if(!$this->is_valid($_POST['first_name'])) {
                     $errors['first_name'] = 'First Name is Invalid';

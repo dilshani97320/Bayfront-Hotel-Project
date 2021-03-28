@@ -40,8 +40,7 @@
                                     if(isset($errors)) {
                                         echo '<script>alert("Can not Accept Already reserved Sorry!!")</script>';
                                     }
-                                
-                                
+                                 
                                 ?>
                                 <table>
                                     <thead>
@@ -83,7 +82,7 @@
                                         <?php } else {?>
                                         <td>
                                             <div class="outofdate">
-                                                <a href="#" class="edit" style="color:#ffff; cursor:unset">checked</a>
+                                                <a href="<?php url('notification/viewDeparturedCustomer/'.$row['customer_id']); ?>" class="edit" style="color:#ffff;">checked</a>
                                             </div>
                                         </td>
                                         <?php } ?>

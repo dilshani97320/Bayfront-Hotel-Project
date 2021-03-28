@@ -487,6 +487,7 @@ class RoomDetails extends RoomType {
 
         $this->room_id = mysqli_real_escape_string($this->connection, $room_id);
         $room = array();
+        
         $query = "SELECT * FROM $this->room_table
                   WHERE room_id = '{$room_id}'
                   LIMIT 1";

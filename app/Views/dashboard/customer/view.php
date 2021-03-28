@@ -216,7 +216,7 @@
                    <div class="options">
                        <h4>All Reservations</h4>
                    </div>
-                   <p class="textfortabel">Reservations View Following Table</p>
+                   <p class="textfortabel">Reservations View of Customer Following Table</p>
                </div>
                <div class="cardbody">
                     <div class="tablebody">
@@ -245,15 +245,46 @@
                                         <?php  echo $row['check_out_date'];?>
                                     </div>
                                 </td>
-                                <td><?php echo $row['payment_method'];?></td>
+                                <td>
+                                <?php 
+                                        if($row['payment_method'] == "ONLINEONLINE") {
+                                            echo "ONLINE";
+                                        }
+                                        elseif($row['payment_method'] == "CASHONLINE") {
+                                            echo "CASH";
+                                        }
+                                        else {
+                                            echo $row['payment_method'];
+                                        }
+                                ?>
+                                </td>
                             </tbody>
                             <?php endforeach ?> 
                         </table>
                     </div>
                 </div> 
-            </div>  <!--End Card -->
+                
+            <div class="cardbody">  
+                <form action="<?php url("report/generateCustomerReservations"); ?>" method="post" class="addnewform" target="_blank">
+                    <div class="section1">
+                        <input type="text" name="customer_id"  <?php echo 'value="' . $customer['customer_id'] . '"'?> hidden>
+                        <div class="row">
+                            <div class="button">
+                                <button class="save" name="submit">CustomPDF</button>
+                            </div>
+                        </div>                          
+                    </div>
 
+                    <div class="section2"> 
+
+                    </div>
+
+                </form>
+            </div> 
+
+               </div>  <!--End Card -->
             
+        
         </div>
     </div>   <!-- End Table design -->
     

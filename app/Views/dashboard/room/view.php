@@ -421,7 +421,19 @@
                                         <?php  echo $row['check_out_date'];?>
                                     </div>
                                 </td>
-                                <td><?php echo $row['payment_method'];?></td>
+                                <td>
+                                <?php 
+                                        if($row['payment_method'] == "ONLINEONLINE") {
+                                            echo "ONLINE";
+                                        }
+                                        elseif($row['payment_method'] == "CASHONLINE") {
+                                            echo "CASH";
+                                        }
+                                        else {
+                                            echo $row['payment_method'];
+                                        }
+                                ?>  
+                                </td>
                             </tbody>
                             <?php endforeach ?> 
                         </table>

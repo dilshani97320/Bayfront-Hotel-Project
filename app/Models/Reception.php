@@ -95,6 +95,7 @@ class Reception extends Employee{
         return $reception;
 
     }
+
     public function getReception() {
         $reception = array();
         
@@ -245,5 +246,41 @@ class Reception extends Employee{
         }
 
         return $reception;
+    }
+
+    public function getReservationsReception($reception_user_id) {
+
+        $this->reception_user_id = mysqli_real_escape_string($this->connection, $reception_user_id);
+
+        $reservationReservation = new Reservation();
+        $room = new RoomDetails();
+        $customer = new Customer();
+
+        // $receptionReservation->reception_table; //Table6
+        $room->room_table; //Table5
+        $reservationReservation->reservation_table; //Table4
+        $customer->customer_table;
+
+        $query = "SELECT  $room->room_table.room_number,$room->room_table.price, $customer->customer_table.first_name, $room->room_table.room_name,
+                $reservationReservation->reservation_table.check_in_date, $reservationReservation->reservation_table.check_out_date, $reservationReservation->reservation_table.payment_method, $reservationReservation->reservation_table.reservation_id,
+                $reservationReservation->reservation_table.check_out_status
+                FROM reservation INNER JOIN $room->room_table  ON  $reservationReservation->reservation_table.room_id = $room->room_table.room_id
+                                 INNER JOIN $customer->customer_table  ON  $reservationReservation->reservation_table.customer_id = $customer->customer_table.customer_id
+                WHERE  $reservationReservation->reservation_table.reception_user_id = '{$this->reception_user_id}' AND $reservationReservation->reservation_table.is_valid = 1 AND $reservationReservation->reservation_table.request = 0
+                ORDER BY $reservationReservation->reservation_table.check_in_date";
+
+        $result = 0;
+
+        $reservations= mysqli_query($this->connection, $query);
+
+        if($reservations) {
+            mysqli_fetch_all($reservations,MYSQLI_ASSOC);
+        }
+        else {
+            echo "Database Query Failed1";
+        }
+        return $reservations;
+
+        
     }
 }

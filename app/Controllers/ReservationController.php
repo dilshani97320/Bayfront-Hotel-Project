@@ -13,6 +13,10 @@ class ReservationController {
             $dashboard->index(); 
         }
         else {
+            $db = new RoomDetails();
+            $rooms = $db->getRoomAll();
+            $data['rooms'] = $rooms;
+
             if($customer_id != 0) {
                 $customer = new Customer();
                 $customerDetails = $customer->getCustomer($customer_id);
@@ -20,7 +24,7 @@ class ReservationController {
                 view::load('dashboard/reservation/create',$data);
             }
             else {
-                view::load('dashboard/reservation/create');
+                view::load('dashboard/reservation/create',$data);
             }
             
             
@@ -230,8 +234,11 @@ class ReservationController {
             $dashboard->index();   
         }
         else {
-            // echo $check_out_date;
-            // die();
+            $db = new RoomDetails();
+            $rooms = $db->getRoomAll();
+            $roomsAll = $db->getRoomID($room_number);
+            $room_id = $roomsAll['room_id'];
+            $data['rooms'] = $rooms;
             if($customer_id != 0) {
                 $customer = new Customer();
                 $customerDetails = $customer->getCustomer($customer_id);
@@ -239,6 +246,7 @@ class ReservationController {
             }
             // think room search result will be indicate here
             $value=1;
+            $data['room_id'] = $room_id;
             $data['discount'] = array("value"=>$value);
             $data['bookingCalendar'] = $bookingCalendar; // normal search add should
             $data['reservation'] = array("check_in_date"=>$check_in_date, "check_out_date"=>$check_out_date, "type_name"=>$type_name, 'room_number' => $room_number, 'max_guest' => $max_guest);
@@ -274,15 +282,6 @@ class ReservationController {
     
     public function create($discountValue = 0, $check_inSearch = '0000-00-00', $check_outSearch = '0000-00-00', $typenameSearch="None",$no_of_rooms=0,$guest=0, $price = 0) {
 
-        // if(!isset($_SESSION['user_id'])) {
-        //     $dashboard = new DashboardController();
-        //     $dashboard->index();    
-        // }
-        // else if(!isset($_SESSION['id'])) {
-        //     $home = new HomeController();
-        //     $home->index();    
-        // }
-
         // // create redirect page for homepage
         // else {
             if(isset($_POST['submit'])) {
@@ -303,8 +302,12 @@ class ReservationController {
                 $email = strtolower($email);
     
                 $no_of_guest = $_POST['max_guest'];
-                $room_number = $_POST['room_number'];
+
+                $roomNumber = $_POST['room_number'];
+                $room_result = explode('|', $roomNumber);
+                $room_number =  $room_result[0];
                 $room_number = ucwords($room_number);
+                
                 $check_in_date = $_POST['check_in_date'];
                 $check_out_date = $_POST['check_out_date'];
     
@@ -367,6 +370,10 @@ class ReservationController {
                     $errors['max_guest'] = 'Number is Invalid';
                 }
 
+                if($_POST['check_out_date'] == "0000-00-00") {
+                    $errors['check_out_date'] = 'Check Out Date is Invalid';
+                }
+
                 // Number of Guest Validation
                 $dbroom = new RoomDetails();
                 $room = $dbroom->getRoomID($room_number);
@@ -408,10 +415,13 @@ class ReservationController {
                     // Reservation Checking Validate or not
                     $dbreservation = new Reservation();
                     $result = $dbreservation->getAvalabilityhRoom($room_number, $check_in_date, $check_out_date);
+                    // echo $result;
+                    // die();
                     if($result == 1) {
-                        $errors['room_number'] = 'Room already reserved Sorry';
-                        
+                        $errors['room_number'] = 1;
                     }
+                    // echo $errors['room_number'];
+                    // die();
                 }
                 
                 
@@ -656,6 +666,10 @@ class ReservationController {
     
                 }
                 else {
+                    
+                    $db = new RoomDetails();
+                    $rooms = $db->getRoomAll();
+                    $data['rooms'] = $rooms;
                     // break process
                     $data['bookingCalendar'] = $bookingCalendar;
 
@@ -687,6 +701,8 @@ class ReservationController {
                         }
                         else {
                             // echo "Succes4";
+                            // print_r($data['reservation']);
+                            // die();
                             view::load('dashboard/reservation/create', $data);
                         }
                     }
@@ -834,7 +850,7 @@ class ReservationController {
     
     
     
-                $data['errors'] = $errors;
+                // $data['errors'] = $errors;
                 $data['reception'] = array("username"=>$username);
                 $data['room_type'] = array("type_name"=> $type_name);
                 $data['reservation'] =  array("reservation_id"=> $reservation_id, "customer_id"=> $customer_id, "reception_user_id"=> $reception_user_id, "room_id"=> $room_id, "check_in_date"=> $check_in_date, "check_out_date"=> $check_out_date, "payment_method"=> $payment_method);
@@ -845,6 +861,7 @@ class ReservationController {
                 
                 if(count( $errors ) != 0) {
                     //view::load("inc/test", $data);
+                    $data['errors'] = $errors;
                     view::load("dashboard/reservation/edit", $data);
                 }
                 else {
@@ -868,6 +885,8 @@ class ReservationController {
                             
                             if($result == 1) {
                                 $data['errors'] = $errors;
+                                echo "hello";
+                                die();
                                 view::load("dashboard/reservation/edit", $data);
                                 
                                 
@@ -879,6 +898,9 @@ class ReservationController {
                             $result = $db->getUpdateReservation($reservation_id, $check_in_date, $check_out_date);
                             if($result == 1) {
                                 // $this->index();
+                                // echo "hello";
+                                // print_r($data);
+                                // die();
                                  view::load('dashboard/reservation/edit', $data);
                                 
                             }
@@ -1017,7 +1039,15 @@ class ReservationController {
         $errors[] = array();
     
         foreach($max_len_fields as $field => $max_len) {
-            if(strlen(trim($_POST[$field])) > $max_len ) {
+            if($field == "room_number") {
+                $roomNumber = $_POST[$field];
+                $room_result = explode('|', $roomNumber);
+                $room_number =  $room_result[0];
+                if(strlen(trim($room_number)) > $max_len ) {
+                    $errors[$field] = ' must be less than ' . $max_len . ' characters';
+                }
+            }
+            elseif(strlen(trim($_POST[$field])) > $max_len ) {
                 // echo "2";
                 $errors[$field] = ' must be less than ' . $max_len . ' characters';
             }

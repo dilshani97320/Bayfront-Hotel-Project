@@ -15,6 +15,12 @@
             include(VIEWS.'dashboard/inc/sidebar.php'); //Sidebar
             include(VIEWS.'dashboard/inc/navbar.php'); //Navbar
     ?>
+
+    <?php 
+        if(isset($errors)) {
+            echo '<script>alert("No Rooms Available Sorry!!")</script>';
+        }
+    ?>
     
     <!-- Table design -->
     <div class="content">
@@ -49,22 +55,27 @@
                         <div class="row">
                             <label for="#"><i class="material-icons">room</i>Room Type:</label>
                                 <div class="animate-form">
-                                    <select name="type_name" class="inputField">
+                                    <select name="type_name" class="inputField" required>
                                          <option value="">-Select Room Type-</option>
                                          <?php if(isset($details['type_name'])) {?>
                                             <option value="<?php echo $details['type_name']; ?>" selected><?php echo $details['type_name']; ?></option>
                                          <?php } ?>
                                     <?php foreach($typename as $types): ?>
-                                        <option value="<?php echo $types['type_name']; ?>" style="border: none"><?php echo $types['type_name']; ?></option> 
+                                        <?php if(isset($details['type_name']) && $details['type_name'] != $types['type_name']){ ?>
+                                            <option value="<?php echo $types['type_name']; ?>" style="border: none"><?php echo $types['type_name']; ?></option> 
+                                        <?php }elseif(!isset($details['type_name'])){ ?>
+                                            <option value="<?php echo $types['type_name']; ?>" style="border: none"><?php echo $types['type_name']; ?></option> 
+                                        <?php } ?>
+                                        
                                     <?php endforeach; ?>     
                                     </select>    
                                 </div>     
                         </div>
 
-                        <div class="row">
+                        <div class="rowdate">
                             <label for="#"><i class="material-icons">today</i>Check-In Date:</label>
-                                <div class="animate-form">
-                                    <input type="text"  autocomplete="off" name="check_in_date" class="inputField"
+                                <!-- <div class="animate-formdate"> -->
+                                    <input type="date"  autocomplete="off" name="check_in_date" class="inputFieldDate"
                                     <?php 
 
                                         date_default_timezone_set("Asia/Colombo");
@@ -78,41 +89,43 @@
                                     
                                     ?>
                                     
-                                    
+                                    required
                                     >
                                     
-                                        <label for="name" class="label-name">
-                                            <?php if((isset($errors)) && (isset($details['check_in_date']))): ?>
-                                                <span class="content-name"><i class="material-icons">info</i>No ROOMS Available</span>
-                                            <?php endif; ?>
-                                        </label>    
-                                </div>     
+                                    <label for="name" class="label-name">
+                                        <?php if((isset($errors)) && (isset($details['check_in_date']))): ?>
+                                            <span class="content-name"><i class="material-icons">info</i>No ROOMS Available</span>
+                                        <?php endif; ?>
+                                    </label>    
+                                <!-- </div> -->
                         </div>
                         
 
-                        <div class="row">
+                        <div class="rowdate">
                             <label for="#"><i class="material-icons">today</i>Check-Out Date:</label>
-                                <div class="animate-form">
-                                    <input type="text"  autocomplete="off" name="check_out_date" class="inputField"
+                                <!-- <div class="animate-form"> -->
+                                    <input type="date"  autocomplete="off" name="check_out_date" class="inputFieldDate"
                                     <?php 
+                                        date_default_timezone_set("Asia/Colombo");
+                                        $current_date = date('Y-m-d');
                                         if(isset($details['check_out_date'])){
                                             echo 'value="' . $details['check_out_date'] . '"';
                                         }
-                                        else {
-                                            echo 'placeholder="2020-11-20"';
-                                        } 
+                                        // else {
+                                        //     echo 'value="'.$current_date.'"';
+                                        // } 
                                     
                                     ?>
                                     
-                                    
+                                    required
                                     >
                                     
-                                        <label for="name" class="label-name">
-                                            <?php if((isset($errors)) && (isset($details['check_out_date']))): ?>
-                                                <span class="content-name"><i class="material-icons">info</i>No ROOMS Available</span>
-                                            <?php endif; ?>
-                                        </label>    
-                                </div>     
+                                    <label for="name" class="label-name">
+                                        <?php if((isset($errors)) && (isset($details['check_out_date']))): ?>
+                                            <span class="content-name"><i class="material-icons">info</i>No ROOMS Available</span>
+                                        <?php endif; ?>
+                                    </label>   
+                                <!-- </div>      -->
                         </div>
 
                         

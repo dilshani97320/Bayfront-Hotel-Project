@@ -26,7 +26,11 @@
            <div class="card">
                <div class="cardheader">
                    <div class="options">
-                       <h4>Customer Type Select Page</h4>
+                       <h4>Customer Type Select Page
+                       <span>
+                            <a href="<?php url("report/selectUserType"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>
+                        </span>
+                        </h4>
                    </div>
                    <p class="textfortabel">Select Customer Type</p>
                </div>
@@ -53,9 +57,7 @@
                             <a href="<?php url('customer/blacklist');?>"></a>
                         </div>   
                     </div>
-                    <div class="cardbody"> 
-                        <?php include(VIEWS.'dashboard/room/bookingCalendar.php'); ?>
-                    </div>
+                    
            </div> 
        </div>
    </div>

@@ -85,17 +85,12 @@ class Payment extends Connection {
 
         $query = "SELECT * FROM $this->payment_table
                   WHERE customer_id = '{$customer->customer_id}' AND reservation_id = '{$reservation->reservation_id}'";
-        // var_dump($query);
-        // die();
+
         $payments = mysqli_query($this->connection, $query);
 
         if($payments){
-            // if(mysqli_num_rows($payments) == 1) {
                 mysqli_fetch_all($payments,MYSQLI_ASSOC);
-            // }
-            // else {
-            //     $payment = array();
-            // }
+            
         }
         else {
             echo "Query Error";
@@ -113,7 +108,8 @@ class Payment extends Connection {
         $query = "SELECT * FROM $this->payment_table
                   WHERE customer_id = '{$customer->customer_id}' AND reservation_id = '{$reservation->reservation_id}'
                   LIMIT 1";
-
+        // var_dump($query);
+        // die();
         $customers = mysqli_query($this->connection, $query);
         $findCustomerAndReservation = 0;
 

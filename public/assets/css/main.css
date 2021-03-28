@@ -727,11 +727,56 @@ label {
   height: 40px;
 }
 
+
 .inputField {
   display: block;
   margin-left: 0;
   border: none;
-  width: 60%;
+  width: 65%;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.06);
+  height: 40px;
+  padding-left: 30px;
+  font-size: 1.125rem;
+  line-height: 1.4em;
+  font-weight: 100;
+}
+
+
+/* input date style css */
+
+.rowdate {
+  display: inline-flex;
+  width: 74%;
+  margin: 10px;
+}
+
+input[type="date"] {
+  font-size: 17px;
+  line-height: 1.4em;
+  font-weight: 400;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  width: 23%;
+  /* border: none; */
+}
+
+input[type="date"]::placeholder {
+  font-size: 17px;
+  line-height: 1.4em;
+  font-weight: 400;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  width: 23%;
+  /* color: #00af87; */
+  /* border: none; */
+}
+
+.inputFieldDate {
+  display: block;
+  margin-left: 0;
+  border: none;
+  width: 40%;
+  /* font-size: .9rem;
+    font-weight: 300;
+    line-height: 1.4em; */
   border-bottom: 2px solid rgba(0, 0, 0, 0.06);
   height: 40px;
   padding-left: 30px;
@@ -745,10 +790,10 @@ input[type="text"]::placeholder,
   /* padding-left: 10px;  */
   color: #aaaaaa;
   border: none;
-  font-size: 1.125rem;
+  font-size: 0.975rem;
   line-height: 1.4em;
   font-weight: 100;
-  font-style: italic;
+  /* font-style: italic; */
 }
 
 input[type="textarea"]::placeholder,
@@ -756,29 +801,29 @@ input[type="textarea"]::placeholder,
   /* padding-left: 10px;  */
   color: #aaaaaa;
   border: none;
-  font-size: 1.125rem;
+  font-size: 0.975rem;
   line-height: 1.4em;
   font-weight: 100;
-  font-style: italic;
+  /* font-style: italic; */
 }
 input[type="email"]::placeholder {
   /* padding-left: 10px;  */
   color: #aaaaaa;
   border: none;
-  font-size: 1.125rem;
+  font-size: 0.975rem;
   line-height: 1.1em;
   font-weight: 100;
-  font-style: italic;
+  /* font-style: italic; */
 }
 
 input[type="password"]::placeholder {
   /* padding-left: 10px;  */
   color: #aaaaaa;
   border: none;
-  font-size: 1.125rem;
+  font-size: 0.975rem;
   line-height: 1.4em;
   font-weight: 100;
-  font-style: italic;
+  /* font-style: italic; */
 }
 
 input[type="checkbox"] {
@@ -870,8 +915,6 @@ input#text {
   text-transform: uppercase;
   letter-spacing: 0;
   color: #fff;
-  background-color: #9c27b0;
-  border-color: #9c27b0;
   border-radius: 4px;
   width: 150px;
   height: auto;
@@ -924,18 +967,6 @@ input#text {
   width: 35%;
 }
 
-/* input[type="checkbox"] {
-  display: block;
-  text-align: center;
-  width: 20px;
-  height: 20px;
-  padding-top: 10px;
-  justify-content: center;
-  margin-top: 5px;
-  border: #000;
-  margin-left: 0;
-  padding-left: 0;
-} */
 
 input[type="text"]:disabled {
   display: block;
@@ -1090,6 +1121,7 @@ input[type="textarea"] {
   font-size: 16px;
 }
 
+
 .content-success {
   /* position: absolute; */
   bottom: 5px;
@@ -1114,6 +1146,7 @@ input[type="textarea"] {
   font-size: 16px;
   color: rgb(22, 80, 22);
 }
+
 
 .animate-form input + .label-name .content-name .material-icons,
 .animate-form input:focus + .label-name .content-name .material-icons,

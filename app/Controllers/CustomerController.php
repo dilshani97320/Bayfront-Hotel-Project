@@ -3,31 +3,13 @@ session_start();
 
 class CustomerController {
 
-    public function selectOption($month_val=0, $year_val=0) {
+    public function selectOption() {
         if(!isset($_SESSION['user_id'])) {
             $dashboard = new DashboardController();
             $dashboard->index();
         }
         else {
-            date_default_timezone_set("Asia/Colombo");
-            $dateComponents = getdate();
-    
-            if($month_val != 0 && $year_val != 0) {
-                $month = $month_val;
-                $year = $year_val;
-            }
-            else {
-                // $month = $dateComponents['month'];
-                $month = date('m');
-                // $year = $dateComponents['year'];
-                $year = date('Y');
-            }
-            $class = "customer";
-            $method = "selectOption";
-            $dashboard = new DashboardController();
-            $calendar = $dashboard->bookingCalendarDetails($month, $year, $class, $method);
-            $data['calendar'] = $calendar;
-            view::load('dashboard/customer/selectOption',$data);
+            view::load('dashboard/customer/selectOption');
         }
     }
 

@@ -15,7 +15,7 @@
             
             <a href="<?php url('dashboard/index'); ?>" class="nav1-link">
 
-                <p class="nav-p"><i class="material-icons">dashboard</i>Dashboard</p>   
+                <p class="nav-p"><i class="material-icons">space_dashboard</i>Dashboard</p>   
             </a>
             
         </li>
@@ -25,13 +25,7 @@
                 <p class="nav-p"><i class="material-icons">people</i>Employees</p>         
             </a>
         </li> 
-
-        <li class="nav1-item">
-            <a href="<?php url('customer/selectOption'); ?>" class="nav1-link">
-                <p class="nav-p"><i class="material-icons">groups</i>Customers</p>         
-            </a>
-        </li>
-
+        
         <li class="nav1-item">
             <a href="<?php url('room/selectOption'); ?>" class="nav1-link">
                 <p class="nav-p"><i class="material-icons">room_preferences</i>Available Rooms</p>         
@@ -60,6 +54,12 @@
 
             </a>
         </li> 
+
+        <li class="nav1-item">
+            <a href="<?php url('report/option'); ?>" class="nav1-link">
+                <p class="nav-p"><i class="material-icons">picture_as_pdf</i>Reports PDF</p>
+            </a>
+        </li> 
     
         <li class="nav1-item">
 
@@ -71,13 +71,7 @@
         
         
 
-        <li class="nav1-item">
-
-            <a href="<?php url('report/index'); ?>" class="nav1-link">
-                <p class="nav-p"><i class="material-icons">report</i>Report Generate</p>         
-
-            </a>
-        </li> 
+        
         
 
         <!-- <li class="nav1-item">

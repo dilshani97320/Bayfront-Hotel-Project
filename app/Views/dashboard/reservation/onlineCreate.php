@@ -145,7 +145,7 @@
 
                             <div class="rowdata1">
                                 <label for="#">Country/region of residence</label>
-                                <select class="inputrow" name="location">
+                                <select class="inputrow" name="location" required>
                                     <?php if(isset($reservation['location'])): ?>
                                         <option value="<?php echo $reservation['location']; ?>"><?php echo $reservation['location']; ?></option>
                                     <?php endif; ?>

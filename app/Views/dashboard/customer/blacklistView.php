@@ -32,6 +32,7 @@
                     </div>
 
                     <p class="textfortabel">Include Following Details</p>
+                    <p class="textfortabel">Blacklist Count to Today and give following days NOT Granted</p>
                 </div>
 
                 <div class="cardbody">  
@@ -246,9 +247,22 @@
                                         <?php  echo $row['check_out_date'];?>
                                     </div>
                                 </td>
-                                <td><?php echo $row['payment_method'];?></td>
                                 <td>
-                                    <?php  if($row['check_in_status'] == NULL AND $row['check_in_status'] == NULL ){?>
+                                    <?php 
+                                        if($row['payment_method'] == "ONLINEONLINE") {
+                                            echo "ONLINE";
+                                        }
+                                        elseif($row['payment_method'] == "CASHONLINE") {
+                                            echo "CASH";
+                                        }
+                                        else {
+                                            echo $row['payment_method'];
+                                        }
+                                    ?>
+                                    
+                                </td>
+                                <td>
+                                    <?php  if($row['check_in_status'] == NULL OR $row['check_out_status'] == NULL ){?>
                                     <div class="out">    
                                             BLACKLIST    
                                     </div>
@@ -263,6 +277,25 @@
                         </table>
                     </div>
                 </div> 
+
+                <div class="cardbody">  
+                <form action="<?php url("report/generateCustomerReservations"); ?>" method="post" class="addnewform" target="_blank">
+                    <div class="section1">
+                        <input type="text" name="customer_id"  <?php echo 'value="' . $customer['customer_id'] . '"'?> hidden>
+                        <div class="row">
+                            <div class="button">
+                                <button class="save" name="submit">CustomPDF</button>
+                            </div>
+                        </div>                          
+                    </div>
+
+                    <div class="section2"> 
+
+                    </div>
+
+                </form>
+            </div> 
+
             </div>  <!--End Card -->
 
             

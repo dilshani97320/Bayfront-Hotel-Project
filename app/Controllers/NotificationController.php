@@ -1,5 +1,7 @@
 <?php 
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 require_once 'Libs/vendor/autoload.php';
 
 class NotificationController {
@@ -360,4 +362,69 @@ class NotificationController {
             
         }
     }
+
+    public function viewDeparturedCustomer($customer_id) {
+        if(!isset($_SESSION['user_id'])) {
+            $dashboard = new DashboardController();
+            $dashboard->index();
+        }
+
+        else {
+            $dbcustomer = new Customer();
+            $dbpayment = new Payment();
+            
+            $customer = $dbcustomer->getCustomer($customer_id);
+
+            $dbreservation = new Reservation();
+            $reservation = $dbreservation->getReservationsCheckOutDays($customer_id);
+            // get reservation ID
+
+            foreach($reservation as $row) {
+                $reservationIDS[]= $row['reservation_id']; 
+            }
+
+            $totalPaidValue = 0;
+            
+            
+            // echo $length;
+            // die();
+            $length = count($reservationIDS);
+            for($i=0; $i<$length ; $i++) {
+                $paymentValuePaid = 0;
+                $payment_details= $dbpayment->paymentDetails($reservationIDS[$i], $customer_id);
+                if(!empty($payment_details)) {
+                    foreach($payment_details as $row){
+                        // echo $row['amount'];
+                        $paymentValuePaid = $paymentValuePaid + $row['amount'];
+                        // $cash = $cash + 1;
+                    }
+                }
+                else {
+                    $paymentValuePaid = 0;
+                }
+                // echo $paymentValuePaid;
+                // echo "<br>";
+                $paymentValuePaid =  $paymentValuePaid/1000;
+                // echo $paymentValuePaid;
+                // echo "<br>";
+                $totalPaidValue = $totalPaidValue + $paymentValuePaid;
+            }
+            // echo "<br>";
+            // echo $totalPaidValue;
+            // die();
+
+
+            $data = array();
+
+            $data['reservationIDS'] = $reservationIDS;
+            $data['paidValue'] = $totalPaidValue;
+            $data['customer'] = $customer;
+            $data['reservations'] = $reservation;
+            view::load('dashboard/reportpdf/customerBill', $data);
+
+            
+        }
+    }
+
+
 }

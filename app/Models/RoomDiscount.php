@@ -7,7 +7,7 @@ class RoomDiscount extends RoomType{
     private $room_discount_discount_rate;
     private $room_discount_start_date;
     private $room_discount_end_date;
-    private $room_discount_table = "room_discount";
+    public $room_discount_table = "room_discount";
 
     public function __construct() {        
         RoomType::__construct();

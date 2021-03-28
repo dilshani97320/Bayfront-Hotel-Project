@@ -112,18 +112,19 @@
             // }
         }
 
-        public function paycash() {
+        public function paycashOnlineReservations() {
+
             $POST = filter_var_array($_POST, FILTER_SANITIZE_STRING);
             $customer_id = $POST['customer_id'];
-            $reservation_id = $POST['reservation_id'];
+            // $reservation_id = $POST['reservation_id'];
             $first_name = $POST['first_name'];
             $last_name = $POST['last_name'];
             $email = $POST['email'];
             $contact_number = $POST['contact_number'];
             
-            $room_name = $POST['room_name'];
+            // $room_name = $POST['room_name'];
             // $room_view = $POST['room_view'];
-            $room_price = $POST['room_price'];
+            // $room_price = $POST['room_price'];
             $total_price = $POST['total_price'];
             $amount = $POST['amount'];
             // $payment_way = $POST['payment_way'];
@@ -134,37 +135,77 @@
             $amount = $amount*1000;
             $transaction = new Payment();
             // check already customer have payment row in payment table
-            $payment_details= $transaction->paymentDetails($reservation_id, $customer_id);
-            if(!empty($payment_details)) {
-                $result = $transaction->updateTransaction($reservation_id, $customer_id, $amount);
+            if(isset($_SESSION['reservationIDS'])) {
+                $reservationIDS = $_SESSION['reservationIDS'];
+                unset($_SESSION['reservationIDS']);
             }
-
-            else {
-                $stripe_id = "0000";
-                $customerstripe_id = "XXXX";
-                $room_description = $room_name."Room Reservation by".$first_name." ".$last_name.":".$email.":".$contact_number;
-                $currency = "USD";
-                $status = "succeeded";
-                // Transaction Data
-                $transactionData = [
-                    'reservation_id' => $reservation_id,
-                    'stripe_id'=> $stripe_id,
-                    'customerstripe_id'=> $customerstripe_id,
-                    'customer_id'=> $customer_id,
-                    'roomdesc'=> $room_description,
-                    'amount'=> $amount,
-                    'currency'=> $currency,
-                    'status'=> $status
-                ];
-
-                // Instantiate Transaction
-                
-
-                // Add Transaction to DB
-                $result = $transaction->addTransaction($transactionData);
+            if(isset($_SESSION['roomPrices'])) {
+                $roomPriceID = $_SESSION['roomPrices'];
+                // var_dump($roomPriceID);
+                // echo count($roomPriceID);
+                // die();
+                unset($_SESSION['roomPrices']);
             }
 
             
+            $length = count($reservationIDS);
+            $length2 = count($roomPriceID);
+
+            for($i=0; $i<$length ; $i++) {
+                
+                $payment_details= $transaction->FindTransaction($customer_id, $reservationIDS[$i]);
+                for($j=0; $j<$length2 ; $j++) {
+                    if($roomPriceID[$j]['reservation_id'] == $reservationIDS[$i]) {
+                        $roomAmount = $roomPriceID[$j]['roomPriceValueDays'];
+                        $roomAmount = $roomAmount + $roomAmount*(10/100);
+                        $roomAmount = $roomAmount*1000;
+                        break;
+                    }
+                }
+                
+                if(!empty($payment_details)) {
+                    $result = $transaction->updateTransaction($reservationIDS[$i], $customer_id, $roomAmount);
+                }
+
+                else {
+                    $stripe_id = "0000";
+                    $customerstripe_id = "XXXX";
+                    $room_description = "Room Reservation by".$first_name." ".$last_name.":".$email.":".$contact_number;
+                    $currency = "USD";
+                    $status = "succeeded";
+                    // Transaction Data
+                    $transactionData = [
+                        'reservation_id' => $reservationIDS[$i],
+                        'stripe_id'=> $stripe_id,
+                        'customerstripe_id'=> $customerstripe_id,
+                        'customer_id'=> $customer_id,
+                        'roomdesc'=> $room_description,
+                        'amount'=> $roomAmount ,
+                        'currency'=> $currency,
+                        'status'=> $status
+                    ];
+    
+                    // Instantiate Transaction
+                    
+    
+                    // Add Transaction to DB
+                    $result = $transaction->addTransaction($transactionData);
+                    // echo "succes2";
+                    // echo "<br>";
+                    
+                }
+                // echo $result;
+                // echo "<br>";
+                
+            }
+
+            
+            
+
+            
+
+            // echo $email;
+            // die();
             if($result == 1) {
                 
                 // Set default values for this
@@ -212,11 +253,15 @@
                 
                     // Send the message
                 $result = $mailer->send($message);
-                $this->cashIndex();
+
+                $notification = new NotificationController();
+                $notification->viewDeparturedCustomer($customer_id);
             }
             
         // }
         }
+
+        
 
         public function editPayCash() {
             $POST = filter_var_array($_POST, FILTER_SANITIZE_STRING);
@@ -424,34 +469,6 @@
             }
         }
 
-        public function cashIndex() {
-            if(!isset($_SESSION['user_id'])) {
-                $dashboard = new DashboardController();
-                $dashboard->index();
-            }
-            else {
-                $data = array();
-                // $db = new Employee;
-                if(isset($_POST['search'])) {
-                    $search = $_POST['search'];
-                    $db = new Customer();
-                    // $db->setSearchCustomer($search);
-                    $data['customer'] = $db->getAllCustomerPaymentDetailsTodaySearch($search);
-                    //echo 'Error1';
-                    view::load('dashboard/payment/index', $data);
-                }
-                else {
-                    $db = new Customer();
-                    $data['customer'] = $db->getAllCustomerPaymentDetailsToday();
-                    // var_dump($data['customer']);
-                    // die();
-                    //echo 'Error2';
-                    view::load('dashboard/payment/index', $data);
-                }
-                
-                
-            }
-        }
 
         public function onlineIndex() {
             if(!isset($_SESSION['user_id'])) {

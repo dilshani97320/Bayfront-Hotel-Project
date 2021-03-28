@@ -1,0 +1,48 @@
+quries----
+
+number of payments between given date---
+
+SELECT COUNT(amount) FROM reservation INNER JOIN customer on reservation.customer_id=customer.customer_id INNER JOIN payment on reservation.reservation_id=payment.reservation_id 
+     WHERE check_in_date BETWEEN '2020-02-20' and '2021-02-08' order BY check_in_date
+
+
+total amount of payments between given date---
+
+ SELECT SUM(amount) AS TotalItemsOrdered FROM reservation INNER JOIN customer on reservation.customer_id=customer.customer_id INNER JOIN payment on reservation.reservation_id=payment.reservation_id  WHERE check_in_date BETWEEN '2020-02-20' and '2021-02-08';
+
+Number of registration of customers between given two days--
+
+SELECT COUNT(first_name) FROM customer INNER JOIN reservation ON customer.customer_id=reservation.customer_id
+    WHERE check_in_date BETWEEN '2020-03-20' and '2021-02-08' 
+
+customers under the age of 18 registered at the hotel between given two date
+
+SELECT COUNT(age) FROM customer INNER JOIN reservation ON customer.customer_id=reservation.customer_id
+    WHERE check_in_date BETWEEN '2020-03-20' and '2021-02-08' AND age<=18
+
+no of reservations between given dates--
+
+SELECT COUNT(reservation_id)
+     FROM reservation INNER JOIN customer on reservation.customer_id=customer.customer_id
+     INNER JOIN room_details on room_details.room_id=reservation.room_id WHERE check_in_date BETWEEN '2020-02-02' and '2021-02-02';
+
+given time period the most booked room number--
+
+SELECT room_number FROM reservation INNER JOIN customer on reservation.customer_id=customer.customer_id INNER JOIN room_details on room_details.room_id=reservation.room_id WHERE check_in_date BETWEEN '2020-02-02' and '2021-02-02' 
+GROUP BY room_number ORDER BY COUNT(*) DESC LIMIT 1
+
+given time period the most booked room view--
+
+SELECT room_view FROM reservation INNER JOIN customer on reservation.customer_id=customer.customer_id INNER JOIN room_details on room_details.room_id=reservation.room_id WHERE check_in_date BETWEEN '2020-02-02' and '2021-02-02'
+ GROUP BY room_view ORDER BY COUNT(*) DESC LIMIT 1
+
+given time period the most cash transactions have been made--
+
+SELECT payment_method FROM reservation INNER JOIN customer on reservation.customer_id=customer.customer_id INNER JOIN room_details on room_details.room_id=reservation.room_id WHERE check_in_date BETWEEN '2020-02-02' and '2021-02-02'
+ GROUP BY payment_method ORDER BY COUNT(*) DESC LIMIT 1
+
+total number of guests arrivals at the hotel that given time period---
+SELECT SUM(no_of_guest) FROM reservation INNER JOIN customer on reservation.customer_id=customer.customer_id INNER JOIN 
+room_details on room_details.room_id=reservation.room_id WHERE check_in_date BETWEEN '2020-02-02' and '2021-02-02' 
+
+

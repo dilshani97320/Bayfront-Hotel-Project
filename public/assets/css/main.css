@@ -1,7 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
 
-
-
 * {
   margin: 0;
   padding: 0;
@@ -675,7 +673,7 @@ td a {
 }
 
 .section2 {
-  width: 20%;
+  width: 10%;
   display: inline;
   /* display: flex; */
 }
@@ -734,9 +732,6 @@ label {
   margin-left: 0;
   border: none;
   width: 60%;
-  /* font-size: .9rem;
-    font-weight: 300;
-    line-height: 1.4em; */
   border-bottom: 2px solid rgba(0, 0, 0, 0.06);
   height: 40px;
   padding-left: 30px;
@@ -744,11 +739,6 @@ label {
   line-height: 1.4em;
   font-weight: 100;
 }
-
-/* ::placeholder {
-    color: #000;
-    margin-left: 20px;
-} */
 
 input[type="text"]::placeholder,
 .change {
@@ -816,7 +806,7 @@ input:checked {
 }
 
 label.showpassword {
-   width: 30%;
+  width: 30%;
 }
 /* linear-gradient(60deg, #0b2e4f, #0b2e4f) */
 
@@ -1013,10 +1003,7 @@ select:after {
   display: inline-block;
   width: 24px;
   height: 24px;
-  /* background: blue; */
 }
-
-/* room-view style */
 
 .row1 {
   display: inline-flex;
@@ -1029,7 +1016,6 @@ select:after {
   font-size: 1.25rem;
   line-height: 1.4em;
   font-weight: 300;
-  /* margin: 10px; */
   margin-left: 0;
   display: block;
   margin-right: 0;
@@ -1041,9 +1027,6 @@ input[type="textarea"] {
   margin-left: 0;
   border: none;
   width: 100%;
-  /* font-size: .9rem;
-    font-weight: 300;
-    line-height: 1.4em; */
   border-bottom: 2px solid rgba(0, 0, 0, 0.06);
   height: 40px;
   padding-left: 30px;
@@ -1064,7 +1047,7 @@ input[type="textarea"] {
 }
 
 .animate-form input {
-  width: 100%;
+  width: 50%;
   height: 100%;
   color: #595f6e;
   /* padding-top: 20px; */
@@ -1102,13 +1085,13 @@ input[type="textarea"] {
 .content-name {
   position: absolute;
   bottom: 5px;
-  left: 0px;
+  left: 75px;
   transition: all 0.3s ease;
   font-size: 16px;
 }
 
 .content-success {
-  position: absolute;
+  /* position: absolute; */
   bottom: 5px;
   left: 0px;
   transition: all 0.3s ease;
@@ -1116,12 +1099,12 @@ input[type="textarea"] {
 }
 
 /* Animation here */
-
+.animate-form input + .label-name .content-name,
 .animate-form input:focus + .label-name .content-name,
 .animate-form input:valid + .label-name .content-name {
   transform: translateX(360px);
   font-size: 16px;
-  color: rgb(116, 24, 24);
+  color: rgb(202, 6, 6);
 }
 
 .animate-form input + .label-name .content-success,
@@ -1132,9 +1115,10 @@ input[type="textarea"] {
   color: rgb(22, 80, 22);
 }
 
+.animate-form input + .label-name .content-name .material-icons,
 .animate-form input:focus + .label-name .content-name .material-icons,
 .animate-form input:valid + .label-name .content-name .material-icons {
-  color: rgb(116, 24, 24);
+  color: rgb(202, 6, 6);
 }
 
 .animate-form input:focus + .label-name .content-success .material-icons,
@@ -1871,6 +1855,6 @@ input[type="file"] {
 }
 
 .pyamentcardform {
-    margin-top: 10px;
-    margin-bottom: 50px;
+  margin-top: 10px;
+  margin-bottom: 50px;
 }

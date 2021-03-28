@@ -149,6 +149,9 @@ function validationPassword(){
 	}
 
 }
+
+
+
 function giveNoOfGuest(){
 	// console.log("Hello");
 	var roomNumber= document.getElementById("roomNumber").value;
@@ -208,3 +211,35 @@ function giveNoOfGuest(){
 	}
 
 }
+
+// function validationDateRange(){
+// 	var start_date= document.getElementById("start_date").value;
+// 	var end_date= document.getElementById("end_date").value;
+// 	// start_date = start_date.getTime();
+// 	console.log(start_date);
+// 	console.log(end_date);
+// 	var daysTime = end_date - start_date;
+// 	console.log(daysTime);
+// 	// var days = daysTime / (1000 * 3600 * 24);
+// 	const diffInMs = Math.abs(end_date - start_date);
+// 	console.log(diffInMs);
+// 	days =  diffInMs / (1000 * 60 * 60 * 24);
+// 	// var month = start_date.getMonth();
+// 	// var month = start_date.getMonth();
+
+// 	console.log(days);
+// 	// $month = 1 mean is February
+
+// 	// if(month == 1) {
+// 	// 	if(days < 28) {
+// 	// 		alert("No Rooms Available Sorry!!");
+// 	// 	}
+// 	// }
+// 	// else {
+// 	// 	if(days < 30) {
+// 	// 		alert("No Rooms Available Sorry!!");
+// 	// 	}
+// 	// }
+
+
+// }

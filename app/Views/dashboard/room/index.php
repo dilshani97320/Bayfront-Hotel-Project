@@ -88,6 +88,10 @@
                                         } 
                                     
                                     ?>
+
+                                    <?php 
+                                        echo 'min="'.$current_date .'"';
+                                    ?>
                                     
                                     required
                                     >
@@ -115,6 +119,10 @@
                                         //     echo 'value="'.$current_date.'"';
                                         // } 
                                     
+                                    ?>
+
+                                    <?php 
+                                        echo 'min="'.$current_date .'"';
                                     ?>
                                     
                                     required

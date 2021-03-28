@@ -25,7 +25,7 @@ class AuthController {
 			// echo $password;
 			// die();
 			
-			$errors = $this->validationSignin();
+			$errors = $this->validationSignin($email, $password);
 		
 			// var_dump($errors);
 			// exit;
@@ -94,32 +94,40 @@ class AuthController {
 					
 
 				}else{
-					$errors['login_fail']= "You have entered an invalid username or password";
+					$errors['email']= "You have entered an invalid username or password";
 					$data['errors'] = $errors;
-
+					$data['email']= $_POST['email'];
+				$data['password']= $_POST['password'];
+					unset($_POST);
                     view::load('login/login',$data);
 				}
 			}else{
 				$data['errors'] = $errors;
-			
 				// var_dump($data);
-				
+				$data['email']= $_POST['email'];
+				$data['password']= $_POST['password'];
+				unset($_POST);
                 view::load('login/login',$data);
 			}
 		}
 	}
-	private function validationSignin() {
+	private function validationSignin($email, $password) {
 
         $errors = array();
-		if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+		if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
 			$errors['email']= "Email adress is invalid";
 		}
-		if(empty($_POST['email'])){
+		if(empty($email)){
 			$errors['email']="email required";
 		}
-		if(empty($_POST['password'])){
+		if(empty($password)){
 			$errors['password']="password required";
+		}else{
+			if(!(preg_match('/^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=§!\?]{8,}$/',$password))){
+				$errors['password']="A minimum 8 characters password contains a combination of uppercase and lowercase letter and number are required.";
+			}
 		}
+		
 
 		return $errors;
         
@@ -131,7 +139,6 @@ class AuthController {
 			
 			$errors = $this->validationSignup();
 
-			
 			if(count($errors)== 0){
 
 				$username = $_POST['username'];
@@ -146,8 +153,7 @@ class AuthController {
 				$data =array($username, $email, $password, $token ,$verified);
 
 				$db = new Signin();
-		   
-				$result = $db->createUser($data);
+		   		$result = $db->createUser($data);
 				
 				if ($result == 1) {
 					
@@ -166,17 +172,24 @@ class AuthController {
 					// echo $_SESSION['username'];
 					view::load('login/email-verify');
 					unset($sendMail);
+					unset($_POST);
 					exit();
 					 
 		
 				}else{
 					// echo $stmt->error;
-					$errors['db_error']= "Database error: faild to register";
+					$errors['usernamer']= "Database error: faild to register";
+					unset($_POST);
 				}
 			}else{
 				// var_dump($errors);
 				// $data['id'] = 1;	
+				$data['username']= $_POST['username'];
+				$data['email']= $_POST['email'];
+				$data['password']= $_POST['password'];
+				$data['passwordConf']= $_POST['passwordConf'];
 				$data['errors'] = $errors;
+				unset($_POST);
 				view::load('login/signup', $data);
 			}
 		
@@ -190,27 +203,34 @@ class AuthController {
 		$errors =array();
 
         if(empty($_POST['username'])){
-			$errors['username']="username required";
+			$errors['username']="username field required";
+		}else{
+			if(!(preg_match('/^[a-zA-Z0-9]+$/',$_POST['username']))){
+				$errors['username']="Username Must Contain Letters & Digits Only";
+			}
 		}
 	
 		if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
-			$errors['email']= "Email adress is invalid";
+			$errors['email']= "Email address is invalid";
 		}
 		if(empty($_POST['email'])){
-			$errors['email']="email required";
+			$errors['email']="Email field Required";
 		}
 	
 		if(empty($_POST['password'])){
-			$errors['password']="password required";
-		}
-		if(!(preg_match('/^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=§!\?]{8,}$/',$_POST['password']))){
+			$errors['password']="password field required";
+		}else{
+			if(!(preg_match('/^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=§!\?]{8,}$/',$_POST['password']))){
 			$errors['password']="A minimum 8 characters password contains a combination of uppercase and lowercase letter and number are required.";
 		}
+	}
+		if(empty($_POST['passwordConf'])){
+			$errors['passwordConf']="password confirm field required";
+		}else{
 		if($_POST['password'] !== $_POST['passwordConf']){
-			$errors['password']="password does not match";
-		}
+			$errors['passwordConf']="password does not match";
+		}}
 		$db = new Signin();
-		   
 		$result = $db->findEmail($_POST['email']);
 
             if($result == 1) {
@@ -280,11 +300,11 @@ class AuthController {
 			$errors =array();
 			$email = $_POST['email'];
 		
+			if(empty($email)){
+				$errors['email']="Email field Required";
+			}
 			if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
 				$errors['email']= "Invalid Email Address";
-			}
-			if(empty($email)){
-				$errors['email']="That address is not a verified primary email or is not associated with a personal user account. Organization billing emails are only for notifications";
 			}
 
 			$db = new Signin();
@@ -308,12 +328,15 @@ class AuthController {
 				
 				$sendMail->sendPasswordResultLink($email, $token, $userName);
 				$data['email']= $email;
+				unset($_POST);
 				view::load('login/password_message', $data);
 				unset($sendMail);
 				exit();
 		
 			}else{
 				$data['errors'] = $errors;
+				$data['email']= $_POST['email'];
+				unset($_POST);
             	View::load('login/frogot', $data);
 			}
 
@@ -343,7 +366,7 @@ class AuthController {
 			$passwordConf= $_POST['passwordConf'];
 		
 			if(empty($password)){
-				$errors['password']="password required";
+				$errors['password']="password field required";
 			}
 			if(!(preg_match('/^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=§!\?]{8,}$/',$password))){
 				$errors['password']="A minimum 8 characters password contains a combination of uppercase and lowercase letter and number are required";
@@ -359,11 +382,15 @@ class AuthController {
 				$result =$db->resetPw($password , $token);
 				if ($result) {
 					$data['errors'] =[];
+					unset($_POST);
 					View::load('login/login',$data);
 					exit();
 				}
 			}else{
 				$data['errors'] = $errors;
+				$data['password']= $_POST['password'];
+				$data['passwordConf']= $_POST['passwordConf'];
+				unset($_POST);
 				View::load('login/reset_password',$data);
 			}
 		}

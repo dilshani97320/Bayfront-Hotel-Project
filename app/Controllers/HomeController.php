@@ -56,6 +56,7 @@ session_start();
         
         public function login()
         {
+            
             $data['errors']= [];
             View::load('login/login' , $data);
         }

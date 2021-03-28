@@ -11,7 +11,7 @@
 	<?php include(VIEWS.'inc/header-surf.php'); ?>
 	<?php include(VIEWS.'inc/surf-service-section.php'); ?>
 
-	<div class="section1" >
+	<div class="surfSection1" >
 		
 		<div class="content imgsec ">
 			<img src="<?php echo BURL.'assets/img/surf/h1-video-img.jpg'; ?>">
@@ -25,22 +25,22 @@
 
 	</div><!--section1-->
 	
-	<div class="section2" >
+	<div class="surfSection2" >
 		
-		<div class="part">
+		<div class="part pack0">
 		
 			<h3>TOP SURF LESSONS</h3><hr class="line-style">
-      <ul class="p1">
-        <li>&#10004; 2 hour lesson </li>
-        <li>&#10004; Surfboard with fins, wax</li>
-        <li>&#10004; Free use of rashguard </li>
-        <li>&#10004; Beach theory lesson including safety briefing </li>
-        <li>&#10004; Transportation included (within Weligama – from main point to jungle beach) </li>
-        <li>&#10004; Experienced ISA Qualified surf coach with good english skills </li>
-        <li>&#10004; Lesson following our own surf methodology </li>
-        <li>&#10004; Coconut Water after the lesson</li>
-        <li>&#10004; Shower, changing room and other facilities </li>
-      </ul>
+			<ul class="p1">
+				<li>&#10004; 2 hour lesson </li>
+				<li>&#10004; Surfboard with fins, wax</li>
+				<li>&#10004; Free use of rashguard </li>
+				<li>&#10004; Beach theory lesson including safety briefing </li>
+				<li>&#10004; Transportation included (within Weligama – from main point to jungle beach) </li>
+				<li>&#10004; Experienced ISA Qualified surf coach with good english skills </li>
+				<li>&#10004; Lesson following our own surf methodology </li>
+				<li>&#10004; Coconut Water after the lesson</li>
+				<li>&#10004; Shower, changing room and other facilities </li>
+			</ul>
 		</div>
 
 		<div class="part pack1">

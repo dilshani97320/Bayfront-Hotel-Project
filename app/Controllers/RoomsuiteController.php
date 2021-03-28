@@ -26,14 +26,16 @@ if (session_status() == PHP_SESSION_NONE) {
             $data['room_details'] = $db->getOneRoomView($room_number); 
             $room=$data['room_details'];
 
-            $db = new RoomDetails();
-            // #WTGihan my database was differ than him
-            $data['review_details'] = $db->getReview($room[0]['room_id']); 
+            $db = new Feedback(); //connection established
+            $data['review_details'] = $db->getReservationId($room[0]['room_id']);
+ 
 
             $db = new Customer();
-            $data['customer_details'] = $db->getAllCustomer(); 
-// var_dump($data['review_details']);
-// exit;
+            $data['customer_details'] = $db->getAllCustomer();
+
+            // var_dump($data['review_details']);
+            // exit;
+            
             $db = new Image();
             $imageRoom =$db->view($room_number);
             

@@ -66,6 +66,8 @@ class CustomerController {
         }
     }
 
+    
+
     public function blacklistDetails($customer_id) {
         if(!isset($_SESSION['user_id'])) {
             $dashboard = new DashboardController();

@@ -26,7 +26,7 @@
                     <div class="options">
                         <h4>Update Room 
                         <span>
-                            <a href="<?php url("editweb/selectChange/".$room_details[0]['room_number']); ?>" class="addnew"><i class="material-icons">arrow_back</i>Back To Selection</a>  
+                            <a href="<?php url("editweb/selectChange/".$room_details[0]['room_number']); ?>" class="addnew"><i class="material-icons">reply_all</i></a>  
                         </span>
                         </h4>  
                     </div>
@@ -239,7 +239,7 @@
                             <label for="#"><i class="material-icons">no_meeting_room</i>Free Cancelaration:</label>
                                 <div class="animate-form">
                                     <select name="free_canseleration" class="inputField new" selected="<?php echo $room_details[0]['free_canselaration']; ?>" >
-                                        <option value="0" <?php if ($room_details[0]['free_canselaration'] == 1 ) echo ' selected="selected"'; ?> style="border: none">No</option> 
+                                        <option value="0" <?php if ($room_details[0]['free_canselaration'] == 1 ) echo ' selected="selected"'; ?> style="border: none"> No</option> 
                                         <option value="1" <?php if ($room_details[0]['free_canselaration'] == 1 ) echo ' selected="selected"'; ?> style="border: none">Yes</option>          
                                     </select>    
                                 </div>     

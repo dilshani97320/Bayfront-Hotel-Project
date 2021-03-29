@@ -15,18 +15,30 @@
        
         <form action="<?php url("room/checkRoomCustomer"); ?>" method="post" id="form" >
                 <div class="bookingFormContainerX">
-                        
+                        <?php 
+                         date_default_timezone_set("Asia/Colombo");
+                         $current_date = date('Y-m-d');
+                        ?>
                                 <div class="block chech-in">
                                         <label >Check in</label>
                                         <div id='check-in' class='form-field'>
-                                                <input type="date" name="check_in_date" value="" placeholder="9 July, 2016">
+                                                <input type="date" name="check_in_date" value="" placeholder="9 July, 2016"
+                                                <?php 
+                                                echo 'min="'.$current_date .'"';
+                                                ?>
+                                                >
+                                        
                                         </div>
                                 </div>
 
                                 <div class="block check-out">
                                         <label >Check out</label>
                                         <div id='check-out' class='form-field'>
-                                                <input type="date" name="check_out_date" value="" placeholder="19 July, 2016"> 	
+                                                <input type="date" name="check_out_date" value="" placeholder="19 July, 2016"
+                                                <?php 
+                                                echo 'min="'.$current_date .'"';
+                                                ?>
+                                                > 	
                                         </div>
                                 </div>
 

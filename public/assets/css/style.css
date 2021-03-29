@@ -2579,13 +2579,26 @@ figure.imgBlockSurf.hover .title:after {
   text-indent: 10px;
   padding: 0 0 0 3px;
   background-color: #fff;
-
+  font-size: 17px;
+  line-height: 1.4em;
+  font-weight: 400;
   color: #4c4c4c;
   border: 2px solid;
   border-color: #0b2e4f;
+  /* font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+   */
+  font-family: 'Poppins', sans-serif;
+
 
   /*border: none;*/
 }
+
+/* input[type="date"] {
+  
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  width: 23%; */
+  /* border: none; */
+/* } */
 
 .form__dropdown {
   box-sizing: border-box;

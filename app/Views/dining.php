@@ -4,7 +4,6 @@
 	<meta charset="utf-8">
 	<link rel="icon" type="image/png" href="<?php echo BURL.'assets/img/basic/favicon.png'; ?>" />
 	<title>BAYFRONT RESTURENT</title>
-	
 </head>
 <body>
 

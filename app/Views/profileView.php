@@ -156,7 +156,7 @@ dl.bookings dt {
     background-color: #ccc;
     border-radius: 50%;
     width: 40%;
-    height: 8%;
+    height: 4%;
     margin: auto;
 }
 
@@ -363,6 +363,7 @@ dl.bookings dt {
 
         <div class="set2">
             <?php  foreach ($reservation_details as $key=>$value): //var_dump($value); ?>
+            <?php if ($value['request']== 0 && $value['is_valid']== 1):?>
             <div class="bookBlock">
                 <h4> #Booking
                     <?php 
@@ -405,6 +406,7 @@ dl.bookings dt {
 
                                 ?>
                         </dd>
+
                         <?php  foreach ($rooms as $key1=>$value1): //var_dump($value); ?>
                         <?php  if($value1['room_id'] == $value['room_id']): //var_dump($value); ?>
                         <dt>Room Number:</dt>
@@ -431,7 +433,16 @@ dl.bookings dt {
                         <?php endforeach; ?>
                     </dl>
 
-                    <?php if ($value['is_feedback'] == 0 && $value['is_checkout'] == 1): ?>
+                    <?php if ($value['check_out_status'] == "CHECKEDOUT"): ?>
+                    <?php   $flag = 0; ?>
+                    <?php  foreach ($review as $key1=>$value1): ?>
+
+                    <?php if ($value['reservation_id'] == $value1['reservation_id'] ): ?>
+                    <?php $flag++;?>
+                    <?php endif;?>
+                    <?php endforeach; ?>
+
+                    <?php if ($flag == 1): ?>
                     <h5>Add your review</h5>
                     <form action="<?php url("profile/review"); ?>" method="post">
                         <input type="hidden" name="r_id" value="<?php echo $value['reservation_id']; ?>">
@@ -478,20 +489,23 @@ dl.bookings dt {
                         </div>
                     </form>
 
-                    <?php endif;?>
-                    <?php if ($value['is_feedback'] == 1 && $value['check_out'] == 1): ?>
-                    <?php if ($value['guest_review'] != NULL): ?>
+                    <?php else:?>
+                    <?php if ($value1['guest_review'] != NULL): ?>
                     <figure class="snip1568">
                         <figcaption>
                             <p><?php echo $value['guest_review']; ?></p>
                         </figcaption>
                     </figure>
                     <?php endif;?>
+
+                    <?php endif;?>
+
                     <?php endif;?>
                 </div>
 
 
             </div>
+            <?php endif;?>
             <?php endforeach; ?>
 
         </div>

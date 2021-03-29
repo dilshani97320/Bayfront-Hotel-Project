@@ -81,6 +81,10 @@ class EditwebController{
                 $room_view = $_POST['room_view'];
                 $floor_type = $_POST['floor_type'];
 
+                $discount = $_POST['discount'];
+                $start_date = $_POST['start_date'];
+                $end_date = $_POST['end_date'];
+
                 $room_size = $_POST['room_size'];
                 $room_size = floatval($room_size);
 
@@ -180,6 +184,16 @@ class EditwebController{
                         $errors['room_size'] = 'Entered Room Size is Invalid';
                     }
                 }
+
+                if(empty($discount)){
+                    $errors['discount'] = 'room discount Field required';
+                }else{
+                    if(!preg_match("/^[0-9]\d*(((,\d{3}){1})?(\.\d{0,2})?)$/" , $room_size)){
+                        $errors['discount'] = 'Entered Room Discount is Invalid';
+                    }
+                }
+
+                
             
                 if(count( $errors ) == 0) {
 
@@ -228,7 +242,8 @@ class EditwebController{
                                 if($floor_type == 4){
                                     $room_number = "E".$room_number;
                                 }
-                                $updateDetails = $db->createRoom( $room_number, $type_name, $room_name, $room_desc, $floor_type, $room_size, $price, $room_view,  $air_condition, $free_canseleration, $hot_water ,$breakfast_included);
+
+                                $updateDetails = $db->createRoom( $room_number, $type_name, $room_name, $room_desc, $floor_type, $room_size, $price, $room_view,  $air_condition, $free_canseleration, $hot_water ,$breakfast_included , $discount, $start_date, $end_date);
                     
                                 $db = new Image();
                                 if ($db->upload($room_number, "image_01" ,  $path)){

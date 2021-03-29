@@ -78,19 +78,6 @@ class Profile extends Connection {
     return $rooms;    
     }
 
-    public function addReview($reservation_id, $star, $review) {
-        
-        $query = "UPDATE $this->reservation_table SET $this->reservation_table.is_feedback = '1', $this->reservation_table.	guest_review = '{$review}', $this->reservation_table.rating ='{$star}'
-                  WHERE $this->reservation_table.reservation_id = {$reservation_id} AND $this->reservation_table.is_checkout = 1 LIMIT 1";
-        // echo $query; exit;
-        $result = mysqli_query($this->connection, $query);
-        
-        $value =0;
-        if($result) {
-            $value = 1;
-        }
-        return $value;
-    }
     
     public function getDeclineReservation($reservation_id) {
         

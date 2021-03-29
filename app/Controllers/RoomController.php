@@ -536,9 +536,16 @@ class RoomController {
                 $data['roomAvailable']  = $roomAvailable;
                 $db = new RoomDetails();
                 $data['room_details'] = $db->getOneRoomView($room_number); 
+            $room=$data['room_details'];
+
+            $db = new Feedback(); //connection established
+            $data['review_details'] = $db->getReservationId($room[0]['room_id']);
 
                 $db = new Image();
                 $imageRoom =$db->view($room_number);
+
+                $db = new Customer();
+            $data['customer_details'] = $db->getAllCustomer();
                 // var_dump($imageRoom);
                 $data['input_data'] = $inputdata;
                 $data['img_details'] = $imageRoom;
@@ -552,6 +559,12 @@ class RoomController {
                 $data['errors'] = $errors;
                 $db = new RoomDetails();
                 $data['room_details'] = $db->getOneRoomView($room_number); 
+            $room=$data['room_details'];
+
+            $db = new Feedback(); //connection established
+            $data['review_details'] = $db->getReservationId($room[0]['room_id']);
+            $db = new Customer();
+            $data['customer_details'] = $db->getAllCustomer();
 
                 $db = new Image();
                 $imageRoom =$db->view($room_number);
@@ -1547,4 +1560,3 @@ class RoomController {
 
     
 }
-

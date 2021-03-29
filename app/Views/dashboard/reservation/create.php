@@ -621,8 +621,6 @@
                           
                         <!-- Payment Details -->
 
-                        
-
                         <div class="row">
                             <label for="#"><i class="material-icons">request_quote</i>Payment Method:</label>
                                 <div class="animate-form">

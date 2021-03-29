@@ -1540,8 +1540,11 @@ class ReportController {
 
             }
 
-            // Close and output PDF document
-            $pdf->Output('range_report.pdf', 'I');
+            if(count( $errors ) == 0) {
+                // Close and output PDF document
+                $pdf->Output('range_report.pdf', 'I');
+            }
+            
 
           
         }

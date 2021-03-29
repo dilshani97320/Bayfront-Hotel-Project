@@ -53,23 +53,42 @@
                 <?php } else { ?>
                     <form action="<?php url("reservation/create"); ?>" method="post">
                 <?php } ?> 
-                
+
+
+                        <!-- Customer Part -->
+                        <?php 
+                        
+                            if(!isset($bookingCalendar)) {
+                                $bookingCalendar = 0;
+                            }
+                        
+                        
+                        ?>
+
+                        <input type="text" name="bookingCalendar" value="<?php echo $bookingCalendar; ?>" hidden>
                         <!-- This is may reset according to form -->
                         <input type="hidden" name="room_number" value="<?php echo $reservation['room_number']; ?>">
                         <input type="hidden" name="max_guest" value="<?php echo $reservation['max_guest']; ?>">
                         <input type="hidden" name="check_in_date" value="<?php echo $reservation['check_in_date']; ?>">
                         <input type="hidden" name="check_out_date" value="<?php echo $reservation['check_out_date']; ?>">
+
                         <div class="rowlong1">
                             <div class="rowdata1">
                                 <label for="#">First Name
+
+                                    
                                     <?php if((isset($errors['first_name'])) && (isset($reservation['first_name']))) { ?>
-                                        <i class="fa fa-exclamation-circle"></i>
+                                    <span id="msg_first_name_online"><i class="fa fa-exclamation-circle"></i></span>
+                                    <?php }if((!isset($errors['first_name'])) && (isset($reservation['first_name']))) { ?>
+                                    <span id="msg_first_name_online"><i class="fa fa-check-circle" style="color: rgb(12, 59, 12);"></i></span>
                                     <?php } else { ?>
-                                        <i class="fa fa-check-circle" style="color: rgb(12, 59, 12);"></i>
+                                    <span id="msg_first_name_online"></span>
                                     <?php } ?>
                                     
+                                    
                                 </label>
-                                <input type="text" autocomplete="off" name="first_name" class="inputrow" 
+
+                                <input type="text" autocomplete="off" name="first_name" class="inputrow" maxlength="20" minlength="4"  id="first_name_online" oninput="validationFirstNameOnline()"
                                 <?php 
                                         if(isset($reservation['first_name'])){
                                             echo 'value="' . $reservation['first_name'] . '"';
@@ -81,32 +100,36 @@
                             <div class="rowdata1">
                                 <label for="#">Last Name
                                 <?php if((isset($errors['last_name'])) && (isset($reservation['last_name']))){ ?>
-                                    <i class="fa fa-exclamation-circle"></i>
+                                    <span id="msg_last_name_online"><i class="fa fa-exclamation-circle"></i></span>
+                                <?php }if((!isset($errors['last_name'])) && (isset($reservation['last_name']))){ ?>
+                                    <span id="msg_last_name_online"><i class="fa fa-check-circle" style="color: rgb(12, 59, 12);"></i></span>
                                 <?php } else { ?>
-                                    <i class="fa fa-check-circle" style="color: rgb(12, 59, 12);"></i>
+                                    <span id="msg_last_name_online"></i></span>
                                 <?php } ?>  
                                 </label>
-                                <input type="text" autocomplete="off" name="last_name" class="inputrow" 
+                                <input type="text" autocomplete="off" name="last_name" class="inputrow" maxlength="20" minlength="4"  id="last_name_online" oninput="validationLastNameOnline()"
                                 <?php 
                                         if(isset($reservation['last_name'])){
                                             echo 'value="' . $reservation['last_name'] . '"';
                                         }
                                     
                                     ?>
-                                
-                                
+                                                               
                                 required>
                             </div>
                         </div>
+                        
                         <div class="rowlong">
                             <label for="#">Email
                             <?php if((isset($errors['email'])) && (isset($reservation['email']))){ ?>
-                                <i class="fa fa-exclamation-circle"></i>    
+                                <span id="msg_email_online"><i class="fa fa-exclamation-circle"></i></span>  
+                            <?php }if((!isset($errors['email'])) && (isset($reservation['email']))){ ?>
+                                <span id="msg_email_online"><i class="fa fa-check-circle" style="color: rgb(12, 59, 12);"></i></span>
                             <?php } else {?>
-                                <i class="fa fa-check-circle" style="color: rgb(12, 59, 12);"></i>
+                                <span id="msg_email_online"></span>
                             <?php } ?>
                             </label>
-                            <input type="text" autocomplete="off" name="email" class="inputrow" 
+                            <input type="text" autocomplete="off" name="email" class="inputrow" maxlength="30" minlength="10" id="email_online" oninput="validationEmailOnine()"
                             <?php 
                                         if(isset($reservation['email'])){
                                             echo 'value="' . $reservation['email'] . '"';
@@ -124,12 +147,14 @@
                             <div class="rowdata1">
                                 <label for="#">Contact Number
                                 <?php if((isset($errors['contact_number'])) && (isset($reservation['contact_number']))){ ?>
-                                    <i class="fa fa-exclamation-circle"></i>
+                                    <span id="msg_contact_number_online"><i class="fa fa-exclamation-circle"></i></span>
+                                <?php }if((!isset($errors['contact_number'])) && (isset($reservation['contact_number']))){ ?>
+                                    <span id="msg_contact_number_online"><i class="fa fa-check-circle" style="color: rgb(12, 59, 12);"></i></span>
                                 <?php } else { ?> 
-                                    <i class="fa fa-check-circle" style="color: rgb(12, 59, 12);"></i>
+                                    <span id="msg_contact_number_online"></span>
                                 <?php } ?>
                                 </label>
-                                <input type="text"  autocomplete="off" name="contact_number" class="inputrow" 
+                                <input type="text"  autocomplete="off" name="contact_number" class="inputrow"  maxlength="10" minlength="10" id="contact_number_online" oninput="validationContactNumberOnline()"
                                 <?php 
                                         if(isset($reservation['contact_number'])){
                                             echo 'value="' . $reservation['contact_number'] . '"';
@@ -403,12 +428,14 @@
                             <div class="rowdata1">
                                 <label for="#">Age
                                     <?php if((isset($errors['age'])) && (isset($reservation['age']))){ ?>
-                                        <i class="fa fa-exclamation-circle"></i>
+                                        <span id="msg_age_online"><i class="fa fa-exclamation-circle"></i></span>
+                                    <?php }if((!isset($errors['age'])) && (isset($reservation['age']))){ ?>
+                                        <span id="msg_age_online"><i class="fa fa-check-circle" style="color: rgb(12, 59, 12);"></i></span>
                                     <?php } else {?>
-                                        <i class="fa fa-check-circle" style="color: rgb(12, 59, 12);"></i>
+                                        <span id="msg_age_online"></span>
                                     <?php } ?>
                                 </label>
-                                <input type="text" autocomplete="off" name="age" class="inputrow"
+                                <input type="text" autocomplete="off" name="age" class="inputrow" maxlength="3" minlength="2" id="age_online" oninput="validationAgeOnline()"
                                 <?php 
                                         if(isset($reservation['age'])){
                                             echo 'value="' . $reservation['age'] . '"';
@@ -417,14 +444,16 @@
                                     ?>
                                 required>
                             </div>
+
                             <div class="rowdata1">
                                 <label for="#">Payment Method</label>
-                                <select name="payment_method"  class="inputrow" >
+                                <select name="payment_method"  class="inputrow" required>
                                     <option value="ONLINEONLINE">ONLINE</option>
                                     <option value="CASHONLINE" selected>CASH</option>
                                 </select>
                             </div>
                         </div>
+
                         <div class="buttonrow">
                             <button type="submit" name="submit" class="buttonnow">Booking Now</button>
                             <!-- <button type="submit" name="submit" class="buttonnow"><?php echo $reservation['check_in_date']; ?></button> -->
@@ -477,3 +506,5 @@
     
 </body>
 </html>
+
+<script src="<?php echo BURL.'assets/js/main.js'; ?>"></script>   

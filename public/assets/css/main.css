@@ -750,6 +750,12 @@ label {
   margin: 10px;
 }
 
+.rowdateRange {
+  display: inline-flex;
+  width: 85%;
+  margin: 10px;
+}
+
 input[type="date"] {
   font-size: 17px;
   line-height: 1.4em;
@@ -767,6 +773,20 @@ input[type="date"]::placeholder {
   width: 23%;
   /* color: #00af87; */
   /* border: none; */
+}
+
+textarea {
+  /* display: block; */
+  /* margin-left: 0; */
+  /* border: none; */
+  /* width: 65%; */
+  /* border-bottom: 2px solid rgba(0, 0, 0, 0.06); */
+  /* height: 40px; */
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;;
+  padding-left: 30px;
+  font-size: 1.125rem;
+  line-height: 1.4em;
+  font-weight: 100;
 }
 
 .inputFieldDate {
@@ -1078,7 +1098,7 @@ input[type="textarea"] {
 }
 
 .animate-form input {
-  width: 50%;
+  width: 100%;
   height: 100%;
   color: #595f6e;
   /* padding-top: 20px; */
@@ -1136,7 +1156,7 @@ input[type="textarea"] {
 .animate-form input:valid + .label-name .content-name {
   transform: translateX(360px);
   font-size: 16px;
-  color: rgb(202, 6, 6);
+  color: rgb(116, 24, 24);
 }
 
 .animate-form input + .label-name .content-success,
@@ -1151,7 +1171,7 @@ input[type="textarea"] {
 .animate-form input + .label-name .content-name .material-icons,
 .animate-form input:focus + .label-name .content-name .material-icons,
 .animate-form input:valid + .label-name .content-name .material-icons {
-  color: rgb(202, 6, 6);
+  color: rgb(116, 24, 24);
 }
 
 .animate-form input:focus + .label-name .content-success .material-icons,

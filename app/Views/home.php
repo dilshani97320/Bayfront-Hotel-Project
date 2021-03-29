@@ -51,11 +51,10 @@
             <hr class="line-style" />
             <br />
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt
-              autem, numquam, eligendi veniam dignissimos sunt. Repellendus, cum
-              perspiciatis impedit, cumque debitis vero odit quas commodi
-              aspernatur blanditiis, voluptatibus illum ipsum. ipsum dolor sit
-              amet, consectetur adipisicing elit..
+            Our spa offers a comfort package like no other for revitalizing you. 
+            Its unique setting will let you slip into a world of your own along with
+             the stunning view of the ocean. We also offer yoga packages that will 
+             help you relax your mind, limbs, and muscles.
             </p>
             <a class="btn" href="<?php url('Activity/ViewSubPage/0' ); ?>">FIND OUT MORE<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
           </div>
@@ -67,14 +66,10 @@
               <hr class="line-style" />
               <br />
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Inventore vero natus, esse dolores id sit beatae repudiandae? Ea
-                molestias quo similique accusamus minima est explicabo commodi,
-                praesentium temporibus dolore cumque. ipsum dolor sit amet,
-                consectetur adipisicing elit. Voluptatum, quas quasi nulla aut
-                blanditiis, minima omnis molestiae! Necessitatibus, adipisci nam
-                id quis natus, adipisci nam id quis natusadipisci nam id quis
-                natus, adipisci nam id quis natus.
+              At Bayfront you can sample the freshest and juiciest seafood dishes as
+               well as traditional Sri Lankan and Asian cuisine. Our team of skilled
+                chefs brings together the best local ingredients and expertise to 
+                deliver a scrumptious, globally inspired dining experience.
               </p>
               <a class="btn" href="<?php url('Dining/index'); ?>"
                 >FIND OUT MORE
@@ -111,11 +106,14 @@
             <hr class="line-style" />
             <br />
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora
-              ad modi recusandae sint reiciendis officia libero, nostrum enim
-              numquam amet velit! Inventore autem consequuntur expedita facere
-              laborum repudiandae facilis quidem voluptates impedit unde nulla
-              explicabo atque, consequatur. Sit culpa aliquam quo.
+            Overlooking Mirissa Beach in Sri Lanka, our 3-star beach resort captivates 
+            beauty of Sri Lanka and the hospitality of her people. With stylish hotel rooms
+             and suites, our hotel has breathtaking water views, excellent service, and a 
+             prime location. Take advantage of surfing lessons by professionals. Indulge 
+             yourself at our Spa and entrance your taste buds with superlative offerings 
+             from our restaurant and bar. During your stay, explore Galle Dutch Fort, Mirissa
+              Beach, Jungle Beach, and finally the famous Instagram tourist attraction, the 
+              Mirissa Coconut Hill. A stay at our hotel is simply heavenly.
             </p>
             <a class="btn" href="<?php url('Activity/index'); ?>  "
               >FIND OUT MORE

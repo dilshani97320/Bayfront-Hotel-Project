@@ -58,22 +58,23 @@
 			<p>Our commitment to cleanliness:</p>
 
 			<p>As always, the safety and security of our guests and team members remains our highest priority. We take great pride in maintaining the highest standards of cleanliness and hygiene. In response to the coronavirus, we have taken additional measures developed in consultation with global and local public health authorities to make our cleaning and hygiene protocols even more rigorous:</p>
-
-			<ol>•Our hotel team is  receiving ongoing briefings and enhanced operating protocols.</ol>
-			<ol>•We have increased the frequency of cleaning our public areas (including lobbies, door handles, public bathrooms, gym, pool etc.) and have continued the use of safe disinfectants.</ol>
-			<ol>•We will continue to adjust food and beverage service in accordance with current food safety recommendations.</ol>
-			<ol>•All supplies and materials are sanitized before being admitted into the hotel premises.</ol>
-			<ol>•We have increased the deployment of antibacterial hand sanitizers.</ol>
-			<ol>•We are making sure your dining experience will be thoughtfully curated keeping in mind limited gathering in restaurant areas and other restrictions for safety.</ol>
-			<ol>•Temperature readings of resident and non-resident guests and our associates are taken at the entrance of the hotel.</ol>
-			<ol>•If any of the parameters for our guests or colleagues are not normal, a medical examination and medical assistance are provided immediately.</ol>
-			<ol>•Masks and disposable gloves are being worn by team members throughout and changed frequently.</ol>
-
+			<ol>
+			<li>•Our hotel team is  receiving ongoing briefings and enhanced operating protocols.</li>
+			<li>•We have increased the frequency of cleaning our public areas (including lobbies, door handles, public bathrooms, gym, pool etc.) and have continued the use of safe disinfectants.</li>
+			<li>•We will continue to adjust food and beverage service in accordance with current food safety recommendations.</li>
+			<li>•All supplies and materials are sanitized before being admitted into the hotel premises.</li>
+			<li>•We have increased the deployment of antibacterial hand sanitizers.</li>
+			<li>•We are making sure your dining experience will be thoughtfully curated keeping in mind limited gathering in restaurant areas and other restrictions for safety.</li>
+			<li>•Temperature readings of resident and non-resident guests and our associates are taken at the entrance of the hotel.</li>
+			<li>•If any of the parameters for our guests or colleagues are not normal, a medical examination and medical assistance are provided immediately.</li>
+			<li>•Masks and disposable gloves are being worn by team members throughout and changed frequently.</li>
+			</ol>
 			<p>At BAYFRONT, we believe it is in challenging times like these that the power of hospitality is needed most of all. Whether you are traveling now or in the future, our team members are ready to welcome you with the hospitality you have come to expect.</p>
-
-		<ul>31st March 2021.</ul>
-		<ul>The Management</ul>
-		<ul>BAYFRONT Hotel</ul> 	
+		<ul>
+		<li>31st March 2021.</li>
+		<li>The Management</li>
+		<li>BAYFRONT Hotel</li> 
+		</ul>	
 	</div>
 		
 </body>

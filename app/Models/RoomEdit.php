@@ -67,7 +67,7 @@ class RoomEdit{
 
     
 
-    public function createRoom( $room_number, $type_name, $room_name,  $room_desc,  $floor_type, $room_size, $price, $room_view,  $air_condition, $free_canseleration, $hot_water ,$breakfast_included) {
+    public function createRoom( $room_number, $type_name, $room_name,  $room_desc,  $floor_type, $room_size, $price, $room_view,  $air_condition, $free_canseleration, $hot_water ,$breakfast_included, $discount, $start_date, $end_date) {
 
       $sql = "INSERT INTO `room_details` (room_id, room_number, type_id , room_name, floor_type, price, room_size, air_condition, room_view,breakfast_included, hot_water, free_canselaration, room_desc, is_delete) 
             VALUES (NULL, '{$room_number}', '{$type_name}', '{$room_name}', '{$floor_type}', '{$price}', '{$room_size}', '{$air_condition}', '{$room_view}', '{$breakfast_included}', '{$hot_water}', '{$free_canseleration}', '{$room_desc}', '0')";
@@ -78,7 +78,7 @@ class RoomEdit{
         $result = mysqli_query($this->connection, $sql);
 
         if($result) {
-            // query successful.. redirecting to users page
+            
             return 1;
         }else{
             return 0;

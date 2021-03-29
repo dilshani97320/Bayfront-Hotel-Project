@@ -2,7 +2,7 @@
 session_start();
     class ProfileController{
         
-        public function index()
+        public function index($email)
         {
             // exit;
             $db = new Profile();
@@ -10,16 +10,11 @@ session_start();
 
             $db = new RoomEdit();
             $data['rooms'] = $db->getAllRoom();
-
+            $db = new Feedback();
+            $data['review']=$db->getAllFeedback();
+            
             $customer = new Customer();
             $data['customer_details'] = $customer->getEmailData($_SESSION['unreg_user_email']);
-            // var_dump($customer_details);
-            // exit;
-            // $db = new Image();
-            // $imageRoom =$db->viewRoom();
-            // // var_dump($data);
-            // // exit;
-            // $data['img_details'] = $imageRoom;
             
             View::load('profileView',$data);
             
@@ -29,12 +24,17 @@ session_start();
             // var_dump($_POST);
             // exit;
             if(isset($_POST['submitReview'])) {
-                $star = $_POST['stars'];
+                 
+                if (isset($_POST['stars'])) {
+                    $star = $_POST['stars'];
+                }else{
+                    $star = 0;   
+                }
                 $review = $_POST['comment'];
                 $r_id = $_POST['r_id'];
     
                 //echo $name . "=" .$price. "=" .$description;
-                $db = new Profile(); //connection established
+                $db = new Feedback(); //connection established
     
                 if($db->addReview($r_id, $star, $review)) {
     
@@ -44,6 +44,9 @@ session_start();
                     $db = new RoomEdit();
                     $data['rooms'] = $db->getAllRoom();
 
+                    $db = new Feedback();
+                    $data['review']=$db->getAllFeedback();
+                    
                     $customer = new Customer();
                     $data['customer_details'] = $customer->getEmailData($_SESSION['unreg_user_email']);
                     view::load("profileView", $data);

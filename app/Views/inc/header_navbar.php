@@ -5,8 +5,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
-    
-    <!-- <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" />          -->
+
     <link rel="stylesheet" type="text/css" href="<?php echo BURL.'assets/css/basic-style.css'; ?>" />
     <link rel="stylesheet" type="text/css" href="<?php echo BURL.'assets/css/style.css'; ?>" />
     <title></title>
@@ -15,12 +14,12 @@
 <body>
 
     <?php if (isset($_SESSION['unreg_user_id'])): ?>
-        <?php switch ($_SESSION['usertype']): case '0':?>
-                
-            <header class="nav">
+    <?php switch ($_SESSION['usertype']): case '0':?>
+
+    <header class="nav">
         <div class="navbarContainer">
             <input type="checkbox" name="" id="check">
-            
+
             <div class="logo-container">
                 <img src="<?php echo BURL.'assets/img/basic/logo.png'; ?>" alt="">
                 <h3 class="logo">BAY FRONT</h3>
@@ -49,7 +48,8 @@
                         </li>
                         <li class="nav-link" style="--i: .85s"><a href="<?php url('Dining/index'); ?>">Dining</a></li>
                         <li class="nav-link" style="--i: .85s"><a href="<?php url('Surf/index'); ?>">Surf</a></li>
-                        <li class="nav-link" style="--i: .85s"><a href="<?php url('Activity/index'); ?>">Activities</a></li>
+                        <li class="nav-link" style="--i: .85s"><a href="<?php url('Activity/index'); ?>">Activities</a>
+                        </li>
                     </ul>
                 </div>
 
@@ -68,11 +68,11 @@
             </div>
         </div>
     </header>
-        <?php break; case '1': ?> 
-            <header class="nav">
+    <?php break; case '1': ?>
+    <header class="nav">
         <div class="navbarContainer">
             <input type="checkbox" name="" id="check">
-            
+
             <div class="logo-container">
                 <img src="<?php echo BURL.'assets/img/basic/logo.png'; ?>" alt="">
                 <h3 class="logo">BAY FRONT</h3>
@@ -101,7 +101,8 @@
                         </li>
                         <li class="nav-link" style="--i: .85s"><a href="<?php url('Dining/index'); ?>">Dining</a></li>
                         <li class="nav-link" style="--i: .85s"><a href="<?php url('Surf/index'); ?>">Surf</a></li>
-                        <li class="nav-link" style="--i: .85s"><a href="<?php url('Activity/index'); ?>">Activities</a></li>
+                        <li class="nav-link" style="--i: .85s"><a href="<?php url('Activity/index'); ?>">Activities</a>
+                        </li>
                     </ul>
                 </div>
 
@@ -119,11 +120,11 @@
             </div>
         </div>
     </header>
-        <?php break; case '2': ?> 
-            <header class="nav">
+    <?php break; case '2': ?>
+    <header class="nav">
         <div class="navbarContainer">
             <input type="checkbox" name="" id="check">
-            
+
             <div class="logo-container">
                 <img src="<?php echo BURL.'assets/img/basic/logo.png'; ?>" alt="">
                 <h3 class="logo">BAY FRONT</h3>
@@ -152,7 +153,8 @@
                         </li>
                         <li class="nav-link" style="--i: .85s"><a href="<?php url('Dining/index'); ?>">Dining</a></li>
                         <li class="nav-link" style="--i: .85s"><a href="<?php url('Surf/index'); ?>">Surf</a></li>
-                        <li class="nav-link" style="--i: .85s"><a href="<?php url('Activity/index'); ?>">Activities</a></li>
+                        <li class="nav-link" style="--i: .85s"><a href="<?php url('Activity/index'); ?>">Activities</a>
+                        </li>
                     </ul>
                 </div>
 
@@ -160,7 +162,8 @@
 
                     <a href="<?php url('Auth/logout'); ?>" class="btn1 transparent">Logout</a>
 
-                    <a href="<?php url('Profile/index'); ?>" class="btn1 solid"><i class="far fa-user-circle" ></i><?php echo $_SESSION['unreg_user_name']; ?></a>
+                    <a href="<?php url('Profile/index/'.$_SESSION['unreg_user_email']); ?>" class="btn1 solid"><i
+                            class="far fa-user-circle"></i><?php echo $_SESSION['unreg_user_name']; ?></a>
                 </div>
             </div>
 
@@ -171,17 +174,17 @@
             </div>
         </div>
     </header>
-        <?php break; default: ?>
+    <?php break; default: ?>
 
-        <?php break; endswitch; ?> 
+    <?php break; endswitch; ?>
     <?php else: ?>
-    
+
 
 
     <header class="nav">
         <div class="navbarContainer">
             <input type="checkbox" name="" id="check">
-            
+
             <div class="logo-container">
                 <img src="<?php echo BURL.'assets/img/basic/logo.png'; ?>" alt="">
                 <h3 class="logo">BAY FRONT</h3>
@@ -210,9 +213,10 @@
                         </li>
                         <li class="nav-link" style="--i: .85s"><a href="<?php url('Dining/index'); ?>">Dining</a></li>
                         <li class="nav-link" style="--i: .85s"><a href="<?php url('Surf/index'); ?>">Surf</a></li>
-                        <li class="nav-link" style="--i: .85s"><a href="<?php url('Activity/index'); ?>">Activities</a></li>
-                        
-                       
+                        <li class="nav-link" style="--i: .85s"><a href="<?php url('Activity/index'); ?>">Activities</a>
+                        </li>
+
+
                         <!-- <li class="nav-link" style="--i: .85s">
                             <a href="#">Menu<i class="fas fa-caret-down"></i></a>
                             <div class="dropdown">
@@ -265,7 +269,7 @@
                                 </ul>
                             </div>
                         </li> -->
-                       
+
                     </ul>
                 </div>
 

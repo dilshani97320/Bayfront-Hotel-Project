@@ -18,12 +18,18 @@
 		<div class="details">
 		<div class="box">
 			<p class="text">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+				Beautifully, and lavishly decorated, combined with the low lighting our restaurant 
+				can provide the perfect ambience for a delicious meal. You can expect fresh flowers,
+				tasteful artwork, candlelight, classical music, and linen tablecloths and napkins. 
+				Enjoy the freshest seafood with the hotel's culinary team who will treat you to an 
+				expertly prepared meals depicting the island’s culinary identity, with a splash of 
+				traditional Sri Lankan and Asian cuisine, using top notch ingredients.  
 		</div>
 
 		<div class="box">
 			<p class="text">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+				Our delicious restaurant specializes in freshly brewed coffee, specialty drinks, mouthwatering pastries, light snacks, and decadent desserts.
+				Appreciate our sophisticated Bar' upbeat ambiance with light restaurant bites, fine wines and cocktails.
 			</p>
 		</div>
 	    </div>
@@ -70,7 +76,7 @@
   <div class="foodImage"><img src="<?php echo BURL.'assets/img/dining/food1.jpeg'; ?>" alt="pr-sample15" /></div>
   <figcaption>
     <h3>Breakfast</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia magnam sunt iure nemo sint est doloremque blanditiis, maiores. Repellat, vero.</p>
+    <p>The most important meal of the day is provided with both traditional and western options and a fine china pot of Sri Lankan tea to go with.</p>
   </figcaption><span class="read-more">
      
     Read More <i class="ion-android-arrow-forward"></i></span>
@@ -81,7 +87,7 @@
   <div class="foodImage"><img src="<?php echo BURL.'assets/img/dining/food2.jpg'; ?>" /></div>
   <figcaption>
     <h3>Lunch</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe enim dignissimos odit facilis quisquam suscipit totam laboriosam. Labore, harum, fugiat.</p>
+    <p>Large amount of delicious, gently spiced dishes in the traditional menu and, mouthwatering seafood and, tasty pasta and spaghetti awaits you at lunch.</p>
   </figcaption><span class="read-more">
      
     Read More <i class="ion-android-arrow-forward"></i></span>
@@ -92,7 +98,7 @@
   <div class="foodImage"><img src="<?php echo BURL.'assets/img/dining/food3.jpg'; ?>" alt="pr-sample16" /></div>
   <figcaption>
     <h3>Dinner</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore unde suscipit eaque nostrum numquam accusamus hic earum perspiciatis maiores dicta?</p>
+    <p>You can choose from a simple traditional menu or the flavorful soups or delectable spicy kottu to end the day with a full stomach.</p>
   </figcaption><span class="read-more">
      
     Read More <i class="ion-android-arrow-forward"></i></span>
@@ -123,7 +129,7 @@
 				<img src="<?php echo BURL.'assets/img/dining/a.jpg'; ?>">
 				<div class="menu-content">
 					<h4>Chicken Fried Salad <span>$45</span></h4>
-					<p class="text">Aperiam tempore sit,perferendis numquam repudiandae porro voluptate dicta saepe facilis</p>
+					<p class="text">Fried chicken salad is the perfect fuse of crispy chicken and fresh vegetables  in  a dressing.</p>
 				</div>
 			</div>
 

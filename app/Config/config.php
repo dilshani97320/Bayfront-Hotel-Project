@@ -1,6 +1,6 @@
 <?php
 
 //definr site url
-define('BURL',"http://localhost/Bayfront-Hotel-Project/public/");
+define('BURL',"http://localhost/MVC/public/");
 
 ?>

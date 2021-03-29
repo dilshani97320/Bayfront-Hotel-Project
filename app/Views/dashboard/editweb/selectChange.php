@@ -27,7 +27,7 @@
                    <div class="options">
                        <h4>Room Edit Page  
                        <span>
-                            <a href="<?php url("editweb/index"); ?>" class="addnew"><i class="material-icons">arrow_back</i>Back To Rooms Table</a>  
+                            <a href="<?php url("editweb/index"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>  
                         </span>
                        </h4>
                    </div>

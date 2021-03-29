@@ -321,3 +321,18 @@ INFO: Unsupported notification method: $/setTraceNotification
 [0m2021.03.27 09:18:55 WARN  Build server is not auto-connectable.[0m
 [0m2021.03.27 09:18:55 WARN  no build tool detected in workspace 'C:\xampp\htdocs\MVC'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
 [0m2021.03.28 00:56:50 INFO  shutting down Metals[0m
+[0m2021.03.28 06:59:08 INFO  Started: Metals version 0.10.0 in workspace 'C:\xampp\htdocs\MVC' for client vscode 1.54.3.[0m
+[0m2021.03.28 06:59:12 INFO  time: initialize in 4.05s[0m
+[0m2021.03.28 06:59:21 WARN  Build server is not auto-connectable.[0m
+[0m2021.03.28 06:59:21 WARN  no build tool detected in workspace 'C:\xampp\htdocs\MVC'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+Mar 28, 2021 12:01:49 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTraceNotification
+[0m2021.03.28 12:01:55 INFO  shutting down Metals[0m
+[0m2021.03.28 19:47:53 INFO  Started: Metals version 0.10.0 in workspace 'C:\xampp\htdocs\MVC' for client vscode 1.54.3.[0m
+[0m2021.03.28 19:47:56 INFO  time: initialize in 3.72s[0m
+[0m2021.03.28 19:47:59 WARN  Build server is not auto-connectable.[0m
+[0m2021.03.28 19:47:59 WARN  no build tool detected in workspace 'C:\xampp\htdocs\MVC'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+[0m2021.03.29 10:02:23 INFO  Started: Metals version 0.10.0 in workspace 'C:\xampp\htdocs\MVC' for client vscode 1.54.3.[0m
+[0m2021.03.29 10:02:30 INFO  time: initialize in 6.51s[0m
+[0m2021.03.29 10:02:39 WARN  Build server is not auto-connectable.[0m
+[0m2021.03.29 10:02:39 WARN  no build tool detected in workspace 'C:\xampp\htdocs\MVC'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m

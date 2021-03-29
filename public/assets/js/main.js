@@ -16,6 +16,25 @@ function validationFirstName(){
 	}
 
 }
+function validationFirstNameOnline(){
+	var name= document.getElementById("first_name_online").value;
+	var text= document.getElementById("msg_first_name_online");
+	var pattern = /^[A-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
+
+	if(name.match(pattern)  && name.length>= 4 && name.length<= 20){
+		text.innerHTML ='<i class="fa fa-check-circle" style="color: rgb(12, 59, 12);"></i>';
+        text.style.color= "rgb(22, 80, 22)";
+	}
+	else{
+		text.innerHTML ='<i class="fa fa-exclamation-circle"></i>';
+        text.style.color= "rgb(116, 24, 24)";
+	}
+	if(name == ""){
+		text.innerHTML ="";
+	}
+
+}
+
 function validationLastName(){
 	var name= document.getElementById("last_name").value;
 	var text= document.getElementById("msg_last_name");
@@ -27,6 +46,24 @@ function validationLastName(){
 	}
 	else{
 		text.innerHTML ='<i class="material-icons" style="color:rgb(116, 24, 24)">info</i>Last Name is Not Valid';
+        text.style.color= "rgb(116, 24, 24)";
+	}
+	if(name == ""){
+		text.innerHTML ="";
+	}
+
+}
+function validationLastNameOnline(){
+	var name= document.getElementById("last_name_online").value;
+	var text= document.getElementById("msg_last_name_online");
+	var pattern = /^[A-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
+
+	if(name.match(pattern)  && name.length>= 4 && name.length<= 20  ){
+		text.innerHTML ='<i class="fa fa-check-circle" style="color: rgb(12, 59, 12);"></i>';
+        text.style.color= "rgb(22, 80, 22)";
+	}
+	else{
+		text.innerHTML ='<i class="fa fa-exclamation-circle"></i>';
         text.style.color= "rgb(116, 24, 24)";
 	}
 	if(name == ""){
@@ -46,6 +83,24 @@ function validationEmail(){
 	}
 	else{
 		text.innerHTML ='<i class="material-icons" style="color:rgb(116, 24, 24)">info</i>Email is Not Valid';
+        text.style.color= "rgb(116, 24, 24)";
+	}
+	if(name == ""){
+		text.innerHTML ="";
+	}
+
+}
+function validationEmailOnine(){
+	var name= document.getElementById("email_online").value;
+	var text= document.getElementById("msg_email_online");
+	var pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+	if(name.match(pattern)  && name.length>= 12 && name.length<= 30  ){
+		text.innerHTML ='<i class="fa fa-check-circle" style="color: rgb(12, 59, 12);"></i>';
+        text.style.color= "rgb(22, 80, 22)";
+	}
+	else{
+		text.innerHTML ='<i class="fa fa-exclamation-circle"></i>';
         text.style.color= "rgb(116, 24, 24)";
 	}
 	if(name == ""){
@@ -90,6 +145,24 @@ function validationAge(){
 	}
 
 }
+function validationAgeOnline(){
+	var name= document.getElementById("age_online").value;
+	var text= document.getElementById("msg_age_online");
+	var pattern = /^\S[1-9]{1,2}$/;
+
+	if(name.match(pattern)  && name.length>= 2 && name.length <= 3 && name > 20  ){
+		text.innerHTML ='<i class="fa fa-check-circle" style="color: rgb(12, 59, 12);"></i>';
+        text.style.color= "rgb(22, 80, 22)";
+	}
+	else{
+		text.innerHTML ='<i class="fa fa-exclamation-circle"></i>';
+        text.style.color= "rgb(116, 24, 24)";
+	}
+	if(name == ""){
+		text.innerHTML ="";
+	}
+
+}
 
 function validationLocation(){
 	var name= document.getElementById("location").value;
@@ -99,7 +172,7 @@ function validationLocation(){
 	if(name.match(pattern) && name.length>= 20 && name.length<= 35  ){
 		text.innerHTML ='<i class="material-icons" style="color:rgb(22, 80, 22)">check_circle</i>Location is Valid';
         text.style.color= "rgb(22, 80, 22)";
-		console.log("hello2");
+		// console.log("hello2");
 	}
 	else{
 		text.innerHTML ='<i class="material-icons" style="color:rgb(116, 24, 24)">info</i>Location is Not Valid';
@@ -112,6 +185,7 @@ function validationLocation(){
 	
 
 }
+
 function validationContactNumber(){
 	var name= document.getElementById("contact_number").value;
 	var text= document.getElementById("msg_contact_number");
@@ -123,6 +197,24 @@ function validationContactNumber(){
 	}
 	else{
 		text.innerHTML ='<i class="material-icons" style="color:rgb(116, 24, 24)">info</i>Contact Number is Not Valid';
+        text.style.color= "rgb(116, 24, 24)";
+	}
+	if(name == ""){
+		text.innerHTML ="";
+	}
+
+}
+function validationContactNumberOnline(){
+	var name= document.getElementById("contact_number_online").value;
+	var text= document.getElementById("msg_contact_number_online");
+	var pattern = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/;
+
+	if(name.match(pattern)  && name.length == 10){
+		text.innerHTML ='<i class="fa fa-check-circle" style="color: rgb(12, 59, 12);"></i>';
+        text.style.color= "rgb(22, 80, 22)";
+	}
+	else{
+		text.innerHTML ='<i class="fa fa-exclamation-circle"></i>';
         text.style.color= "rgb(116, 24, 24)";
 	}
 	if(name == ""){

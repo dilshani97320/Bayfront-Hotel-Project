@@ -52,7 +52,7 @@
                         
 
                         <div class="rowdate">
-                            <label for="#"><i class="material-icons">today</i>Check-In Date:</label>
+                            <label for="#"><i class="material-icons">today</i>Start Date:</label>
                                 <!-- <div class="animate-formdate"> -->
                                     <input type="date"  autocomplete="off" name="start_date" class="inputFieldDate" 
                                     <?php 
@@ -81,7 +81,7 @@
                         
 
                         <div class="rowdate">
-                            <label for="#"><i class="material-icons">today</i>Check-Out Date:</label>
+                            <label for="#"><i class="material-icons">today</i>End Date:</label>
                                 <!-- <div class="animate-form"> -->
                                     <input type="date"  autocomplete="off" name="end_date" class="inputFieldDate" 
                                     <?php 

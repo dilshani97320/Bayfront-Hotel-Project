@@ -28,8 +28,7 @@
                     <div class="options">
                         <h4>Add New Room
                             <span>
-                                <a href="<?php url("editweb/index"); ?>" class="addnew"><i
-                                        class="material-icons">arrow_back</i>Back To Room Table</a>
+                                <a href="<?php url("editweb/index"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>
                             </span>
                         </h4>
                     </div>
@@ -100,7 +99,7 @@
                                             style="border: none">Fourth Floor</option>
                                     </select>
 
-                                    <label for="name" class="label-name">
+                                    <!-- <label for="name" class="label-name">
                                         <?php if((isset($errors['floor_type'])) && (isset($room['room_number']))): ?>
                                         <div id="alert0001">
                                             <span class="content-name"><i
@@ -111,7 +110,7 @@
                                             <span class="content-name"></span>
                                         </div>
                                         <?php endif; ?>
-                                    </label>
+                                    </label> -->
 
                                 </div>
                             </div>
@@ -120,7 +119,7 @@
                             <div class="row" style="display:none;" id="room-no">
                                 <label for="#"><i class="material-icons">admin_panel_settings</i>Room Number:</label>
                                 <div class="animate-form" id="animate-form-room-no">
-                                    <input type="number" autocomplete="off" name="room_number" class="inputField" <?php 
+                                    <input type="number" autocomplete="off" name="room_number" class="inputFieldDate" <?php 
                                         if(isset($room['room_number'])){
                                             echo 'value="' . $room['room_number'] . '"';
                                         }
@@ -130,7 +129,7 @@
                                     
                                     ?> oninput="validateRoomNo(this, 0,3)">
 
-                                    <label for="name" class="label-name">
+                                    <!-- <label for="name" class="label-name">
                                         <?php if((isset($errors['room_number'])) && (isset($room['room_number']))): ?>
                                         <div id="alert01">
                                             <span class="content-name"><i
@@ -141,8 +140,30 @@
                                             <span class="content-name"></span>
                                         </div>
                                         <?php endif; ?>
-                                    </label>
+                                    </label> -->
                                 </div>
+                            </div>
+
+<!-- This is not input field this for testing design Ravindu -->
+                        <div class="rowdateRange">
+                            <label for="#"><i class="material-icons">today</i>Check-Out Date:</label>
+                                <!-- <div class="animate-form"> -->
+                                <input type="number" autocomplete="off" name="room_number" class="inputFieldDate" <?php 
+                                        if(isset($room['room_number'])){
+                                            echo 'value="' . $room['room_number'] . '"';
+                                        }
+                                        else {
+                                            echo 'placeholder="B102"';
+                                        } 
+                                    
+                                ?> oninput="validateRoomNo(this, 0,3)">
+                                    
+                                    <label for="name" class="label-name">
+                                        <?php if((isset($errors)) && (isset($details['check_out_date']))): ?>
+                                            <span class="content-name"><i class="material-icons">info</i>No ROOMS Available</span>
+                                        <?php endif; ?>
+                                    </label>   
+                                <!-- </div>      -->
                             </div>
 
                             <div class="row">
@@ -213,13 +234,13 @@
                                             style="border: none">City View</option>
                                     </select>
 
-                                    <label for="name" class="label-name">
+                                    <!-- <label for="name" class="label-name">
                                         <?php if((isset($errors['room_view'])) && (isset($room['room_view']))): ?>
                                         <span class="content-name"><i
                                                 class="material-icons">info</i><?php echo $errors['room_view']; ?></span>
 
                                         <?php endif; ?>
-                                    </label>
+                                    </label> -->
                                 </div>
                             </div>
 

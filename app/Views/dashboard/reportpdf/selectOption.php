@@ -45,30 +45,21 @@
                         
                         <div class="horBadge">
                             <div class="icon2">
-                                <i class="fa fa-money"></i>
+                                <i class="fa fa-book"></i>
                             </div>
                             <div class="text">
-                                Range Report
+                                Hotel Report
                             </div>
                             <a href="<?php url('report/formViewRange');?>"></a>
                         </div>
 
-                        <div class="horBadge">
-                            <div class="icon2">
-                                <i class="fas fa-info-circle"></i>
-                            </div>
-                            <div class="text">
-                                Above Hotel
-                            </div>
-                            <a href="<?php url('report/formViewAll');?>"></a>
-                        </div>
 
                         
                     </div>
 
-                    <div class="cardbody"> 
+                    <!-- <div class="cardbody"> 
                         <?php include(VIEWS.'dashboard/room/bookingCalendar.php'); ?>
-                    </div>
+                    </div> -->
            </div> 
        </div>
    </div>

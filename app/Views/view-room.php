@@ -188,7 +188,7 @@
             <div class="roomSec2">
                 <div class="price pt">
                     <span class="titlePrice">Price</span>
-                    <span class="value"><?php echo $room_details[0]['price']; ?> $</span>
+                    <span class="value"><?php echo $room_details[0]['price']; ?> LKR</span>
                     <span class="unit">/Per Night</span>
                 </div>
                 <?php include(VIEWS.'inc/booking-formY.php'); ?>

@@ -105,7 +105,7 @@
             <h1>Lunch</h1>
         </div>
     </div>
-    <div class="headImg">
+    <div class="subPageView">
         <div class="first">
 
             <p class="">The WCL version of the Sri Lankan cookery class – a more hands-on introduction to Sri Lankan
@@ -206,7 +206,7 @@
             <h1>Dinner</h1>
         </div>
     </div>
-    <div class="headImg">
+    <div class="subPageView">
         <div class="first">
 
             <p class="">The level 3 lessons are for available for longboarders and shortboarders alike that want to take

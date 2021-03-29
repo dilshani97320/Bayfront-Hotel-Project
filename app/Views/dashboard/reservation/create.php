@@ -574,6 +574,10 @@
                                         } 
                                     
                                     ?>
+
+                                    <?php 
+                                        echo 'min="'.$current_date .'"';
+                                    ?>
                                     
                                     
                                     >
@@ -596,6 +600,10 @@
                                             echo 'value="' . $reservation['check_out_date'] . '"';
                                         }
                                     
+                                    ?>
+
+                                    <?php 
+                                        echo 'min="'.$current_date .'"';
                                     ?>
                                     
                                     required

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<link rel="icon" type="image/png" href="<?php echo BURL.'assets/img/basic/favicon.png'; ?>" />
-	<title>BAYFRONT ACTIVITY </title>
+    <meta charset="UTF-8">
+    <link rel="icon" type="zoomImgage/png" href="<?php echo BURL.'assets/img/basic/favicon.png'; ?>" />
+    <title>BAYFRONT ACTIVITY </title>
 
 </head>
 <style>
@@ -11,11 +12,15 @@
     left: 400px;
     /* right: auto; */
 }
+
 .pimg1 .t1::after {
     left: 850px;
     /* right: auto; */
 }
-.pimg1 .t1::after, .pimg1 .t1::before, .pimg1 .t1::after {
+
+.pimg1 .t1::after,
+.pimg1 .t1::before,
+.pimg1 .t1::after {
     content: '';
     display: block;
     width: 100px;
@@ -27,17 +32,19 @@
     right: 0;
 }
 </style>
+
 <body>
 
-	<?php include(VIEWS.'inc/header_navbar.php'); ?>
+    <?php include(VIEWS.'inc/header_navbar.php'); ?>
 
-	<?php 
+    <?php 
 			// echo $id;
 			// exit();
 
 		switch ($id) {
 			case '1':
 	?>
+  
 		<div class="slidecontainer">
 			<img class="image" src="<?php echo BURL.'assets/img/activity/post4.jpg'; ?>" alt="beach side city view">
 		 	<div class="bottom-left">
@@ -60,9 +67,11 @@
 		</div>
 
 	<?php
+
 					break;
 				case '0':
 	?>
+
 
 		<div class="slidecontainer">
 			<img class="image" src="<?php echo BURL.'assets/img/activity/post0.jpg'; ?>" alt="beach side city view">
@@ -323,6 +332,9 @@ This place has become so popular that a lot of people wish to make a popular fra
 			
 		</div>
 	<?php
+
+    <?php
+
 					break;
 				default:
 					# code...
@@ -330,23 +342,24 @@ This place has become so popular that a lot of people wish to make a popular fra
 			}
 		
 	?>
-	<div class="pimg1" style="background-image: url('<?php echo BURL.'assets/img/activity/para.jpg'; ?>');">
-		<div class="ptext">
-			<span class="t1">Special promotions</span><br>
-			<span class="boader">Find Your Favourite</span>
+    <div class="pimg1" style="background-zoomImgage: url('<?php echo BURL.'assets/img/activity/para.jpg'; ?>');">
+        <div class="ptext">
+            <span class="t1">Special promotions</span><br>
+            <span class="boader">Find Your Favourite</span>
 
-		</div>
-	</div>
-	
-	
-	<?php include(VIEWS.'inc/footer.php'); ?>
+        </div>
+    </div>
 
-	<script type="text/javascript">
-	window.onload = function () {
-		const navbar= document.querySelector(".nav");
-		// console.log(navbar);
-		navbar.classList.toggle("sticky");
-	};
-	</script>
+
+    <?php include(VIEWS.'inc/footer.php'); ?>
+
+    <script type="text/javascript">
+    window.onload = function() {
+        const navbar = document.querySelector(".nav");
+        // console.log(navbar);
+        navbar.classList.toggle("sticky");
+    };
+    </script>
 </body>
+
 </html>

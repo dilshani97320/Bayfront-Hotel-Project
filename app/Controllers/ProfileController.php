@@ -2,7 +2,7 @@
 session_start();
     class ProfileController{
         
-        public function index()
+        public function index($email)
         {
             // exit;
             $db = new Profile();
@@ -11,15 +11,9 @@ session_start();
             $db = new RoomEdit();
             $data['rooms'] = $db->getAllRoom();
 
+            
             $customer = new Customer();
             $data['customer_details'] = $customer->getEmailData($_SESSION['unreg_user_email']);
-            // var_dump($customer_details);
-            // exit;
-            // $db = new Image();
-            // $imageRoom =$db->viewRoom();
-            // // var_dump($data);
-            // // exit;
-            // $data['img_details'] = $imageRoom;
             
             View::load('profileView',$data);
             

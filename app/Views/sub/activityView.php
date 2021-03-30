@@ -333,7 +333,6 @@ This place has become so popular that a lot of people wish to make a popular fra
 		</div>
 	<?php
 
-    <?php
 
 					break;
 				default:

@@ -27,7 +27,6 @@
                                                 echo 'min="'.$current_date .'"';
                                                 ?>
                                                 >
-                                        
                                         </div>
                                 </div>
 
@@ -46,8 +45,8 @@
                                         <div class='form__dropdown'>
                                                 <label >Rooms</label>
                                                 <div class='form-field'> 
-                                                        <select id='adultsAmount' name="no_of_rooms">
-                                                                <option value="" selected="selected">0</option>  
+                                                        <select id='adultsAmount' name="no_of_rooms" required>
+                                                                <option value="" selected="selected">No of Rooms</option>  
                                                                 <option value="1">1</option>
                                                                 <option value="2">2</option>
                                                         </select>
@@ -60,8 +59,8 @@
                                                 <label >Guests</label>
                                                 <br>
                                                 <div class='form-field'> 
-                                                        <select id='childrenAmount' name="no_of_guests"> 
-                                                                <option value="" selected="selected">0</option>                        
+                                                        <select id='childrenAmount' name="no_of_guests" required> 
+                                                                <option value="" selected="selected">No of Guests</option>                        
                                                                 <option value="1" >1</option>
                                                                 <option value="2">2</option>
                                                                 <option value="3">3</option>

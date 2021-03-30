@@ -1,5 +1,6 @@
 <?php 
    // Header
+//    include(VIEWS.'dashboard/popupmsg.php');
    $title = "Report Generate page";
    include(VIEWS.'dashboard/inc/header.php');
 ?> 
@@ -14,13 +15,11 @@
        
             include(VIEWS.'dashboard/inc/sidebar.php'); //Sidebar
             include(VIEWS.'dashboard/inc/navbar.php'); //Navbar
+            
     ?>
 
-    <?php 
-        if(isset($errors['date'])) {
-            echo '<script>alert("'.$errors['date'].'!!")</script>';
-        }
-    ?>
+
+    
 
     
     <!-- Table design -->
@@ -34,6 +33,20 @@
                         <span>
                             <a href="<?php url("report/option"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>  
                        </span>
+                       <?php 
+                        if(isset($errors['date'])) { ?>
+                        <!-- //     echo '<script>alert("'.$errors['date'].'!!")</script>'; -->
+                        <div class="notifyclass">
+                            <span class="notifyError">
+                                <h3 class="error-style">
+                                    <?php echo $errors['date']; ?>
+                                </h3>
+                            </span>
+                        </div> 
+                            
+                        <?php } ?>
+                        
+                       
                         </h4>  
                     </div>
 
@@ -106,9 +119,9 @@
                         </div>
 
                         <div class="row">
-                            <label for="#"><i class="material-icons">payment</i>Maitainence Cost:</label>
+                            <label for="#"><i class="material-icons">paid</i>Maitainence Cost:</label>
                                 <div class="animate-form">
-                                    <input type="text"  autocomplete="off" name="cost" class="inputField" maxlength="6" minlength="4" id="salary" oninput="validationSalary()"
+                                    <input type="text"  autocomplete="off" name="cost" class="inputField" maxlength="6" minlength="0" id="cost" oninput="validationCost()"
                                     <?php 
                                         if(isset($report['cost'])){
                                             echo 'value="' . $report['cost'] . '"';
@@ -124,10 +137,10 @@
                                     
                                         <label for="name" class="label-name">
                                             <?php if((isset($errors['cost'])) && (isset($report['cost']))){?>
-                                                <span class="content-name" id="msg_salary"><i class="material-icons">info</i><?php echo $errors['cost']; ?></span>
+                                                <span class="content-name" id="msg_cost"><i class="material-icons">info</i><?php echo $errors['cost']; ?></span>
                                             <?php }else { ?>
                                             <!-- Real time validation -->
-                                                    <span class="content-name" id="msg_salary"></span>
+                                                    <span class="content-name" id="msg_cost"></span>
                                             <?php } ?>
                                         </label>    
                                 </div>     

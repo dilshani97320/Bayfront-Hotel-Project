@@ -1055,6 +1055,27 @@ class Reservation extends Connection {
 
 
     }
+
+    public function getAllReservation($customer_id) {
+        $customer = new Customer();
+        $customer->customer_id;
+        $customer->customer_id = mysqli_real_escape_string($this->connection, $customer_id);
+
+        $query = "SELECT * FROM $this->reservation_table
+                  WHERE customer_id = '{$customer->customer_id}' AND is_valid = 1 AND request = 0";
+
+        $result = mysqli_query($this->connection, $query);
+        // var_dump($query);
+        // die();
+        if($result) {
+            mysqli_fetch_all($result,MYSQLI_ASSOC);
+        }
+        else {
+            echo "Database Query Failed";
+        } 
+
+        return $result;
+    }
     
 
     

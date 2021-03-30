@@ -19,6 +19,15 @@ session_start();
             View::load('profileView',$data);
             
         }
+
+        public function cancelBooking($room_id, $check_in_date, $check_out_date,$email) {
+            $db = new Reservation();
+            $result = $db->getReservationDelete($room_id, $check_in_date, $check_out_date);
+            if($result == 1) {
+                $this->index($email);
+            }
+        }
+
         public function review()
         {
             // var_dump($_POST);

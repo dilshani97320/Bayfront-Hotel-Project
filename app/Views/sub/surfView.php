@@ -15,6 +15,12 @@
 
     <?php 
 
+        
+        if(isset($msg2)) {
+            echo '<script>alert("'.$msg2.'")</script>';
+        }
+
+
 			switch ($id) {
 				case '1':
 	?>
@@ -47,6 +53,13 @@
                         <p class="head">We offer experienced professional instructors in small groups which allows for
                             fast learning and lots of fun. Our lessons begin on the beach and in the easier white waves
                             where we take you through the basic theory and techniques of surfing..</p>
+
+                            <?php 
+                            $package_id = 2;
+                            ; ?>
+                            <div class="bttn">		
+								<a class="btn" href="<?php url('Surf/reservation/'.$package_id.'/'.$id); ?>">BOOK NOW<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+							</div>
                         <dt>TOUR INCLUDES:</dt>
                         <dd>Camp, Board, Shoes</dd>
                         <dt>DAILY TIMES:</dt>

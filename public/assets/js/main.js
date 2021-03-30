@@ -126,6 +126,24 @@ function validationSalary(){
 	}
 
 }
+function validationCost(){
+	var name= document.getElementById("cost").value;
+	var text= document.getElementById("msg_cost");
+	var pattern = /^[0-9]+$/;
+
+	if(name.match(pattern)  && name.length<= 6  ){
+		text.innerHTML ='<i class="material-icons" style="color:rgb(22, 80, 22)">check_circle</i>Cost is Valid';
+        text.style.color= "rgb(22, 80, 22)";
+	}
+	else{
+		text.innerHTML ='<i class="material-icons" style="color:rgb(116, 24, 24)">info</i>Cost is Not Valid';
+        text.style.color= "rgb(116, 24, 24)";
+	}
+	if(name == ""){
+		text.innerHTML ="";
+	}
+
+}
 
 function validationAge(){
 	var name= document.getElementById("age").value;

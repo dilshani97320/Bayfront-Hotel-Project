@@ -180,14 +180,7 @@ class ReservationController {
             $data['img_details'] = $imageRoom;
             $data['msg2'] = "Plaese login then Reserve Room";
             View::load('room', $data);
-            // if($customer_id != 0) {
-            //     $customer = new Customer();
-            //     $customer_details = $customer->getCustomer($customer_id);
-            //     $reservation = array('first_name'=>$customer_details['first_name'], 'last_name'=>$customer_details['last_name'],'age'=>$customer_details['age'],'location'=>$customer_details['location'],'contact_number'=>$customer_details['contact_number'],'email'=>$customer_details['email'],'room_number'=>$room_number,'max_guest'=>$max_guest,'check_in_date'=>$check_in_date, 'check_out_date'=>$check_out_date);
-            // }
-            // else {
-            //     $reservation = array('room_number'=>$room_number,'max_guest'=>$max_guest,'check_in_date'=>$check_in_date, 'check_out_date'=>$check_out_date);
-            // }
+            
             
         }
     }

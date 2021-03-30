@@ -45,7 +45,7 @@ class RoomEdit{
     public function getAllRoom() {
 
 
-        $query = "SELECT $this->table1.room_number, $this->table1.room_id, $this->table1.room_name, $this->table1.room_view, $this->table1.price,
+        $query = "SELECT $this->table1.room_number, $this->table1.room_id, $this->table1.room_name, $this->table1.room_view, $this->table1.price, $this->table1.free_canselaration,
                   $this->table2.type_name 
                   FROM $this->table1
                   INNER JOIN $this->table2 ON $this->table1.type_id = $this->table2.room_type_id AND $this->table1.is_delete = 0";

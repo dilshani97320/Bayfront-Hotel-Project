@@ -44,6 +44,17 @@
                         </div>
 
                         <div class="horBadge">
+                        
+                            <div class="icon1">
+                                <i class="fas fa-bacon"></i>
+                            </div>
+                            <div class="text">
+                                Surf
+                            </div>
+                            <a href="<?php url('surf/reservationIndex');?>"></a>
+                        </div>
+
+                        <div class="horBadge">
                             <div class="icon2">
                                 <i class="fas fa-calendar-check"></i>
                             </div>

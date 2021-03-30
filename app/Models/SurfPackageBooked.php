@@ -123,7 +123,7 @@ class SurfPackageBooked extends Connection{
                   WHERE $this->surfPackageBooked_table.surf_package_booked_id = '{$this->surf_package_booked_id}' AND $this->surfPackageBooked_table.is_valid = 1  LIMIT 1";
 
         $result = mysqli_query($this->connection, $query);
-        
+         
         $value =0;
         if($result) {
             $value = 1;

@@ -29,6 +29,98 @@ class EditwebController{
         }
     }
 
+    public function discount() {
+        date_default_timezone_set("Asia/Colombo");
+        $current_date = date('Y-m-d');
+        
+        if(!isset($_SESSION['user_id'])) {
+            $dashboard = new DashboardController();
+            $dashboard->index();   
+        }
+        
+        else {
+            $db = new RoomType();
+            $typename = $db->getRoomTypes();
+            $data['typename'] = $typename;
+
+            $db = new RoomType();
+            $type = $db->getTypes();
+            $data['type'] = $type;
+            
+            $db = new RoomEdit();
+            $data['discount_details'] = $db->getAllDiscount();
+            // var_dump($data['type']); exit;
+                    
+            view::load('dashboard/editweb/discount', $data);
+
+        }
+           
+    }
+
+    public function updateDiscount(){
+        if(isset($_POST['submit'])){
+            // echo '<pre>', print_r($_POST) ,'</pre>';
+            // exit();
+
+            $type_name =$_POST['type_name'];
+            $dis =$_POST['discount'];
+            $start =$_POST['start_date'];
+            $end =$_POST['end_date'];
+
+
+            $db = new RoomType();
+            $type = $db->getTypeID($type_name);
+            $type_id = $type['room_type_id'];
+            
+            $db = new RoomType();
+            if($db->updateTypeDiscount($type_id, $dis, $start, $end)){
+
+                $db = new RoomType();
+            $typename = $db->getRoomTypes();
+            $data['typename'] = $typename;
+
+            $db = new RoomType();
+            $type = $db->getTypes();
+            $data['type'] = $type;
+            
+            $db = new RoomEdit();
+            $data['discount_details'] = $db->getAllDiscount();
+            // var_dump($data['type']); exit;
+                view::load('dashboard/editweb/discount', $data);
+            }
+            // var_dump($data['type']); exit;
+                    
+            
+
+        }
+           
+    }
+    public function selectDetails() {
+        
+
+        //Checking if a user is logged in
+        if(!isset($_SESSION['user_id'])) {
+            $dashboard = new DashboardController();
+            $dashboard->index();      
+        }
+        else {
+            $data = array();
+            // $db = new Employee;
+            $db = new RoomEdit();
+
+            if(isset($_POST['search'])) {
+                $search = $_POST['search'];
+                $data['rooms'] = $db->getSearchRoom($search);
+                //echo 'Error1';
+                view::load('dashboard/editweb/select', $data);
+            }
+            else {
+                $data['rooms'] = $db->getAllRoom();
+        
+                view::load('dashboard/editweb/select', $data);
+            }
+        }
+    }
     public function selectChange($room_number) {
     
         

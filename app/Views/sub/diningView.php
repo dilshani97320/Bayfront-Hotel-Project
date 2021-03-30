@@ -38,7 +38,7 @@
             <div class="package">
 
                 <img src="<?php echo BURL.'assets/img/dining/sub11.png'; ?>" alt="" class="packImg">
-                <div class="price">
+                <div class="packageInfo">
                     <ul class="inline">
 
                         <li>Red Rice & Curry</li>
@@ -59,7 +59,7 @@
                     <blockquote>
                         <p>It was an amazing hangout with great ambience and soothing music. And the staff is very
                             friendly and welcoming. A clean and calm place to enjoy a delicious dinner. A great taste
-                            for the price you pay. ”</p>
+                            for the packageInfo you pay. ”</p>
                     </blockquote>
                     <cite><span>Olivia Williams</span><br>
                         USA
@@ -73,7 +73,7 @@
             <div class="package">
 
                 <img src="<?php echo BURL.'assets/img/dining/sub12.jpg'; ?>" alt="" class="packImg">
-                <div class="price">
+                <div class="packageInfo">
                     <ul class="inline">
 
                         <li> Sausage and Egg Sandwich</li>
@@ -120,7 +120,7 @@
             <div class="package">
 
                 <img src="<?php echo BURL.'assets/img/dining/sub13.jpg'; ?>" alt="" class="packImg">
-                <div class="price">
+                <div class="packageInfo">
                     <ul class="inline">
 
                         <li>Red Rice & Curry</li>
@@ -157,7 +157,7 @@
             <div class="package">
 
                 <img src="<?php echo BURL.'assets/img/dining/sub14.jpg'; ?>" alt="" class="packImg">
-                <div class="price">
+                <div class="packageInfo">
                     <ul class="inline">
 
                         <li> Sausage and Egg Sandwich</li>
@@ -174,7 +174,7 @@
             <div class="package">
 
                 <img src="<?php echo BURL.'assets/img/dining/sub15.jpg'; ?>" alt="" class="packImg">
-                <div class="price">
+                <div class="packageInfo">
                     <ul class="inline">
 
                         <li> Sausage and Egg Sandwich</li>
@@ -223,7 +223,7 @@
             <div class="package">
 
                 <img src="<?php echo BURL.'assets/img/dining/sub16.jpg'; ?>" alt="" class="packImg">
-                <div class="price">
+                <div class="packageInfo">
                     <ul class="inline">
 
                         <li> Sausage and Egg Sandwich</li>
@@ -263,7 +263,7 @@
             <div class="package">
 
                 <img src="<?php echo BURL.'assets/img/dining/sub18.jpg'; ?>" alt="" class="packImg">
-                <div class="price">
+                <div class="packageInfo">
                     <ul class="inline">
 
                         <li> Sausage and Egg Sandwich</li>
@@ -281,7 +281,7 @@
             <div class="package">
 
                 <img src="<?php echo BURL.'assets/img/dining/sub19.jpg'; ?>" alt="" class="packImg">
-                <div class="price">
+                <div class="packageInfo">
                     <ul class="inline">
 
                         <li> Sausage and Egg Sandwich</li>

@@ -409,8 +409,8 @@
 			}
 		
 	?>
-    <div class="pimg1" style="background-zoomImgage: url('<?php echo BURL.'assets/img/activity/para.jpg'; ?>');">
-        <div class="ptext">
+    <div class="parallexImg" style="background-image: url('<?php echo BURL.'assets/img/activity/para.jpg'; ?>');">
+        <div class="parallexText">
             <span class="t1">Special promotions</span><br>
             <span class="boader">Find Your Favourite</span>
 

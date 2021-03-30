@@ -138,7 +138,7 @@ class Feedback{
                 $result = mysqli_query($this->connection, $query);
                         
                 $value =0;
-        
+         
                 if($result) {
                     $value = 1;
                 }else{
@@ -150,15 +150,15 @@ class Feedback{
 
             public function addReview($reservation_id, $star, $review) {
         
-                $query = "INSERT INTO $this->table2(feedback_id, reservation_id, guest_review, rating) VALUES (NULL, '{$reservation_id}', '{$review}')";
+                $query = "INSERT INTO $this->table2(feedback_id, reservation_id, guest_review, rating) VALUES (NULL, '{$reservation_id}', '{$review}', '{$star}')";
                 // echo $query; exit;
                 $result = mysqli_query($this->connection, $query);
-                
-                $value =0;
                 if($result) {
-                    $value = 1;
+                    return 1;
+                }else{
+                    return 2;
                 }
-                return $value;
+                
             }
             
 }

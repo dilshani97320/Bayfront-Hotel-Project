@@ -13,6 +13,9 @@ if (session_status() == PHP_SESSION_NONE) {
             $imageRoom =$db->viewRoom();
             // var_dump($imageRoom);
             $data['img_details'] = $imageRoom;
+
+            $db = new RoomEdit();
+            $data['discount_details'] = $db->getAllDiscount();
     
             View::load('room', $data);
         }
@@ -28,7 +31,8 @@ if (session_status() == PHP_SESSION_NONE) {
 
             $db = new Feedback(); //connection established
             $data['review_details'] = $db->getReservationId($room[0]['room_id']);
- 
+            $db = new RoomEdit();
+            $data['discount_details'] = $db->getAllDiscount();
 
             $db = new Customer();
             $data['customer_details'] = $db->getAllCustomer();
@@ -53,7 +57,8 @@ if (session_status() == PHP_SESSION_NONE) {
             // var_dump($imageRoom);
             $data['img_details'] = $imageRoom;
             $data['type'] = $type_id;
-    
+            $db = new RoomEdit();
+            $data['discount_details'] = $db->getAllDiscount();
             View::load('sub/roomView', $data);
         }
     }

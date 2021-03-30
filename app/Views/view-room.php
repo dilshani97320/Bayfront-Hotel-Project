@@ -169,15 +169,7 @@
                 }
                  ?> Room</h4>
                 <ul style="margin-bottom: 30px;">
-                    <li>A feast to start your day, the Grand Breakfast offers an exquisite array of international
-                        delicacies
-                        including a healthy and vegetarian corner, to put you on the right track. Detox Butlers,
-                        Croissant
-                        Butlers and Chefs at the many action stations are at your command to make your breakfast, a
-                        feast
-                        fit for a king.</li>
-                    <li>
-                        Includes 1 King Size Bed, private kitchen, bathroom and some living spaces.</li>
+                    <li><?php echo $room_details[0]['room_desc']; ?></li>
                 </ul>
 
 
@@ -187,9 +179,27 @@
 
             <div class="roomSec2">
                 <div class="price pt">
-                    <span class="titlePrice">Price</span>
-                    <span class="value"><?php echo $room_details[0]['price']; ?> LKR</span>
-                    <span class="unit">/Per Night</span>
+                    <span class="titlePrice">Price Per Night</span>
+                    <?php $flag=0; ?>
+                    <?php  foreach ($discount_details as $key=>$value3): //var_dump($value3); ?>
+                    <?php 
+						date_default_timezone_set("Asia/Colombo");
+						$current_date = date('Y-m-d');
+						if($value3['room_type_id'] == $room_details[0]['type_id'] &&  $current_date >= $value3['start_date'] &&  $current_date <= $value3['end_date'] && $value3['discount_rate']!=0): ?>
+                    <?php $flag++; $new =( $room_details[0]['price']*(100-$value3['discount_rate']))/100;
+								$new = round($new, 2);
+								//echo $value3['room_type_id']; exit; ?>
+                    <span class="valueCutTwo">LKR
+                        <?php echo $room_details[0]['price']; ?>
+                    </span><br>
+                    <span class="value">LKR <?php echo $new; ?> </span>
+                    <?php endif; ?>
+                    <?php endforeach; ?>
+
+                    <?php  if($flag== 0): ?>
+                    <span class="value">LKR <?php echo $room_details[0]['price']; ?> </span>
+
+                    <?php endif; ?>
                 </div>
                 <?php include(VIEWS.'inc/booking-formY.php'); ?>
 
@@ -284,12 +294,13 @@
 
                     <div class="Sur">
                         <?Php  foreach ($review_details as $key=>$value): //var_dump($review_details); exit;?>
-                        <figure class="snip1540">
+                        <?Php if($value['is_show']== "1"): ?>
+                        <figure class="roomReviewSec">
                             <figcaption>
                                 <?Php  foreach ($customer_details as $key1=>$value1):// var_dump($customer_details); exit?>
                                 <?Php if($value1['customer_id']== $value['customer_id']): ?>
-                                <h4><?php echo $value1['first_name']; ?></h4>
-                                <h3><?php echo $value1['location']; ?></h3>
+                                <h3><?php echo $value1['first_name']; ?></h3>
+                                <h4><?php echo $value1['location']; ?></h4>
                                 <?Php endif; ?>
                                 <?Php endforeach; ?>
                                 <?php  for ($i=0; $i < $value['rating']; $i++): ?>
@@ -301,8 +312,13 @@
                                 <?php  endfor; ?>
 
                                 <p><?php echo $value['guest_review'] ?></p>
+                                <?php $id =$value1['customer_id']; ?>
+                                <a href="#" onclick='showMore( <?php echo $id; ?>)'>Read More</a>
+                                <p id="<?Php echo $value1['customer_id']; ?>" style="display: none;">
+                                    <?php echo $value['hotel_reply'] ?></p>
                             </figcaption>
                         </figure>
+                        <?Php endif; ?>
                         <?Php endforeach; ?>
                     </div>
                 </div>
@@ -349,6 +365,13 @@
 
         // Change the opacity to opacity var
         e.target.style.opacity = opacity;
+    }
+
+    function showMore(id) {
+
+        var ptag = document.getElementById(id);
+        console.log(ptag);
+        ptag.style = "display: block;";
     }
     </script>
 </body>

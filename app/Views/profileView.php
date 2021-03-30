@@ -490,13 +490,19 @@ dl.bookings dt {
                     </form>
 
                     <?php else:?>
+                    <?php  foreach ($review as $key1=>$value1): ?>
+                    <?php if ($value['reservation_id'] == $value1['reservation_id'] ): ?>
                     <?php if ($value1['guest_review'] != NULL): ?>
                     <figure class="snip1568">
                         <figcaption>
-                            <p><?php echo $value['guest_review']; ?></p>
+                            <p><?php echo $value1['guest_review']; ?></p>
                         </figcaption>
                     </figure>
                     <?php endif;?>
+                    <?php endif;?>
+                    <?php endforeach; ?>
+
+
 
                     <?php endif;?>
 

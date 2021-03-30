@@ -635,7 +635,10 @@ class RoomController {
                 $imageRoom =$db->viewRoom();
                 // var_dump($imageRoom);
                 $data['img_details'] = $imageRoom;
-        
+
+                $db = new RoomEdit();
+                $data['discount_details'] = $db->getAllDiscount();
+                // var_dump($data['discount_details']); exit;
                 View::load('room', $data);
             }
 
@@ -1286,6 +1289,9 @@ class RoomController {
                     $imageRoom =$db->viewRoom();
                     // var_dump($imageRoom);
                     $data['img_details'] = $imageRoom;
+
+                    $db = new RoomEdit();
+            $data['discount_details'] = $db->getAllDiscount();
             
                     View::load('room', $data);
                 }
@@ -1319,6 +1325,8 @@ class RoomController {
                     $data['input_data'] = $inputdata;
                     // var_dump($inputdata);
                     // die();
+                    $db = new RoomEdit();
+            $data['discount_details'] = $db->getAllDiscount();
                     View::load('room', $data);
                 }
     }

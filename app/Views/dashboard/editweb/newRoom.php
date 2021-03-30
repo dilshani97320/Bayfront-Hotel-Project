@@ -28,7 +28,8 @@
                     <div class="options">
                         <h4>Add New Room
                             <span>
-                                <a href="<?php url("editweb/index"); ?>" class="addnew"><i class="material-icons">reply_all</i></a>
+                                <a href="<?php url("editweb/index"); ?>" class="addnew"><i
+                                        class="material-icons">reply_all</i></a>
                             </span>
                         </h4>
                     </div>
@@ -144,27 +145,6 @@
                                 </div>
                             </div>
 
-<!-- This is not input field this for testing design Ravindu -->
-                        <div class="rowdateRange">
-                            <label for="#"><i class="material-icons">today</i>Check-Out Date:</label>
-                                <!-- <div class="animate-form"> -->
-                                <input type="number" autocomplete="off" name="room_number" class="inputFieldDate" <?php 
-                                        if(isset($room['room_number'])){
-                                            echo 'value="' . $room['room_number'] . '"';
-                                        }
-                                        else {
-                                            echo 'placeholder="B102"';
-                                        } 
-                                    
-                                ?> oninput="validateRoomNo(this, 0,3)">
-                                    
-                                    <label for="name" class="label-name">
-                                        <?php if((isset($errors)) && (isset($details['check_out_date']))): ?>
-                                            <span class="content-name"><i class="material-icons">info</i>No ROOMS Available</span>
-                                        <?php endif; ?>
-                                    </label>   
-                                <!-- </div>      -->
-                            </div>
 
                             <div class="row">
                                 <label for="#"><i class="material-icons">hotel</i>Room Name:</label>
@@ -301,88 +281,6 @@
                                         <?php endif; ?>
                                     </label>
                                 </div>
-                            </div>
-
-                            <div class="row">
-                                <label for="#"><i class="material-icons">local_offer</i>Room Discount :</label>
-                                <div class="animate-form">
-                                    <input type="text" autocomplete="off" name="discount" class="inputField" <?php 
-                                        if(isset($room['price'])){
-                                            echo 'value="' . $room['price'] . '"';
-                                        }
-                                        else {
-                                            echo 'placeholder="1000"';
-                                        } 
-                                    
-                                    ?> oninput="validateRoomPrice(this, 0,10)">
-
-                                    <label for="name" class="label-name">
-                                        <?php if((isset($errors['price'])) && (isset($room['price']))): ?>
-                                        <div id="alert05">
-                                            <span class="content-name"><i
-                                                    class="material-icons">info</i><?php echo $errors['price']; ?></span>
-                                        </div>
-                                        <?php else: ?>
-                                        <div style="display: none;" id="alert05">
-                                            <span class="content-name"></span>
-                                        </div>
-                                        <?php endif; ?>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <label for="#"><i class="material-icons">today</i>Start Date:</label>
-                                <!-- <div class="animate-formdate"> -->
-                                <input type="date" autocomplete="off" name="start_date" class="inputFieldDate" <?php 
-
-                                        date_default_timezone_set("Asia/Colombo");
-                                        $current_date = date('Y-m-d');
-                                        if(isset($details['check_in_date'])){
-                                            echo 'value="' . $details['check_in_date'] . '"';
-                                        }
-                                        else {
-                                            echo 'value="'.$current_date .'"';
-                                        } 
-                                    
-                                    ?> <?php 
-                                        echo 'min="'.$current_date .'"';
-                                    ?> required>
-
-                                <label for="name" class="label-name">
-                                    <?php if((isset($errors)) && (isset($details['check_in_date']))): ?>
-                                    <span class="content-name"><i class="material-icons">info</i>No ROOMS
-                                        Available</span>
-                                    <?php endif; ?>
-                                </label>
-                                <!-- </div> -->
-                            </div>
-
-                            <div class="row">
-                                <label for="#"><i class="material-icons">today</i>End Date:</label>
-                                <!-- <div class="animate-formdate"> -->
-                                <input type="date" autocomplete="off" name="end_date" class="inputFieldDate" <?php 
-
-                                        date_default_timezone_set("Asia/Colombo");
-                                        $current_date = date('Y-m-d');
-                                        if(isset($details['check_in_date'])){
-                                            echo 'value="' . $details['check_in_date'] . '"';
-                                        }
-                                        else {
-                                            echo 'value="'.$current_date .'"';
-                                        } 
-                                    
-                                    ?> <?php 
-                                        echo 'min="'.$current_date .'"';
-                                    ?> required>
-
-                                <label for="name" class="label-name">
-                                    <?php if((isset($errors)) && (isset($details['check_in_date']))): ?>
-                                    <span class="content-name"><i class="material-icons">info</i>No ROOMS
-                                        Available</span>
-                                    <?php endif; ?>
-                                </label>
-                                <!-- </div> -->
                             </div>
 
                             <div class="row">

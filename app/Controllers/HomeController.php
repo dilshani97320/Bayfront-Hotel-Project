@@ -21,6 +21,9 @@ session_start();
             // exit;
             $data['img_details'] = $imageRoom;
             
+            $db = new RoomEdit();
+            $data['discount_details'] = $db->getAllDiscount();
+            
             View::load('home', $data);
             
         }

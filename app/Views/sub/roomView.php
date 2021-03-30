@@ -34,8 +34,28 @@
                 <div class="room-details ">
                     <div class="content-room">
                         <span class="value" style="color: #000; font-size: 30px;"> </span>
-                        <span class="value"> <?php echo $value['price']; ?> $</span>
-                        <span class="unit" style="color: #000;">/Per Night</span>
+                        <?php $flag=0; ?>
+                        <?php  foreach ($discount_details as $key=>$value3): //var_dump($value3); ?>
+                        <?php 
+						date_default_timezone_set("Asia/Colombo");
+						$current_date = date('Y-m-d');
+						if($value3['room_type_id'] == $value['type_id'] &&  $current_date >= $value3['start_date'] &&  $current_date <= $value3['end_date'] && $value3['discount_rate']!=0): ?>
+                        <?php $flag++; $new =( $value['price']*(100-$value3['discount_rate']))/100;
+								$new = round($new, 2);
+								//echo $value3['room_type_id']; exit; ?>
+                        <span class="valueCut">LKR
+                            <?php echo $value['price']; ?>
+                        </span><br>
+                        <span class="value">LKR <?php echo $new; ?> </span>
+                        <span class="unit">/Per Night</span>
+                        <?php endif; ?>
+                        <?php endforeach; ?>
+
+                        <?php  if($flag== 0): ?>
+                        <span class="value">LKR <?php echo $value['price']; ?> </span>
+                        <span class="unit">/Per Night</span>
+
+                        <?php endif; ?>
                         <h1><?php echo $value['room_name']; ?></h1>
                         <span><?php echo $value['type_name']; ?></span>
                         <p>Lorem20 ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum, quas quasi nulla aut

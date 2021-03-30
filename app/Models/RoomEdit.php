@@ -4,7 +4,7 @@ class RoomEdit{
 
     private $table1 = "room_details";
     private $table2 = "room_type";
-    private $table3 = "hotel_room";
+    private $table3 = "room_discount";
     private $conn;
 
     public function __construct() {
@@ -16,6 +16,31 @@ class RoomEdit{
 
         $this->connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
     }
+
+    public function getAllDiscount() {
+
+
+        $query = "SELECT * FROM  $this->table3";
+
+        // echo $query;  
+        // exit();  
+        $room_discount = mysqli_query($this->connection, $query);
+        // var_dump($rooms);
+        if($room_discount) {
+            $room_discount =mysqli_fetch_all($room_discount,MYSQLI_ASSOC);
+        
+            // var_dump($rooms);
+            // exit();
+            return $room_discount;
+        }
+        else {
+            echo "Database Query Failed";
+        }    
+
+        
+    }
+
+
 
     public function getAllRoom() {
 

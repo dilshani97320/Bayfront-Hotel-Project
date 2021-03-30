@@ -58,7 +58,7 @@
 
                                 <td><?php echo $row['rating'];?></td>
 
-                                <?php if( $row['hotel_reply'] =="NULL"): ?>
+                                <?php if( $row['hotel_reply'] ==""): ?>
                                 <td><a href="<?php url('feedback/replyReview/'.$row['feedback_id']);?>" class="edit"><i
                                             class="material-icons">send</i>Reply</a></td>
                                 <?php else: ?>

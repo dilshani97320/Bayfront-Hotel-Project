@@ -75,19 +75,19 @@ include(VIEWS.'dashboard/inc/header.php');
                                 <!-- </div>      -->
                             </div>
 
-                            <div class="rowdate">
+                            <div class="row">
                                 <label for="#"><i class="material-icons">today</i>Hotel Reply:</label>
-                                <!-- <div class="animate-form"> -->
-                                <textarea type="date" autocomplete="off" name="reply" class="inputFieldDate"
-                                    required> <?php echo $review['hotel_reply'] ?></textarea>
+                                <div class="animate-form">
+                                    <textarea type="date" autocomplete="off" name="reply" class="inputFieldDate"
+                                        required> <?php echo $review['hotel_reply'] ?></textarea>
 
-                                <!-- <label for="name" class="label-name">
-                                    <?php if((isset($errors)) && (isset($details['check_out_date']))): ?>
-                                    <span class="content-name"><i class="material-icons">info</i>No ROOMS
-                                        Available</span>
-                                    <?php endif; ?>
-                                </label> -->
-                                <!-- </div>      -->
+                                    <label for="name" class="label-name">
+                                        <?php if((isset($errors)) && (isset($details['check_out_date']))): ?>
+                                        <span class="content-name"><i class="material-icons">info</i>No ROOMS
+                                            Available</span>
+                                        <?php endif; ?>
+                                    </label>
+                                </div>
                             </div>
 
 

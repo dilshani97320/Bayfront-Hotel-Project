@@ -85,7 +85,7 @@
   width: 400px;
   object-fit: cover;
 }
-.price {
+.packageInfo {
   flex: 1;
   /* margin-left: 30px; */
 }
@@ -967,6 +967,24 @@ figure.imgBlock.hover .title:after {
 .content-room {
   height: calc(500px - 80px);
 }
+.servbadge .meta2 svg {
+  fill: #008009;
+  margin-right: 5px;
+  margin-bottom: -5px;
+}
+
+.value-meta {
+  font-weight: 600;
+}
+
+.valueCut {
+  text-decoration: #000 line-through;
+  margin-bottom: 20px;
+  font-size: 45px;
+  letter-spacing: -5px;
+  line-height: 50px;
+  font-family: Cormorant, serif;
+}
 
 .single-room-meta {
   display: flex;
@@ -995,7 +1013,18 @@ figure.imgBlock.hover .title:after {
   text-align: center;
   font-weight: 650;
 }
+.single-room-meta-two {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
 
+.servbadge {
+  flex: 1;
+}
+.discPrice {
+  flex: 2;
+}
 .room-details h1 {
   text-align: left;
 }
@@ -1093,19 +1122,16 @@ figure.imgBlock.hover .title:after {
 
 @import url("https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@1,500&display=swap");
 
-.value {
+.room-details .value {
   letter-spacing: -5px;
   line-height: 30px;
-
-  color: #85b5cc;
   font-size: 60px;
   font-family: Cormorant, serif;
 }
 
-span .unit {
-  font-size: 14px;
-  color: #16131b;
-  text-transform: lowercase;
+.room-details .unit {
+  font-size: 20px;
+  text-transform: capitalize;
   font-family: nanum myeongjo, helveticaneue-light, helvetica neue light,
     helvetica neue, Helvetica, Arial, lucida grande, sans-serif;
 }
@@ -1165,7 +1191,15 @@ span .unit {
   .content-room {
     height: calc(500px - 80px);
   }
+  .servbadge .meta2 svg {
+    fill: #008009;
+    margin-right: 5px;
+    margin-bottom: -5px;
+  }
 
+  .value-meta {
+    font-weight: 600;
+  }
   .single-room-meta {
     display: flex;
     flex-wrap: wrap;
@@ -1194,6 +1228,18 @@ span .unit {
     font-weight: 650;
   }
 
+  .single-room-meta-two {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .servbadge {
+    flex: 1;
+  }
+  .discPrice {
+    flex: 2;
+  }
   .room-details-mob h1 {
     text-align: left;
   }
@@ -2587,8 +2633,7 @@ figure.imgBlockSurf.hover .title:after {
   border-color: #0b2e4f;
   /* font-family: "Roboto", "Helvetica", "Arial", sans-serif;
    */
-  font-family: 'Poppins', sans-serif;
-
+  font-family: "Poppins", sans-serif;
 
   /*border: none;*/
 }
@@ -2597,7 +2642,7 @@ figure.imgBlockSurf.hover .title:after {
   
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   width: 23%; */
-  /* border: none; */
+/* border: none; */
 /* } */
 
 .form__dropdown {
@@ -2972,21 +3017,29 @@ figure.imgBlockSurf.hover .title:after {
   font-weight: 600;
   display: block;
   margin-left: 15px;
+  margin-bottom: 10px;
+}
+.valueCutTwo {
+  text-decoration: #000 line-through;
   margin-bottom: 20px;
+  letter-spacing: -5px;
+  line-height: 30px;
+  font-weight: 500;
+  font-size: 40px;
+  letter-spacing: 0.5px;
+  margin-left: 10px;
+  color: #85b5cc;
+  font-family: Cormorant, serif;
 }
 .price .value {
-  font-weight: 550;
-  font-size: 40px;
-  letter-spacing: 1px;
+  letter-spacing: -5px;
+  line-height: 30px;
+  font-weight: 500;
+  font-size: 50px;
+  letter-spacing: 0.5px;
   margin-left: 10px;
-}
-
-.price .unit {
-  font-size: 16px;
-  letter-spacing: 1px;
-  font-weight: 600;
-  color: #16131b;
-  text-transform: capitalize;
+  color: #85b5cc;
+  font-family: Cormorant, serif;
 }
 
 .ht {
@@ -3032,7 +3085,7 @@ figure.imgBlockSurf.hover .title:after {
   margin-top: 35px;
 }
 
-.snip1540 {
+.roomReviewSec {
   box-shadow: none !important;
   color: #141414;
   display: inline-block;
@@ -3047,12 +3100,12 @@ figure.imgBlockSurf.hover .title:after {
   width: 100%;
 }
 
-.snip1540 * {
+.roomReviewSec * {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
-.snip1540 .profile-image img {
+.roomReviewSec .profile-image img {
   border-radius: 5px;
   max-width: 100%;
   height: 80px;
@@ -3060,18 +3113,18 @@ figure.imgBlockSurf.hover .title:after {
   float: left;
 }
 
-.snip1540 figcaption {
+.roomReviewSec figcaption {
   background-color: #333333;
   border-radius: 5px;
   color: #fff;
   display: inline-block;
   margin-top: 15px;
-  padding: 25px;
+  padding: 10px;
   position: relative;
   width: 100%;
 }
 
-.snip1540 figcaption:after {
+.roomReviewSec figcaption:after {
   border-color: transparent transparent #333333 transparent;
   border-style: solid;
   border-width: 0 10px 10px 10px;
@@ -3083,35 +3136,36 @@ figure.imgBlockSurf.hover .title:after {
   width: 0;
 }
 
-.snip1540 h3,
-.snip1540 h4,
-.snip1540 p {
+.roomReviewSec h3,
+.roomReviewSec h4,
+.roomReviewSec p {
   margin: 0 0 5px;
 }
 
-.snip1540 h3 {
+.roomReviewSec h3 {
   font-weight: 600;
-  font-size: 1.2em;
+  font-size: 14px;
   font-family: "Montserrat", Arial, sans-serif;
 }
 
-.snip1540 h4 {
+.roomReviewSec h4 {
   color: #8c8c8c;
   font-weight: 400;
+  font-size: 13px;
   letter-spacing: 2px;
 }
 
-.snip1540 p {
+.roomReviewSec p {
   font-size: 0.9em;
   letter-spacing: 1px;
   opacity: 0.9;
 }
 
-.snip1540 .icons {
+.roomReviewSec .icons {
   padding: 20px 90px;
 }
 
-.snip1540 i {
+.roomReviewSec i {
   color: #ffdf00;
   display: inline-block;
   font-size: 18px;
@@ -3120,7 +3174,7 @@ figure.imgBlockSurf.hover .title:after {
   padding: 10px 2px;
 }
 
-.snip1540 i:hover {
+.roomReviewSec i:hover {
   opacity: 1;
   -webkit-transition: all 0.35s ease;
   transition: all 0.35s ease;
@@ -3129,18 +3183,18 @@ figure.imgBlockSurf.hover .title:after {
 .ratingY {
   display: inline-block;
   position: relative;
-  height: 50px;
-  line-height: 50px;
-  font-size: 35px;
+  height: 25px;
+  line-height: 20px;
+  font-size: 25px;
   text-shadow: 0 0 5px #ffdf00;
   color: #ffdf00;
 }
 .ratingB {
   display: inline-block;
   position: relative;
-  height: 50px;
-  line-height: 50px;
-  font-size: 35px;
+  height: 25px;
+  line-height: 20px;
+  font-size: 25px;
   text-shadow: 0 0 5px #fff;
   color: #fff;
 }
@@ -3291,7 +3345,7 @@ figure.imgBlockSurf.hover .title:after {
     margin-top: 35px;
   }
 
-  .snip1540 {
+  .roomReviewSec {
     box-shadow: none !important;
     color: #141414;
     display: inline-block;
@@ -3306,12 +3360,12 @@ figure.imgBlockSurf.hover .title:after {
     width: 100%;
   }
 
-  .snip1540 * {
+  .roomReviewSec * {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
   }
 
-  .snip1540 .profile-image img {
+  .roomReviewSec .profile-image img {
     border-radius: 5px;
     max-width: 100%;
     height: 80px;
@@ -3319,7 +3373,7 @@ figure.imgBlockSurf.hover .title:after {
     float: left;
   }
 
-  .snip1540 figcaption {
+  .roomReviewSec figcaption {
     background-color: #333333;
     border-radius: 5px;
     color: #fff;
@@ -3330,7 +3384,7 @@ figure.imgBlockSurf.hover .title:after {
     width: 100%;
   }
 
-  .snip1540 figcaption:after {
+  .roomReviewSec figcaption:after {
     border-color: transparent transparent #333333 transparent;
     border-style: solid;
     border-width: 0 10px 10px 10px;
@@ -3342,35 +3396,35 @@ figure.imgBlockSurf.hover .title:after {
     width: 0;
   }
 
-  .snip1540 h3,
-  .snip1540 h4,
-  .snip1540 p {
+  .roomReviewSec h3,
+  .roomReviewSec h4,
+  .roomReviewSec p {
     margin: 0 0 5px;
   }
 
-  .snip1540 h3 {
+  .roomReviewSec h3 {
     font-weight: 600;
-    font-size: 1.2em;
+    font-size: 15px;
     font-family: "Montserrat", Arial, sans-serif;
   }
 
-  .snip1540 h4 {
+  .roomReviewSec h4 {
     color: #8c8c8c;
     font-weight: 400;
     letter-spacing: 2px;
   }
 
-  .snip1540 p {
+  .roomReviewSec p {
     font-size: 0.9em;
     letter-spacing: 1px;
     opacity: 0.9;
   }
 
-  .snip1540 .icons {
+  .roomReviewSec .icons {
     padding: 20px 90px;
   }
 
-  .snip1540 i {
+  .roomReviewSec i {
     color: #ffdf00;
     display: inline-block;
     font-size: 18px;
@@ -3379,7 +3433,7 @@ figure.imgBlockSurf.hover .title:after {
     padding: 10px 2px;
   }
 
-  .snip1540 i:hover {
+  .roomReviewSec i:hover {
     opacity: 1;
     -webkit-transition: all 0.35s ease;
     transition: all 0.35s ease;
@@ -3404,3 +3458,202 @@ figure.imgBlockSurf.hover .title:after {
     color: #fff;
   }
 }
+
+.slit-in-vertical {
+  animation: slit-in-vertical 0.45s ease-out both;
+}
+
+@keyframes slit-in-vertical {
+  0% {
+    transform: translateZ(-800px) rotateY(90deg);
+    opacity: 0;
+  }
+
+  54% {
+    transform: translateZ(-160px) rotateY(87deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateZ(0) rotateY(0);
+  }
+}
+
+#dialogoverlay {
+  display: none;
+  opacity: 0.8;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background: #707070;
+  width: 100%;
+  z-index: 10;
+}
+
+#dialogbox {
+  display: none;
+  position: absolute;
+  background: #0b2e4f;
+  border-radius: 7px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.575);
+  transition: 0.3s;
+  width: 40%;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+#dialogbox:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.911);
+}
+
+.container {
+  padding: 2px 16px;
+}
+
+.pure-material-button-contained {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 4px;
+  padding: 0 16px;
+  min-width: 64px;
+  height: 36px;
+  vertical-align: middle;
+  text-align: center;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  color: rgb(var(--pure-material-onprimary-rgb, 255, 255, 255));
+  background-color: rgb(var(--pure-material-primary-rgb, 0, 77, 70));
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  font-family: var(
+    --pure-material-font,
+    "Roboto",
+    "Segoe UI",
+    BlinkMacSystemFont,
+    system-ui,
+    -apple-system
+  );
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 36px;
+  overflow: hidden;
+  outline: none;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+
+.pure-material-button-contained::-moz-focus-inner {
+  border: none;
+}
+
+/* ---------------Overlay--------------- */
+
+.pure-material-button-contained::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+/* Ripple */
+.pure-material-button-contained::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 50%;
+  padding: 50%;
+  width: 32px;
+  /* Safari */
+  height: 32px;
+  /* Safari */
+  background-color: #fff;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(1);
+  transition: opacity 1s, transform 0.5s;
+}
+
+/* Hover, Focus */
+.pure-material-button-contained:hover,
+.pure-material-button-contained:focus {
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14),
+    0 1px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.pure-material-button-contained:hover::before {
+  opacity: 0.08;
+}
+
+.pure-material-button-contained:focus::before {
+  opacity: 0.24;
+}
+
+.pure-material-button-contained:hover:focus::before {
+  opacity: 0.3;
+}
+
+/* Active */
+.pure-material-button-contained:active {
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.pure-material-button-contained:active::after {
+  opacity: 0.32;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0s;
+}
+
+/* Disabled */
+.pure-material-button-contained:disabled {
+  color: #fff;
+  background-color: #fff;
+  box-shadow: none;
+  cursor: initial;
+}
+
+.pure-material-button-contained:disabled::before {
+  opacity: 0;
+}
+
+.pure-material-button-contained:disabled::after {
+  opacity: 0;
+}
+
+#dialogbox > div {
+  background: #fff;
+  margin: 8px;
+}
+
+#dialogbox > div > #dialogboxhead {
+  background: #0b2e4f;
+  font-size: 19px;
+  padding: 10px;
+  color: rgb(255, 255, 255);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#dialogbox > div > #dialogboxbody {
+  background: #0b2e4f;
+  padding: 20px;
+  color: #fff;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#dialogbox > div > #dialogboxfoot {
+  background: #0b2e4f;
+  padding: 10px;
+  text-align: right;
+}
+
+/*#endregion Alert*/
